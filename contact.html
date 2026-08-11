@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact — THE CHEMICAL FACTORY</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/icons-anim.css">
+    <link rel="stylesheet" href="css/pages.css">
+  </head>
+  <body data-page="contact">
+    <div id="preloader-root"></div>
+    <div id="nav-root"></div>
+
+    <section class="page-hero">
+      <div class="page-hero__bg">
+        <img src="images/warehouse.jpg" alt="Contact the chemical factory team" />
+      </div>
+      <div class="container page-hero__content">
+        <div class="page-hero__crumb">Get In Touch</div>
+        <h1 class="page-hero__title">Let's Talk About Your Project</h1>
+        <p class="page-hero__sub">
+          Book a free site inspection, request a quote, or ask a technical question — our chemical engineers
+          respond within 24 hours on business days.
+        </p>
+      </div>
+    </section>
+
+    <section class="page-section">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-form-wrap" data-reveal>
+            <div class="section-head" style="text-align:left; margin:0 0 1.5rem; max-width:none;">
+              <h2 class="section-head__title" style="font-size:1.5rem;">Send Us a Message</h2>
+              <p class="section-head__sub" style="margin-top:0.4rem;">Tell us about your structure and the leak symptoms you're seeing.</p>
+            </div>
+
+            <form id="contact-form" class="form-grid-2" novalidate>
+              <div class="form-field">
+                <label for="contact-name">Full Name *</label>
+                <input type="text" id="contact-name" placeholder="e.g. John Miller" required />
+              </div>
+              <div class="form-field">
+                <label for="contact-phone">Phone Number *</label>
+                <input type="tel" id="contact-phone" placeholder="e.g. +1 (555) 019-2834" required />
+              </div>
+              <div class="form-field">
+                <label for="contact-email">Email Address</label>
+                <input type="email" id="contact-email" placeholder="john@example.com" />
+              </div>
+              <div class="form-field">
+                <label for="contact-subject">Subject</label>
+                <select id="contact-subject">
+                  <option>Free Site Inspection</option>
+                  <option>Project Quote</option>
+                  <option>Technical Datasheet Request</option>
+                  <option>Emergency Leak Repair</option>
+                  <option>Partnership / Supply</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="form-field" style="grid-column:1/-1;">
+                <label for="contact-message">Project Details</label>
+                <textarea id="contact-message" rows="5" placeholder="Describe your structure type, surface area, and any active leaks..."></textarea>
+              </div>
+              <div class="form-field" style="grid-column:1/-1; margin-bottom:0;">
+                <button type="submit" class="btn-burgundy">
+                  <span>Send Message</span>
+                  <span class="btn-burgundy__circle">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+                  </span>
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div data-reveal>
+            <div class="info-cards">
+              <div class="info-card">
+                <div class="info-card__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+                </div>
+                <div>
+                  <div class="info-card__label">Head Office</div>
+                  <div class="info-card__value">12 Chemical Works Avenue, Industrial District</div>
+                </div>
+              </div>
+              <div class="info-card">
+                <div class="info-card__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                </div>
+                <div>
+                  <div class="info-card__label">Phone / WhatsApp</div>
+                  <div class="info-card__value"><a href="tel:+15550192834">+1 (555) 019-2834</a></div>
+                </div>
+              </div>
+              <div class="info-card">
+                <div class="info-card__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                </div>
+                <div>
+                  <div class="info-card__label">Email</div>
+                  <div class="info-card__value"><a href="mailto:info@thechemicalfactory.com">info@thechemicalfactory.com</a></div>
+                </div>
+              </div>
+              <div class="info-card">
+                <div class="info-card__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </div>
+                <div>
+                  <div class="info-card__label">Working Hours</div>
+                  <div class="info-card__value">Mon – Sat · 8:00 AM – 6:00 PM</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="map-wrap" data-reveal>
+          <span>Site map &amp; service coverage area — installations available nationwide</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-section page-section--muted">
+      <div class="container">
+        <div class="cta-band" data-reveal>
+          <div class="cta-band__bg"><img src="images/roof-structure.jpg" alt=""></div>
+          <div class="cta-band__box">
+            <h2 class="cta-band__title">Prefer a Fast Quote?</h2>
+            <p class="cta-band__sub">
+              Use our interactive estimator to get an instant project range and request a free site inspection.
+            </p>
+            <div class="cta-band__actions">
+              <button type="button" class="btn-white js-open-quote"><span>Open Quick Quote</span><span data-icon="arrow-right"></span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div id="footer-root"></div>
+    <div id="modal-root"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="js/icons.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

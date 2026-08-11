@@ -1,0 +1,109 @@
+/* ============================================================
+   ANIMATED ICON SYSTEM — CSS ports of lucide-animated icons
+   Triggered on hover of the .ani wrapper or its interactive
+   ancestor (buttons, cards, links). Uses CSS nesting.
+   ============================================================ */
+
+@keyframes ai-draw { from { stroke-dashoffset: 1; opacity: 0; } to { stroke-dashoffset: 0; opacity: 1; } }
+@keyframes ai-pop { 0% { transform: scale(1); } 45% { transform: scale(.72); } 100% { transform: scale(1); } }
+@keyframes ai-wiggle { 0% { transform: rotate(0); } 20% { transform: rotate(-11deg); } 40% { transform: rotate(10deg); } 60% { transform: rotate(-7deg); } 80% { transform: rotate(4deg); } 100% { transform: rotate(0); } }
+@keyframes ai-hop { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+@keyframes ai-sink { 0%,100% { transform: translateY(0); } 50% { transform: translateY(3px); } }
+@keyframes ai-shift-x { 0%,100% { transform: translateX(0); } 50% { transform: translateX(4px); } }
+@keyframes ai-spin { to { transform: rotate(360deg); } }
+@keyframes ai-spin180 { to { transform: rotate(180deg); } }
+@keyframes ai-pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.14); } }
+@keyframes ai-flicker { 0%,100% { transform: scale(1) rotate(0); } 25% { transform: scale(1.08) rotate(-2deg); } 50% { transform: scale(.96) rotate(2deg); } 75% { transform: scale(1.05) rotate(-1deg); } }
+@keyframes ai-swing { 0% { transform: rotate(0); } 30% { transform: rotate(16deg); } 60% { transform: rotate(-10deg); } 85% { transform: rotate(6deg); } 100% { transform: rotate(0); } }
+@keyframes ai-blink { 0%,30%,100% { opacity: 1; } 50% { opacity: 0; } }
+@keyframes ai-blinkx { 0%,100% { transform: scaleY(1); opacity: 1; } 50% { transform: scaleY(.12); opacity: .3; } }
+@keyframes ai-fly { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(4px,-4px) scale(.8); } }
+@keyframes ai-morph-r { 0%,100% { d: path("M5 12h14"); } 50% { d: path("M5 12h9"); } }
+@keyframes ai-morph-d { 0%,100% { d: path("M12 5v14"); } 50% { d: path("M12 5v9"); } }
+@keyframes ai-lift1 { 0%,100% { transform: translateY(0); } 45% { transform: translateY(-9px); } }
+@keyframes ai-lift2 { 0%,100% { transform: translateY(0); } 45% { transform: translateY(-5px); } }
+@keyframes ai-grid1 { 0%,100% { transform: translate(0,0); } 45% { transform: translate(11px,0); } }
+@keyframes ai-grid2 { 0%,100% { transform: translate(0,0); } 45% { transform: translate(0,11px); } }
+@keyframes ai-grid3 { 0%,100% { transform: translate(0,0); } 45% { transform: translate(-11px,0); } }
+@keyframes ai-grid4 { 0%,100% { transform: translate(0,0); } 45% { transform: translate(0,-11px); } }
+@keyframes ai-hand1 { to { transform: rotate(360deg); } }
+@keyframes ai-hand2 { to { transform: rotate(45deg); } }
+@keyframes ai-spray { 0%,100% { opacity: 0; } 45% { opacity: 1; } 70% { opacity: 0; } }
+@keyframes ai-nudge-ur { 0%,100% { transform: scale(1) translate(0,0); } 50% { transform: scale(.82) translate(-4px,4px); } }
+
+.ani { display: inline-flex; align-items: center; justify-content: center; line-height: 0; }
+.ani svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.ani .b-draw, .ani .b-draw2, .ani .b-draw3 { stroke-dasharray: 1; }
+
+/* Sizing inside fixed-size containers */
+.social-icon .ani, .btn-nav-cta__circle .ani, .nav-pill__icon .ani, .product-card__arrow .ani, .feature-card__icon .ani, .service-block__icon .ani, .process-step__num .ani, .mission-card__icon .ani, .cert-card__icon .ani, .info-card__icon .ani, .stat__icon .ani, .quote-feature__icon .ani {
+  width: 100%; height: 100%;
+}
+.btn-burgundy .ani, .btn-white .ani, .btn-outline .ani, .btn-download .ani, .btn-nav-cta .ani, .mobile-menu__quote .ani, .ani-link .ani, .lightbox__close .ani, .feature-card__link .ani, .project-card__eye .ani, .hero__cta .ani, .video-card__play .ani, .mobile-toggle .ani {
+  width: 1rem; height: 1rem;
+}
+.btn-nav-cta__circle { display: flex; }
+.btn-nav-cta__circle .ani, .video-card__play .ani, .project-card__eye .ani { width: 60%; height: 60%; }
+.quote-feature__icon .ani, .feature-card__icon .ani, .service-block__icon .ani, .mission-card__icon .ani, .cert-card__icon .ani, .info-card__icon .ani, .stat__icon .ani { width: 60%; height: 60%; }
+.process-step__num .ani { width: 55%; height: 55%; }
+
+.ani .b-pop, .ani .b-wiggle, .ani .b-hop, .ani .b-sink, .ani .b-shift-x, .ani .b-pulse, .ani .b-flicker, .ani .b-swing, .ani .b-fly, .ani .b-spin, .ani .b-blinkx, .ani .b-nudge-ur, .ani .l1, .ani .l2, .ani .r1, .ani .r2, .ani .r3, .ani .r4, .ani .needle {
+  transform-box: fill-box; transform-origin: center;
+}
+.ani .h1, .ani .h2 { transform-box: view-box; transform-origin: 12px 12px; }
+
+.ani:hover,
+:is(.feature-card, .service-block, .project-card, .product-card, .process-step, .mission-card, .cert-card, .facility-card, .info-card, .faq-item, .btn-nav-cta, .mobile-menu__quote, .social-icon, .brand-link, .story__media, .video-card, .cta-band__box, .stat, .ani-link, .lightbox__close, .quote-feature):hover .ani {
+  .b-draw { animation: ai-draw .45s ease-out; }
+  .b-draw2 { animation: ai-draw .45s ease-out .18s; }
+  .b-draw3 { animation: ai-draw .45s ease-out .34s; }
+  .b-pop { animation: ai-pop .5s cubic-bezier(.34,1.56,.64,1); }
+  .b-wiggle { animation: ai-wiggle .6s ease-in-out; }
+  .b-hop { animation: ai-hop .5s ease-in-out; }
+  .b-sink { animation: ai-sink .5s ease-in-out; }
+  .b-shift-x { animation: ai-shift-x .45s ease-in-out; }
+  .b-spin { animation: ai-spin .6s cubic-bezier(.4,0,.2,1); }
+  .b-pulse { animation: ai-pulse .7s ease-in-out; }
+  .b-flicker { animation: ai-flicker .8s ease-in-out; }
+  .b-swing { animation: ai-swing .75s ease-in-out; }
+  .b-fly { animation: ai-fly .5s cubic-bezier(.34,1.56,.64,1); }
+  .b-blinkx { animation: ai-blinkx .4s ease-in-out; }
+  .b-nudge-ur { animation: ai-nudge-ur .5s ease-in-out; }
+  .b-blink { animation: ai-blink 1.8s ease-in-out 2; }
+
+  &.ani--arrow-right .p1 { animation: ai-morph-r .45s ease; }
+  &.ani--arrow-down .p2 { animation: ai-morph-d .45s ease; }
+  &.ani--layers .l1 { animation: ai-lift1 .5s cubic-bezier(.34,1.56,.64,1); }
+  &.ani--layers .l2 { animation: ai-lift2 .5s cubic-bezier(.34,1.56,.64,1); }
+  &.ani--layout-grid .r1 { animation: ai-grid1 .8s ease-in-out; }
+  &.ani--layout-grid .r2 { animation: ai-grid2 .8s ease-in-out; }
+  &.ani--layout-grid .r3 { animation: ai-grid3 .8s ease-in-out; }
+  &.ani--layout-grid .r4 { animation: ai-grid4 .8s ease-in-out; }
+  &.ani--clock .h1 { animation: ai-hand1 .6s ease-in-out; }
+  &.ani--clock .h2 { animation: ai-hand2 .5s ease-in-out; }
+  &.ani--plus svg { animation: ai-spin180 .5s cubic-bezier(.34,1.56,.64,1); }
+  &.ani--spray-can .dots path { animation: ai-spray 1.2s ease-in-out infinite; }
+  &.ani--spray-can .dots .d2 { animation-delay: .07s; }
+  &.ani--spray-can .dots .d3 { animation-delay: .14s; }
+  &.ani--spray-can .dots .d4 { animation-delay: .21s; }
+  &.ani--spray-can .dots .d5 { animation-delay: .28s; }
+  &.ani--spray-can .dots .d6 { animation-delay: .35s; }
+  &.ani--sparkles .s1 { animation: ai-blink 2s ease-in-out .4s; }
+  &.ani--sparkles .s2 { animation: ai-blink 2s ease-in-out .8s; }
+  &.ani--sparkles .s3 { animation: ai-blink 2s ease-in-out 1.2s; }
+  &.ani--sparkles .s4 { animation: ai-blink 2s ease-in-out 1.6s; }
+}
+
+/* Auto-play once on load (hero accents, stats) */
+.ani.auto .b-draw { animation: ai-draw .8s ease-out both; }
+.ani.auto .b-draw2 { animation: ai-draw .8s ease-out .25s both; }
+.ani.auto .b-pop { animation: ai-pop .7s cubic-bezier(.34,1.56,.64,1) both; }
+.ani.auto .b-wiggle { animation: ai-wiggle .9s ease-in-out; }
+.ani.auto .b-pulse { animation: ai-pulse 1.8s ease-in-out infinite; }
+.ani.auto .b-blink { animation: ai-blink 2.4s ease-in-out infinite; }
+
+/* Social brand tints on hover */
+.social-icon:hover .ani--instagram svg { color: #e4405f; }
+.social-icon:hover .ani--facebook svg { color: #1877f2; }
+.social-icon:hover .ani--linkedin svg { color: #0a66c2; }
+.social-icon:hover .ani--twitter svg { color: #1da1f2; }
