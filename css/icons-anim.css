@@ -32,7 +32,7 @@
 @keyframes ai-nudge-ur { 0%,100% { transform: scale(1) translate(0,0); } 50% { transform: scale(.82) translate(-4px,4px); } }
 
 .ani { display: inline-flex; align-items: center; justify-content: center; line-height: 0; }
-.ani svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.ani svg { display: block; width: 50%; height: 50%; overflow: visible; }
 .ani .b-draw, .ani .b-draw2, .ani .b-draw3 { stroke-dasharray: 1; }
 
 /* Sizing inside fixed-size containers */

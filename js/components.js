@@ -13,13 +13,13 @@
   }
 
   var NAV_ITEMS = [
-    { page: 'home', href: '#', label: 'Home', icon: true },
-    { page: 'products', href: '#', label: 'Products' },
-    { page: 'projects', href: '#', label: 'Projects' },
-    { page: 'datasheets', href: '#', label: 'Datasheets' },
-    { page: 'services', href: '#', label: 'Services' },
-    { page: 'about', href: '#', label: 'About' },
-    { page: 'contact', href: '#', label: 'Contact' }
+    { page: 'home', href: 'index.html', label: 'Home', icon: true },
+    { page: 'products', href: 'products.html', label: 'Products' },
+    { page: 'projects', href: 'projects.html', label: 'Projects' },
+    { page: 'datasheets', href: 'datasheets.html', label: 'Datasheets' },
+    { page: 'services', href: 'services.html', label: 'Services' },
+    { page: 'about', href: 'about.html', label: 'About' },
+    { page: 'contact', href: 'contact.html', label: 'Contact' }
   ];
 
   var SOCIAL = [
@@ -35,10 +35,10 @@
     return NAV_ITEMS.map(function (item) {
       var active = item.page === currentPage ? ' is-active' : '';
       if (mobile) {
-        return '<a href="' + item.href + '" class="mobile-menu__link' + active + '">' + item.label + '</a>';
+        return '<a href="#" class="mobile-menu__link' + active + '">' + item.label + '</a>';
       }
       var icon = item.icon ? '<span class="nav-pill__icon">' + ic('home') + '</span>' : '';
-      return '<a href="' + item.href + '" class="nav-pill__link' + active + '">' + icon + '<span>' + item.label + '</span></a>';
+      return '<a href="#" class="nav-pill__link' + active + '">' + icon + '<span>' + item.label + '</span></a>';
     }).join('');
   }
 
@@ -195,6 +195,16 @@
     var mobileMenuBtn = document.getElementById('mobile-menu-btn');
     var iconMenu = document.getElementById('icon-menu');
     var iconClose = document.getElementById('icon-close');
+
+    /* Mark in-site navigation so the preloader is skipped on page switches */
+    document.addEventListener('click', function (e) {
+      var link = e.target && e.target.closest ? e.target.closest('a[href$=".html"], a[href*=".html#"]') : null;
+      if (link) {
+        try {
+          sessionStorage.setItem('cf-prev', '1');
+        } catch (err) { /* ignore */ }
+      }
+    });
 
     function closeMobileMenu() {
       if (!mobileMenu) return;

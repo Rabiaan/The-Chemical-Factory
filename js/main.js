@@ -466,47 +466,60 @@
       }
     }
 
-    /* Preloader: brush sweeps left-to-right, wiping the text as it passes, then fades down */
+    /* Preloader: brush sweeps left-to-right, wiping the text as it passes, then fades down.
+       Shown only on first open / reload, not when navigating between pages. */
     var preloader = $('#preloader');
     if (preloader) {
-      var brush = $('.preloader__brush', preloader);
-      var text = $('.preloader__text', preloader);
-      document.documentElement.classList.add('preloader-active');
-      if (typeof window.gsap !== 'undefined' && brush) {
-        var travel = function () { return window.innerWidth + 240; };
-        var textW = text ? text.offsetWidth : 0;
-        gsap.timeline({
-          onComplete: function () {
-            document.documentElement.classList.remove('preloader-active');
-            preloader.classList.add('is-done');
-          }
-        })
-          .fromTo(brush,
-            { xPercent: -50, yPercent: -50, x: -240 },
-            {
-              xPercent: -50, yPercent: -50,
-              x: travel,
-              duration: 3.2,
-              ease: 'power2.inOut',
-              onUpdate: function () {
-                if (text && textW) {
-                  var x = gsap.getProperty(brush, 'x');
-                  var f = Math.min(Math.max(x / textW, 0), 1);
-                  text.style.clipPath = 'inset(0 ' + ((1 - f) * 100).toFixed(2) + '% 0 0)';
-                }
-              }
-            }, 0)
-          .to(preloader, {
-            autoAlpha: 0, y: 80, duration: 0.7, ease: 'power2.inOut', delay: 0.4,
-            onStart: function () {
-              prepareHomeEntrance();
-              playHomeEntrance();
-            }
-          });
-      } else {
+      var isInternalNav = false;
+      try {
+        isInternalNav = sessionStorage.getItem('cf-prev') === '1';
+        sessionStorage.removeItem('cf-prev');
+      } catch (err) { /* ignore */ }
+
+      if (isInternalNav) {
         document.documentElement.classList.remove('preloader-active');
         preloader.classList.add('is-done');
         playHomeEntrance();
+      } else {
+        var brush = $('.preloader__brush', preloader);
+        var text = $('.preloader__text', preloader);
+        document.documentElement.classList.add('preloader-active');
+        if (typeof window.gsap !== 'undefined' && brush) {
+          var travel = function () { return window.innerWidth + 240; };
+          var textW = text ? text.offsetWidth : 0;
+          gsap.timeline({
+            onComplete: function () {
+              document.documentElement.classList.remove('preloader-active');
+              preloader.classList.add('is-done');
+            }
+          })
+            .fromTo(brush,
+              { xPercent: -50, yPercent: -50, x: -240 },
+              {
+                xPercent: -50, yPercent: -50,
+                x: travel,
+                duration: 3.2,
+                ease: 'power2.inOut',
+                onUpdate: function () {
+                  if (text && textW) {
+                    var x = gsap.getProperty(brush, 'x');
+                    var f = Math.min(Math.max(x / textW, 0), 1);
+                    text.style.clipPath = 'inset(0 ' + ((1 - f) * 100).toFixed(2) + '% 0 0)';
+                  }
+                }
+              }, 0)
+            .to(preloader, {
+              autoAlpha: 0, y: 80, duration: 0.7, ease: 'power2.inOut', delay: 0.4,
+              onStart: function () {
+                prepareHomeEntrance();
+                playHomeEntrance();
+              }
+            });
+        } else {
+          document.documentElement.classList.remove('preloader-active');
+          preloader.classList.add('is-done');
+          playHomeEntrance();
+        }
       }
     } else {
       playHomeEntrance();
@@ -527,11 +540,25 @@
 
       /* Hero background parallax (home only) */
       var heroBg = $('#hero-bg');
+      var heroWatermark = $('.hero__watermark');
+      var heroFrontImg = $('.hero__front-img');
       if (heroBg && page === 'home') {
         gsap.to(heroBg, {
-          yPercent: 8, ease: 'none',
+          yPercent: 14, ease: 'none',
           scrollTrigger: { trigger: heroBg, start: 'top top', end: 'bottom top', scrub: true }
         });
+        if (heroFrontImg) {
+          gsap.to(heroFrontImg, {
+            yPercent: 12, ease: 'none',
+            scrollTrigger: { trigger: heroBg, start: 'top top', end: 'bottom top', scrub: true }
+          });
+        }
+        if (heroWatermark) {
+          gsap.to(heroWatermark, {
+            yPercent: 6, ease: 'none',
+            scrollTrigger: { trigger: heroBg, start: 'top top', end: 'bottom top', scrub: true }
+          });
+        }
       }
 
       /* About secondary image parallax (home only) */
