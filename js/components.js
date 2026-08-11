@@ -13,13 +13,13 @@
   }
 
   var NAV_ITEMS = [
-    { page: 'home', href: 'index.html', label: 'Home', icon: true },
-    { page: 'products', href: 'products.html', label: 'Products' },
-    { page: 'projects', href: 'projects.html', label: 'Projects' },
-    { page: 'datasheets', href: 'datasheets.html', label: 'Datasheets' },
-    { page: 'services', href: 'services.html', label: 'Services' },
-    { page: 'about', href: 'about.html', label: 'About' },
-    { page: 'contact', href: 'contact.html', label: 'Contact' }
+    { page: 'home', href: '#', label: 'Home', icon: true },
+    { page: 'products', href: '#', label: 'Products' },
+    { page: 'projects', href: '#', label: 'Projects' },
+    { page: 'datasheets', href: '#', label: 'Datasheets' },
+    { page: 'services', href: '#', label: 'Services' },
+    { page: 'about', href: '#', label: 'About' },
+    { page: 'contact', href: '#', label: 'Contact' }
   ];
 
   var SOCIAL = [
