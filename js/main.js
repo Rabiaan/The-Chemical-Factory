@@ -467,16 +467,17 @@
     }
 
     /* Preloader: brush sweeps left-to-right, wiping the text as it passes, then fades down.
-       Shown only on first open / reload, not when navigating between pages. */
+       Shown only on the very first page load of a visit; skipped on in-site page
+       switches, back/forward navigation, and reloads. */
     var preloader = $('#preloader');
     if (preloader) {
-      var isInternalNav = false;
+      var seenBefore = false;
       try {
-        isInternalNav = sessionStorage.getItem('cf-prev') === '1';
-        sessionStorage.removeItem('cf-prev');
+        seenBefore = sessionStorage.getItem('cf-seen') === '1';
+        sessionStorage.setItem('cf-seen', '1');
       } catch (err) { /* ignore */ }
 
-      if (isInternalNav) {
+      if (seenBefore) {
         document.documentElement.classList.remove('preloader-active');
         preloader.classList.add('is-done');
         playHomeEntrance();

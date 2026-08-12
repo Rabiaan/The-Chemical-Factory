@@ -196,16 +196,6 @@
     var iconMenu = document.getElementById('icon-menu');
     var iconClose = document.getElementById('icon-close');
 
-    /* Mark in-site navigation so the preloader is skipped on page switches */
-    document.addEventListener('click', function (e) {
-      var link = e.target && e.target.closest ? e.target.closest('a[href$=".html"], a[href*=".html#"]') : null;
-      if (link) {
-        try {
-          sessionStorage.setItem('cf-prev', '1');
-        } catch (err) { /* ignore */ }
-      }
-    });
-
     function closeMobileMenu() {
       if (!mobileMenu) return;
       mobileMenu.classList.remove('open');
