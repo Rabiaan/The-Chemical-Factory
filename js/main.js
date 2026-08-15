@@ -234,39 +234,41 @@
     });
   });
 
-  /* ---------- Services: infinite carousel (3 cards visible) ---------- */
-  var servicesGrid = $('.services__grid');
-  var servicesTrack = $('.services__track');
-  var serviceDots = $$('.services__dot');
-  var servicesPrev = $('#services-prev');
-  var servicesNext = $('#services-next');
+  /* ---------- Infinite carousel (3 cards visible) ---------- */
+  function initInfiniteCarousel(cfg) {
+    var grid = $(cfg.grid);
+    var track = $(cfg.track);
+    var dots = $$(cfg.dots);
+    var prevBtn = $(cfg.prev);
+    var nextBtn = $(cfg.next);
 
-  if (servicesTrack) {
-    var baseCards = $$('.service-card', servicesTrack);
+    if (!track) return;
+
+    var baseCards = $$(cfg.card, track);
     var count = baseCards.length;
     var index = count;
     var step = 0;
     var timer = null;
-    var delay = 3200;
+    var delay = cfg.delay || 3200;
 
-    baseCards.forEach(function (c) { servicesTrack.appendChild(c.cloneNode(true)); });
-    baseCards.forEach(function (c) { servicesTrack.appendChild(c.cloneNode(true)); });
+    baseCards.forEach(function (c) { track.appendChild(c.cloneNode(true)); });
+    baseCards.forEach(function (c) { track.appendChild(c.cloneNode(true)); });
 
     function measure() {
-      var first = $('.service-card', servicesTrack);
-      var style = window.getComputedStyle(servicesTrack);
+      var first = $(cfg.card, track);
+      var style = window.getComputedStyle(track);
       var gap = parseFloat(style.columnGap || style.gap || '0') || 0;
       step = first ? first.offsetWidth + gap : 0;
     }
 
     function setTransition(on) {
-      servicesTrack.style.transition = on ? '' : 'none';
+      track.style.transition = on ? '' : 'none';
     }
 
     function moveTo(i) {
-      servicesTrack.style.transform = 'translateX(-' + i * step + 'px)';
+      track.style.transform = 'translateX(-' + i * step + 'px)';
       var logical = ((i - count) % count + count) % count;
-      serviceDots.forEach(function (dot, d) {
+      dots.forEach(function (dot, d) {
         dot.classList.toggle('is-active', d === logical);
       });
     }
@@ -274,7 +276,7 @@
     function snap() {
       setTransition(false);
       moveTo(index);
-      void servicesTrack.offsetWidth;
+      void track.offsetWidth;
       setTransition(true);
     }
 
@@ -319,35 +321,50 @@
     measure();
     moveTo(index);
 
-    servicesGrid.addEventListener('mouseenter', stop);
-    servicesGrid.addEventListener('mouseleave', start);
+    if (grid) {
+      grid.addEventListener('mouseenter', stop);
+      grid.addEventListener('mouseleave', start);
+    }
 
-    serviceDots.forEach(function (dot) {
+    dots.forEach(function (dot) {
       dot.addEventListener('click', function () {
         goToLogical(parseInt(dot.getAttribute('data-index'), 10));
       });
     });
-    if (servicesPrev) {
-      servicesPrev.addEventListener('click', function () { prev(); restart(); });
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function () { prev(); restart(); });
     }
-    if (servicesNext) {
-      servicesNext.addEventListener('click', function () { next(); restart(); });
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function () { next(); restart(); });
     }
-    servicesTrack.addEventListener('click', function (e) {
-      var card = e.target.closest ? e.target.closest('.service-card') : null;
-      if (card) goToLogical(parseInt(card.getAttribute('data-index'), 10));
-    });
+    if (cfg.cardGoTo) {
+      track.addEventListener('click', function (e) {
+        var card = e.target.closest ? e.target.closest(cfg.card) : null;
+        if (card) goToLogical(parseInt(card.getAttribute('data-index'), 10));
+      });
+    }
 
     window.addEventListener('resize', function () {
       measure();
       setTransition(false);
       moveTo(index);
-      void servicesTrack.offsetWidth;
+      void track.offsetWidth;
       setTransition(true);
     });
 
     start();
   }
+
+  initInfiniteCarousel({
+    grid: '.products-slider__grid',
+    track: '.products-slider__track',
+    dots: '.products-slider__dot',
+    prev: '#products-prev',
+    next: '#products-next',
+    card: '.product-card',
+    cardGoTo: false,
+    delay: 3200
+  });
 
   /* ---------- FAQ accordion ---------- */
   var faqItems = $$('.faq-item');

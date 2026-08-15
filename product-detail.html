@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Detail — THE CHEMICAL FACTORY</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/icons-anim.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <link rel="icon" type="image/png" href="images/fav-log.png" />
+    <meta property="og:image" content="images/logo.jpeg" />
+    <meta name="twitter:image" content="images/logo.jpeg" />
+  </head>
+  <body data-page="products">
+    <div id="preloader-root"></div>
+    <div id="nav-root"></div>
+
+    <section class="page-hero">
+      <div class="page-hero__crumb" id="detail-crumb">Products</div>
+      <h1 class="page-hero__title" id="detail-title">Product</h1>
+      <p class="page-hero__sub" id="detail-sub"></p>
+    </section>
+
+    <div id="detail-missing" class="page-section hidden">
+      <div class="container">
+        <div class="cta-band">
+          <div class="cta-band__box">
+            <h2 class="cta-band__title">Product Not Found</h2>
+            <p class="cta-band__sub">The product you are looking for does not exist or may have been moved.</p>
+            <div class="cta-band__actions">
+              <a href="products.html" class="btn-white"><span>Browse All Products</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="detail-main">
+      <section class="page-section">
+        <div class="container">
+          <div class="detail-grid">
+            <div class="detail-media">
+              <div class="detail-imgbox">
+                <img id="detail-img" src="images/img-01.jpg" alt="Product image" />
+              </div>
+              <div class="detail-chips">
+                <div class="detail-chip">Lab Tested ASTM/BS</div>
+                <div class="detail-chip">Direct Factory Supply</div>
+                <div class="detail-chip">In Stock &bull; Ready to Dispatch</div>
+              </div>
+            </div>
+            <div>
+              <div class="detail-panel">
+                <div class="detail-cat" id="detail-cat"></div>
+                <h2 class="detail-title" id="detail-name"></h2>
+                <p class="detail-sub" id="detail-subtitle"></p>
+                <span class="detail-rating" id="detail-rating"></span>
+                <p class="detail-desc" id="detail-desc"></p>
+              </div>
+              <div class="detail-panel">
+                <h3 class="detail-panel__title">Pack Sizes &amp; Prices</h3>
+                <div class="data-table-wrap">
+                  <table class="data-table">
+                    <thead>
+                      <tr><th>Pack Size</th><th>Unit</th><th>Price</th></tr>
+                    </thead>
+                    <tbody id="detail-variants"></tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="detail-actions">
+                <a id="detail-wa" class="btn-wa" href="https://wa.me/923043600297" target="_blank" rel="noopener noreferrer">
+                  <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16.004 3.2c-7.06 0-12.8 5.74-12.8 12.8 0 2.26.59 4.46 1.71 6.4L3.2 28.8l6.55-1.71a12.74 12.74 0 0 0 6.25 1.63c7.06 0 12.8-5.74 12.8-12.8 0-3.42-1.33-6.63-3.75-9.05a12.72 12.72 0 0 0-9.05-3.67zm7.48 18.28c-.31.88-1.83 1.71-2.52 1.77-.68.07-1.35.31-4.53-1.01-3.83-1.59-6.25-5.72-6.44-5.98-.19-.26-1.54-2.04-1.54-3.89s.98-2.76 1.32-3.14c.34-.38.75-.48 1-.48.25 0 .5.01.72.01.23.01.54-.09.85.65.31.76 1.06 2.62 1.15 2.81.1.19.16.42.03.68-.13.26-.19.42-.39.65-.19.23-.41.51-.58.68-.19.19-.39.4-.17.78.23.38 1.01 1.66 2.16 2.69 1.49 1.33 2.74 1.74 3.13 1.94.39.19.61.16.84-.1.23-.26.97-1.13 1.22-1.52.26-.39.52-.32.87-.19.36.13 2.26 1.07 2.65 1.26.39.19.64.29.74.45.09.16.09.94-.23 1.81z"/></svg>
+                  <span>Inquire on WhatsApp</span>
+                </a>
+                <a href="contact.html" class="btn-outline" style="border-color: rgba(18, 20, 26, 0.2); color: var(--ink);">Request a Site Visit</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="page-section page-section--muted">
+        <div class="container">
+          <div class="detail-lists">
+            <div class="detail-panel">
+              <h3 class="detail-panel__title">Key Performance Characteristics</h3>
+              <ul class="detail-list" id="detail-features"></ul>
+            </div>
+            <div class="detail-panel">
+              <h3 class="detail-panel__title">Recommended Substrates &amp; Areas</h3>
+              <ul class="detail-list" id="detail-apps"></ul>
+            </div>
+          </div>
+          <div class="detail-extra">
+            <div class="detail-extra__card">
+              <div class="detail-extra__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+              </div>
+              <div>
+                <div class="detail-extra__label">Theoretical Coverage</div>
+                <div class="detail-extra__value" id="detail-coverage"></div>
+              </div>
+            </div>
+            <div class="detail-extra__card">
+              <div class="detail-extra__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div>
+                <div class="detail-extra__label">Curing Schedule</div>
+                <div class="detail-extra__value" id="detail-curing"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="page-section">
+        <div class="container">
+          <div class="section-head">
+            <h2 class="section-head__title">Technical Data Sheet</h2>
+            <p class="section-head__sub">Certified property matrix for specifiers, engineers, and site teams.</p>
+          </div>
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th>Property</th><th>Specification</th></tr>
+              </thead>
+              <tbody id="detail-specs"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="page-section page-section--muted">
+        <div class="container">
+          <div class="section-head">
+            <h2 class="section-head__title">Related Products</h2>
+            <p class="section-head__sub">More systems from the same category.</p>
+          </div>
+          <div class="products__grid" id="related-grid"></div>
+        </div>
+      </section>
+    </div>
+
+    <section class="page-section">
+      <div class="container">
+        <div class="cta-band">
+          <div class="cta-band__bg"><img src="images/img-04.jpg" alt=""></div>
+          <div class="cta-band__box">
+            <h2 class="cta-band__title">Get Contractor &amp; Bulk Pricing</h2>
+            <p class="cta-band__sub">Talk to a chemical engineer for project-specific rates, technical guidance, and site batch tests.</p>
+            <div class="cta-band__actions">
+              <a href="https://wa.me/923043600297" class="btn-white"><span>WhatsApp Us</span></a>
+              <!-- <a href="datasheets.html" class="btn-outline">Browse Datasheets</a> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div id="footer-root"></div>
+    <div id="modal-root"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="js/icons.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/products-data.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

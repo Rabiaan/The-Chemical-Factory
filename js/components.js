@@ -15,15 +15,15 @@
   var NAV_ITEMS = [
     { page: 'home', href: 'index.html', label: 'Home', icon: true },
     { page: 'products', href: 'products.html', label: 'Products' },
-    { page: 'projects', href: 'projects.html', label: 'Projects' },
-    { page: 'datasheets', href: 'datasheets.html', label: 'Datasheets' },
-    { page: 'services', href: 'services.html', label: 'Services' },
-    { page: 'about', href: 'about.html', label: 'About' },
+    { page: 'projects', href: '#', label: 'Projects' },
+    { page: 'datasheets', href: '#', label: 'Datasheets' },
+    { page: 'services', href: '#', label: 'Services' },
+    { page: 'about', href: '#', label: 'About' },
     { page: 'contact', href: 'contact.html', label: 'Contact' }
   ];
 
   var SOCIAL = [
-    { label: 'Instagram', href: '#instagram', name: 'instagram' },
+    { label: 'Instagram', href: 'https://www.instagram.com/thechemicalfactory/', name: 'instagram' },
     { label: 'Facebook', href: '#facebook', name: 'facebook' },
     { label: 'LinkedIn', href: '#linkedin', name: 'linkedin' },
     { label: 'Twitter X', href: '#twitter', name: 'twitter' }
@@ -35,10 +35,10 @@
     return NAV_ITEMS.map(function (item) {
       var active = item.page === currentPage ? ' is-active' : '';
       if (mobile) {
-        return '<a href="#" class="mobile-menu__link' + active + '">' + item.label + '</a>';
+        return '<a href="' + item.href + '" class="mobile-menu__link' + active + '">' + item.label + '</a>';
       }
       var icon = item.icon ? '<span class="nav-pill__icon">' + ic('home') + '</span>' : '';
-      return '<a href="#" class="nav-pill__link' + active + '">' + icon + '<span>' + item.label + '</span></a>';
+      return '<a href="' + item.href + '" class="nav-pill__link' + active + '">' + icon + '<span>' + item.label + '</span></a>';
     }).join('');
   }
 
@@ -46,7 +46,7 @@
     '<header id="navbar" class="navbar">'
     + '<div class="navbar__inner">'
     + '<a href="index.html" class="brand-link" aria-label="The Chemical Factory - Home">'
-    + '<span class="brand-pill"><img src="images/logo-removebg-preview.png" alt="The Chemical Factory" class="logo__img"></span>'
+    + '<span class="brand-pill"><img src="images/fav-log.png" alt="The Chemical Factory" class="logo__img"></span>'
     + '</a>'
     + '<nav class="nav-pill">' + navLinks(false) + '</nav>'
     + '<div class="navbar__actions">'
@@ -77,7 +77,8 @@
     + '</p>'
     + '<div class="social-row">'
     + SOCIAL.map(function (s) {
-      return '<a href="' + s.href + '" aria-label="' + s.label + '" class="social-icon">' + ic(s.name) + '</a>';
+      var external = /^https?:\/\//.test(s.href) ? ' target="_blank" rel="noopener noreferrer"' : '';
+      return '<a href="' + s.href + '"' + external + ' aria-label="' + s.label + '" class="social-icon">' + ic(s.name) + '</a>';
     }).join('')
     + '</div>'
     + '<nav class="footer__nav">'
@@ -169,6 +170,24 @@
     + '</div>'
     + '</div>';
 
+  var WHATSAPP_SVG =
+    '<svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">'
+    + '<path d="M16.004 3.2c-7.06 0-12.8 5.74-12.8 12.8 0 2.26.59 4.46 1.71 6.4L3.2 28.8l6.55-1.71a12.74 12.74 0 0 0 6.25 1.63c7.06 0 12.8-5.74 12.8-12.8 0-3.42-1.33-6.63-3.75-9.05a12.72 12.72 0 0 0-9.05-3.67zm7.48 18.28c-.31.88-1.83 1.71-2.52 1.77-.68.07-1.35.31-4.53-1.01-3.83-1.59-6.25-5.72-6.44-5.98-.19-.26-1.54-2.04-1.54-3.89s.98-2.76 1.32-3.14c.34-.38.75-.48 1-.48.25 0 .5.01.72.01.23.01.54-.09.85.65.31.76 1.06 2.62 1.15 2.81.1.19.16.42.03.68-.13.26-.19.42-.39.65-.19.23-.41.51-.58.68-.19.19-.39.4-.17.78.23.38 1.01 1.66 2.16 2.69 1.49 1.33 2.74 1.74 3.13 1.94.39.19.61.16.84-.1.23-.26.97-1.13 1.22-1.52.26-.39.52-.32.87-.19.36.13 2.26 1.07 2.65 1.26.39.19.64.29.74.45.09.16.09.94-.23 1.81z"/>'
+    + '</svg>';
+
+  function mountWhatsApp() {
+    if (document.getElementById('whatsapp-fab')) return;
+    var fab = document.createElement('a');
+    fab.id = 'whatsapp-fab';
+    fab.className = 'whatsapp-fab';
+    fab.href = 'https://wa.me/923043600297';
+    fab.target = '_blank';
+    fab.rel = 'noopener noreferrer';
+    fab.setAttribute('aria-label', 'Chat on WhatsApp');
+    fab.innerHTML = WHATSAPP_SVG;
+    document.body.appendChild(fab);
+  }
+
   function mount() {
     var navRoot = document.getElementById('nav-root');
     var footerRoot = document.getElementById('footer-root');
@@ -217,6 +236,8 @@
     for (var i = 0; i < menuLinks.length; i++) {
       menuLinks[i].addEventListener('click', closeMobileMenu);
     }
+
+    mountWhatsApp();
   }
 
   if (document.readyState === 'loading') {

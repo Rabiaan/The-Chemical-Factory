@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/icons-anim.css">
     <link rel="stylesheet" href="css/pages.css">
+    <link rel="icon" type="image/png" href="images/fav-log.png" />
+    <meta property="og:image" content="images/logo.jpeg" />
+    <meta name="twitter:image" content="images/logo.jpeg" />
   </head>
   <body data-page="home">
     <div id="preloader-root"></div>
@@ -110,12 +113,12 @@
             <p class="about__text">
               Whether you need foundation tanking, flat roof membrane coating, crystalline crack injection, or balcony sealing, our specialized engineering team is dedicated to safeguarding your structural assets.
             </p>
-            <a href="about.html" class="btn-dark">
+            <!-- <a href="about.html" class="btn-dark">
               <span>Learn More</span>
               <span class="btn-dark__circle">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
               </span>
-            </a>
+            </a> -->
 
             <div class="stats" data-reveal>
               <div class="stat">
@@ -186,12 +189,12 @@
             <p>
               We want to be your top choice for chemical waterproofing by prioritizing engineered quality, transparent pricing, and absolute leak prevention.
             </p>
-            <a href="projects.html" class="btn-burgundy">
+            <!-- <a href="projects.html" class="btn-burgundy">
               <span>Explore All Projects</span>
               <span class="btn-burgundy__circle">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
               </span>
-            </a>
+            </a> -->
           </div>
         </div>
 
@@ -335,8 +338,7 @@
         </div>
 
         <div class="services__grid">
-          <div class="services__track">
-            <div class="service-card is-active" data-index="0">
+            <div class="service-card" data-index="0">
             <div>
               <div class="service-card__icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-burgundy"><path d="M7 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.57-2.26-1.71-3.19S7.29 6.75 7 5.3c-.29 1.45-1.14 2.84-2.29 3.76S3 11.1 3 12.25c0 2.22 1.8 4.05 4 4.05z"/><path d="M12.56 6.6A10.97 10.97 0 0 0 14 3.02c.5 2.5 2 4.9 4 6.5s3 3.5 3 5.5a6.98 6.98 0 0 1-11.91 4.97"/></svg>
@@ -415,27 +417,126 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 4b. FEATURED PRODUCTS (slider) ============ -->
+    <section id="products" class="section products-slider" data-reveal>
+      <div class="container">
+        <div class="services__header">
+          <span class="section-label section-label--centered"><span class="section-label__rule"></span>Products<span class="section-label__rule"></span></span>
+          <h2 class="services__title">Featured Chemical Systems</h2>
+          <p class="services__sub">
+            Explore our best-selling ASTM-certified coatings, sealants, and membranes — engineered for extreme durability and backed by a 10-25 year warranty.
+          </p>
+        </div>
+
+        <div class="products-slider__grid">
+          <div class="products-slider__track">
+            <div class="product-card" data-index="0">
+              <a class="product-card__img" href="product-detail.html?id=mega-clear-guard" aria-label="View MEGA CLEAR GUARD">
+                <img src="images/img-01.jpg" alt="MEGA CLEAR GUARD" loading="lazy" />
+                <span class="product-card__cat">Waterproofing Coatings</span>
+              </a>
+              <div class="product-card__body">
+                <h3 class="product-card__name">MEGA CLEAR GUARD</h3>
+                <p class="product-card__spec">Clear Transparent Single Component Acrylic Waterproof Coating</p>
+                <div class="product-card__foot">
+                  <a href="product-detail.html?id=mega-clear-guard" class="product-card__more"><span class="product-card__more-text">View More</span><span class="product-card__more-arrow">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                  </span></a>
+                </div>
+              </div>
+            </div>
+
+            <div class="product-card" data-index="1">
+              <a class="product-card__img" href="product-detail.html?id=mega-flex" aria-label="View MEGA FLEX">
+                <img src="images/img-02.jpg" alt="MEGA FLEX" loading="lazy" />
+                <span class="product-card__cat">Waterproofing Coatings</span>
+              </a>
+              <div class="product-card__body">
+                <h3 class="product-card__name">MEGA FLEX</h3>
+                <p class="product-card__spec">Synthetic Rubberized Bitumen Waterproof Coating &amp; Sealant</p>
+                <div class="product-card__foot">
+                  <a href="product-detail.html?id=mega-flex" class="product-card__more"><span class="product-card__more-text">View More</span><span class="product-card__more-arrow">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                  </span></a>
+                </div>
+              </div>
+            </div>
+
+            <div class="product-card" data-index="2">
+              <a class="product-card__img" href="product-detail.html?id=mega-prime" aria-label="View MEGA PRIME">
+                <img src="images/img-03.jpg" alt="MEGA PRIME" loading="lazy" />
+                <span class="product-card__cat">Waterproofing Coatings</span>
+              </a>
+              <div class="product-card__body">
+                <h3 class="product-card__name">MEGA PRIME</h3>
+                <p class="product-card__spec">Bitumen Emulsion Waterproof Protective Coating &amp; Primer</p>
+                <div class="product-card__foot">
+                  <a href="product-detail.html?id=mega-prime" class="product-card__more"><span class="product-card__more-text">View More</span><span class="product-card__more-arrow">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                  </span></a>
+                </div>
+              </div>
+            </div>
+
+            <div class="product-card" data-index="3">
+              <a class="product-card__img" href="product-detail.html?id=mega-shield-base" aria-label="View MEGA SHIELD BASE">
+                <img src="images/img-04.jpg" alt="MEGA SHIELD BASE" loading="lazy" />
+                <span class="product-card__cat">Waterproofing Coatings</span>
+              </a>
+              <div class="product-card__body">
+                <h3 class="product-card__name">MEGA SHIELD BASE</h3>
+                <p class="product-card__spec">Heat Proof &amp; UV Reflective Acrylic Waterproof Coating</p>
+                <div class="product-card__foot">
+                  <a href="product-detail.html?id=mega-shield-base" class="product-card__more"><span class="product-card__more-text">View More</span><span class="product-card__more-arrow">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                  </span></a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
         <div class="services__nav">
-          <button type="button" id="services-prev" class="services__arrow" aria-label="Previous service">
+          <button type="button" id="products-prev" class="services__arrow" aria-label="Previous products">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
           </button>
-          <div class="services__dots" id="services-dots">
-            <button type="button" class="services__dot is-active" data-index="0" aria-label="Go to slide 1"></button>
-            <button type="button" class="services__dot" data-index="1" aria-label="Go to slide 2"></button>
-            <button type="button" class="services__dot" data-index="2" aria-label="Go to slide 3"></button>
-            <button type="button" class="services__dot" data-index="3" aria-label="Go to slide 4"></button>
+          <div class="services__dots">
+            <button type="button" class="products-slider__dot is-active" data-index="0" aria-label="Go to product slide 1"></button>
+            <button type="button" class="products-slider__dot" data-index="1" aria-label="Go to product slide 2"></button>
+            <button type="button" class="products-slider__dot" data-index="2" aria-label="Go to product slide 3"></button>
+            <button type="button" class="products-slider__dot" data-index="3" aria-label="Go to product slide 4"></button>
           </div>
-          <button type="button" id="services-next" class="services__arrow services__arrow--dark" aria-label="Next service">
+          <button type="button" id="products-next" class="services__arrow services__arrow--dark" aria-label="Next products">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
           </button>
         </div>
       </div>
     </section>
 
-    <!-- ============ 5. WHY CHOOSE US ============ -->
+    <!-- ============ 4c. CTA BAND ============ -->
+    <section class="page-section">
+      <div class="container">
+        <div class="cta-band" data-reveal>
+          <div class="cta-band__bg"><img src="images/flat-roof.jpg" alt=""></div>
+          <div class="cta-band__box">
+            <h2 class="cta-band__title">Ready to Seal It Right?</h2>
+            <p class="cta-band__sub">
+              Book a free site inspection and get a precise chemical waterproofing proposal from our engineers within 24 hours.
+            </p>
+            <div class="cta-band__actions">
+              <button type="button" class="btn-white js-open-quote"><span>Get a Free Quote</span><span data-icon="arrow-right"></span></button>
+              <a href="contact.html" class="btn-outline">Contact Us</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 5. WHY CHOOSE US [BENEFITS] ============
     <section class="why" data-reveal>
       <div class="container">
         <div class="why__box">
@@ -509,6 +610,7 @@
         </div>
       </div>
     </section>
+    ============ 5. WHY CHOOSE US [BENEFITS] END ============ -->
 
     <!-- ============ 6. TESTIMONIALS ============ -->
     <section class="section testimonials" data-reveal>
@@ -712,25 +814,6 @@
             <div class="faq-item__a">
               <span class="faq-cat">Maintenance</span>
               <p>Yes! Our high-adhesion primers and flexible 2-component polymer slurry systems can bond directly to properly prepared porcelain tiles, concrete decks, and metal roofing without costly tear-offs.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ 8. CTA BAND ============ -->
-    <section class="page-section">
-      <div class="container">
-        <div class="cta-band" data-reveal>
-          <div class="cta-band__bg"><img src="images/flat-roof.jpg" alt=""></div>
-          <div class="cta-band__box">
-            <h2 class="cta-band__title">Ready to Seal It Right?</h2>
-            <p class="cta-band__sub">
-              Book a free site inspection and get a precise chemical waterproofing proposal from our engineers within 24 hours.
-            </p>
-            <div class="cta-band__actions">
-              <button type="button" class="btn-white js-open-quote"><span>Get a Free Quote</span><span data-icon="arrow-right"></span></button>
-              <a href="contact.html" class="btn-outline">Contact Us</a>
             </div>
           </div>
         </div>

@@ -7,30 +7,34 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/icons-anim.css">
     <link rel="stylesheet" href="css/pages.css">
+    <link rel="icon" type="image/png" href="images/fav-log.png" />
+    <meta property="og:image" content="images/logo.jpeg" />
+    <meta name="twitter:image" content="images/logo.jpeg" />
   </head>
   <body data-page="about">
     <div id="preloader-root"></div>
     <div id="nav-root"></div>
 
     <section class="page-hero">
-      <div class="page-hero__bg">
-        <img src="images/application.jpg" alt="Chemical waterproofing application team" />
+      <div class="page-hero__crumb">
+        <span>Home</span>
+        <i>/</i>
+        <span>About Us</span>
       </div>
-      <div class="container page-hero__content">
-        <div class="page-hero__crumb">Who We Are</div>
-        <h1 class="page-hero__title">Built on Chemistry. Driven by Craftsmanship.</h1>
-        <p class="page-hero__sub">
-          THE CHEMICAL FACTORY is a specialized waterproofing contractor and chemical systems supplier
-          combining certified polymer engineering with hands-on application craftsmanship.
-        </p>
-      </div>
+      <h1 class="page-hero__title">Engineering <em>Waterproof</em><br />Certainty Since 2008</h1>
+      <p class="page-hero__sub">
+        The Chemical Factory formulates and manufactures ASTM-certified waterproofing coatings,
+        crystalline admixtures, injection resins, and elastomeric sealants trusted by contractors,
+        developers, and engineers across the region.
+      </p>
     </section>
 
+    <!-- Our story -->
     <section class="page-section">
       <div class="container">
         <div class="story">
           <div class="story__media" data-reveal>
-            <img src="images/application.jpg" alt="Liquid applied membrane being rolled onto a deck" />
+            <img src="images/technician.jpg" alt="Chemical Engineer supervising a membrane application" />
             <span class="story__media-badge">Certified Chemical Crews</span>
           </div>
           <div data-reveal>
@@ -47,6 +51,35 @@
               commercial, and industrial sites.
             </p>
           </div>
+        </div>
+
+        <div class="stats-bar" data-reveal>
+          <div class="stat-tile">
+            <div class="stat-tile__value">500+</div>
+            <div class="stat-tile__label">Projects Delivered</div>
+          </div>
+          <div class="stat-tile">
+            <div class="stat-tile__value">98%</div>
+            <div class="stat-tile__label">On-Time Delivery</div>
+          </div>
+          <div class="stat-tile">
+            <div class="stat-tile__value">15+</div>
+            <div class="stat-tile__label">Years Experience</div>
+          </div>
+          <div class="stat-tile">
+            <div class="stat-tile__value">99%</div>
+            <div class="stat-tile__label">Client Satisfaction</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mission -->
+    <section class="page-section page-section--muted">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-head__title">Why We Exist</h2>
+          <p class="section-head__sub">Chemical purity, engineering honesty, and total accountability on every structure.</p>
         </div>
 
         <div class="mission-cards">
@@ -81,30 +114,41 @@
       </div>
     </section>
 
-    <section class="page-section page-section--muted">
+    <!-- How we work -->
+    <section class="page-section">
       <div class="container">
-        <div class="stats-bar" data-reveal>
-          <div class="stat-tile">
-            <div class="stat-tile__value">500+</div>
-            <div class="stat-tile__label">Projects Delivered</div>
+        <div class="section-head">
+          <h2 class="section-head__title">Our 4-Step Process</h2>
+          <p class="section-head__sub">A disciplined, engineer-led workflow from first inspection to final warranty.</p>
+        </div>
+
+        <div class="process-steps">
+          <div class="process-step" data-reveal>
+            <div class="process-step__num">01</div>
+            <h3 class="process-step__title">Free Site Inspection</h3>
+            <p class="process-step__text">Certified engineers map leaks, moisture, and substrate condition using non-destructive diagnostic tools.</p>
           </div>
-          <div class="stat-tile">
-            <div class="stat-tile__value">98%</div>
-            <div class="stat-tile__label">On-Time Delivery</div>
+          <div class="process-step" data-reveal>
+            <div class="process-step__num">02</div>
+            <h3 class="process-step__title">System Specification</h3>
+            <p class="process-step__text">We specify the exact chemical system, membrane thickness, and coverage rate with transparent itemized pricing.</p>
           </div>
-          <div class="stat-tile">
-            <div class="stat-tile__value">15+</div>
-            <div class="stat-tile__label">Years Experience</div>
+          <div class="process-step" data-reveal>
+            <div class="process-step__num">03</div>
+            <h3 class="process-step__title">Certified Application</h3>
+            <p class="process-step__text">Trained chemical crews prepare, prime, and apply the system with strict quality control at every coat.</p>
           </div>
-          <div class="stat-tile">
-            <div class="stat-tile__value">99%</div>
-            <div class="stat-tile__label">Client Satisfaction</div>
+          <div class="process-step" data-reveal>
+            <div class="process-step__num">04</div>
+            <h3 class="process-step__title">Testing &amp; Warranty</h3>
+            <p class="process-step__text">Flood testing verifies the seal, then we issue a 10-25 year performance warranty and maintenance guide.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="page-section">
+    <!-- Certifications -->
+    <section class="page-section page-section--muted">
       <div class="container">
         <div class="section-head">
           <h2 class="section-head__title">Certifications &amp; Compliance</h2>
@@ -144,7 +188,8 @@
       </div>
     </section>
 
-    <section class="page-section page-section--muted">
+    <!-- Why teams choose us -->
+    <section class="page-section">
       <div class="container">
         <div class="section-head">
           <h2 class="section-head__title">Why Teams Choose Us</h2>
@@ -192,10 +237,11 @@
       </div>
     </section>
 
-    <section class="page-section">
+    <!-- CTA -->
+    <section class="page-section page-section--muted">
       <div class="container">
         <div class="cta-band" data-reveal>
-          <div class="cta-band__bg"><img src="images/technician.jpg" alt=""></div>
+          <div class="cta-band__bg"><img src="images/flat-roof.jpg" alt=""></div>
           <div class="cta-band__box">
             <h2 class="cta-band__title">Let's Protect Your Structure Together</h2>
             <p class="cta-band__sub">

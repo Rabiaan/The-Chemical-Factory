@@ -7,207 +7,97 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/icons-anim.css">
     <link rel="stylesheet" href="css/pages.css">
+    <link rel="icon" type="image/png" href="images/fav-log.png" />
+    <meta property="og:image" content="images/logo.jpeg" />
+    <meta name="twitter:image" content="images/logo.jpeg" />
   </head>
   <body data-page="products">
     <div id="preloader-root"></div>
     <div id="nav-root"></div>
 
     <section class="page-hero">
-      <div class="page-hero__bg">
-        <img src="images/warehouse.jpg" alt="Chemical waterproofing products warehouse" />
+      <div class="page-hero__crumb">
+        <span>Home</span>
+        <i>/</i>
+        <span>Chemical Shop &amp; Specifications</span>
       </div>
-      <div class="container page-hero__content">
-        <div class="page-hero__crumb">Products</div>
-        <h1 class="page-hero__title">Waterproofing Chemical Systems</h1>
-        <p class="page-hero__sub">
-          Explore our full range of polyurethane, polyurea, crystalline, bituminous, and polymer-modified
-          chemical systems — each engineered and certified for a specific structural protection application.
-        </p>
-      </div>
+      <h1 class="page-hero__title">Chemical <em>Products &amp;</em><br />Systems</h1>
+      <p class="page-hero__sub">
+        Explore our full commercial range of ASTM-certified waterproofing coatings, hybrid diluters,
+        siloxane repellents, elastomeric sealants, and concrete admixtures engineered for extreme durability.
+      </p>
+      <label class="page-hero__search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" id="product-hero-search" placeholder="Search products by name (e.g. Mega Clear Guard, Dilutor 502, Panda Seal)..." />
+      </label>
     </section>
 
     <section class="page-section">
       <div class="container">
-        <div class="filter-bar" id="product-filter-bar">
-          <button type="button" class="filter-btn is-active" data-category="All">All</button>
-          <button type="button" class="filter-btn" data-category="Membranes & Coatings">Membranes &amp; Coatings</button>
-          <button type="button" class="filter-btn" data-category="Crystalline">Crystalline</button>
-          <button type="button" class="filter-btn" data-category="Injection">Injection</button>
-          <button type="button" class="filter-btn" data-category="Wet Areas">Wet Areas</button>
-          <button type="button" class="filter-btn" data-category="Accessories">Accessories</button>
+        <div class="catalog-search">
+          <form class="catalog-search__bar" id="product-search-form">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="product-search-input" placeholder="Filter by product, category, or spec keyword..." />
+            <button type="submit" class="catalog-search__btn">Search</button>
+          </form>
         </div>
 
-        <div class="products__grid" id="products-grid">
-          <article class="product-card" data-category="Membranes & Coatings">
-            <div class="product-card__img">
-              <img src="images/flat-roof.jpg" alt="Polyurethane Liquid Membrane" />
-              <span class="product-card__cat">Membrane &amp; Coating</span>
+        <div class="catalog">
+          <aside id="sidebar" class="sidebar">
+            <div class="card">
+              <h3><span>Product Categories</span><span class="icon">&#9881;</span></h3>
+              <div id="sidebarCategories" class="cat-tree"></div>
             </div>
-            <div class="product-card__body">
-              <h3 class="product-card__name">TCF Polyurethane Liquid Membrane</h3>
-              <p class="product-card__spec">
-                Single-component moisture-curing PU coating forming a seamless, UV-stable, elastic waterproofing skin for exposed roofs and balconies.
-              </p>
-              <div class="product-card__foot">
-                <a href="datasheets.html" class="product-card__view">View Datasheet</a>
-                <span class="product-card__arrow">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-                </span>
-              </div>
+            <div class="card price-range">
+              <h3><span>Filter by Max Price</span><span class="price-value">Rs <span id="priceValue">55,000</span></span></h3>
+              <input id="priceRange" class="range-input" type="range" min="500" max="55000" step="500" value="55000" />
+              <div class="range-labels"><span>Rs 500</span><span>Rs 55,000+</span></div>
             </div>
-          </article>
+            <div class="support">
+              <h4>Need Chemical Formulation Help?</h4>
+              <p>Our chemical engineers provide customized application specs, joint design, and site batch tests across Pakistan.</p>
+              <a class="btn-support" href="https://wa.me/923043600297" target="_blank" rel="noopener noreferrer">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                <span>Call Engineer</span>
+              </a>
+            </div>
+          </aside>
 
-          <article class="product-card" data-category="Membranes & Coatings">
-            <div class="product-card__img">
-              <img src="images/warehouse.jpg" alt="Fast-Curing Polyurea Spray" />
-              <span class="product-card__cat">Membrane &amp; Coating</span>
-            </div>
-            <div class="product-card__body">
-              <h3 class="product-card__name">TCF Spray Polyurea Hybrid</h3>
-              <p class="product-card__spec">
-                Fast-curing 2-component polyurea spray system with extreme elongation, chemical resistance, and 1-2 hour foot traffic recovery.
-              </p>
-              <div class="product-card__foot">
-                <a href="datasheets.html" class="product-card__view">View Datasheet</a>
-                <span class="product-card__arrow">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-                </span>
+          <main class="content">
+            <div class="toolbar">
+              <div id="resultsText" class="results-text"></div>
+              <div class="toolbar-right">
+                <button id="btnMobileFilters" class="btn-filter-mobile">&#9881; Filters</button>
+                <div class="sort-wrap">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                  <select id="sortSelect" class="sort-select">
+                    <option value="default">Default sorting</option>
+                    <option value="price-asc">Sort by price: low to high</option>
+                    <option value="price-desc">Sort by price: high to low</option>
+                    <option value="rating">Sort by average rating</option>
+                    <option value="name">Sort by name: A to Z</option>
+                  </select>
+                </div>
               </div>
             </div>
-          </article>
 
-          <article class="product-card" data-category="Crystalline">
-            <div class="product-card__img">
-              <img src="images/construction.jpg" alt="Crystalline Slurry Coating" />
-              <span class="product-card__cat">Crystalline</span>
-            </div>
-            <div class="product-card__body">
-              <h3 class="product-card__name">TCF Crystalline Slurry Coating</h3>
-              <p class="product-card__spec">
-                Cementitious crystalline waterproofing that self-heals micro-cracks in concrete by growing insoluble crystals on contact with water.
-              </p>
-              <div class="product-card__foot">
-                <a href="datasheets.html" class="product-card__view">View Datasheet</a>
-                <span class="product-card__arrow">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-                </span>
+            <div id="mobileFilters" class="mobile-filters hidden">
+              <div class="mobile-filters-head">
+                <h4>Filter Products</h4>
+                <button id="btnCloseMobileFilters" class="close-btn" type="button">&times;</button>
               </div>
+              <label>Category:</label>
+              <select id="mobileCategorySelect"></select>
             </div>
-          </article>
 
-          <article class="product-card" data-category="Membranes & Coatings">
-            <div class="product-card__img">
-              <img src="images/construction.jpg" alt="Elastomeric Bituminous Membrane" />
-              <span class="product-card__cat">Membrane &amp; Coating</span>
+            <div id="productResults" class="grouped"></div>
+            <div id="noResults" class="empty hidden">
+              <div class="empty-icon">&#128269;</div>
+              <h3>No chemical products match your filter</h3>
+              <p>Try adjusting your search keywords or resetting price and category filters.</p>
+              <button id="btnReset" class="btn-reset" type="button">Reset All Filters</button>
             </div>
-            <div class="product-card__body">
-              <h3 class="product-card__name">TCF Elastomeric Bituminous Membrane 4mm</h3>
-              <p class="product-card__spec">
-                Multi-ply SBS-modified bituminous sheet membrane for heavy-duty subterranean tanking under hydrostatic pressure.
-              </p>
-              <div class="product-card__foot">
-                <a href="datasheets.html" class="product-card__view">View Datasheet</a>
-                <span class="product-card__arrow">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-                </span>
-              </div>
-            </div>
-          </article>
-
-          <article class="product-card" data-category="Wet Areas">
-            <div class="product-card__img">
-              <img src="images/wet-area.jpg" alt="Polymer Cementitious Flex Coat" />
-              <span class="product-card__cat">Wet Areas</span>
-            </div>
-            <div class="product-card__body">
-              <h3 class="product-card__name">TCF Polymer Cementitious Flex Coat</h3>
-              <p class="product-card__spec">
-                2-component flexible polymer slurry coating for bathrooms, balconies, and pool basins — tile adhesive compatible and non-toxic grade.
-              </p>
-              <div class="product-card__foot">
-                <a href="datasheets.html" class="product-card__view">View Datasheet</a>
-                <span class="product-card__arrow">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-                </span>
-              </div>
-            </div>
-          </article>
-
-          <article class="product-card" data-category="Injection">
-            <div class="product-card__img">
-              <img src="images/technician.jpg" alt="Hydrophobic PU Resin Injection" />
-              <span class="product-card__cat">Injection</span>
-            </div>
-            <div class="product-card__body">
-              <h3 class="product-card__name">TCF Hydrophobic PU Resin Injection</h3>
-              <p class="product-card__spec">
-                High-pressure polyurethane injection resin that expands on contact with water to instantly seal active leaks in structural concrete.
-              </p>
-              <div class="product-card__foot">
-                <a href="datasheets.html" class="product-card__view">View Datasheet</a>
-                <span class="product-card__arrow">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-                </span>
-              </div>
-            </div>
-          </article>
-
-          <article class="product-card" data-category="Membranes & Coatings">
-            <div class="product-card__img">
-              <img src="images/roof-structure.jpg" alt="Solar Reflective Acrylic Shield" />
-              <span class="product-card__cat">Membrane &amp; Coating</span>
-            </div>
-            <div class="product-card__body">
-              <h3 class="product-card__name">TCF Solar Reflective Acrylic Shield</h3>
-              <p class="product-card__spec">
-                Cool-roof acrylic elastomeric topcoat with high solar reflectance, reducing surface temperature and energy load.
-              </p>
-              <div class="product-card__foot">
-                <a href="datasheets.html" class="product-card__view">View Datasheet</a>
-                <span class="product-card__arrow">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-                </span>
-              </div>
-            </div>
-          </article>
-
-          <article class="product-card" data-category="Accessories">
-            <div class="product-card__img">
-              <img src="images/apartment.jpg" alt="Drainage Board and Filter Fabric" />
-              <span class="product-card__cat">Accessories</span>
-            </div>
-            <div class="product-card__body">
-              <h3 class="product-card__name">TCF Drainage Board &amp; Filter Fabric</h3>
-              <p class="product-card__spec">
-                Dimpled HDPE drainage composite with bonded geotextile filter to relieve hydrostatic pressure on protected membranes.
-              </p>
-              <div class="product-card__foot">
-                <a href="datasheets.html" class="product-card__view">View Datasheet</a>
-                <span class="product-card__arrow">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-                </span>
-              </div>
-            </div>
-          </article>
-
-          <article class="product-card" data-category="Accessories">
-            <div class="product-card__img">
-              <img src="images/flat-roof.jpg" alt="High-Adhesion Epoxy Primer" />
-              <span class="product-card__cat">Accessories</span>
-            </div>
-            <div class="product-card__body">
-              <h3 class="product-card__name">TCF High-Adhesion Epoxy Primer</h3>
-              <p class="product-card__spec">
-                Low-viscosity epoxy sealer that bonds membranes and slurries to prepared concrete, tiles, and metal substrates.
-              </p>
-              <div class="product-card__foot">
-                <a href="datasheets.html" class="product-card__view">View Datasheet</a>
-                <span class="product-card__arrow">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-                </span>
-              </div>
-            </div>
-          </article>
+          </main>
         </div>
       </div>
     </section>
@@ -220,8 +110,8 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
             </div>
             <div>
-              <h3 class="quote-feature__title">Certified Chemical Purity</h3>
-              <p class="quote-feature__text">Every system is sourced from certified global suppliers and batch-tested for purity before application.</p>
+              <h3 class="quote-feature__title">Lab Tested ASTM/BS Quality</h3>
+              <p class="quote-feature__text">Every product is certified, batch-tested, and supplied direct from the factory with full technical documentation.</p>
             </div>
           </div>
           <div class="quote-feature">
@@ -230,14 +120,14 @@
             </div>
             <div>
               <h3 class="quote-feature__title">System-Specific Specification</h3>
-              <p class="quote-feature__text">Our engineers specify the exact membrane thickness and coverage rate for your structure's exposure class.</p>
+              <p class="quote-feature__text">Our chemical engineers specify the exact membrane thickness, coverage rate, and pack size for your structure.</p>
             </div>
           </div>
         </div>
 
         <div class="stats-bar" data-reveal>
           <div class="stat-tile">
-            <div class="stat-tile__value">25+</div>
+            <div class="stat-tile__value">24+</div>
             <div class="stat-tile__label">Chemical Systems</div>
           </div>
           <div class="stat-tile">
@@ -246,7 +136,7 @@
           </div>
           <div class="stat-tile">
             <div class="stat-tile__value">10-25</div>
-            <div class="stat-tile__label">Year Warranties</div>
+            <div class="stat-tile__label">Year Warranty</div>
           </div>
           <div class="stat-tile">
             <div class="stat-tile__value">98%</div>
@@ -263,10 +153,10 @@
           <div class="cta-band__box">
             <h2 class="cta-band__title">Need a Product Specification?</h2>
             <p class="cta-band__sub">
-              Download technical datasheets or talk to a chemical engineer about the right system for your structure.
+              Download technical datasheets or talk to a chemical engineer about the right system and pack size for your project.
             </p>
             <div class="cta-band__actions">
-              <a href="datasheets.html" class="btn-white"><span>Browse Datasheets</span><span data-icon="arrow-right"></span></a>
+              <!-- <a href="datasheets.html" class="btn-white"><span>Browse Datasheets</span><span data-icon="arrow-right"></span></a> -->
               <a href="contact.html" class="btn-outline">Contact Us</a>
             </div>
           </div>
@@ -281,6 +171,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="js/icons.js"></script>
     <script src="js/components.js"></script>
+    <script src="js/products-data.js"></script>
+    <script src="js/products.js"></script>
     <script src="js/main.js"></script>
   </body>
 </html>
