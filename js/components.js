@@ -13,12 +13,12 @@
   }
 
   var NAV_ITEMS = [
-    { page: 'home', href: 'index.html', label: 'Home', icon: true },
+    { page: 'home', href: 'index.html', label: 'Home' },
     { page: 'products', href: 'products.html', label: 'Products' },
-    { page: 'projects', href: '#', label: 'Projects' },
-    { page: 'datasheets', href: '#', label: 'Datasheets' },
-    { page: 'services', href: '#', label: 'Services' },
-    { page: 'about', href: '#', label: 'About' },
+    { page: 'projects', href: 'projects.html', label: 'Projects' },
+    { page: 'datasheets', href: 'datasheets.html', label: 'Datasheets' },
+    { page: 'services', href: 'services.html', label: 'Services' },
+    { page: 'about', href: 'about.html', label: 'About' },
     { page: 'contact', href: 'contact.html', label: 'Contact' }
   ];
 
@@ -37,7 +37,7 @@
       if (mobile) {
         return '<a href="' + item.href + '" class="mobile-menu__link' + active + '">' + item.label + '</a>';
       }
-      var icon = item.icon ? '<span class="nav-pill__icon">' + ic('home') + '</span>' : '';
+      var icon = '';
       return '<a href="' + item.href + '" class="nav-pill__link' + active + '">' + icon + '<span>' + item.label + '</span></a>';
     }).join('');
   }
