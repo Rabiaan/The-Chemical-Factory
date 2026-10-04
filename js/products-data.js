@@ -50,6 +50,7 @@ window.TCF_PRODUCTS = (function () {
       category: 'injection',
       categoryLabel: 'Injection & Crack Sealing Resins',
       image: ASSETS + 'Chem-2k-Inject-Pro.webp',
+      imageW: 1600, imageH: 1000,   // measured intrinsic size (Phase 3.2)
       datasheet: 'downloads/chem-2k-inject-pro.pdf',
       datasheetKb: 1659,        // measured after Phase 2 cleanup
       datasheetPages: 2,
@@ -161,6 +162,7 @@ window.TCF_PRODUCTS = (function () {
       category: 'cementitious',
       categoryLabel: 'Cementitious Waterproof Coatings',
       image: ASSETS + 'Chem-2k-Sheild.webp',
+      imageW: 1224, imageH: 864,   // measured intrinsic size (Phase 3.2)
       datasheet: 'downloads/chem-2k-shield.pdf',
       datasheetKb: 1767,        // measured after Phase 2 cleanup
       datasheetPages: 2,
@@ -281,6 +283,7 @@ window.TCF_PRODUCTS = (function () {
       category: 'cementitious',
       categoryLabel: 'Cementitious Waterproof Coatings',
       image: ASSETS + 'Chem-2k-Sheild-Pro.webp',
+      imageW: 1224, imageH: 864,   // measured intrinsic size (Phase 3.2)
       datasheet: 'downloads/chem-2k-shield-pro.pdf',
       datasheetKb: 1743,        // measured after Phase 2 cleanup
       datasheetPages: 2,
@@ -402,6 +405,7 @@ window.TCF_PRODUCTS = (function () {
       category: 'admixtures',
       categoryLabel: 'Concrete Admixtures',
       image: ASSETS + 'ChemAdd-Retard.webp',
+      imageW: 1600, imageH: 1000,   // measured intrinsic size (Phase 3.2)
       datasheet: 'downloads/chemadd-retard-max.pdf',
       datasheetKb: 1711,        // measured after Phase 2 cleanup
       datasheetPages: 2,
@@ -510,6 +514,7 @@ window.TCF_PRODUCTS = (function () {
       category: 'admixtures',
       categoryLabel: 'Concrete Admixtures',
       image: ASSETS + 'ChemAdd-SP-Pro.webp',
+      imageW: 1600, imageH: 1000,   // measured intrinsic size (Phase 3.2)
       datasheet: 'downloads/chemadd-sp-pro.pdf',
       datasheetKb: 1712,        // measured after Phase 2 cleanup
       datasheetPages: 2,
@@ -616,6 +621,7 @@ window.TCF_PRODUCTS = (function () {
       category: 'dampproofing',
       categoryLabel: 'Damp Proofing & Bituminous Coatings',
       image: ASSETS + 'Chem-Bitu-Guard.webp',
+      imageW: 1600, imageH: 1000,   // measured intrinsic size (Phase 3.2)
       datasheet: 'downloads/chem-bitu-guard.pdf',
       datasheetKb: 1524,        // measured after Phase 2 cleanup
       datasheetPages: 2,
@@ -714,6 +720,7 @@ window.TCF_PRODUCTS = (function () {
       category: 'grouts',
       categoryLabel: 'Grouts & Cementitious Fillers',
       image: ASSETS + 'Chem-Grout-NS.webp',
+      imageW: 1600, imageH: 1000,   // measured intrinsic size (Phase 3.2)
       datasheet: 'downloads/chem-grout-ns.pdf',
       datasheetKb: 1632,        // measured after Phase 2 cleanup
       datasheetPages: 2,
@@ -824,6 +831,7 @@ window.TCF_PRODUCTS = (function () {
       category: 'sealants',
       categoryLabel: 'Sealants & Joint Sealers',
       image: ASSETS + 'Chem-Joint-Lock.webp',
+      imageW: 1600, imageH: 1131,   // measured intrinsic size (Phase 3.2)
       datasheet: 'downloads/chem-joint-lock.pdf',
       datasheetKb: 1445,        // measured after Phase 2 cleanup
       datasheetPages: 2,
@@ -933,6 +941,7 @@ window.TCF_PRODUCTS = (function () {
       category: 'membranes',
       categoryLabel: 'Polyurethane Waterproof Membranes',
       image: ASSETS + 'Chem-PU-Elasto.webp',
+      imageW: 1600, imageH: 1000,   // measured intrinsic size (Phase 3.2)
       datasheet: 'downloads/chem-pu-elasto.pdf',
       datasheetKb: 1546,        // measured after Phase 2 cleanup
       datasheetPages: 2,
@@ -1054,6 +1063,7 @@ window.TCF_PRODUCTS = (function () {
       category: 'membranes',
       categoryLabel: 'Polyurethane Waterproof Membranes',
       image: ASSETS + 'Chem-PU-Elasto-pro.webp',
+      imageW: 1600, imageH: 1000,   // measured intrinsic size (Phase 3.2)
       datasheet: 'downloads/chem-pu-elasto-pro.pdf',
       datasheetKb: 1525,        // measured after Phase 2 cleanup
       datasheetPages: 2,
@@ -1164,6 +1174,7 @@ window.TCF_PRODUCTS = (function () {
       category: 'bonding',
       categoryLabel: 'Bonding & Polymer Modification',
       image: ASSETS + 'Chem-Styro-Bond.webp',
+      imageW: 1600, imageH: 1000,   // measured intrinsic size (Phase 3.2)
       datasheet: 'downloads/chem-styro-bond.pdf',
       datasheetKb: 1635,        // measured after Phase 2 cleanup
       datasheetPages: 2,
@@ -1266,6 +1277,7 @@ window.TCF_PRODUCTS = (function () {
       category: 'bonding',
       categoryLabel: 'Bonding & Polymer Modification',
       image: ASSETS + 'Chem-Styro-Bond-Pro.webp',
+      imageW: 1600, imageH: 1000,   // measured intrinsic size (Phase 3.2)
       datasheet: 'downloads/chem-styro-bond-pro.pdf',
       datasheetKb: 1666,        // measured after Phase 2 cleanup
       datasheetPages: 2,
@@ -1370,6 +1382,7 @@ window.TCF_PRODUCTS = (function () {
       category: 'waterstops',
       categoryLabel: 'Hydrophilic Waterstops',
       image: ASSETS + 'Chem-Swell.webp',
+      imageW: 1224, imageH: 864,   // measured intrinsic size (Phase 3.2)
       datasheet: 'downloads/chem-swell.pdf',
       datasheetKb: 1701,        // measured after Phase 2 cleanup
       datasheetPages: 2,
@@ -1490,6 +1503,7 @@ window.TCF_PRODUCTS = (function () {
       category: 'waterstops',
       categoryLabel: 'Hydrophilic Waterstops',
       image: ASSETS + 'Chem-Swell-Pro.webp',
+      imageW: 1224, imageH: 864,   // measured intrinsic size (Phase 3.2)
       datasheet: 'downloads/chem-swell-pro.pdf',
       datasheetKb: 1723,        // measured after Phase 2 cleanup
       datasheetPages: 2,

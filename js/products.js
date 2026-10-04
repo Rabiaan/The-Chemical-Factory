@@ -95,6 +95,17 @@
       + '</ul>';
   }
 
+  /* Product images carry their measured intrinsic size so the browser can
+     reserve space before the bytes arrive. Values come from imageW/imageH in
+     products-data.js, which were read off the real files. */
+  function imageAttrs(p) {
+    var w = parseInt(p.imageW, 10);
+    var h = parseInt(p.imageH, 10);
+    var out = ' loading="lazy" decoding="async"';
+    if (w > 0 && h > 0) out = ' width="' + w + '" height="' + h + '"' + out;
+    return out;
+  }
+
   /* Datasheet paths are generated from product ids, but the value still gets
      written into an href, so it is re-validated here. Anything that is not a
      lowercase product-id PDF under downloads/ is dropped rather than rendered. */
@@ -142,7 +153,7 @@
 
     return '<article class="product-card" data-category="' + esc(p.category) + '" data-id="' + esc(p.id) + '">'
       + '<a class="product-card__img" href="' + detailHref(p.id) + '" aria-label="View ' + esc(p.name) + '">'
-      + '<img src="' + esc(p.image) + '" alt="' + esc(p.name) + '" loading="lazy" />'
+      + '<img src="' + esc(p.image) + '" alt="' + esc(p.name) + '"' + imageAttrs(p) + ' />'
       + '<span class="product-card__cat">' + esc(p.categoryLabel) + '</span>'
       + (badges ? '<span class="product-card__badges">' + badges + '</span>' : '')
       + '</a>'
@@ -496,7 +507,10 @@
     var mainImg = $('#detail-img');
     if (mainImg) {
       mainImg.src = p.image;
-      mainImg.alt = p.name;
+      mainImg.alt = p.name + ' - product packaging';
+      mainImg.width = parseInt(p.imageW, 10) || mainImg.width;
+      mainImg.height = parseInt(p.imageH, 10) || mainImg.height;
+      mainImg.setAttribute('decoding', 'async');
     }
     setHtml('#detail-chips', [
       { label: 'Packaging', value: p.packaging },
@@ -649,7 +663,7 @@
       ].join(' ').toLowerCase();
       return '<article class="ds-card" data-search="' + esc(search) + '">'
         + '<a class="ds-card__preview" href="' + detailHref(p.id) + '" aria-label="View ' + esc(p.name) + ' details">'
-        + '<img class="ds-card__img" src="' + esc(p.image) + '" alt="' + esc(p.name) + '" loading="lazy" />'
+        + '<img class="ds-card__img" src="' + esc(p.image) + '" alt="' + esc(p.name) + '"' + imageAttrs(p) + ' />'
         + '<span class="ds-card__overlay" aria-hidden="true">'
         + '<span class="ds-card__overlay-btn">View Product' + CHEV + '</span>'
         + '</span>'
