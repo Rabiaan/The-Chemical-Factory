@@ -2667,6 +2667,49 @@ button {
   overflow: hidden;
 }
 
+/* ============================================================
+   Reduced motion - CSS safety net
+   ------------------------------------------------------------
+   The authoritative gate is js/motion.js (one gsap.matchMedia()
+   context shared by main.js and animations.js). This block is the
+   belt-and-braces half:
+
+     1. It kills every CSS keyframe animation and transition, so
+        decorative loops stop even when they are not GSAP-driven.
+     2. It force-shows anything that could be left at its "before"
+        state. Without this, an element that GSAP set to opacity:0
+        before the preference was read would stay invisible.
+
+   Do not add "hide until animated" rules above this point -- the
+   reduced-motion query below must always be able to win.
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Belt and braces for the JS-driven reveal states. `!important`
+     is deliberate: it has to beat the inline opacity that GSAP
+     writes when it sets a "before" state. */
+  [data-reveal],
+  [data-hero],
+  .hero__watermark,
+  .hero__front-img {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+  }
+
+  /* Nothing should be able to strand the page behind the preloader. */
+  .preloader { display: none !important; }
+  .preloader-active { overflow: visible !important; }
+}
+
 /* ---------- Responsive ---------- */
 @media (min-width: 640px) {
   .navbar__actions {

@@ -666,9 +666,21 @@
 
   /* ---------- GSAP animations ---------- */
   function initGSAP() {
+    var reducedNow = (window.Motion && Motion.prefersReduced()) || false;
+
+    /* When motion is reduced the visitor must still see all content, so the
+       "before" state is never applied and anything already dimmed is reset.
+       This runs first, and again if the OS setting changes mid-session. */
+    function ensureVisible() {
+      if (window.Motion) Motion.showFinal('[data-hero], [data-reveal], .hero__watermark');
+    }
+    if (reducedNow) ensureVisible();
+    if (window.Motion) Motion.onChange(function (isReduced) { if (isReduced) Motion.settle(); });
+
     /* Home hero entrance: fade in up after the preloader finishes */
     function prepareHomeEntrance() {
       if (typeof window.gsap === 'undefined') return;
+      if (reducedNow) { ensureVisible(); return; }
       var heroEls = $$('[data-hero]');
       if (!heroEls.length || page !== 'home') return;
       gsap.set(heroEls, { opacity: 0, y: 30 });
@@ -682,6 +694,7 @@
       var heroList = watermark
         ? heroEls.filter(function (el) { return el !== watermark; })
         : heroEls;
+      if (reducedNow) { ensureVisible(); return; }
       gsap.set(heroEls, { opacity: 0, y: 30 });
       var tl = gsap.timeline({ defaults: { ease: 'power3.out', duration: 0.9 } });
       tl.to(heroList, { opacity: 1, y: 0, stagger: 0.14 });
@@ -692,7 +705,9 @@
 
     /* Preloader: brush sweeps left-to-right, wiping the text as it passes, then fades down.
        Shown only on the very first page load of a visit; skipped on in-site page
-       switches, back/forward navigation, and reloads. */
+       switches, back/forward navigation, and reloads.
+       Under reduced motion the wipe is skipped entirely -- the preloader is
+       dismissed immediately instead of holding the page for ~4.3s. */
     var preloader = $('#preloader');
     if (preloader) {
       var seenBefore = false;
@@ -701,9 +716,10 @@
         sessionStorage.setItem('cf-seen', '1');
       } catch (err) { /* ignore */ }
 
-      if (seenBefore) {
+      if (seenBefore || reducedNow) {
         document.documentElement.classList.remove('preloader-active');
         preloader.classList.add('is-done');
+        prepareHomeEntrance();
         playHomeEntrance();
       } else {
         var brush = $('.preloader__brush', preloader);
@@ -716,6 +732,7 @@
             onComplete: function () {
               document.documentElement.classList.remove('preloader-active');
               preloader.classList.add('is-done');
+              ensureVisible();
             }
           })
             .fromTo(brush,
@@ -753,53 +770,67 @@
     if (!hasG) return;
 
     if (typeof window.ScrollTrigger !== 'undefined') {
-      /* Reveal-on-scroll for [data-reveal] blocks */
-      $$('[data-reveal]').forEach(function (el) {
-        gsap.fromTo(el,
-          { opacity: 0, y: 36 },
-          {
-            opacity: 1, y: 0, duration: 0.85, ease: 'power2.out',
-            scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+      /* Reveal-on-scroll for [data-reveal] blocks. Only registered in the
+         no-preference branch; the reduce branch leaves CSS opacity untouched. */
+      if (window.Motion) {
+        Motion.full(function () {
+          $$('[data-reveal]').forEach(function (el) {
+            gsap.fromTo(el,
+              { opacity: 0, y: 36 },
+              {
+                opacity: 1, y: 0, duration: 0.85, ease: 'power2.out',
+                scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+              });
           });
-      });
-
-      /* Hero background parallax (home only) */
-      var heroBg = $('#hero-bg');
-      var heroWatermark = $('.hero__watermark');
-      var heroFrontImg = $('.hero__front-img');
-      if (heroBg && page === 'home') {
-        gsap.to(heroBg, {
-          yPercent: 14, ease: 'none',
-          scrollTrigger: { trigger: heroBg, start: 'top top', end: 'bottom top', scrub: true }
+          if (window.Motion) Motion.refresh();
         });
-        if (heroFrontImg) {
-          gsap.to(heroFrontImg, {
-            yPercent: 12, ease: 'none',
-            scrollTrigger: { trigger: heroBg, start: 'top top', end: 'bottom top', scrub: true }
-          });
-        }
-        if (heroWatermark) {
-          gsap.to(heroWatermark, {
-            yPercent: 6, ease: 'none',
-            scrollTrigger: { trigger: heroBg, start: 'top top', end: 'bottom top', scrub: true }
-          });
-        }
       }
 
-      /* About secondary image parallax (home only) */
-      var aboutParallax = $('#about-parallax-card');
-      if (aboutParallax) {
-        gsap.to(aboutParallax, {
-          y: -24, ease: 'none',
-          scrollTrigger: { trigger: aboutParallax, start: 'top bottom', end: 'bottom top', scrub: true }
+      /* Parallax: pure decorative movement, so it is opt-in motion only.
+         Nothing is hidden behind these, so skipping them is safe. */
+      if (window.Motion) {
+        Motion.full(function () {
+          var heroBg = $('#hero-bg');
+          var heroWatermark = $('.hero__watermark');
+          var heroFrontImg = $('.hero__front-img');
+          if (heroBg && page === 'home') {
+            gsap.to(heroBg, {
+              yPercent: 14, ease: 'none',
+              scrollTrigger: { trigger: heroBg, start: 'top top', end: 'bottom top', scrub: true }
+            });
+            if (heroFrontImg) {
+              gsap.to(heroFrontImg, {
+                yPercent: 12, ease: 'none',
+                scrollTrigger: { trigger: heroBg, start: 'top top', end: 'bottom top', scrub: true }
+              });
+            }
+            if (heroWatermark) {
+              gsap.to(heroWatermark, {
+                yPercent: 6, ease: 'none',
+                scrollTrigger: { trigger: heroBg, start: 'top top', end: 'bottom top', scrub: true }
+              });
+            }
+          }
+
+          var aboutParallax = $('#about-parallax-card');
+          if (aboutParallax) {
+            gsap.to(aboutParallax, {
+              y: -24, ease: 'none',
+              scrollTrigger: { trigger: aboutParallax, start: 'top bottom', end: 'bottom top', scrub: true }
+            });
+          }
         });
       }
     }
   }
 
-  /* ---------- Count-up stat values ---------- */
+  /* ---------- Count-up stat values ----------
+     With reduced motion the number is already in the markup, so there is
+     nothing to animate: skip the observer entirely rather than re-writing
+     the same value 60 times a second. */
   var statValues = $$('.stat__value');
-  if (statValues.length && typeof IntersectionObserver !== 'undefined') {
+  if (statValues.length && typeof IntersectionObserver !== 'undefined'
+      && !(window.Motion && Motion.prefersReduced())) {
     function animateCounter(el) {
       var match = el.textContent.trim().match(/^([\d.,]+)(.*)$/);
       if (!match) return;
