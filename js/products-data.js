@@ -50,7 +50,9 @@ window.TCF_PRODUCTS = (function () {
       category: 'injection',
       categoryLabel: 'Injection & Crack Sealing Resins',
       image: ASSETS + 'Chem-2k-Inject-Pro.webp',
-      datasheet: 'products/' + 'Chem-2k-Inject-Pro1.pdf',
+      datasheet: 'downloads/chem-2k-inject-pro.pdf',
+      datasheetKb: 1659,        // measured after Phase 2 cleanup
+      datasheetPages: 2,
       badges: ['Active Leak Sealing', 'Pro Grade'],
       highlights: [
         'Stops active water leaks instantly',
@@ -159,7 +161,9 @@ window.TCF_PRODUCTS = (function () {
       category: 'cementitious',
       categoryLabel: 'Cementitious Waterproof Coatings',
       image: ASSETS + 'Chem-2k-Sheild.webp',
-      datasheet: 'products/' + 'Chem-2k-Sheild.pdf',
+      datasheet: 'downloads/chem-2k-shield.pdf',
+      datasheetKb: 1767,        // measured after Phase 2 cleanup
+      datasheetPages: 2,
       badges: ['Elastomeric', 'Two-Component'],
       highlights: [
         'Resists water penetration and protects concrete structures',
@@ -277,7 +281,9 @@ window.TCF_PRODUCTS = (function () {
       category: 'cementitious',
       categoryLabel: 'Cementitious Waterproof Coatings',
       image: ASSETS + 'Chem-2k-Sheild-Pro.webp',
-      datasheet: 'products/' + 'Chem-2k-Sheild-Pro.pdf',
+      datasheet: 'downloads/chem-2k-shield-pro.pdf',
+      datasheetKb: 1743,        // measured after Phase 2 cleanup
+      datasheetPages: 2,
       badges: ['Pro Grade', 'Water Vapour Permeable'],
       highlights: [
         'Resists positive water pressure and controls water ingress',
@@ -396,7 +402,9 @@ window.TCF_PRODUCTS = (function () {
       category: 'admixtures',
       categoryLabel: 'Concrete Admixtures',
       image: ASSETS + 'ChemAdd-Retard.webp',
-      datasheet: 'products/' + 'ChemAdd-Retard.pdf',
+      datasheet: 'downloads/chemadd-retard-max.pdf',
+      datasheetKb: 1711,        // measured after Phase 2 cleanup
+      datasheetPages: 2,
       badges: ['ASTM C494 Type B', 'Chloride Free'],
       highlights: [
         'Predictable set delay across a wide temperature range',
@@ -502,7 +510,9 @@ window.TCF_PRODUCTS = (function () {
       category: 'admixtures',
       categoryLabel: 'Concrete Admixtures',
       image: ASSETS + 'ChemAdd-SP-Pro.webp',
-      datasheet: 'products/' + 'ChemAdd-SP-Pro.pdf',
+      datasheet: 'downloads/chemadd-sp-pro.pdf',
+      datasheetKb: 1712,        // measured after Phase 2 cleanup
+      datasheetPages: 2,
       badges: ['Polycarboxylate', 'Chloride Free'],
       highlights: [
         'Major water reduction with maintained workability',
@@ -606,7 +616,9 @@ window.TCF_PRODUCTS = (function () {
       category: 'dampproofing',
       categoryLabel: 'Damp Proofing & Bituminous Coatings',
       image: ASSETS + 'Chem-Bitu-Guard.webp',
-      datasheet: 'products/' + 'Chem-Bitu-Guard.pdf',
+      datasheet: 'downloads/chem-bitu-guard.pdf',
+      datasheetKb: 1524,        // measured after Phase 2 cleanup
+      datasheetPages: 2,
       badges: ['Cold Applied', 'UV Resistant'],
       highlights: [
         'Outstanding binding strength to a range of surface textures and substrates',
@@ -702,7 +714,9 @@ window.TCF_PRODUCTS = (function () {
       category: 'grouts',
       categoryLabel: 'Grouts & Cementitious Fillers',
       image: ASSETS + 'Chem-Grout-NS.webp',
-      datasheet: 'products/' + 'Chem-Grout-NS.pdf',
+      datasheet: 'downloads/chem-grout-ns.pdf',
+      datasheetKb: 1632,        // measured after Phase 2 cleanup
+      datasheetPages: 2,
       badges: ['Non-Shrink', 'High Flow'],
       highlights: [
         'Gaseous expansion mechanism compensates for shrinkage and settlement',
@@ -810,7 +824,9 @@ window.TCF_PRODUCTS = (function () {
       category: 'sealants',
       categoryLabel: 'Sealants & Joint Sealers',
       image: ASSETS + 'Chem-Joint-Lock.webp',
-      datasheet: 'products/' + 'Chem-Joint-Lock.pdf',
+      datasheet: 'downloads/chem-joint-lock.pdf',
+      datasheetKb: 1445,        // measured after Phase 2 cleanup
+      datasheetPages: 2,
       badges: ['Fuel Resistant', 'Self-Leveling'],
       highlights: [
         'Outstanding resistance to petrol, oil and jet fuel spillage',
@@ -917,7 +933,9 @@ window.TCF_PRODUCTS = (function () {
       category: 'membranes',
       categoryLabel: 'Polyurethane Waterproof Membranes',
       image: ASSETS + 'Chem-PU-Elasto.webp',
-      datasheet: 'products/' + 'Chem-PU-Elasto.pdf',
+      datasheet: 'downloads/chem-pu-elasto.pdf',
+      datasheetKb: 1546,        // measured after Phase 2 cleanup
+      datasheetPages: 2,
       badges: ['i-Cure Technology', 'Low Odour'],
       highlights: [
         'Cold-applied by brush or roller; suitable for practical site conditions',
@@ -1036,7 +1054,9 @@ window.TCF_PRODUCTS = (function () {
       category: 'membranes',
       categoryLabel: 'Polyurethane Waterproof Membranes',
       image: ASSETS + 'Chem-PU-Elasto-pro.webp',
-      datasheet: 'products/' + 'Chem-PU-Elasto-pro.pdf',
+      datasheet: 'downloads/chem-pu-elasto-pro.pdf',
+      datasheetKb: 1525,        // measured after Phase 2 cleanup
+      datasheetPages: 2,
       badges: ['Pro Grade', 'High Elasticity'],
       highlights: [
         'Seamless, elastic and durable coating with long-term protection',
@@ -1144,7 +1164,9 @@ window.TCF_PRODUCTS = (function () {
       category: 'bonding',
       categoryLabel: 'Bonding & Polymer Modification',
       image: ASSETS + 'Chem-Styro-Bond.webp',
-      datasheet: 'products/' + 'Chem-Styro-Bond.pdf',
+      datasheet: 'downloads/chem-styro-bond.pdf',
+      datasheetKb: 1635,        // measured after Phase 2 cleanup
+      datasheetPages: 2,
       badges: ['SBR Latex', 'Non-Corrosive'],
       highlights: [
         'Improves adhesion of cementitious materials to suitable substrates',
@@ -1244,7 +1266,9 @@ window.TCF_PRODUCTS = (function () {
       category: 'bonding',
       categoryLabel: 'Bonding & Polymer Modification',
       image: ASSETS + 'Chem-Styro-Bond-Pro.webp',
-      datasheet: 'products/' + 'Chem-Styro-Bond-Pro.pdf',
+      datasheet: 'downloads/chem-styro-bond-pro.pdf',
+      datasheetKb: 1666,        // measured after Phase 2 cleanup
+      datasheetPages: 2,
       badges: ['Pro Grade', 'SBR Latex'],
       highlights: [
         'Advanced SBR polymer modification for cementitious construction systems',
@@ -1346,7 +1370,9 @@ window.TCF_PRODUCTS = (function () {
       category: 'waterstops',
       categoryLabel: 'Hydrophilic Waterstops',
       image: ASSETS + 'Chem-Swell.webp',
-      datasheet: 'products/' + 'Chem-Swell.pdf',
+      datasheet: 'downloads/chem-swell.pdf',
+      datasheetKb: 1701,        // measured after Phase 2 cleanup
+      datasheetPages: 2,
       badges: ['Re-Swellable', '750-800% Expansion'],
       highlights: [
         'Expands approximately 750-800% by volume on contact with water',
@@ -1464,7 +1490,9 @@ window.TCF_PRODUCTS = (function () {
       category: 'waterstops',
       categoryLabel: 'Hydrophilic Waterstops',
       image: ASSETS + 'Chem-Swell-Pro.webp',
-      datasheet: 'products/' + 'Chem-Swell-Pro.pdf',
+      datasheet: 'downloads/chem-swell-pro.pdf',
+      datasheetKb: 1723,        // measured after Phase 2 cleanup
+      datasheetPages: 2,
       badges: ['Up to 900% Expansion', 'New Generation'],
       highlights: [
         'New generation high-performance acrylic polymer expanding tape',

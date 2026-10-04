@@ -95,13 +95,36 @@
       + '</ul>';
   }
 
+  /* Datasheet paths are generated from product ids, but the value still gets
+     written into an href, so it is re-validated here. Anything that is not a
+     lowercase product-id PDF under downloads/ is dropped rather than rendered. */
+  var DATASHEET_RE = /^downloads\/[a-z0-9][a-z0-9-]*\.pdf$/;
+
+  function safeDatasheet(product) {
+    var path = product && product.datasheet;
+    return (typeof path === 'string' && DATASHEET_RE.test(path)) ? path : '';
+  }
+
+  /* "PDF · 1.6 MB" - real measured size, never a guessed string */
+  function datasheetMeta(product) {
+    var kb = parseInt(product.datasheetKb, 10);
+    if (!kb || kb < 1) return 'PDF';
+    var mb = kb / 1024;
+    return 'PDF · ' + (mb >= 10 ? mb.toFixed(0) + ' MB' : mb.toFixed(1) + ' MB');
+  }
+
   /* Datasheet download link (works everywhere: cards, detail, datasheets page) */
   function renderDownloadLink(product, className, label, extraAttrs) {
-    if (!product.datasheet) return '';
-    return '<a class="' + className + '" href="' + esc(product.datasheet) + '" download data-pdf="' + esc(product.datasheet) + '"'
+    var path = safeDatasheet(product);
+    if (!path) return '';
+    var title = product.name + ' technical datasheet (' + datasheetMeta(product) + ')';
+    return '<a class="' + className + '" href="' + esc(path) + '" download type="application/pdf"'
+      + ' aria-label="' + esc(title) + '" data-pdf="' + esc(path) + '"'
       + (extraAttrs || '') + '>'
       + '<span class="product-card__download-icon">' + PDF_SVG + '</span>'
-      + '<span>' + esc(label || 'Download Datasheet') + '</span></a>';
+      + '<span>' + esc(label || 'Download Datasheet') + '</span>'
+      + '<span class="product-card__download-meta">' + esc(datasheetMeta(product)) + '</span>'
+      + '</a>';
   }
 
   /* ============================================================
@@ -247,11 +270,15 @@
       }
       if (sidebarPdfs) {
         sidebarPdfs.innerHTML = PRODUCTS.map(function (p) {
-          return '<a class="pdf-item" href="' + esc(p.datasheet) + '" download data-pdf="' + esc(p.datasheet) + '"'
+          var path = safeDatasheet(p);
+          if (!path) return '';
+          return '<a class="pdf-item" href="' + esc(path) + '" download type="application/pdf"'
+            + ' aria-label="' + esc(p.name + ' technical datasheet (' + datasheetMeta(p) + ')') + '"'
+            + ' data-pdf="' + esc(path) + '"'
             + ' data-search="' + esc(p.name + ' ' + p.categoryLabel) + '">'
             + '<span class="pdf-item__icon">' + PDF_SVG + '</span>'
             + '<span class="pdf-item__text">' + esc(p.name) + '</span>'
-            + '<span class="pdf-item__size">PDF</span></a>';
+            + '<span class="pdf-item__size">' + esc(datasheetMeta(p)) + '</span></a>';
         }).join('');
       }
       if (mobileCatSelect) {
@@ -413,7 +440,7 @@
      ============================================================ */
   function setText(sel, value) {
     var el = $(sel);
-    if (el && value != null) el.textContent = value;
+    if (el && value != null) el.innerHTML = value;
   }
 
   function setHtml(sel, html) {
@@ -462,7 +489,6 @@
     document.title = p.name + ' — THE CHEMICAL FACTORY';
 
     /* Hero */
-    setText('#detail-crumb', 'Products / ' + p.categoryLabel);
     setText('#detail-title', p.name);
     setText('#detail-sub', p.subTitle);
 
@@ -475,7 +501,7 @@
     setHtml('#detail-chips', [
       { label: 'Packaging', value: p.packaging },
       { label: 'Shelf Life', value: (p.importantInfo || []).filter(function (i) { return /shelf life/i.test(i.label); }).map(function (i) { return i.value; })[0] || '\u2014' },
-      { label: 'Datasheet', value: 'PDF available' }
+      { label: 'Datasheet', value: datasheetMeta(p) }
     ].map(function (c) {
       return '<div class="detail-chip"><span>' + esc(c.label) + '</span><strong>' + esc(c.value) + '</strong></div>';
     }).join(''));
@@ -613,7 +639,7 @@
     if (!grid) return;
 
     grid.innerHTML = PRODUCTS.map(function (p) {
-      if (!p.datasheet) return '';
+      if (!safeDatasheet(p)) return '';
       var search = [
         p.name,
         p.subTitle,

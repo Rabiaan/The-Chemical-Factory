@@ -667,6 +667,20 @@ button {
 }
 .feature__icon {
   width: 2.25rem;
+}
+
+/* Hide empty text elements on banners */
+.hero__watermark-text:empty,
+.hero__subtext p:empty,
+.hero__line2 .btn-hero-cta span:first-child:empty,
+.feature__label:empty,
+.feature__value:empty {
+  display: none;
+}
+.hero__subtext:has(p:empty),
+.hero__features:has(.feature__label:empty):has(.feature__value:empty) {
+  display: none;
+}
   height: 2.25rem;
   border-radius: 9999px;
   display: flex;
