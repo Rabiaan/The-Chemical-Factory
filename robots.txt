@@ -1,0 +1,20 @@
+# robots.txt — THE CHEMICAL FACTORY
+#
+# TODO(owner): replace SITE-URL-PLACEHOLDER with the live origin, e.g.
+#   https://your-domain.example
+# It appears twice below (Sitemap + Host). Both must be changed together.
+
+User-agent: *
+Allow: /
+
+# Nothing behind these paths is useful in an index.
+Disallow: /tools/
+Disallow: /*?id=
+Disallow: /*?
+
+# product-detail.html?id=<product> is a real page for each of the 14 products.
+# It is intentionally crawlable; the Disallow above targets tracking/filter
+# parameters only. If filtered variants ever appear in search results, switch
+# to a canonical-tag solution instead of blocking the parameter.
+
+Sitemap: SITE-URL-PLACEHOLDER/sitemap.xml

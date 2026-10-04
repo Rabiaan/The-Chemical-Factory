@@ -497,7 +497,45 @@
     if (missing) missing.classList.add('hidden');
     if (main) main.classList.remove('hidden');
 
+    /* One product-detail.html template serves all 14 products, so the per-product
+       SEO text is written into <head> at runtime. Crawlers that execute JS see
+       product-specific metadata; the static tags in product-detail.html remain
+       an accurate generic fallback. */
+    function setMeta(attr, key, content) {
+      if (!content) return;
+      var sel = attr === 'name' ? 'meta[name="' + key + '"]' : 'meta[property="' + key + '"]';
+      var el = document.head.querySelector(sel);
+      if (el) { el.setAttribute('content', content); return; }
+      el = document.createElement('meta');
+      el.setAttribute(attr, key);
+      el.setAttribute('content', content);
+      document.head.appendChild(el);
+    }
+
+    /* Search engines truncate around 155 chars, so build to that budget and cut
+       on a word boundary rather than mid-word. */
+    function clamp(str, max) {
+      str = String(str || '').replace(/\s+/g, ' ').trim();
+      if (str.length <= max) return str;
+      var cut = str.slice(0, max - 1);
+      var sp = cut.lastIndexOf(' ');
+      if (sp > max * 0.6) cut = cut.slice(0, sp);
+      return cut.replace(/[\s,;:.–—-]+$/, '') + '…';
+    }
+
+    /* Lead with the product name, then its one-line purpose, then enough of the
+       long description to fill the remaining budget. */
+    var lead = p.name + ' - ' + p.subTitle + '. ';
+    var metaDesc = clamp(lead + (p.description || ''), 155);
+
     document.title = p.name + ' — THE CHEMICAL FACTORY';
+    setMeta('name', 'description', metaDesc);
+    setMeta('property', 'og:title', p.name + ' — THE CHEMICAL FACTORY');
+    setMeta('property', 'og:description', metaDesc);
+    setMeta('property', 'og:image', p.image);
+    setMeta('name', 'twitter:title', p.name + ' — THE CHEMICAL FACTORY');
+    setMeta('name', 'twitter:description', metaDesc);
+    setMeta('name', 'twitter:image', p.image);
 
     /* Hero */
     setText('#detail-title', p.name);

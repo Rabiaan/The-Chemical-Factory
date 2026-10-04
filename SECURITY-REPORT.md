@@ -1,5 +1,18 @@
 # THE CHEMICAL FACTORY — Security & GSAP Animation Report
 
+> **This is the original pre-work baseline audit, kept for the record.**
+> It describes the site *before* the hardening work and is deliberately **not
+> updated**, so the before/after difference stays visible. Several findings
+> below (dead social links, missing iframe sandbox, fake form success, missing
+> CSP, the video embed, the animation "opportunities") have since been
+> resolved or removed.
+>
+> For the current state, open-still-open items and the known limitations, read
+> **[REPORT.md](REPORT.md)**. For deployable header configuration, read
+> **[SECURITY-HEADERS.md](SECURITY-HEADERS.md)**.
+>
+> Findings that are still open are listed in REPORT.md § "Open items".
+
 **Date:** 2026-10-04
 **Scope:** Static multi-page HTML website (Home, Products, Projects, Datasheets, Services, About, Contact)
 

@@ -14,7 +14,8 @@ const ROOT = path.resolve(__dirname, '..');
 
 const PAGES = [
   'index.html', 'products.html', 'product-detail.html', 'projects.html',
-  'datasheets.html', 'services.html', 'about.html', 'clients.html', 'contact.html'
+  'datasheets.html', 'services.html', 'about.html', 'clients.html', 'contact.html',
+  'privacy.html', 'terms.html', 'cookie.html'
 ];
 
 // Product detail needs a real id to render its content, not the not-found state.
@@ -76,6 +77,11 @@ async function audit(browser, url, label, opts = {}) {
       document.querySelectorAll(s).forEach((el, i) => {
         const cs = getComputedStyle(el);
         const r = el.getBoundingClientRect();
+        // An element the page deliberately hides via the site's own .hidden class
+        // (e.g. #detail-missing when the product id is valid) is correct, not stuck.
+// A bare display:none with no .hidden marker is still reported, because that
+        // would mean a real region failed to render.
+        if (el.classList.contains('hidden')) return;
         if ((cs.display === 'none' || cs.visibility === 'hidden' || parseFloat(cs.opacity) < 0.02) && r.height === 0) {
           out.push(`${s}[${i}] hidden (display=${cs.display} vis=${cs.visibility} op=${cs.opacity})`);
         }
