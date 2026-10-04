@@ -17,6 +17,37 @@
   var page = (document.body && document.body.getAttribute('data-page')) || '';
   var hasG = typeof window.gsap !== 'undefined';
 
+  /* ---------- Escaping / sanitising ----------
+     Anything that reaches innerHTML must go through esc(). Values that come back
+     out of sessionStorage are treated as untrusted and run through cleanStr(). */
+  function esc(str) {
+    return String(str == null ? '' : str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
+  /* Trim to a sane length and strip control characters. Returns a string. */
+  function cleanStr(value, maxLen) {
+    var s = String(value == null ? '' : value);
+    /* eslint-disable-next-line no-control-regex */
+    s = s.replace(/[\u0000-\u001f\u007f]/g, ' ');
+    s = s.replace(/\s+/g, ' ').trim();
+    var max = typeof maxLen === 'number' ? maxLen : 500;
+    return s.length > max ? s.slice(0, max) : s;
+  }
+
+  /* Keep newlines for multi-line free text, but still bound the length. */
+  function cleanMultiline(value, maxLen) {
+    var s = String(value == null ? '' : value).replace(/\r\n?/g, '\n');
+    s = s.replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/g, ' ');
+    s = s.replace(/\n{3,}/g, '\n\n').trim();
+    var max = typeof maxLen === 'number' ? maxLen : 2000;
+    return s.length > max ? s.slice(0, max) : s;
+  }
+
   /* ---------- Modal helpers ---------- */
   function openModal(modal) {
     if (!modal) return;
@@ -71,17 +102,20 @@
     var structure = $('#insp-structure');
     if (structure) structure.selectedIndex = 0;
 
-    /* Show which product prompted this, and pre-select a matching structure type */
-    var pName = btn.getAttribute('data-product-name');
-    var pSub = btn.getAttribute('data-product-subtitle');
-    var pCat = btn.getAttribute('data-product-category');
-    var pPack = btn.getAttribute('data-product-packaging');
+    /* Show which product prompted this, and pre-select a matching structure type.
+       These come from data-* attributes. They are first-party today, but they are
+       still escaped + length-bounded before touching innerHTML. */
+    var pId = cleanStr(btn.getAttribute('data-product-id'), 80);
+    var pName = cleanStr(btn.getAttribute('data-product-name'), 120);
+    var pSub = cleanStr(btn.getAttribute('data-product-subtitle'), 160);
+    var pCat = cleanStr(btn.getAttribute('data-product-category'), 80);
+    var pPack = cleanStr(btn.getAttribute('data-product-packaging'), 80);
     if (inspProduct) {
-      inspProduct.innerHTML = btn.getAttribute('data-product-id')
-        ? '<strong>' + pName + '</strong><span>' + pSub + '</span>'
-          + '<span class="inspection-picker__meta">' + pCat + ' &middot; Pack: ' + pPack + '</span>'
+      inspProduct.innerHTML = pId
+        ? '<strong>' + esc(pName) + '</strong><span>' + esc(pSub) + '</span>'
+          + '<span class="inspection-picker__meta">' + esc(pCat) + ' &middot; Pack: ' + esc(pPack) + '</span>'
         : '';
-      inspProduct.style.display = btn.getAttribute('data-product-id') ? '' : 'none';
+      inspProduct.style.display = pId ? '' : 'none';
     }
 
     /* Reflect the product in the estimator's system dropdown when we can */
@@ -131,39 +165,40 @@
 
     var symptoms = $$('#insp-symptoms input[type="checkbox"]')
       .filter(function (cb) { return cb.checked; })
-      .map(function (cb) { return cb.value; });
+      /* Only trust values that match a checkbox that exists in our own markup. */
+      .map(function (cb) { return cleanStr(cb.value, 60); });
 
     /* Product context comes from the inspection CTA that opened this modal */
     var openBtn = $('.js-open-inspection');
-    var productName = openBtn && openBtn.getAttribute('data-product-name');
+    var productName = openBtn && cleanStr(openBtn.getAttribute('data-product-name'), 120);
 
     var lines = ['SITE INSPECTION REQUEST'];
     if (productName) {
       lines.push('Product of interest: ' + productName);
-      lines.push('Product type: ' + (openBtn.getAttribute('data-product-subtitle') || '-'));
-      lines.push('Product category: ' + (openBtn.getAttribute('data-product-category') || '-'));
-      lines.push('Packaging: ' + (openBtn.getAttribute('data-product-packaging') || '-'));
+      lines.push('Product type: ' + (cleanStr(openBtn.getAttribute('data-product-subtitle'), 160) || '-'));
+      lines.push('Product category: ' + (cleanStr(openBtn.getAttribute('data-product-category'), 80) || '-'));
+      lines.push('Packaging: ' + (cleanStr(openBtn.getAttribute('data-product-packaging'), 80) || '-'));
     }
-    lines.push('Structure / area: ' + structure.value);
+    lines.push('Structure / area: ' + cleanStr(structure.value, 80));
     var area = $('#insp-area');
-    if (area && area.value) lines.push('Approximate area: ' + area.value + ' sq. ft.');
+    if (area && area.value) lines.push('Approximate area: ' + cleanStr(area.value, 20) + ' sq. ft.');
     var timeline = $('#insp-timeline');
-    if (timeline && timeline.value) lines.push('Timeline: ' + timeline.value);
+    if (timeline && timeline.value) lines.push('Timeline: ' + cleanStr(timeline.value, 80));
     lines.push('Observed symptoms: ' + (symptoms.length ? symptoms.join(', ') : 'None reported'));
     var history = $('#insp-history');
-    if (history && history.value.trim()) lines.push('Previous repairs: ' + history.value.trim());
+    if (history && cleanStr(history.value)) lines.push('Previous repairs: ' + cleanStr(history.value, 1000));
     var notes = $('#notes');
-    if (notes && notes.value.trim()) lines.push('Additional notes: ' + notes.value.trim());
+    if (notes && cleanStr(notes.value)) lines.push('Additional notes: ' + cleanStr(notes.value, 1000));
 
     var city = $('#city');
-    if (city && city.value.trim()) lines.push('City / location: ' + city.value.trim());
+    if (city && cleanStr(city.value)) lines.push('City / location: ' + cleanStr(city.value, 120));
 
     var payload = {
       subject: 'Free Site Inspection',
-      message: lines.join('\n'),
-      name: ($('#name') && $('#name').value) || '',
-      phone: ($('#phone') && $('#phone').value) || '',
-      email: ($('#email') && $('#email').value) || ''
+      message: cleanMultiline(lines.join('\n'), 3000),
+      name: cleanStr($('#name') && $('#name').value, 100),
+      phone: cleanStr($('#phone') && $('#phone').value, 20),
+      email: cleanStr($('#email') && $('#email').value, 254)
     };
 
     try {
@@ -201,24 +236,10 @@
     sqftSlider.addEventListener('input', updateEstimate);
   }
 
-  /* ---------- Quote form submit ---------- */
-  var quoteForm = $('#quote-form');
-
-  if (quoteForm) {
-    quoteForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var name = $('#name').value.trim();
-      var phone = $('#phone').value.trim();
-      var city = $('#city').value.trim();
-      $('#success-name').textContent = name || 'Valued Client';
-      $('#success-phone').textContent = phone || 'your number';
-      $('#success-city').textContent = city || 'your city';
-      var fv = quoteFormView();
-      var sv = quoteSuccessView();
-      if (fv) fv.style.display = 'none';
-      if (sv) sv.style.display = 'flex';
-    });
-  }
+  /* ---------- Quote form submit ----------
+     Moved to js/forms.js, which validates the fields, runs the honeypot and
+     actually opens a prefilled mail client. Keeping a second handler here
+     would double-submit. Only the estimator maths stays in main.js. */
 
   $$('.btn-success-done').forEach(function (btn) {
     btn.addEventListener('click', function () {
@@ -578,23 +599,38 @@
     (function applyInspectionPrefill() {
       var raw;
       try { raw = sessionStorage.getItem(INSPECTION_KEY); } catch (err) { return; }
-      if (!raw) return;
+      if (!raw || raw.length > 20000) return;
 
       var data;
       try { data = JSON.parse(raw); } catch (err) { return; }
-      if (!data) return;
+      if (!data || typeof data !== 'object') return;
 
-      fill('', '#contact-name', data.name);
-      fill('', '#contact-phone', data.phone);
-      fill('', '#contact-email', data.email);
-      fill('', '#contact-message', data.message);
+      /* sessionStorage is attacker-writable (same-origin XSS, extensions, devtools),
+         so validate shape and re-clean every field before it reaches the DOM.
+         fill() only ever assigns .value, never innerHTML. */
+      var safe = {
+        name: cleanStr(data.name, 100),
+        phone: cleanStr(data.phone, 20),
+        email: cleanStr(data.email, 254),
+        /* Matches the field's maxlength=500. The inspection payload is built in
+           priority order (product, structure, area, timeline, symptoms, then
+           free-text notes), so truncating here keeps the most useful lines. */
+        message: cleanMultiline(data.message, 500),
+        subject: cleanStr(data.subject, 80)
+      };
 
+      fill('', '#contact-name', safe.name);
+      fill('', '#contact-phone', safe.phone);
+      fill('', '#contact-email', safe.email);
+      fill('', '#contact-message', safe.message);
+
+      /* Only accept a subject that literally exists as one of our own <option>s. */
       var subject = $('#contact-subject');
-      if (subject && data.subject) {
+      if (subject && safe.subject) {
         var match = Array.prototype.find.call(subject.options, function (o) {
-          return o.textContent.trim() === data.subject;
+          return o.textContent.trim() === safe.subject;
         });
-        if (match) subject.value = match.textContent;
+        if (match) subject.value = match.value;
       }
 
       try { sessionStorage.removeItem(INSPECTION_KEY); } catch (err) { /* ignore */ }
@@ -613,19 +649,10 @@
       }
     })();
 
-    contactForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var name = $('#contact-name').value.trim();
-      var phone = $('#contact-phone').value.trim();
-      if (!name || !phone) {
-        showToast('Please add your name and phone number');
-        return;
-      }
-      showToast('Inspection request sent — our team will reply within 24 hours');
-      contactForm.reset();
-      var wrap = contactForm.closest ? contactForm.closest('.contact-form-wrap') : null;
-      if (wrap) wrap.classList.remove('is-prefilled');
-    });
+    /* Submission itself moved to js/forms.js (validation + real mailto hand-off).
+       Only the pre-fill-from-sessionStorage behaviour stays here. */
+    var wrap0 = contactForm.closest ? contactForm.closest('.contact-form-wrap') : null;
+    if (wrap0) wrap0.classList.add('js-contact-form');
   }
 
   /* ---------- Escape key closes modals ---------- */

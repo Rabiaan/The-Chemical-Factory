@@ -421,15 +421,33 @@
     if (el) el.innerHTML = html;
   }
 
-  function initDetail() {
-    var id = null;
+  /* Reads ?id=... but never injects it. The value is only used as a lookup key
+     against PRODUCTS (see findProduct); anything unrecognised falls through to
+     the "Product Not Found" panel. Length + character checks keep a hostile
+     query string from becoming a cheap DoS. */
+  function readProductId() {
+    var raw = null;
     try {
-      id = new URLSearchParams(window.location.search).get('id');
+      raw = new URLSearchParams(window.location.search).get('id');
     } catch (err) {
       var m = (window.location.search || '').match(/[?&]id=([^&]+)/);
-      id = m ? decodeURIComponent(m[1]) : null;
+      raw = m ? m[1] : null;
     }
+    if (raw == null) return null;
+    var id;
+    try {
+      id = decodeURIComponent(String(raw));
+    } catch (err) {
+      return null;
+    }
+    id = String(id).trim();
+    if (!id || id.length > 80) return null;
+    if (!/^[a-z0-9][a-z0-9-]*$/i.test(id)) return null;   /* ids look like chem-pu-elasto-pro */
+    return id;
+  }
 
+  function initDetail() {
+    var id = readProductId();
     var p = findProduct(id);
     var missing = $('#detail-missing');
     var main = $('#detail-main');

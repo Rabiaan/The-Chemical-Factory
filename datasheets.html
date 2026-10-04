@@ -3,6 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-src https://www.google.com https://www.youtube-nocookie.com; object-src 'none'; base-uri 'self'; form-action 'self'" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
     <title>Technical Datasheets — THE CHEMICAL FACTORY</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/icons-anim.css">
@@ -34,9 +36,10 @@
 
     <section class="page-section">
       <div class="container">
-        <div class="search-bar">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-bar__icon"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-          <input type="text" id="datasheet-search" placeholder="Search by product, category or specification..." autocomplete="off" />
+        <div class="search-bar" role="search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-bar__icon" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <label class="sr-only" for="datasheet-search">Search datasheets</label>
+          <input type="search" id="datasheet-search" name="q" maxlength="100" autocomplete="off" placeholder="Search by product, category or specification..." />
         </div>
 
         <div class="results-text" id="datasheet-count" style="margin-bottom: 1rem;"></div>
@@ -94,12 +97,13 @@
     <div id="footer-root"></div>
     <div id="modal-root"></div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="js/vendor/gsap.min.js"></script>
+    <script src="js/vendor/ScrollTrigger.min.js"></script>
     <script src="js/icons.js"></script>
     <script src="js/components.js"></script>
     <script src="js/products-data.js"></script>
     <script src="js/products.js"></script>
+    <script src="js/forms.js"></script>
     <script src="js/main.js"></script>
   </body>
 </html>

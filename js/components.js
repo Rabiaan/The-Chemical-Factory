@@ -23,11 +23,13 @@
     { page: 'contact', href: 'contact.html', label: 'Contact' }
   ];
 
+  /* Only real, verified profile URLs are listed here.
+     TODO(owner): supply the genuine Facebook / LinkedIn / X profile URLs, then re-add
+     them to this array. Placeholder "#" hrefs were removed because they produced
+     dead links that looked clickable. See SECURITY-HEADERS.md for the full TODO list. */
   var SOCIAL = [
     { label: 'Instagram', href: 'https://www.instagram.com/thechemicalfactory/', name: 'instagram' },
-    { label: 'Facebook', href: '#facebook', name: 'facebook' },
-    { label: 'LinkedIn', href: '#linkedin', name: 'linkedin' },
-    { label: 'Twitter X', href: '#twitter', name: 'twitter' }
+    { label: 'Facebook', href: 'https://www.facebook.com/p/The-Chemical-Factory-61568350412428/', name: 'facebook' }
   ];
 
   var currentPage = (document.body && document.body.getAttribute('data-page')) || '';
@@ -129,7 +131,12 @@
     + '</div>'
     + '<div class="modal-body">'
     + '<div id="quote-form-view">'
-    + '<form id="quote-form" class="quote-form" novalidate>'
+    + '<form id="quote-form" class="quote-form" novalidate method="post" action="#">'
+    /* Honeypot: off-screen, never filled by a human. Dropped by js/forms.js. */
+    + '<div class="hp-field" aria-hidden="true">'
+    + '<label for="quote-website">Company website</label>'
+    + '<input type="text" id="quote-website" name="company-website" tabindex="-1" autocomplete="off" value="" />'
+    + '</div>'
     + '<div class="estimator">'
     + '<div class="estimator__title">'
     + '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="16" x2="16" y1="14" y2="18"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/></svg>'
@@ -152,12 +159,20 @@
     + '<div class="estimator__result"><span>Estimated Project Range:</span><span id="est-range" class="estimator__price">$3,300 – $5,700</span></div>'
     + '</div>'
     + '<div class="form-grid">'
-    + '<div><label class="form-label" for="name">Full Name *</label><input type="text" id="name" class="form-input" placeholder="e.g. Ahmed Khan" required /></div>'
-    + '<div><label class="form-label" for="phone">Phone Number *</label><input type="tel" id="phone" class="form-input" placeholder="e.g. +92 304 3600297" required /></div>'
-    + '<div><label class="form-label" for="email">Email Address</label><input type="email" id="email" class="form-input" placeholder="name@example.com" /></div>'
-    + '<div><label class="form-label" for="city">City / Location</label><input type="text" id="city" class="form-input" placeholder="e.g. Karachi, Pakistan" /></div>'
+    + '<div><label class="form-label" for="name">Full Name <span aria-hidden="true">*</span></label>'
+    + '<input type="text" id="name" name="name" class="form-input" autocomplete="name" maxlength="100" placeholder="e.g. Ahmed Khan" required data-validate="name" aria-describedby="name-error" aria-required="true" />'
+    + '<p class="form-error" id="name-error" aria-live="polite"></p></div>'
+    + '<div><label class="form-label" for="phone">Phone Number <span aria-hidden="true">*</span></label>'
+    + '<input type="tel" id="phone" name="phone" class="form-input" autocomplete="tel" maxlength="20" placeholder="e.g. +92 304 3600297" required data-validate="phone" aria-describedby="phone-error" aria-required="true" />'
+    + '<p class="form-error" id="phone-error" aria-live="polite"></p></div>'
+    + '<div><label class="form-label" for="email">Email Address <span class="form-field__opt">(optional)</span></label>'
+    + '<input type="email" id="email" name="email" class="form-input" autocomplete="email" maxlength="254" placeholder="name@example.com" data-validate="email" aria-describedby="email-error" />'
+    + '<p class="form-error" id="email-error" aria-live="polite"></p></div>'
+    + '<div><label class="form-label" for="city">City / Location</label>'
+    + '<input type="text" id="city" name="city" class="form-input" autocomplete="address-level2" maxlength="120" placeholder="e.g. Karachi, Pakistan" /></div>'
     + '</div>'
-    + '<div><label class="form-label" for="notes">Project Notes / Existing Leak Symptoms</label><textarea id="notes" class="form-textarea" rows="3" placeholder="Describe active leaks, surface conditions, or special site access..."></textarea></div>'
+    + '<div><label class="form-label" for="notes">Project Notes / Existing Leak Symptoms</label>'
+    + '<textarea id="notes" name="notes" class="form-textarea" rows="3" maxlength="500" placeholder="Describe active leaks, surface conditions, or special site access..."></textarea></div>'
     + '<div class="inspection-picker" id="inspection-picker" style="display:none">'
     + '<div class="inspection-picker__title">'
     + '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>'
@@ -166,7 +181,7 @@
     + '<p class="inspection-picker__hint">Answer these so the engineer arrives prepared. Your answers are carried into the contact form automatically.</p>'
     + '<div class="inspection-picker__product" id="inspection-product"></div>'
     + '<div class="form-grid">'
-    + '<div><label class="form-label" for="insp-area">Approximate Area (sq. ft.)</label><input type="number" id="insp-area" class="form-input" min="0" step="50" placeholder="e.g. 1500" /></div>'
+    + '<div><label class="form-label" for="insp-area">Approximate Area (sq. ft.)</label><input type="number" id="insp-area" name="insp-area" class="form-input" min="0" max="1000000" step="50" maxlength="9" inputmode="numeric" placeholder="e.g. 1500" /></div>'
     + '<div><label class="form-label" for="insp-timeline">When do you need it done?</label><select id="insp-timeline" class="form-select"><option>Urgent - active leak</option><option>Within 1 month</option><option>Within 3 months</option><option>Planning / budgeting stage</option></select></div>'
     + '</div>'
     + '<div><label class="form-label" for="insp-structure">Structure / Area Type *</label><select id="insp-structure" class="form-select"><option>Terrace &amp; Flat Roof</option><option>Basement &amp; Sub-structure Tanking</option><option>Bathroom &amp; Wet Area</option><option>Industrial Floor / Epoxy Decking</option><option>Expansion Joint &amp; Injection</option><option>Water Tank / Reservoir</option><option>Podium &amp; Retaining Wall</option><option>Structural Strengthening</option><option>Other</option></select></div>'
@@ -180,7 +195,7 @@
     + '<label class="chip-check"><input type="checkbox" value="Sealant failure" /><span>Sealant failure</span></label>'
     + '<label class="chip-check"><input type="checkbox" value="No visible defect - preventive check" /><span>Preventive check</span></label>'
     + '</div></div>'
-    + '<div><label class="form-label" for="insp-history">Previous Repair Attempts</label><textarea id="insp-history" class="form-textarea" rows="2" placeholder="What has already been tried, and how long did it last?"></textarea></div>'
+    + '<div><label class="form-label" for="insp-history">Previous Repair Attempts</label><textarea id="insp-history" name="insp-history" class="form-textarea" rows="2" maxlength="500" placeholder="What has already been tried, and how long did it last?"></textarea></div>'
     + '<div class="inspection-picker__note">You will be taken to our contact form with all of this pre-filled &mdash; just add your name and phone number.</div>'
     + '<div class="inspection-picker__actions">'
     + '<button type="button" class="btn-inspection-continue js-inspection-continue">'
@@ -214,9 +229,21 @@
     + 'CHEMICALLY ENGINEERED FOR <em class="heading-accent">EXCELLENCE</em>'
     + '</div>'
     + '<div class="preloader__brush">'
-    + '<img src="images/brush.png" alt="" class="preloader__brush-img" onerror="this.style.display=\'none\'" />'
+    /* NOTE: no inline onerror= here on purpose. CSP is script-src 'self', which
+       blocks inline event handlers. The fallback is attached in JS below. */
+    + '<img src="images/brush.png" alt="" class="preloader__brush-img" />'
     + '</div>'
     + '</div>';
+
+  /* Replaces the old inline onerror="this.style.display='none'" on the brush image.
+     Keeps the preloader looking correct if images/brush.png is ever missing. */
+  function guardBrushImage() {
+    var img = document.querySelector('#preloader .preloader__brush-img');
+    if (!img) return;
+    img.addEventListener('error', function () { img.style.display = 'none'; });
+    /* Already-complete/failed images do not always fire 'error', so check state too. */
+    if (img.complete && img.naturalWidth === 0) img.style.display = 'none';
+  }
 
   var WHATSAPP_SVG =
     '<svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">'
@@ -296,5 +323,8 @@
 
   /* Preloader must exist before main.js runs, so inject it immediately */
   var preloaderRoot = document.getElementById('preloader-root');
-  if (preloaderRoot) preloaderRoot.innerHTML = PRELOADER;
+  if (preloaderRoot) {
+    preloaderRoot.innerHTML = PRELOADER;
+    guardBrushImage();
+  }
 })();
