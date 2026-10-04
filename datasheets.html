@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Technical Datasheets — THE CHEMICAL FACTORY</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/icons-anim.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <link rel="icon" type="image/png" href="images/fav-log.png" />
+    <meta property="og:image" content="images/logo.jpeg" />
+    <meta name="twitter:image" content="images/logo.jpeg" />
+  </head>
+  <body data-page="datasheets">
+    <div id="preloader-root"></div>
+    <div id="nav-root"></div>
+
+    <section class="page-hero">
+      <picture class="page-hero__banner-media">
+        <source media="(max-width: 768px)" srcset="images/mobile_banner.webp" />
+        <img class="page-hero__banner" src="images/banner.webp" alt="" />
+      </picture>
+      <!-- <div class="page-hero__crumb">
+        <span>Home</span>
+        <i>/</i>
+        <span>Technical Library</span>
+      </div>
+      <h1 class="page-hero__title">Technical <em>Datasheets</em><br />&amp; Specifications</h1>
+      <p class="page-hero__sub">
+        Download the official product data sheet for every coating, sealant, grout, waterstop and admixture
+        in our range &mdash; complete with property matrices, consumption figures and application guidelines.
+      </p> -->
+    </section>
+
+    <section class="page-section">
+      <div class="container">
+        <div class="search-bar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-bar__icon"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input type="text" id="datasheet-search" placeholder="Search by product, category or specification..." autocomplete="off" />
+        </div>
+
+        <div class="results-text" id="datasheet-count" style="margin-bottom: 1rem;"></div>
+
+        <div class="ds-grid" id="datasheet-cards"></div>
+
+        <div id="datasheet-no-results" class="empty hidden">
+          <div class="empty-icon">&#128269;</div>
+          <h3>No datasheets match your search</h3>
+          <p>Try a different product name, category or specification keyword.</p>
+          <a href="datasheets.html" class="btn-reset" style="display: inline-block; text-decoration: none;">Clear Search</a>
+        </div>
+
+        <div class="quote-features" data-reveal style="margin-top: 2.5rem;">
+          <div class="quote-feature">
+            <div class="quote-feature__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+            </div>
+            <div>
+              <h3 class="quote-feature__title">ASTM &amp; ISO Certified Testing</h3>
+              <p class="quote-feature__text">Every datasheet includes independent tensile, elongation, adhesion, and permeability results.</p>
+            </div>
+          </div>
+          <div class="quote-feature">
+            <div class="quote-feature__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            </div>
+            <div>
+              <h3 class="quote-feature__title">Updated 2026 Revisions</h3>
+              <p class="quote-feature__text">All documents are maintained to the latest chemical formulation and application standards.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-section page-section--muted">
+      <div class="container">
+        <div class="cta-band" data-reveal>
+          <div class="cta-band__bg"><img src="images/technician.jpg" alt=""></div>
+          <div class="cta-band__box">
+            <h2 class="cta-band__title">Can't Find a Document?</h2>
+            <p class="cta-band__sub">
+              Request a specific technical datasheet, safety data sheet, or full system specification pack from our engineers.
+            </p>
+            <div class="cta-band__actions">
+              <button type="button" class="btn-white js-open-quote"><span>Request Documents</span><span data-icon="arrow-right"></span></button>
+              <a href="contact.html" class="btn-outline">Contact Us</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div id="footer-root"></div>
+    <div id="modal-root"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="js/icons.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/products-data.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
