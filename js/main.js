@@ -836,66 +836,61 @@
     }
 
     /* Preloader: brush sweeps left-to-right, wiping the text as it passes, then fades down.
-       Shown only on the very first page load of a visit; skipped on in-site page
-       switches, back/forward navigation, and reloads.
+       components.js injects #preloader only on a hard reload or the first visit
+       in this tab (Navigation Timing tells a refresh apart from an in-site
+       link click). If the element is present we play the timeline; on
+       in-site navigations it was never injected, so entrances run
+       immediately with no flash.
        Under reduced motion the wipe is skipped entirely -- the preloader is
        dismissed immediately instead of holding the page for ~4.3s. */
     var preloader = $('#preloader');
-    if (preloader) {
-      var seenBefore = false;
-      try {
-        seenBefore = sessionStorage.getItem('cf-seen') === '1';
-        sessionStorage.setItem('cf-seen', '1');
-      } catch (err) { /* ignore */ }
-
-      if (seenBefore || reducedNow) {
+    if (preloader && !reducedNow) {
+      var brush = $('.preloader__brush', preloader);
+      var text = $('.preloader__text', preloader);
+      document.documentElement.classList.add('preloader-active');
+      if (typeof window.gsap !== 'undefined' && brush) {
+        var travel = function () { return window.innerWidth + 240; };
+        var textW = text ? text.offsetWidth : 0;
+        gsap.timeline({
+          onComplete: function () {
+            document.documentElement.classList.remove('preloader-active');
+            preloader.classList.add('is-done');
+            ensureVisible();
+          }
+        })
+          .fromTo(brush,
+            { xPercent: -50, yPercent: -50, x: -240 },
+            {
+              xPercent: -50, yPercent: -50,
+              x: travel,
+              duration: 3.2,
+              ease: 'power2.inOut',
+              onUpdate: function () {
+                if (text && textW) {
+                  var x = gsap.getProperty(brush, 'x');
+                  var f = Math.min(Math.max(x / textW, 0), 1);
+                  text.style.clipPath = 'inset(0 ' + ((1 - f) * 100).toFixed(2) + '% 0 0)';
+                }
+              }
+            }, 0)
+          .to(preloader, {
+            autoAlpha: 0, y: 80, duration: 0.7, ease: 'power2.inOut', delay: 0.4,
+            onStart: function () {
+              prepareHomeEntrance();
+              playHomeEntrance();
+            }
+          });
+      } else {
         document.documentElement.classList.remove('preloader-active');
         preloader.classList.add('is-done');
-        prepareHomeEntrance();
         playHomeEntrance();
-      } else {
-        var brush = $('.preloader__brush', preloader);
-        var text = $('.preloader__text', preloader);
-        document.documentElement.classList.add('preloader-active');
-        if (typeof window.gsap !== 'undefined' && brush) {
-          var travel = function () { return window.innerWidth + 240; };
-          var textW = text ? text.offsetWidth : 0;
-          gsap.timeline({
-            onComplete: function () {
-              document.documentElement.classList.remove('preloader-active');
-              preloader.classList.add('is-done');
-              ensureVisible();
-            }
-          })
-            .fromTo(brush,
-              { xPercent: -50, yPercent: -50, x: -240 },
-              {
-                xPercent: -50, yPercent: -50,
-                x: travel,
-                duration: 3.2,
-                ease: 'power2.inOut',
-                onUpdate: function () {
-                  if (text && textW) {
-                    var x = gsap.getProperty(brush, 'x');
-                    var f = Math.min(Math.max(x / textW, 0), 1);
-                    text.style.clipPath = 'inset(0 ' + ((1 - f) * 100).toFixed(2) + '% 0 0)';
-                  }
-                }
-              }, 0)
-            .to(preloader, {
-              autoAlpha: 0, y: 80, duration: 0.7, ease: 'power2.inOut', delay: 0.4,
-              onStart: function () {
-                prepareHomeEntrance();
-                playHomeEntrance();
-              }
-            });
-        } else {
-          document.documentElement.classList.remove('preloader-active');
-          preloader.classList.add('is-done');
-          playHomeEntrance();
-        }
       }
     } else {
+      if (preloader) {
+        document.documentElement.classList.remove('preloader-active');
+        preloader.classList.add('is-done');
+      }
+      prepareHomeEntrance();
       playHomeEntrance();
     }
 

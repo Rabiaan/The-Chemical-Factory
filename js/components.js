@@ -390,9 +390,35 @@
     mount();
   }
 
-  /* Preloader must exist before main.js runs, so inject it immediately */
+  /* ---------- Preloader visibility ----------
+     Show only on a hard reload or the first visit in this tab. In-site
+     page switches are full document loads too, so Navigation Timing is
+     what tells them apart from a refresh. Deciding here — before
+     injection — means skipped visits never flash the preloader while
+     main.js catches up. */
+  function shouldShowPreloader() {
+    try {
+      var nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+      var type = nav && nav.type;
+      if (!type && performance.navigation) {
+        /* Legacy Navigation Timing: 0=navigate, 1=reload, 2=back_forward */
+        type = ['', 'reload', 'back_forward'][performance.navigation.type] || 'navigate';
+      }
+      if (type === 'reload') return true;
+      if (type === 'back_forward') return false;
+      /* 'navigate' (or unknown): first visit in this tab only. */
+      if (sessionStorage.getItem('cf-seen') === '1') return false;
+      sessionStorage.setItem('cf-seen', '1');
+      return true;
+    } catch (err) {
+      return true; /* fail open — show the preloader */
+    }
+  }
+
+  /* Preloader must exist before main.js runs, so inject it immediately —
+     but only when it is actually going to play. */
   var preloaderRoot = document.getElementById('preloader-root');
-  if (preloaderRoot) {
+  if (preloaderRoot && shouldShowPreloader()) {
     preloaderRoot.innerHTML = PRELOADER;
     splitPreloaderText();
     guardBrushImage();
