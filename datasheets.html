@@ -1,117 +1,69 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Technical Datasheets — THE CHEMICAL FACTORY</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-src https://www.google.com https://www.youtube-nocookie.com; object-src 'none'; base-uri 'self'; form-action 'self'" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <title>Technical Datasheets - THE CHEMICAL FACTORY</title>
+      <!-- SEO (Phase 3.4) -->
+      <meta name="description" content="Download PDF technical datasheets for the full The Chemical Factory range, including property matrices, consumption figures and application guidelines." />
+      <meta name="robots" content="index, follow, max-image-preview:large" />
+      <meta property="og:type" content="website" />
+      <meta property="og:site_name" content="The Chemical Factory" />
+      <meta property="og:title" content="Technical Datasheets - THE CHEMICAL FACTORY" />
+      <meta property="og:description" content="Download PDF technical datasheets for the full The Chemical Factory range, including property matrices, consumption figures and application guidelines." />
+      <meta property="og:image" content="https://the-chemical-factory.vercel.app/images/product-banner.jpg" />
+      <meta property="og:image:alt" content="Technical Datasheets - THE CHEMICAL FACTORY" />
+      <link rel="canonical" href="https://the-chemical-factory.vercel.app/datasheets" />
+      <meta property="og:url" content="https://the-chemical-factory.vercel.app/datasheets" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="Technical Datasheets - THE CHEMICAL FACTORY" />
+      <meta name="twitter:description" content="Download PDF technical datasheets for the full The Chemical Factory range, including property matrices, consumption figures and application guidelines." />
+      <meta name="twitter:image" content="https://the-chemical-factory.vercel.app/images/product-banner.jpg" />
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/icons-anim.css">
     <link rel="stylesheet" href="css/pages.css">
     <link rel="icon" type="image/png" href="images/fav-log.png" />
-    <meta property="og:image" content="images/logo.jpeg" />
-    <meta name="twitter:image" content="images/logo.jpeg" />
   </head>
   <body data-page="datasheets">
     <div id="preloader-root"></div>
     <div id="nav-root"></div>
 
+    <nav class="page-crumbs" aria-label="Breadcrumb">
+      <ol class="page-crumbs__list">
+        <li class="page-crumbs__item"><a href="index.html">Home</a></li>
+        <li class="page-crumbs__sep" aria-hidden="true">/</li>
+        <li class="page-crumbs__item" aria-current="page">Datasheets</li>
+      </ol>
+    </nav>
+
     <section class="page-hero">
-      <div class="page-hero__crumb">
-        <span>Home</span>
-        <i>/</i>
-        <span>Technical Library</span>
-      </div>
-      <h1 class="page-hero__title">Technical <em>Datasheets</em><br />&amp; Specifications</h1>
-      <p class="page-hero__sub">
-        Download ASTM-certified product data sheets, application guides, and safety documentation
-        for every coating, sealant, and admixture in our range.
-      </p>
+      <picture class="page-hero__banner-media">
+        <source media="(max-width: 768px)" srcset="images/mobile_banner.webp" />
+        <img class="page-hero__banner" src="images/banner.webp" alt="" width="1983" height="793" loading="eager" fetchpriority="high" decoding="async" />
+      </picture>
+      <h1 class="page-hero__title"></h1>
+      <p class="page-hero__sub"></p>
     </section>
 
     <section class="page-section">
       <div class="container">
-        <div class="search-bar">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-bar__icon"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-          <input type="text" id="datasheet-search" placeholder="Search by product, code, or category..." autocomplete="off" />
+        <div class="search-bar" role="search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-bar__icon" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <label class="sr-only" for="datasheet-search">Search datasheets</label>
+          <input type="search" id="datasheet-search" name="q" maxlength="100" autocomplete="off" placeholder="Search by product, category or specification..." />
         </div>
 
-        <div class="data-table-wrap">
-          <table class="data-table" id="datasheet-table">
-            <thead>
-              <tr>
-                <th>Product</th>
-                <th>Category</th>
-                <th>Code</th>
-                <th>Coverage</th>
-                <th>Document</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr data-search="Polyurethane Liquid Membrane membranes coatings TDS tcf-pu-100">
-                <td class="data-table__name">TCF Polyurethane Liquid Membrane</td>
-                <td><span class="data-table__cat">Membrane</span></td>
-                <td>TCF-PU-100</td>
-                <td>1.2 m²/L</td>
-                <td><button type="button" class="btn-download js-download-datasheet"><span data-icon="download"></span>Download PDF</button></td>
-              </tr>
-              <tr data-search="Spray Polyurea Hybrid fast curing membranes coatings TDS tcf-pu-200">
-                <td class="data-table__name">TCF Spray Polyurea Hybrid</td>
-                <td><span class="data-table__cat">Membrane</span></td>
-                <td>TCF-PU-200</td>
-                <td>1.0 m²/kg</td>
-                <td><button type="button" class="btn-download js-download-datasheet"><span data-icon="download"></span>Download PDF</button></td>
-              </tr>
-              <tr data-search="Crystalline Slurry Coating crystalline self healing TDS tcf-cr-300">
-                <td class="data-table__name">TCF Crystalline Slurry Coating</td>
-                <td><span class="data-table__cat">Crystalline</span></td>
-                <td>TCF-CR-300</td>
-                <td>1.5 kg/m²</td>
-                <td><button type="button" class="btn-download js-download-datasheet"><span data-icon="download"></span>Download PDF</button></td>
-              </tr>
-              <tr data-search="Elastomeric Bituminous Membrane bitumen sheet TDS tcf-bit-400">
-                <td class="data-table__name">TCF Elastomeric Bituminous Membrane 4mm</td>
-                <td><span class="data-table__cat">Membrane</span></td>
-                <td>TCF-BIT-400</td>
-                <td>1.0 m²/roll</td>
-                <td><button type="button" class="btn-download js-download-datasheet"><span data-icon="download"></span>Download PDF</button></td>
-              </tr>
-              <tr data-search="Polymer Cementitious Flex Coat wet areas bathrooms flex TDS tcf-cf-500">
-                <td class="data-table__name">TCF Polymer Cementitious Flex Coat</td>
-                <td><span class="data-table__cat">Wet Areas</span></td>
-                <td>TCF-CF-500</td>
-                <td>2.0 kg/m²</td>
-                <td><button type="button" class="btn-download js-download-datasheet"><span data-icon="download"></span>Download PDF</button></td>
-              </tr>
-              <tr data-search="Hydrophobic PU Resin Injection polyurethane injection cracks TDS tcf-inj-600">
-                <td class="data-table__name">TCF Hydrophobic PU Resin Injection</td>
-                <td><span class="data-table__cat">Injection</span></td>
-                <td>TCF-INJ-600</td>
-                <td>1.0 L/cartridge</td>
-                <td><button type="button" class="btn-download js-download-datasheet"><span data-icon="download"></span>Download PDF</button></td>
-              </tr>
-              <tr data-search="Solar Reflective Acrylic Shield cool roof acrylic TDS tcf-ac-700">
-                <td class="data-table__name">TCF Solar Reflective Acrylic Shield</td>
-                <td><span class="data-table__cat">Membrane</span></td>
-                <td>TCF-AC-700</td>
-                <td>1.8 m²/L</td>
-                <td><button type="button" class="btn-download js-download-datasheet"><span data-icon="download"></span>Download PDF</button></td>
-              </tr>
-              <tr data-search="Drainage Board Filter Fabric hdpe drainage composite TDS tcf-dr-800">
-                <td class="data-table__name">TCF Drainage Board &amp; Filter Fabric</td>
-                <td><span class="data-table__cat">Accessory</span></td>
-                <td>TCF-DR-800</td>
-                <td>1.0 m²/sheet</td>
-                <td><button type="button" class="btn-download js-download-datasheet"><span data-icon="download"></span>Download PDF</button></td>
-              </tr>
-              <tr data-search="High-Adhesion Epoxy Primer epoxy primer sealer TDS tcf-ep-900">
-                <td class="data-table__name">TCF High-Adhesion Epoxy Primer</td>
-                <td><span class="data-table__cat">Accessory</span></td>
-                <td>TCF-EP-900</td>
-                <td>8.0 m²/L</td>
-                <td><button type="button" class="btn-download js-download-datasheet"><span data-icon="download"></span>Download PDF</button></td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="results-text" id="datasheet-count" style="margin-bottom: 1rem;"></div>
+
+        <div class="ds-grid" id="datasheet-cards"></div>
+
+        <div id="datasheet-no-results" class="empty hidden">
+          <div class="empty-icon">&#128269;</div>
+          <h3>No datasheets match your search</h3>
+          <p>Try a different product name, category or specification keyword.</p>
+          <a href="datasheets.html" class="btn-reset" style="display: inline-block; text-decoration: none;">Clear Search</a>
         </div>
 
         <div class="quote-features" data-reveal style="margin-top: 2.5rem;">
@@ -140,7 +92,7 @@
     <section class="page-section page-section--muted">
       <div class="container">
         <div class="cta-band" data-reveal>
-          <div class="cta-band__bg"><img src="images/technician.jpg" alt=""></div>
+          <div class="cta-band__bg"><img src="images/technician.jpg" alt="" width="1200" height="795" loading="lazy" decoding="async"></div>
           <div class="cta-band__box">
             <h2 class="cta-band__title">Can't Find a Document?</h2>
             <p class="cta-band__sub">
@@ -158,10 +110,15 @@
     <div id="footer-root"></div>
     <div id="modal-root"></div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="js/vendor/gsap.min.js"></script>
+    <script src="js/vendor/ScrollTrigger.min.js"></script>
+    <script src="js/motion.js"></script>
     <script src="js/icons.js"></script>
     <script src="js/components.js"></script>
+    <script src="js/products-data.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/forms.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
   </body>
 </html>

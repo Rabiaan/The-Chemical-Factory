@@ -1,0 +1,15 @@
+# robots.txt — THE CHEMICAL FACTORY
+#
+# Live origin: https://the-chemical-factory.vercel.app
+#
+# Clean permalinks are the canonical URL form (see .htaccess + vercel.json):
+#   /about  /products  /services  /product-detail/<product-id>
+# The .html and ?id= forms 301 to these, so they are not listed here.
+
+User-agent: *
+Allow: /
+
+# Product pages (/product-detail/<id>) are real, indexable pages.
+# Do not add a blanket "Disallow: /*?" rule — it would block them.
+
+Sitemap: https://the-chemical-factory.vercel.app/sitemap.xml

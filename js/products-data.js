@@ -1,597 +1,1624 @@
 /* ============================================================
    THE CHEMICAL FACTORY — product catalog data
-   Images are stored locally in ./images
+   Product photography and downloadable datasheets live in
+   ./products (WebP + PDF per product).
+   Content transcribed from the official product datasheets.
    ============================================================ */
 window.TCF_PRODUCTS = (function () {
-  var IMG = {
-    img01: 'images/img-01.jpg',
-    img02: 'images/img-02.jpg',
-    img03: 'images/img-03.jpg',
-    img04: 'images/img-04.jpg',
-    img05: 'images/img-05.jpg',
-    img06: 'images/img-06.jpg',
-    img07: 'images/img-07.jpg',
-    img08: 'images/img-08.jpg',
-    img09: 'images/img-09.jpg',
-    img10: 'images/img-10.jpg',
-    img11: 'images/img-11.jpg'
-  };
+  'use strict';
 
+  var ASSETS = 'products/';
+
+  /* ---------- Categories ---------- */
   var categories = [
-    { id: 'coatings', name: 'Waterproofing Coatings' },
-    { id: 'diluters', name: 'Diluters & Solvents' },
-    { id: 'repellents', name: 'Water Repellents' },
-    { id: 'sealants', name: 'Sealants & Gap Fillers' },
-    { id: 'admixtures', name: 'Admixtures & Hardeners' },
-    { id: 'membranes', name: 'Geomembranes & Liners' }
+    { id: 'injection', name: 'Injection & Crack Sealing Resins', system: 'sealing' },
+    { id: 'cementitious', name: 'Cementitious Waterproof Coatings', system: 'coatings' },
+    { id: 'membranes', name: 'Polyurethane Waterproof Membranes', system: 'coatings' },
+    { id: 'dampproofing', name: 'Damp Proofing & Bituminous Coatings', system: 'coatings' },
+    { id: 'sealants', name: 'Sealants & Joint Sealers', system: 'sealing' },
+    { id: 'waterstops', name: 'Hydrophilic Waterstops', system: 'sealing' },
+    { id: 'admixtures', name: 'Concrete Admixtures', system: 'concrete' },
+    { id: 'grouts', name: 'Grouts & Cementitious Fillers', system: 'repair' },
+    { id: 'bonding', name: 'Bonding & Polymer Modification', system: 'repair' }
   ];
 
+  /* ---------- Broader product systems (sidebar filter) ---------- */
+  var systems = [
+    { id: 'all', name: 'All Systems' },
+    { id: 'coatings', name: 'Coatings & Membranes' },
+    { id: 'sealing', name: 'Injection & Joint Sealing' },
+    { id: 'concrete', name: 'Concrete Admixtures' },
+    { id: 'repair', name: 'Grouts, Bonding & Repair' }
+  ];
+
+  var DISCLAIMER =
+    'The information above reflects The Chemical Factory\'s current knowledge and is provided to assist specifiers '
+    + 'and contractors. It does not replace project-specific trials to confirm suitability. Data are typical values '
+    + 'under standard conditions; on-site results may vary. Recommendations are offered in good faith without '
+    + 'warranty, as factors beyond our control can affect performance. The Chemical Factory may revise '
+    + 'specifications without prior notice. Users are responsible for compliance with applicable standards and '
+    + 'regulations. Technical assistance is available on request.';
+
   var products = [
+    /* ============================================================
+       1. CHEM 2K INJECT PRO
+       ============================================================ */
     {
-      id: 'mega-clear-guard', name: 'MEGA CLEAR GUARD',
-      subTitle: 'Clear Transparent Single Component Acrylic Waterproof Coating',
-      category: 'coatings', categoryLabel: 'Waterproofing Coatings', subCategory: 'Transparent & Acrylic',
-      priceDisplay: 'Rs 44,252.73', minPrice: 44252.73, maxPrice: 44252.73,
-      originalMinPrice: 46465.36, onSale: true, saleDiscount: '5% OFF',
-      rating: 4.9, reviewCount: 42, image: IMG.img01, badge: 'Popular',
-      description: 'A premium 100% aliphatic clear transparent acrylic waterproof glaze. Formulated for sealing glazed tiles, marble roofs, terrazzo, and decorative architectural surfaces without altering the underlying natural aesthetics.',
+      id: 'chem-2k-inject-pro',
+      name: 'CHEM 2K INJECT PRO',
+      subTitle: 'Advanced Polyurethane Injection Resin for Active Leak Sealing & Waterproofing',
+      category: 'injection',
+      categoryLabel: 'Injection & Crack Sealing Resins',
+      image: ASSETS + 'Chem-2k-Inject-Pro.webp',
+      imageW: 1600, imageH: 1000,   // measured intrinsic size (Phase 3.2)
+      datasheet: 'downloads/chem-2k-inject-pro.pdf',
+      datasheetKb: 1659,        // measured after Phase 2 cleanup
+      datasheetPages: 2,
+      badges: ['Active Leak Sealing', 'Pro Grade'],
+      highlights: [
+        'Stops active water leaks instantly',
+        'Excellent penetration into fine cracks and voids',
+        'Flexible, durable waterproof barrier',
+        'Resistant to hydrostatic pressure'
+      ],
+      description:
+        'Chem 2k Inject Pro effectively stops active leaks and provides permanent, elastic sealing of cracks and '
+        + 'construction joints. It is suitable for injection into both dry and wet cracks and can also fill voids. '
+        + 'Resistant to hydrostatic pressure and suitable for underground and below grade structures.',
       keyFeatures: [
-        '100% Optical clarity & non-yellowing UV resistance',
-        'Seamless water impermeable barrier over tile joints',
-        'Chemical resistance against acid rain and saline breeze',
-        'Single component ready to apply by roller or spray'
+        'ACTIVE LEAK SEALING',
+        'HIGH PENETRATION',
+        'FLEXIBLE & DURABLE',
+        'FAST REACTION TIME',
+        'STRONG WATERPROOFING',
+        'FAST & EFFECTIVE INJECTION',
+        'LONG LASTING PROTECTION'
       ],
-      applications: ['Glazed roof tiles', 'Marble & terrazzo roofs', 'Exterior fair-face concrete', 'Balconies and terraces'],
-      coverage: '60 – 75 sq.ft / Liter (2 coats)',
-      curingTime: 'Touch dry: 45 mins | Full cure: 24 hours',
-      variants: [
-        { size: '4 Liter Can', price: 9850, originalPrice: 10350, unit: 'Can' },
-        { size: '10 Liter Bucket', price: 23200, originalPrice: 24400, unit: 'Bucket' },
-        { size: '20 Liter Drum', price: 44252.73, originalPrice: 46465.36, unit: 'Drum' }
+      uses: [
+        'Basements and underground structures',
+        'Tunnels and retaining walls',
+        'Water tanks and reservoirs',
+        'Lift pits and elevator shafts',
+        'Construction joints and cold joints'
       ],
-      technicalSpecs: { basePolymer: '100% Pure Aliphatic Acrylic', elongation: '250%', tensileStrength: '2.8 N/mm²', temperatureResistance: '-20°C to +85°C', vocContent: '< 45 g/L', shelfLife: '24 Months in sealed container' }
+      packaging: '10 + 10 kg Can',
+      coverage: 'Approx. 0.1 gallon / gallon void (foam) \u2022 Approx. 1 gallon / gallon void (solid resin)',
+      consumption: [
+        'Approx. 0.1 gallon / gallon void (foam)',
+        'Approx. 1 gallon / gallon void (solid resin)'
+      ],
+      guidance:
+        '2k Injection is injected until the glue comes out as foam from the next drill hole or the crack\'s surface. '
+        + 'Only one product is needed on the jobsite, which provides for easier calculation of required resin quantities.',
+      techData: [
+        { property: 'Mixing viscosity at 77 \u00B0F (ASTM D-115-72 / ISO 2555)', value: 'approx. 250 cp \u2248 250 mPa.s' },
+        { property: 'Volume increase at water contact', value: 'max. 1 : 20' },
+        { property: 'Density of the mixture at 68 \u00B0F (DIN 53479)', value: 'approx. 9.18 lb/gal' },
+        { property: 'Spec. density of the cured foam (ASTM D 1622)', value: 'approx. 0.05 - 0.1 g/cm\u00B3' },
+        { property: 'Starting time at water contact', value: 'approx. 50 sec' },
+        { property: 'Expansion time', value: 'approx. 3 min' },
+        { property: 'Pot life at 68 \u00B0F, 1 kg of mixture (DIN EN 1504-5)', value: '45 min' },
+        { property: 'Reaction time without water contact (at 68 \u00B0F)', value: 'approx. 24 h' },
+        { property: 'Non-sticky after', value: 'approx. 6 min' },
+        { property: 'Mixing ratio (by weight)', value: '1 : 1 (A : B)' },
+        { property: 'Mixing ratio (by volume)', value: '1.2 : 1 (A : B)' },
+        { property: 'Packaging', value: '10 + 10 kg Can' }
+      ],
+      standards: [
+        'Tested in accordance with DIN 1048 Water Permeability Test.',
+        'Complies with Water Research Council requirements for potable water contact.'
+      ],
+      applicationGuidelines: [
+        {
+          title: 'Dispensing',
+          text: 'Chem 2k Inject Pro to the concrete mix at recommended dosage. For best result, introduce the '
+            + 'injection work, make sure to water or into freshly mixed concrete to ensure uniform dispersion. '
+            + 'Do not add directly to dry cement.'
+        },
+        {
+          title: 'Mixing',
+          text: 'It is suggested that the A and B parts be mixed at +59\u00B0 using an electrical mixer that spins '
+            + 'slowly and ideally has a 2k Inject Pro Resin Stirrer attached.'
+        },
+        {
+          title: 'Uses',
+          text: '2k Inject Pro stops active leaks and seals cracks and construction joints permanently and '
+            + 'elastically. It can be injected in dry and wet cracks. The material can also be used for filling of voids.'
+        },
+        {
+          title: 'Application',
+          text: 'Within ten to fifteen minutes of the first injection, administer 2k Inject Pro as a follow-up. The '
+            + 'subsequent injection must be performed during the first injected material\'s pot life. Inject in two '
+            + 'phases to fill big, moist spaces. A minimum of one hour must pass between the first and second injections.'
+        },
+        {
+          title: 'Storage & Handling',
+          text: 'Store in original, tightly closed containers in a cool, dry place. Keep away from heat, sparks and '
+            + 'direct sunlight. Wear protecting gloves and goggles when processing the material. When carrying out '
+            + 'injection work, make sure to protect the surrounding work area from injection resin that may be '
+            + 'discharged from the wall, packers, drill holes, etc. Do not stand directly behind the packers during injection.'
+        },
+        {
+          title: 'Cleaning of Equipment',
+          text: 'Clean spillage and equipment with clean water before the resin hardens or cures. Cured material '
+            + 'can only be removed mechanically.'
+        }
+      ],
+      importantInfo: [
+        { label: 'Supplied In', value: '20 liter (50% A & 50% B)' },
+        { label: 'Storage', value: 'Store dry, frost-free, out of direct sunlight' },
+        { label: 'Shelf Life', value: '6 months in original packaging' },
+        { label: 'Hazard Class', value: 'Non-hazardous goods. Consult MSDS for details.' }
+      ]
     },
+
+    /* ============================================================
+       2. CHEM 2K SHIELD
+       ============================================================ */
     {
-      id: 'mega-flex', name: 'MEGA FLEX',
-      subTitle: 'Synthetic Rubberized Bitumen Waterproof Coating & Sealant',
-      category: 'coatings', categoryLabel: 'Waterproofing Coatings', subCategory: 'Rubberized Bitumen',
-      priceDisplay: 'Rs 718.44 – Rs 7,302.35', minPrice: 718.44, maxPrice: 7302.35,
-      onSale: true, saleDiscount: 'Special Offer',
-      rating: 4.8, reviewCount: 38, image: IMG.img02,
-      description: 'High-grade elastomer-modified bitumen liquid membrane with extreme elasticity (over 800%). Penetrates deeply into micro-fissures and forms a vulcanized rubber seal impervious to standing water.',
+      id: 'chem-2k-shield',
+      name: 'CHEM 2K SHIELD',
+      subTitle: 'Two-component elastomeric cementitious waterproof coating for concrete and masonry surfaces',
+      category: 'cementitious',
+      categoryLabel: 'Cementitious Waterproof Coatings',
+      image: ASSETS + 'Chem-2k-Sheild.webp',
+      imageW: 1224, imageH: 864,   // measured intrinsic size (Phase 3.2)
+      datasheet: 'downloads/chem-2k-shield.pdf',
+      datasheetKb: 1767,        // measured after Phase 2 cleanup
+      datasheetPages: 2,
+      badges: ['Elastomeric', 'Two-Component'],
+      highlights: [
+        'Resists water penetration and protects concrete structures',
+        'Water-vapour permeable while remaining waterproof',
+        'Brush, roller or spray application',
+        'Strong adhesion to sound concrete and masonry'
+      ],
+      description:
+        'CHEM 2K SHIELD is a two-component elastomeric cementitious waterproof coating composed of a cementitious '
+        + 'powder and a specially formulated acrylic polymer liquid. When combined, the components form a flexible, '
+        + 'durable and strongly adherent waterproof barrier for concrete and masonry substrates, suitable for above- '
+        + 'and below-ground applications.',
       keyFeatures: [
-        '> 800% Rubber elongation with active crack-bridging',
-        'Cold-applied, zero hazardous heating required',
-        'Root-resistant formulation for green roof landscaping',
-        'Resistant to soil acids, sulfates, and chlorides'
+        'FAST DRYING',
+        'EXCELLENT ADHESION',
+        'CORROSION RESISTANT',
+        'EASY APPLICATION',
+        'STRONG WATERPROOFING',
+        'LONG LASTING PROTECTION',
+        'ENHANCED DURABILITY',
+        'FASTER PLACEMENT',
+        'BETTER FINISH & PERFORMANCE'
       ],
-      applications: ['Foundation walls & retaining structures', 'Under-tile wet rooms & bathrooms', 'Planter boxes & green roofs', 'Corrugated metal roof seams'],
-      coverage: '12 – 15 sq.ft / Kg per coat (2-3 coats recommended)',
-      curingTime: 'Touch dry: 2 hours | Final cure: 48 hours',
-      variants: [
-        { size: '1 Kg Tub', price: 718.44, unit: 'Tub' },
-        { size: '4 Kg Bucket', price: 1850.0, unit: 'Bucket' },
-        { size: '10 Kg Bucket', price: 4120.0, unit: 'Bucket' },
-        { size: '20 Kg Drum', price: 7302.35, unit: 'Drum' }
+      uses: [
+        'Basement tanking and below-ground structures',
+        'Water reservoirs and water-retaining structures',
+        'Tunnels and underground construction',
+        'Swimming pools and water-retaining areas',
+        'Long lasting protection'
       ],
-      technicalSpecs: { basePolymer: 'SBS Polymer Modified Bitumen', elongation: '850%', tensileStrength: '1.9 N/mm²', temperatureResistance: '-15°C to +90°C', vocContent: '< 30 g/L', shelfLife: '18 Months' }
+      packaging: '16 kg double-pack (11 kg powder + 5 kg liquid)',
+      coverage: 'Approximately 150-200 sq.ft. per 16 kg pack',
+      consumption: [
+        'Approximately 150-200 sq.ft. per 16 kg pack. Actual coverage varies with substrate roughness, porosity, '
+        + 'surface condition and application technique.'
+      ],
+      guidance:
+        'Clean mixing and application equipment immediately after use with clean water. Once the material has '
+        + 'hardened, removal becomes more difficult.',
+      techData: [
+        { property: 'Appearance / Components', value: 'Cementitious powder + acrylic polymer liquid' },
+        { property: 'Colour', value: 'Grey and white' },
+        { property: 'Wet Density', value: 'Approx. 1800 kg/m\u00B3' },
+        { property: 'Compressive Strength', value: '55.0 N/mm\u00B2' },
+        { property: 'Tensile Strength', value: '3.7 N/mm\u00B2' },
+        { property: 'Flexural Strength', value: '7.6 N/mm\u00B2' },
+        { property: 'Adhesive Strength', value: '2.5 N/mm\u00B2' },
+        { property: 'Water Vapour Permeability', value: '86 \u2013 120' },
+        { property: 'Maximum Particle Size', value: '0.8 mm\u00B2' },
+        { property: 'Pot Life at 20\u00B0C', value: 'Approx. 1 hour' },
+        { property: 'Pot Life at 40\u00B0C', value: 'Approx. 30 minutes' },
+        { property: 'Packing', value: '16 kg double-pack consisting of 11 kg cementitious powder and 5 kg liquid polymer solution.' }
+      ],
+      standards: [
+        'Colour: Grey and white',
+        'Density: Approx. 1800 kg/m\u00B3'
+      ],
+      applicationGuidelines: [
+        {
+          title: 'Dispensing',
+          text: 'CHEM 2K SHIELD should be applied only to properly prepared, sound substrates. The following '
+            + 'procedure is intended as general application guidance; site conditions and project specifications '
+            + 'should be considered before application.'
+        },
+        {
+          title: 'Mixing',
+          text: 'CHEM 2K SHIELD is supplied in pre-measured components and should be mixed on site using clean '
+            + 'containers. For mechanical mixing, gradually blend the powder component into the liquid while mixing '
+            + 'with a suitable paddle at low speed (approximately 400-600 rpm).'
+        },
+        {
+          title: 'Uses',
+          text: 'The substrate must be clean, structurally sound and mechanically prepared. Remove surface '
+            + 'coatings, defective renders, foreign matter, formwork treatments and other contaminants that could '
+            + 'interfere with adhesion. Abrasive blasting or high-pressure water treatment may be used as '
+            + 'appropriate. After preparation, wash the surface with clean water to remove dust and loose material.'
+        },
+        {
+          title: 'Application',
+          text: 'Pre-dampen the prepared substrate before application. High-suction substrates may require '
+            + 'additional dampening compared with dense substrates.'
+        },
+        {
+          title: 'Storage & Handling',
+          text: 'Store under cover and clear of the ground. Keep the material dry and protect both components from '
+            + 'moisture and frost. Do not stack more than six bags high. Keep packaging closed until required for use.'
+        },
+        {
+          title: 'Cleaning of Equipment',
+          text: 'Clean mixing and application equipment immediately after use with clean water. Once the material '
+            + 'has hardened, removal becomes more difficult.'
+        },
+        {
+          title: 'Safety',
+          text: 'Wear suitable protective gloves, clothing and eye protection during mixing and application. Avoid '
+            + 'unnecessary contact with skin and eyes. Provide adequate ventilation during application, particularly '
+            + 'in enclosed areas. Read and follow the product Safety Data Sheet (SDS) before use.'
+        }
+      ],
+      importantInfo: [
+        { label: 'Supplied In', value: '16 kg Box' },
+        { label: 'Storage', value: 'Cool, covered and dry place; protect from direct sunlight and heat' },
+        { label: 'Shelf Life', value: '1 year' },
+        { label: 'Hazard Class', value: 'Non-hazardous goods.' }
+      ]
     },
+
+    /* ============================================================
+       3. CHEM 2K SHIELD PRO
+       ============================================================ */
     {
-      id: 'mega-prime', name: 'MEGA PRIME',
-      subTitle: 'Bitumen Emulsion Waterproof Protective Coating & Primer',
-      category: 'coatings', categoryLabel: 'Waterproofing Coatings', subCategory: 'Bitumen Emulsion',
-      priceDisplay: 'Rs 932.00 – Rs 37,472.50', minPrice: 932.0, maxPrice: 37472.5,
-      onSale: true, saleDiscount: 'Sale!',
-      rating: 4.7, reviewCount: 29, image: IMG.img03,
-      description: 'Fast-drying water-based bituminous primer and damp-proof coating. Designed for deep penetration into porous concrete, brickwork, and mortar substrates prior to membrane installation.',
+      id: 'chem-2k-shield-pro',
+      name: 'CHEM 2K SHIELD PRO',
+      subTitle: 'Two-Component Flexible Elastomeric Cementitious Waterproof Coating',
+      category: 'cementitious',
+      categoryLabel: 'Cementitious Waterproof Coatings',
+      image: ASSETS + 'Chem-2k-Sheild-Pro.webp',
+      imageW: 1224, imageH: 864,   // measured intrinsic size (Phase 3.2)
+      datasheet: 'downloads/chem-2k-shield-pro.pdf',
+      datasheetKb: 1743,        // measured after Phase 2 cleanup
+      datasheetPages: 2,
+      badges: ['Pro Grade', 'Water Vapour Permeable'],
+      highlights: [
+        'Resists positive water pressure and controls water ingress',
+        'Water-vapour permeable, allowing moisture vapour to pass through',
+        'Flexible cured coating accommodates normal substrate movement',
+        'Solvent-free formulation'
+      ],
+      description:
+        'CHEM 2K SHIELD PRO is a two-component elastomeric cementitious waterproofing system comprising a '
+        + 'cement-based powder and a specially formulated acrylic polymer liquid. When mixed together, the components '
+        + 'form a flexible, durable and strongly adherent waterproof barrier for prepared concrete and masonry '
+        + 'surfaces. The system is suitable for above- and below-ground waterproofing applications.',
       keyFeatures: [
-        'Exceptional bonding power on green and damp concrete',
-        'Zero odor, non-flammable water-based emulsion',
-        'Seals concrete capillary pores against moisture vapor',
-        'Economical heavy duty coverage'
+        'FAST DRYING',
+        'EXCELLENT ADHESION',
+        'CORROSION RESISTANT',
+        'EASY APPLICATION',
+        'STRONG WATERPROOFING',
+        'LONG LASTING PROTECTION',
+        'ENHANCED DURABILITY',
+        'FASTER PLACEMENT',
+        'BETTER FINISH & PERFORMANCE'
       ],
-      applications: ['Concrete slab priming', 'Pre-cast culverts and pipes', 'Underground masonry tanking', 'Bridge abutments'],
-      coverage: '25 – 35 sq.ft / Liter (1 coat priming)',
-      curingTime: 'Touch dry: 30 mins | Recoat: 2 hours',
-      variants: [
-        { size: '1 Liter Can', price: 932.0, unit: 'Can' },
-        { size: '5 Liter Bucket', price: 4200.0, unit: 'Bucket' },
-        { size: '20 Liter Drum', price: 14850.0, unit: 'Drum' },
-        { size: '200 Liter Industrial Barrel', price: 37472.5, unit: 'Barrel' }
+      uses: [
+        'Basement tanking and below-ground structures',
+        'Water reservoirs and water-retaining structures',
+        'Tunnels and underground construction',
+        'Swimming pools and water-retaining areas',
+        'Fish ponds and tanks'
       ],
-      technicalSpecs: { basePolymer: 'Anionic Bitumen Emulsion', elongation: '300%', tensileStrength: '1.2 N/mm²', temperatureResistance: '0°C to +80°C', shelfLife: '12 Months' }
+      packaging: '20 kg double-pack (15 kg powder + 5 kg liquid)',
+      coverage: 'Indicative coverage is approximately 150-200 sq.ft. per 20 kg pack',
+      consumption: [
+        'Indicative coverage is approximately 150-200 sq.ft. per 20 kg pack, depending on substrate texture, '
+        + 'porosity and application method.',
+        'Actual consumption may vary with surface condition and application technique.'
+      ],
+      guidance:
+        'Protect the applied coating from premature drying. Where practical, fog-spray with clean water after '
+        + 'initial set. Longer curing may be required under cold or humid conditions.',
+      techData: [
+        { property: 'Form / Components', value: 'Cementitious powder + acrylic polymer liquid' },
+        { property: 'Colour', value: 'Grey and white' },
+        { property: 'Wet Density', value: 'Approx. 1800 kg/m\u00B3' },
+        { property: 'Compressive Strength', value: '55.0 N/mm\u00B2' },
+        { property: 'Tensile Strength', value: '3.7 N/mm\u00B2' },
+        { property: 'Flexural Strength', value: '7.6 N/mm\u00B2' },
+        { property: 'Adhesive Strength', value: '2.5 N/mm\u00B2' },
+        { property: 'Water Vapour Permeability', value: '86 \u2013 120' },
+        { property: 'Maximum Particle Size', value: '0.8 mm\u00B2' },
+        { property: 'Pot Life at 20\u00B0C', value: 'Approx. 1 hour' },
+        { property: 'Pot Life at 40\u00B0C', value: 'Approx. 30 minutes' },
+        { property: 'Packaging', value: '20 kg double-pack: 15 kg powder + 5 kg liquid.' }
+      ],
+      standards: [
+        'Colour: Grey and white',
+        'Density: Approx. 1800 kg/m\u00B3'
+      ],
+      applicationGuidelines: [
+        {
+          title: 'Dispensing',
+          text: 'The substrate should be structurally sound, clean and free from dust, oil, loose material and '
+            + 'other contaminants. Mechanically prepare the surface where required and remove standing water before '
+            + 'application. Pre-dampen the prepared substrate.'
+        },
+        {
+          title: 'Mixing',
+          text: 'Gradually add the powder component into the polymer liquid while mixing at low speed with a '
+            + 'suitable paddle mixer until a uniform, lump-free consistency is achieved. Allow approximately 10 '
+            + 'minutes maturation before application. Do not re-temper the mix.'
+        },
+        {
+          title: 'Uses',
+          text: 'Protect the applied coating from premature drying. Where practical, fog-spray with clean water '
+            + 'after initial set. Longer curing may be required under cold or humid conditions.'
+        },
+        {
+          title: 'Application',
+          text: 'Pre-dampen the prepared substrate before application. Apply the first coat at approximately '
+            + '1.0 kg/m\u00B2 minimum. Allow the first coat to adequately cure before applying the second coat. Apply '
+            + 'the second coat at approximately 1.0 kg/m\u00B2 minimum.'
+        },
+        {
+          title: 'Storage & Handling',
+          text: 'Keep both components sealed until use. Store under cover, clear of the ground and protected from '
+            + 'moisture, frost, excessive heat and direct sunlight. Shelf life is 12 months in original unopened '
+            + 'packaging when stored as recommended.'
+        },
+        {
+          title: 'Cleaning of Equipment',
+          text: 'Clean mixing and application equipment immediately after use with clean water. Once the material '
+            + 'has hardened, removal becomes more difficult.'
+        },
+        {
+          title: 'Safety',
+          text: 'Wear suitable gloves, protective clothing and eye protection during handling and application. '
+            + 'Avoid unnecessary skin and eye contact. Provide adequate ventilation and consult the Safety Data '
+            + 'Sheet (SDS) before use.'
+        }
+      ],
+      importantInfo: [
+        { label: 'Supplied In', value: '20 kg Box' },
+        { label: 'Storage', value: 'Cool, covered and dry place; protect from direct sunlight and heat' },
+        { label: 'Shelf Life', value: '1 year' },
+        { label: 'Hazard Class', value: 'Non-hazardous goods.' }
+      ]
     },
+
+    /* ============================================================
+       4. CHEMADD RETARD MAX
+       ============================================================ */
     {
-      id: 'mega-shield-base', name: 'MEGA SHIELD BASE',
-      subTitle: 'Heat Proof & UV Reflective Acrylic Waterproof Coating',
-      category: 'coatings', categoryLabel: 'Waterproofing Coatings', subCategory: 'Heat Proof & Reflective',
-      priceDisplay: 'Rs 3,309.35 – Rs 36,191.10', minPrice: 3309.35, maxPrice: 36191.1,
-      onSale: true, saleDiscount: 'Top Rated',
-      rating: 5.0, reviewCount: 64, image: IMG.img04, badge: 'Solar Cool',
-      description: 'Engineered with hollow ceramic micro-spheres and pure crosslinking acrylic resins. Provides 100% monolithic waterproofing while reflecting up to 92% of solar thermal radiation to dramatically cool indoor spaces.',
+      id: 'chemadd-retard-max',
+      name: 'CHEMADD RETARD MAX',
+      subTitle: 'Set-Retarding Admixture for Controlled Placement',
+      category: 'admixtures',
+      categoryLabel: 'Concrete Admixtures',
+      image: ASSETS + 'ChemAdd-Retard.webp',
+      imageW: 1600, imageH: 1000,   // measured intrinsic size (Phase 3.2)
+      datasheet: 'downloads/chemadd-retard-max.pdf',
+      datasheetKb: 1711,        // measured after Phase 2 cleanup
+      datasheetPages: 2,
+      badges: ['ASTM C494 Type B', 'Chloride Free'],
+      highlights: [
+        'Predictable set delay across a wide temperature range',
+        'Maintains workability and pumpability without extra water',
+        'Minimises thermal and shrinkage stresses in large pours',
+        'Compatible with most cements, SCMs and other admixtures'
+      ],
+      description:
+        'ChemAdd Retard Max is engineered to deliver precise control over concrete setting time. This chloride-free '
+        + 'liquid retarder delays initial set while fully preserving both early and long-term strength. Ensures '
+        + 'superior slump retention and finishability in challenging conditions \u2014 including high temperatures, '
+        + 'long haul distances, intricate pours, and mass concrete \u2014 achieving confident placement and a flawless '
+        + 'finish, with reduced risk of cold joints and plastic shrinkage cracks.',
       keyFeatures: [
-        'High Solar Reflectance Index (SRI = 108)',
-        'Reduces indoor surface roof temperatures by up to 10°C',
-        'Cross-linked elastomeric polymer prevents ponding leaks',
-        'Resists fungal growth and atmospheric carbonation'
+        'WATER REDUCTION',
+        'HIGHER STRENGTH',
+        'IMPROVED WORKABILITY',
+        'DURABLE CONCRETE',
+        'ENHANCED DURABILITY',
+        'FASTER PLACEMENT',
+        'BETTER FINISH & PERFORMANCE'
       ],
-      applications: ['Commercial and residential flat roofs', 'Industrial metal shed roofs', 'Pre-cast concrete panels', 'Silo & storage dome waterproofing'],
-      coverage: '20 – 25 sq.ft / Liter (2 coats for 1mm DFT)',
-      curingTime: 'Touch dry: 1 hour | Full mechanical cure: 72 hours',
-      variants: [
-        { size: '4 Liter Bucket', price: 3309.35, unit: 'Bucket' },
-        { size: '10 Liter Bucket', price: 7850.0, unit: 'Bucket' },
-        { size: '20 Liter Drum', price: 14950.0, unit: 'Drum' },
-        { size: '50 Liter Commercial Drum', price: 36191.1, unit: 'Drum' }
+      uses: [
+        'Mass rafts, pile caps, transfer slabs',
+        'Long transit or pumping distances',
+        'Hot and windy weather concreting',
+        'Complex placements with congested steel',
+        'Sequenced pours where joint control is critical'
       ],
-      technicalSpecs: { basePolymer: 'Aliphatic Ceramic Crosslinked Acrylic', elongation: '450%', tensileStrength: '3.2 N/mm²', temperatureResistance: '-25°C to +110°C', vocContent: '< 20 g/L' }
+      packaging: '250 kg Drum',
+      coverage: 'Dosage: 0.20 - 0.80% by weight of cement (bwoc)',
+      consumption: [
+        'Normal dosage: 0.20 - 0.60 litres per 100 kg of cement (bwoc)',
+        'High retardation / hot weather: up to 0.80 litres per 100 kg of cement (bwoc) \u2014 site trials recommended'
+      ],
+      guidance:
+        'Add the admixture to the mixing water or freshly mixed concrete. Do not add directly to dry cement. '
+        + 'Adjust dosage according to temperature, cement type and desired set delay.',
+      techData: [
+        { property: 'Appearance', value: 'Clear to pale amber liquid' },
+        { property: 'Specific Gravity (25 \u00B0C)', value: '1.150 \u00B1 0.02' },
+        { property: 'pH', value: '7.0 \u2013 9.0' },
+        { property: 'Chloride Content', value: '\u2264 0.10% (chloride-free formulation)' },
+        { property: 'Alkali Content (Na\u2082O-eq.)', value: '\u2264 1.5%' },
+        { property: 'Dosage Range', value: '0.20 \u2013 0.80% by weight of cement (bwoc)' },
+        { property: 'Typical Set Delay', value: '~1 \u2013 4 hours depending on dose, cement and temperature' },
+        { property: 'Effect on Strength', value: 'Maintains or improves 28-day strength at proper dose' },
+        { property: 'Compatibility', value: 'Compatible with plasticizers, superplasticizers, air-entrainers & pozzolans' },
+        { property: 'Packaging', value: '250 kg Drum' }
+      ],
+      standards: [
+        'Meets the requirements of ASTM C494 Type B (Retarding Admixture).',
+        'Conforms to the intent of EN 934-2 (Set-retarding admixtures), when used as directed.'
+      ],
+      applicationGuidelines: [
+        {
+          title: 'Dispensing',
+          text: 'Add ChemAdd Retard to the concrete mix at the recommended dosage. For best results, introduce the '
+            + 'admixture into the mixing water or into freshly mixed concrete to ensure uniform dispersion. Do not '
+            + 'add directly to dry cement.'
+        },
+        {
+          title: 'Mixing',
+          text: 'Add with the gauging water or directly into the mixer during batching. Allow a minimum of 60-90 '
+            + 'seconds of mixing after the admixture addition to achieve complete and uniform distribution.'
+        },
+        {
+          title: 'Compatibility',
+          text: 'Compatible with most types of cement and supplementary cementitious materials. May be used with '
+            + 'other admixtures; however, each admixture should be added separately to the mix. Conduct site trials '
+            + 'when combining multiple admixtures.'
+        },
+        {
+          title: 'Placement',
+          text: 'Place, consolidate and finish the concrete using normal methods. Monitor setting time on site, as '
+            + 'dosage and ambient conditions affect retardation.'
+        },
+        {
+          title: 'Storage & Handling',
+          text: 'Store in original, tightly closed containers in a cool, frost-free environment out of direct '
+            + 'sunlight. Protect from freezing. If the product has been frozen, allow it to thaw and remix before use.'
+        },
+        {
+          title: 'Cleaning of Equipment',
+          text: 'Clean spillage and equipment with clean water before the admixture hardens or dries.'
+        }
+      ],
+      importantInfo: [
+        { label: 'Supplied In', value: '250 kg Drum' },
+        { label: 'Storage', value: 'Store dry, frost-free, out of direct sunlight' },
+        { label: 'Shelf Life', value: '1 year in original packaging' },
+        { label: 'Hazard Class', value: 'Non-hazardous goods. Consult MSDS for details.' }
+      ]
     },
+
+    /* ============================================================
+       5. CHEMADD SP PRO
+       ============================================================ */
     {
-      id: 'mega-shield-primer', name: 'MEGA SHIELD PRIMER',
-      subTitle: 'Heat Proof & UV Reflective Primer for Thermal Systems',
-      category: 'coatings', categoryLabel: 'Waterproofing Coatings', subCategory: 'Heat Proof & Reflective',
-      priceDisplay: 'Rs 1,482.25 – Rs 13,497.55', minPrice: 1482.25, maxPrice: 13497.55,
-      onSale: true, saleDiscount: 'Sale!',
-      rating: 4.8, reviewCount: 22, image: IMG.img05,
-      description: 'High-performance micro-penetrating bonding primer formulated specifically as the preparatory foundation layer for MEGA SHIELD thermal reflective coatings.',
+      id: 'chemadd-sp-pro',
+      name: 'CHEMADD SP PRO',
+      subTitle: 'High-Range Water-Reducing Superplasticizer (HRWR)',
+      category: 'admixtures',
+      categoryLabel: 'Concrete Admixtures',
+      image: ASSETS + 'ChemAdd-SP-Pro.webp',
+      imageW: 1600, imageH: 1000,   // measured intrinsic size (Phase 3.2)
+      datasheet: 'downloads/chemadd-sp-pro.pdf',
+      datasheetKb: 1712,        // measured after Phase 2 cleanup
+      datasheetPages: 2,
+      badges: ['Polycarboxylate', 'Chloride Free'],
+      highlights: [
+        'Major water reduction with maintained workability',
+        'Higher early and ultimate strengths; reduced permeability',
+        'Smooth, defect-free finishes and improved compaction around congested steel',
+        'Compatible with most cements and supplementary cementitious materials'
+      ],
+      description:
+        'ChemAdd SP Pro is a high-performance polycarboxylate superplasticizer that gives superior flow with less '
+        + 'water. Achieve stronger, denser concrete with better slump retention, easy pumping, and smooth finish \u2014 '
+        + 'no segregation, no bleeding. Perfect for precast and ready-mix concrete where speed and quality matter.',
       keyFeatures: [
-        'Alkali resistant locking primer for fresh concrete',
-        'Improves adhesion strength of topcoats by 300%',
-        'Seals surface micro-fissures against thermal shock'
+        'WATER REDUCTION',
+        'HIGHER STRENGTH',
+        'IMPROVED WORKABILITY',
+        'DURABLE CONCRETE',
+        'ENHANCED DURABILITY',
+        'FASTER PLACEMENT',
+        'BETTER FINISH & PERFORMANCE'
       ],
-      applications: ['Concrete roof priming before cool-roof application', 'Corrugated asbestos and cement sheet priming'],
-      coverage: '45 – 55 sq.ft / Liter',
-      curingTime: 'Touch dry: 30 mins | Topcoat window: 2 to 6 hours',
-      variants: [
-        { size: '1 Liter Can', price: 1482.25, unit: 'Can' },
-        { size: '4 Liter Bucket', price: 4850.0, unit: 'Bucket' },
-        { size: '15 Liter Drum', price: 13497.55, unit: 'Drum' }
+      uses: [
+        'High-strength columns, beams and slabs',
+        'Precast elements and SCC / flowing concrete',
+        'Dense reinforcement / complex formwork',
+        'Fair-faced and architectural concrete',
+        'Pumped concrete and long lines'
       ],
-      technicalSpecs: { basePolymer: 'Hydrophobic Acrylic Co-polymer', shelfLife: '24 Months' }
+      packaging: '250 kg Drum',
+      coverage: 'Dosage: 0.20 - 0.80% by weight of cement (bwoc)',
+      consumption: [
+        'Normal dosage: 0.20 - 0.60 litres per 100 kg of cement (bwoc)',
+        'High retardation / hot weather: up to 0.80 litres per 100 kg of cement (bwoc) \u2014 site trials recommended'
+      ],
+      guidance:
+        'Add the admixture to the mixing water or freshly mixed concrete. Do not add directly to dry cement. '
+        + 'Adjust dosage according to temperature, cement type and desired set delay.',
+      techData: [
+        { property: 'Appearance', value: 'Clear to pale amber liquid' },
+        { property: 'Specific Gravity (25 \u00B0C)', value: '1.02 \u00B1 0.02' },
+        { property: 'pH', value: '7.0 \u2013 9.0' },
+        { property: 'Chloride Content', value: '\u2264 0.10% (chloride-free formulation)' },
+        { property: 'Alkali Content (Na\u2082O-eq.)', value: '\u2264 1.5%' },
+        { property: 'Dosage Range', value: '0.20 \u2013 0.80% by weight of cement (bwoc)' },
+        { property: 'Typical Set Delay', value: '~1 \u2013 4 hours depending on dose, cement and temperature' },
+        { property: 'Effect on Strength', value: 'Maintains or improves 28-day strength at proper dose' },
+        { property: 'Compatibility', value: 'Compatible with plasticizers, superplasticizers, air-entrainers & pozzolans' },
+        { property: 'Packaging', value: '250 kg Drum' }
+      ],
+      standards: [
+        'Meets the requirements of ASTM C494 Type B (Retarding Admixture).',
+        'Conforms to the intent of EN 934-2 (Set-retarding admixtures), when used as directed.'
+      ],
+      applicationGuidelines: [
+        {
+          title: 'Dispensing',
+          text: 'Add ChemAdd SP Pro to the concrete mix at the recommended dosage. For best results, introduce the '
+            + 'admixture into the mixing water or into freshly mixed concrete to ensure uniform dispersion. Do not '
+            + 'add directly to dry cement.'
+        },
+        {
+          title: 'Mixing',
+          text: 'Add with the gauging water or directly into the mixer during batching. Allow a minimum of 60-90 '
+            + 'seconds of mixing after the admixture addition to achieve complete and uniform distribution.'
+        },
+        {
+          title: 'Compatibility',
+          text: 'Compatible with most types of cement and supplementary cementitious materials. May be used with '
+            + 'other admixtures; however, each admixture should be added separately to the mix. Conduct site trials '
+            + 'when combining multiple admixtures.'
+        },
+        {
+          title: 'Placement',
+          text: 'Place, consolidate and finish the concrete using normal methods. Monitor setting time on site, as '
+            + 'dosage and ambient conditions affect retardation.'
+        },
+        {
+          title: 'Storage & Handling',
+          text: 'Store in original, tightly closed containers in a cool, frost-free environment out of direct '
+            + 'sunlight. Protect from freezing. If the product has been frozen, allow it to thaw and remix before use.'
+        },
+        {
+          title: 'Cleaning of Equipment',
+          text: 'Clean spillage and equipment with clean water before the admixture hardens or dries.'
+        }
+      ],
+      importantInfo: [
+        { label: 'Supplied In', value: '250 kg Drum' },
+        { label: 'Storage', value: 'Store dry, frost-free, out of direct sunlight' },
+        { label: 'Shelf Life', value: '1 year in original packaging' },
+        { label: 'Hazard Class', value: 'Non-hazardous goods. Consult MSDS for details.' }
+      ]
     },
+
+    /* ============================================================
+       6. CHEM BITU GUARD
+       ============================================================ */
     {
-      id: 'mega-water-guard-base', name: 'MEGA WATER GUARD BASE',
-      subTitle: 'Single Component Acrylic Based Elastomeric Coating',
-      category: 'coatings', categoryLabel: 'Waterproofing Coatings', subCategory: 'Elastomeric Acrylic',
-      priceDisplay: 'Rs 2,807.20 – Rs 34,472.90', minPrice: 2807.2, maxPrice: 34472.9,
-      onSale: true, saleDiscount: 'Sale!',
-      rating: 4.9, reviewCount: 51, image: IMG.img06, badge: 'Heavy Duty',
-      description: 'Heavy duty, fiber-reinforced 1-component elastomeric membrane. Creates a rubber-like, crack-bridging seamless membrane over complex roof geometries, parapet flashings, and expansion points.',
+      id: 'chem-bitu-guard',
+      name: 'CHEM BITU GUARD',
+      subTitle: 'Damp Proofing with Asphalt Emulsions',
+      category: 'dampproofing',
+      categoryLabel: 'Damp Proofing & Bituminous Coatings',
+      image: ASSETS + 'Chem-Bitu-Guard.webp',
+      imageW: 1600, imageH: 1000,   // measured intrinsic size (Phase 3.2)
+      datasheet: 'downloads/chem-bitu-guard.pdf',
+      datasheetKb: 1524,        // measured after Phase 2 cleanup
+      datasheetPages: 2,
+      badges: ['Cold Applied', 'UV Resistant'],
+      highlights: [
+        'Outstanding binding strength to a range of surface textures and substrates',
+        'Can be used on green concrete or moist surfaces',
+        'Reduces moisture and vapour transmission through below-grade walls',
+        'Unaffected by organic matter, minerals, soil acidity or alkalinity'
+      ],
+      description:
+        'Chem Bitu Guard is a high-quality asphalt emulsion with bentonite clay that creates a damp-proof barrier '
+        + 'for concrete or masonry walls. This permeable layer prevents moisture migration without reducing vapour '
+        + 'transmission.',
       keyFeatures: [
-        '550% Dynamic elongation that flexes with building movement',
-        'Integrated micro-fibers for enhanced tensile tear resistance',
-        'UV, ozone, and acid rain resilient',
-        'Can be tinted to architectural specifications'
+        'WATERPROOF PROTECTION',
+        'EXCELLENT ADHESION',
+        'UV & WEATHER RESISTANT',
+        'DURABLE FINISH',
+        'ENHANCED DURABILITY',
+        'FASTER PLACEMENT',
+        'BETTER FINISH & PERFORMANCE'
       ],
-      applications: ['Exposed concrete rooftops', 'Parapet walls and flashings', 'Terraces, balconies and gutters', 'Metal roof fastener sealing'],
-      coverage: '18 – 22 sq.ft / Liter (2 coats)',
-      curingTime: 'Touch dry: 1 hour | Recoat: 4 hours',
-      variants: [
-        { size: '4 Liter Bucket', price: 2807.2, unit: 'Bucket' },
-        { size: '10 Liter Bucket', price: 6950.0, unit: 'Bucket' },
-        { size: '20 Liter Drum', price: 13450.0, unit: 'Drum' },
-        { size: '50 Liter Drum', price: 34472.9, unit: 'Drum' }
+      uses: [
+        'Above or below grade, interior or exterior',
+        'Form and pour or tilt wall concrete, concrete block, masonry, or stone surfaces',
+        'Foundations, retaining walls, and fire barriers',
+        'Culverts, bridge abutments, coping, and parapets',
+        'Designed for durable service under industrial traffic'
       ],
-      technicalSpecs: { basePolymer: 'Pure Acrylic Elastomer', elongation: '550%', tensileStrength: '3.5 N/mm²', temperatureResistance: '-20°C to +95°C' }
+      packaging: '250 kg Drum / 15 kg Bucket',
+      coverage: '100 sq.ft. per U.S. gallon per coat (\u2248 2.5 m\u00B2 per liter per coat)',
+      consumption: [
+        '100 sq.ft. per U.S. gallon per coat (approx. 2.5 m\u00B2 per liter per coat).',
+        'Values vary with temperature, humidity and substrate absorption.'
+      ],
+      guidance:
+        'Recoat time is 4-6 h at 25 \u00B0C / 50% RH. Full cure 24-48 h. Drying time at 70 \u00B0F (21 \u00B0C), 50% RH.',
+      techData: [
+        { property: 'Type', value: 'Bituminous, cold-applied (solvent-based)' },
+        { property: 'Appearance (wet / dry)', value: 'Black liquid / Black satin film' },
+        { property: 'V.O.C. Content', value: '9 gm/L' },
+        { property: 'Specific Gravity', value: '1.0 - 1.05' },
+        { property: 'Solids', value: '50% by weight and volume' },
+        { property: 'Recoat Time', value: '4 - 6 h (25 \u00B0C; RH 50%)' },
+        { property: 'Full Cure', value: '24 - 48 h' },
+        { property: 'Viscosity', value: '800 - 1000 cps at 77 \u00B0F (25 \u00B0C)' },
+        { property: 'Elongation / Flexibility', value: 'Flexible bituminous film' },
+        { property: 'pH', value: '6.2 - 7.0' },
+        { property: 'Colour', value: 'Black' },
+        { property: 'Drying Time', value: '70 \u00B0F (21 \u00B0C), 50% RH' },
+        { property: 'Packaging', value: '250 kg Drum / 15 kg bucket' }
+      ],
+      standards: [
+        'Tested in accordance with DIN 1048 Water Permeability Test.',
+        'Complies with Water Research Council requirements for potable water contact.'
+      ],
+      applicationGuidelines: [
+        {
+          title: 'Dispensing',
+          text: 'Apply to clean, sound concrete or masonry surfaces. Can be applied to green concrete or moist '
+            + 'surfaces without drying.'
+        },
+        {
+          title: 'Surface Preparation',
+          text: 'Remove laitance, loose material, formwork treatments and contaminants. Abrasive blasting or '
+            + 'high-pressure water treatment may be used as appropriate. Wash the surface with clean water to remove '
+            + 'dust and loose material before application.'
+        },
+        {
+          title: 'Application',
+          text: 'Apply by brush, roller or spray. Allow 4-6 h recoat interval at 25 \u00B0C and 50% RH. Full cure is '
+            + 'achieved in 24-48 h. Values vary with temperature, humidity and substrate absorption.'
+        },
+        {
+          title: 'Surface Mixing',
+          text: 'Stir the product thoroughly before use. Do not dilute. Clean application equipment immediately '
+            + 'after use with the recommended cleaning agent.'
+        }
+      ],
+      importantInfo: [
+        { label: 'Supplied In', value: '250 kg Drum / 15 kg Bucket' },
+        { label: 'Storage', value: 'Store dry, frost-free, out of direct sunlight' },
+        { label: 'Shelf Life', value: '1 year in original packaging' },
+        { label: 'Hazard Class', value: 'Non-hazardous goods. Consult MSDS for details.' }
+      ]
     },
+
+    /* ============================================================
+       7. CHEM GROUT N-S
+       ============================================================ */
     {
-      id: 'mega-water-guard-primer', name: 'MEGA WATER GUARD PRIMER',
-      subTitle: 'Single Component Primer for Acrylic Elastomeric Systems',
-      category: 'coatings', categoryLabel: 'Waterproofing Coatings', subCategory: 'Elastomeric Acrylic',
-      priceDisplay: 'Rs 1,739.38 – Rs 22,947.65', minPrice: 1739.38, maxPrice: 22947.65,
-      onSale: true, saleDiscount: 'Sale!',
-      rating: 4.7, reviewCount: 19, image: IMG.img07,
-      description: 'High penetration nano-acrylic primer that locks into porous mortar, screeds, and weathered concrete to ensure indestructible bonding with elastomeric top coats.',
+      id: 'chem-grout-ns',
+      name: 'CHEM GROUT N-S',
+      subTitle: 'General Use Non-Shrink Cementitious Grout',
+      category: 'grouts',
+      categoryLabel: 'Grouts & Cementitious Fillers',
+      image: ASSETS + 'Chem-Grout-NS.webp',
+      imageW: 1600, imageH: 1000,   // measured intrinsic size (Phase 3.2)
+      datasheet: 'downloads/chem-grout-ns.pdf',
+      datasheetKb: 1632,        // measured after Phase 2 cleanup
+      datasheetPages: 2,
+      badges: ['Non-Shrink', 'High Flow'],
+      highlights: [
+        'Gaseous expansion mechanism compensates for shrinkage and settlement',
+        'No metallic iron content to cause discolouration',
+        'Prepackaged materials eliminate on-site batching differences',
+        'Increases early strength without the usage of chlorides'
+      ],
+      description:
+        'Chem Grout N-S is delivered as a ready-to-use dry powder. A controlled amount of clean water is added to '
+        + 'create a flowing, non-shrinking grout for gaps up to 100 mm thick. It is a combination of Portland cement, '
+        + 'graded fillers and chemical additives that provide controlled expansion in the plastic state while reducing '
+        + 'water use. The reduced water demand guarantees high early strengths, and the graded filler aids uniform '
+        + 'mixing and a consistent grout.',
       keyFeatures: [
-        'Nano-particle dispersion for deep substrate saturation',
-        'Tack-free finish prevents dirt pickup during application',
-        'Reduces topcoat consumption by up to 25%'
+        'HIGH FLOW',
+        'HIGH STRENGTH',
+        'EXCELLENT BOND',
+        'DURABLE FINISH',
+        'SUPERIOR WATERPROOFING',
+        'LONG LASTING DURABILITY',
+        'ENHANCED SURFACE PROTECTION'
       ],
-      applications: ['Concrete roof slabs', 'Cement sand screeds', 'Masonry and brick parapets'],
-      coverage: '50 – 60 sq.ft / Liter',
-      curingTime: 'Touch dry: 30 mins | Recoat: 2 hours',
-      variants: [
-        { size: '1 Liter Can', price: 1739.38, unit: 'Can' },
-        { size: '5 Liter Bucket', price: 5400.0, unit: 'Bucket' },
-        { size: '20 Liter Drum', price: 22947.65, unit: 'Drum' }
+      uses: [
+        'Used for general purpose grouting',
+        'Essential to eliminate shrinkage',
+        'For completely filling the void between a base plate and a substrate',
+        'Typical application: grouting of a stanchion base plate',
+        'High early strength and durable load transfer'
       ],
-      technicalSpecs: { basePolymer: 'Styrene-Acrylic Co-polymer', shelfLife: '24 Months' }
+      packaging: '20 kg Bag',
+      coverage: 'For gaps up to 100 mm thick',
+      consumption: [
+        'Chem Grout N-S is a specialized hydraulic cement material engineered with expansive additives to offset '
+        + 'normal drying shrinkage and maintain full, continuous contact under structural load-bearing plates and '
+        + 'machinery bases.'
+      ],
+      guidance:
+        'An expansion of up to 1% overcomes plastic settlement in the plastic state. Shelf life is 12 months when '
+        + 'kept in a dry store in sealed bags.',
+      techData: [
+        { property: 'Type', value: 'Grout N-S, Dry Powder' },
+        { property: 'Compressive Strength @ 1 day', value: '25 MPa' },
+        { property: 'Compressive Strength @ 7 days', value: '45 MPa' },
+        { property: 'Compressive Strength @ 28 days', value: '66 MPa' },
+        { property: 'Flexural Strength @ 1 day', value: '2.5 MPa' },
+        { property: 'Flexural Strength @ 7 days', value: '10.0 MPa' },
+        { property: 'Flexural Strength @ 28 days', value: '11.0 MPa' },
+        { property: 'Viscosity', value: '800 \u2013 1000 cps at 77 \u00B0F (25 \u00B0C)' },
+        { property: 'Time for Expansion', value: 'Start: 5 minutes; Finish: 2 hours' },
+        { property: 'Fresh Wet Density', value: 'Approximately 2160 kg/m\u00B3' },
+        { property: "Young's Modulus", value: '25 GPa' },
+        { property: 'Expansion', value: 'An expansion of up to 1% overcomes plastic settlement in plastic material.' },
+        { property: 'Setting Times', value: 'Initial: 165 minutes; Final: 270 minutes' }
+      ],
+      standards: [
+        'Tested in accordance with DIN 1048 Water Permeability Test.',
+        'Complies with Water Research Council requirements for potable water contact.'
+      ],
+      applicationGuidelines: [
+        {
+          title: 'Surface Preparation',
+          text: 'The substrate surface must be free from oil, grease or any loosely adherent material. If the '
+            + 'concrete surface is defective or has laitance, it must be cut back to a sound base. Bolt holes or '
+            + 'fixing pockets must be blown clean of any dirt or debris.'
+        },
+        {
+          title: 'Mixing',
+          text: 'To achieve optimal results, a mechanically powered grout mixer is recommended for quantities of up '
+            + 'to 50 kg; a slow-speed drill equipped with a high shear mixer is appropriate. Greater amounts will '
+            + 'necessitate a high shear vane mixer. Avoid utilizing a colloidal impeller mixer.'
+        },
+        {
+          title: 'Application',
+          text: 'Chem Grout N-S is applied to fill structural gaps under baseplates, anchor heavy machinery, and '
+            + 'repair concrete without losing volume during the curing process. On completion of the grouting '
+            + 'operation, exposed areas should be thoroughly cured by the use of a curing membrane, continuous '
+            + 'application of water and/or wet hessian.'
+        },
+        {
+          title: 'Cleaning of Equipment',
+          text: 'Chem Grout N-S should be removed from tools and equipment immediately after use. Cured material '
+            + 'can only be removed mechanically.'
+        },
+        {
+          title: 'Storage & Handling',
+          text: 'Chem Grout N-S has a shelf life of 12 months if kept in a dry store in sealed bags. If stored in '
+            + 'high temperature and high humidity locations, the shelf life may be reduced.'
+        }
+      ],
+      importantInfo: [
+        { label: 'Supplied In', value: '20 kg Bag' },
+        { label: 'Storage', value: 'Store dry, frost-free, out of direct sunlight' },
+        { label: 'Shelf Life', value: '1 year in original packaging' },
+        { label: 'Hazard Class', value: 'Non-hazardous goods.' }
+      ]
     },
+
+    /* ============================================================
+       8. CHEM JOINT LOCK
+       ============================================================ */
     {
-      id: 'mega-water-lock', name: 'MEGA WATER LOCK',
-      subTitle: 'Surface Applied Integral Crystalline Waterproofing Coating',
-      category: 'coatings', categoryLabel: 'Waterproofing Coatings', subCategory: 'Crystalline',
-      priceDisplay: 'Rs 3,912.50 – Rs 19,562.50', minPrice: 3912.5, maxPrice: 19562.5,
-      onSale: true, saleDiscount: 'Sale!',
-      rating: 4.9, reviewCount: 47, image: IMG.img08, badge: 'Crystalline Tech',
-      description: 'Advanced catalytic crystalline formulation that migrates deep into concrete capillaries in the presence of moisture. Generates non-soluble dendritic crystals that permanently seal pores and auto-heal micro-cracks up to 0.5mm.',
+      id: 'chem-joint-lock',
+      name: 'CHEM JOINT LOCK',
+      subTitle: 'Elastomeric Fuel Resistance Joint Sealant',
+      category: 'sealants',
+      categoryLabel: 'Sealants & Joint Sealers',
+      image: ASSETS + 'Chem-Joint-Lock.webp',
+      imageW: 1600, imageH: 1131,   // measured intrinsic size (Phase 3.2)
+      datasheet: 'downloads/chem-joint-lock.pdf',
+      datasheetKb: 1445,        // measured after Phase 2 cleanup
+      datasheetPages: 2,
+      badges: ['Fuel Resistant', 'Self-Leveling'],
+      highlights: [
+        'Outstanding resistance to petrol, oil and jet fuel spillage',
+        'Maintains resilient, rubber-like properties at sub-zero temperatures',
+        'Resistant to jet blast and penetration from stones and hard debris',
+        'Self-leveling; produces uniform, neat joints'
+      ],
+      description:
+        'Chem Joint Lock, a single component liquid polymer, is heated in an oil-jacketed extruder before being '
+        + 'extruded into joints. Using Chem Joint Lock through an extruder might result in high daily application '
+        + 'rates. Highly resistant to weathering, it will not flow, bubble or blister at high temperatures.',
       keyFeatures: [
-        'Active self-healing mechanism for future cracks',
-        'Resists hydrostatic head pressure exceeding 12 Bar',
-        'Effective for both positive and negative water pressure',
-        'Permanent non-degrading inorganic crystal matrix'
+        'STRONG JOINT',
+        'EXCELLENT ADHESION',
+        'UV & WEATHER RESISTANT',
+        'DURABLE FINISH',
+        'SUPERIOR WATERPROOFING',
+        'LONG LASTING DURABILITY',
+        'ENHANCED SURFACE PROTECTION'
       ],
-      applications: ['Water storage tanks & reservoirs', 'Basement retaining walls (interior/exterior)', 'Lift pits, tunnels and culverts', 'Swimming pools and sewage treatment plants'],
-      coverage: '10 – 12 sq.ft / Kg (2 coats at 1.5kg/m²)',
-      curingTime: 'Requires moist curing for 48 hours | Full crystal maturation: 28 days',
-      variants: [
-        { size: '5 Kg Bucket', price: 3912.5, unit: 'Bucket' },
-        { size: '10 Kg Bucket', price: 7450.0, unit: 'Bucket' },
-        { size: '25 Kg Bag / Drum', price: 19562.5, unit: 'Drum' }
+      uses: [
+        'Road Airfield Aprons',
+        'Runways and Taxiways',
+        'Cargo Terminals',
+        'Warehouses',
+        'Parking Areas'
       ],
-      technicalSpecs: { basePolymer: 'Catalytic Portland Cementitious Crystalline', tensileStrength: 'Positive & Negative Pressure > 1.2 MPa', temperatureResistance: '-40°C to +130°C' }
+      packaging: '600 ml tube',
+      coverage: 'Litres required = joint width (mm) \u00D7 sealant depth (mm) \u00D7 joint length (mm)',
+      consumption: [
+        'Number of liters required = joint width (mm) \u00D7 sealant depth (mm) \u00D7 joint length (mm)',
+        'Priming: Joints which have been sand/grit blasted, and which are perfectly clean and dry, can be sealed '
+        + 'without the use of a primer.'
+      ],
+      guidance:
+        'Joints which have been sand/grit blasted, and which are perfectly clean and dry, can be sealed without '
+        + 'the use of a primer.',
+      techData: [
+        { property: 'Type', value: 'Chem Joint Sealant, liquid polymer' },
+        { property: 'Specific Gravity', value: '1.26' },
+        { property: 'Movement Accommodation Factor', value: '25%' },
+        { property: 'Resilience (ASTM D3569)', value: '65 - 75%' },
+        { property: 'ASTM D7116-05', value: '> 60%' },
+        { property: 'Service Temperature Range', value: '-20\u00B0C to 70\u00B0C' },
+        { property: 'Packaging', value: '600 ml tube' }
+      ],
+      standards: [
+        'US Federal Specification SS-S-1614, 167b, 1401b 164',
+        'ASTM D7116-05',
+        'ASTM D3406 85',
+        'ASTM D3569 85',
+        'BS2499 1973 Types A1 and B1',
+        'DTP Specification for Highway Works 1986 Clause 1016'
+      ],
+      applicationGuidelines: [
+        {
+          title: 'Joint Preparation',
+          text: 'The substrate to which Chem Joint Lock is to be bonded must be clean and dry and the joint profile '
+            + 'sound. Arris repair where required should be effected using a recommended Chem repair compound.'
+        },
+        {
+          title: 'Priming',
+          text: 'Joints which have been sand/grit blasted, and which are perfectly clean and dry, can be sealed '
+            + 'without the use of a primer.'
+        },
+        {
+          title: 'Heating / Application',
+          text: 'It is essential that the correct heating and application equipment is used to ensure successful '
+            + 'performance of the sealant. Chem Joint Lock should be poured directly into an approved oil jacketed '
+            + 'heated extruder. High productivity from the extruder minimizes the contract period.'
+        },
+        {
+          title: 'Cleaning',
+          text: 'Application equipment should be cleaned thoroughly using Chem Joint Lock flushing oil. Ignition '
+            + 'sources associated with the heater/extruder must be extinguished prior to the use of flushing oil. '
+            + 'Following application Chem Joint Lock can only be removed mechanically.'
+        },
+        {
+          title: 'Technical Service',
+          text: 'A trained Chem representative is available to assist in the preparation of specifications, and the '
+            + 'resolution of concrete problems in the field.'
+        },
+        {
+          title: 'Health and Safety',
+          text: 'Chem Joint Lock should not come in contact with skin and eyes or be swallowed. Avoid inhalation of '
+            + 'vapours and ensure adequate ventilation.'
+        }
+      ],
+      importantInfo: [
+        { label: 'Supplied In', value: '600 ml tube' },
+        { label: 'Storage', value: 'Store dry, frost-free, out of direct sunlight' },
+        { label: 'Shelf Life', value: '1 year in original packaging' },
+        { label: 'Hazard Class', value: 'Non-hazardous goods.' }
+      ]
     },
+
+    /* ============================================================
+       9. CHEM PU ELASTO
+       ============================================================ */
     {
-      id: 'mega-water-seal', name: 'MEGA WATER SEAL',
-      subTitle: 'Two Component Acrylic Polymer Modified Cementitious Coating',
-      category: 'coatings', categoryLabel: 'Waterproofing Coatings', subCategory: 'Acrylic Cementitious',
-      priceDisplay: 'Rs 1,787.50 – Rs 7,996.59', minPrice: 1787.5, maxPrice: 7996.59,
-      onSale: true, saleDiscount: 'Sale!',
-      rating: 4.9, reviewCount: 88, image: IMG.img09, badge: 'Best Seller',
-      description: 'Pre-packaged 2-component waterproofing slurry consisting of a liquid polymer emulsion (Part A) and specially graded hydraulic cements with active additives (Part B). Ideal for wet areas and water storage.',
+      id: 'chem-pu-elasto',
+      name: 'CHEM PU ELASTO',
+      subTitle: 'Pure polyurethane, liquid-applied roof waterproofing membrane, quick cure and minimal odour',
+      category: 'membranes',
+      categoryLabel: 'Polyurethane Waterproof Membranes',
+      image: ASSETS + 'Chem-PU-Elasto.webp',
+      imageW: 1600, imageH: 1000,   // measured intrinsic size (Phase 3.2)
+      datasheet: 'downloads/chem-pu-elasto.pdf',
+      datasheetKb: 1546,        // measured after Phase 2 cleanup
+      datasheetPages: 2,
+      badges: ['i-Cure Technology', 'Low Odour'],
+      highlights: [
+        'Cold-applied by brush or roller; suitable for practical site conditions',
+        'Seamless, elastic waterproofing membrane with good crack-bridging capability',
+        'High-solids formulation for efficient membrane build-up',
+        'Low-odour formulation compared with conventional solvent-rich coating systems'
+      ],
+      description:
+        'CHEM PU ELASTO is a rapid cure, one component, cold applied, moisture-triggered aliphatic-aromatic pure '
+        + 'polyurethane membrane based on unique i-Cure Technology. It forms a seamless, elastic waterproofing '
+        + 'membrane and is suitable for horizontal and vertical waterproofing surfaces.',
       keyFeatures: [
-        'Certified non-toxic for potable drinking water contact',
-        'High bond strength to damp concrete substrates (> 1.5 N/mm²)',
-        'Prevents water seepage under continuous immersion',
-        'Easy 2-part mixing and smooth brush application'
+        'FAST DRYING',
+        'EXCELLENT ADHESION',
+        'CORROSION RESISTANT',
+        'EASY APPLICATION',
+        'STRONG WATERPROOFING',
+        'FAST & EFFECTIVE INJECTION',
+        'LONG LASTING PROTECTION',
+        'ENHANCED DURABILITY',
+        'BETTER FINISH & PERFORMANCE'
       ],
-      applications: ['Underground & overhead water tanks', 'Bathrooms, kitchens and washrooms', 'Balcony screeds & damp basements', 'Fountains and swimming pools'],
-      coverage: '12 – 15 sq.ft / Kg per 2 coats (2mm total DFT)',
-      curingTime: 'Pot life: 45 mins | Initial set: 4 hours | Water fill test: 7 days',
-      variants: [
-        { size: '5 Kg Kit (Liquid + Powder)', price: 1787.5, unit: 'Kit' },
-        { size: '10 Kg Kit', price: 3450.0, unit: 'Kit' },
-        { size: '25 Kg Heavy Kit', price: 7996.59, unit: 'Kit' }
+      uses: [
+        'Exposed and non-exposed flat roof waterproofing',
+        'Pitched roof and roof-deck waterproofing',
+        'Protective waterproofing layer beneath compatible subsequent finishes',
+        'Waterproofing of concrete and cementitious substrates',
+        'Concrete surface before coating'
       ],
-      technicalSpecs: { basePolymer: 'Acrylic Copolymer + Hydraulic Cements', elongation: '180%', tensileStrength: '2.5 N/mm²', waterImmersion: 'Tested to 50m head of water' }
+      packaging: '20 kg Bucket',
+      coverage: 'Approximately 1.5 - 2.0 kg/m\u00B2 per mm of thickness',
+      consumption: [
+        'Approximately 1.5-2.0 kg/m\u00B2 per mm of thickness, depending on surface condition, porosity and '
+        + 'application method.'
+      ],
+      guidance:
+        'Clean all tools and application equipment with Thinner C immediately after use. Hardened and/or cured '
+        + 'material can only be removed mechanically.',
+      techData: [
+        { property: 'Chemical Base', value: 'One-component moisture-curing polyurethane' },
+        { property: 'Form', value: 'Thixotropic liquid' },
+        { property: 'Typical Appearance', value: 'Smooth coating; standard colour as supplied' },
+        { property: 'Density', value: 'Approx. 1.35 kg/L' },
+        { property: 'Solids Content', value: 'Approx. 95% by weight' },
+        { property: 'Flash Point', value: 'Approx. 80 \u00B0C (closed-cup method)' },
+        { property: 'Crack Bridging', value: 'Up to 2 mm, no cracking reported (ASTM C836)' },
+        { property: 'Elongation at Break', value: 'Approx. 600% (ASTM D412)' },
+        { property: 'Tear Strength', value: 'Approx. 14.5 N/mm (ASTM D624)' },
+        { property: 'Tensile Strength', value: 'Approx. 4 N/mm\u00B2 (ASTM D412)' },
+        { property: 'Pull-Off Adhesion', value: '< 1.5 N/mm\u00B2 (ASTM D4541)' },
+        { property: 'VOC', value: '< 250 g/L (ASTM D2369)' },
+        { property: 'Packaging', value: '20 kg Bucket' }
+      ],
+      standards: [
+        'Solid content: ~95% by weight (+23\u00B0C / 50% r.h.)',
+        'Flash point: 80\u00B0C (closed cup method)',
+        'Density: ~1.35 kg/L',
+        'Performance varies with substrate, film build, temperature and application method.'
+      ],
+      applicationGuidelines: [
+        {
+          title: 'Dispensing',
+          text: 'Chem PU Elasto is a high-performance polyurethane-based material designed for waterproofing, '
+            + 'sealing and protection of concrete and construction surfaces. It provides excellent adhesion, '
+            + 'flexibility and resistance to water penetration, making it suitable for roofs, terraces, concrete '
+            + 'structures, joints and other areas exposed to moisture.'
+        },
+        {
+          title: 'Mixing',
+          text: 'Adheres to various substrates including concrete, cementitious substrates and bitumen sheets.'
+        },
+        {
+          title: 'Uses',
+          text: 'Waterproofing membrane on exposed flat and pitched roofs, both for new construction and '
+            + 'refurbishment of old roofs.'
+        },
+        {
+          title: 'Application',
+          text: 'Prior to application of Chem PU Elasto, the priming coat, if used, must be cured tack-free. '
+            + 'Refer to the technical data sheet for waiting time / overcoating intervals. Areas such as handrails '
+            + 'have to be protected with tape or plastic wrapping.'
+        },
+        {
+          title: 'Storage & Handling',
+          text: 'Store in a cool, dry and well-ventilated area, away from direct sunlight and heat sources. Keep the '
+            + 'product in its original, tightly closed container until ready for use.'
+        },
+        {
+          title: 'Cleaning of Equipment',
+          text: 'Clean all tools and application equipment with Thinner C immediately after use. Hardened and/or '
+            + 'cured material can only be removed mechanically.'
+        },
+        {
+          title: 'Safety',
+          text: 'Use appropriate personal protective equipment and provide adequate ventilation during '
+            + 'application. Avoid unnecessary skin and eye contact. Do not eat, drink or smoke while handling the '
+            + 'product. Refer to the product Safety Data Sheet (SDS) for detailed hazard, first-aid, handling, spill '
+            + 'and disposal information.'
+        }
+      ],
+      importantInfo: [
+        { label: 'Supplied In', value: '20 kg Bucket' },
+        { label: 'Storage', value: 'Store dry, frost-free, out of direct sunlight' },
+        { label: 'Shelf Life', value: '1 year in original packaging' },
+        { label: 'Hazard Class', value: 'Non-hazardous goods.' }
+      ]
     },
+
+    /* ============================================================
+       10. CHEM PU ELASTO PRO
+       ============================================================ */
     {
-      id: 'mega-water-seal-pro', name: 'MEGA WATER SEAL PRO',
-      subTitle: 'Two Component High-Flexibility Acrylic Cementitious Waterproofing',
-      category: 'coatings', categoryLabel: 'Waterproofing Coatings', subCategory: 'Acrylic Cementitious',
-      priceDisplay: 'Rs 2,887.50 – Rs 13,039.26', minPrice: 2887.5, maxPrice: 13039.26,
-      onSale: true, saleDiscount: 'Pro Grade',
-      rating: 5.0, reviewCount: 76, image: IMG.img03, badge: 'Pro Grade',
-      description: 'Industrial grade 2-component flexible cementitious slurry with enhanced polymer ratio. Engineered for structures subjected to dynamic structural movement, vibration, and thermal expansion.',
+      id: 'chem-pu-elasto-pro',
+      name: 'CHEM PU ELASTO PRO',
+      subTitle: 'Pure polyurethane, liquid-applied roof waterproofing membrane with superior elasticity and durability',
+      category: 'membranes',
+      categoryLabel: 'Polyurethane Waterproof Membranes',
+      image: ASSETS + 'Chem-PU-Elasto-pro.webp',
+      imageW: 1600, imageH: 1000,   // measured intrinsic size (Phase 3.2)
+      datasheet: 'downloads/chem-pu-elasto-pro.pdf',
+      datasheetKb: 1525,        // measured after Phase 2 cleanup
+      datasheetPages: 2,
+      badges: ['Pro Grade', 'High Elasticity'],
+      highlights: [
+        'Seamless, elastic and durable coating with long-term protection',
+        'Superior flexibility, weather resistance and chemical stability',
+        'Ideal for both new construction and existing structures',
+        'Long-lasting protection against harsh weather and UV exposure'
+      ],
+      description:
+        'CHEM PU ELASTO PRO is a high performance, single-component, cold-applied, moisture-triggered '
+        + 'aliphatic-aromatic polyurethane liquid waterproofing membrane. It forms a seamless, elastic and durable '
+        + 'coating that provides long-term protection to concrete and cementitious surfaces. Designed for superior '
+        + 'flexibility, weather resistance and chemical stability, it is ideal for both new and existing structures.',
       keyFeatures: [
-        'Over 220% High flexibility with crack bridging up to 2mm',
-        'Withstands high positive and negative hydrostatic pressure',
-        'Protects rebar from carbonation and chloride ion attack',
-        'Suitable for direct tiling without bond breakers'
+        'FAST DRYING',
+        'EXCELLENT ADHESION',
+        'CORROSION RESISTANT',
+        'EASY APPLICATION',
+        'STRONG WATERPROOFING',
+        'FAST & EFFECTIVE INJECTION',
+        'LONG LASTING PROTECTION',
+        'ENHANCED DURABILITY',
+        'FASTER PLACEMENT',
+        'BETTER FINISH & PERFORMANCE'
       ],
-      applications: ['Podium slabs & parking decks', 'Suspended swimming pools', 'High-rise foundation waterproofing', 'Bridge decks & railway culverts'],
-      coverage: '10 – 14 sq.ft / Kg (2 coats at 2.5mm DFT)',
-      curingTime: 'Pot life: 60 mins | Full immersion cure: 5 days',
-      variants: [
-        { size: '6 Kg Pro Kit', price: 2887.5, unit: 'Kit' },
-        { size: '12 Kg Pro Kit', price: 5490.0, unit: 'Kit' },
-        { size: '30 Kg Pro Industrial Kit', price: 13039.26, unit: 'Kit' }
+      uses: [
+        'Exposed and non-exposed flat roof waterproofing',
+        'Pitched roof and roof-deck waterproofing',
+        'Protective waterproofing layer beneath compatible subsequent finishes',
+        'Waterproofing of concrete and cementitious substrates',
+        'Concrete surface before coating'
       ],
-      technicalSpecs: { basePolymer: 'High Solid Acrylic Latex + Micro Silica Cements', elongation: '240%', tensileStrength: '3.8 N/mm²', hydrostaticResistance: '> 7 Bar' }
+      packaging: '20 kg Bucket',
+      coverage: 'Apply in 2-3 coats for best performance',
+      consumption: [
+        'Apply in 2-3 coats for best performance. Consumption depends on surface condition, porosity and '
+        + 'application method.'
+      ],
+      guidance:
+        'Ensure the surface is clean, dry and free from dust, oil or loose particles before application.',
+      techData: [
+        { property: 'Chemical Base', value: 'Two-component polyurethane (Polyurethane resin + Hardener)' },
+        { property: 'Form', value: 'Liquid' },
+        { property: 'Typical Appearance', value: 'Smooth coating; standard colour as supplied' },
+        { property: 'Density', value: 'Approx. 1.35 kg/L' },
+        { property: 'Solids Content', value: 'Approx. 95% by weight' },
+        { property: 'Flash Point', value: 'Approx. 80 \u00B0C (closed-cup method)' },
+        { property: 'Crack Bridging', value: 'Up to 3 mm, no cracking reported (ASTM C836)' },
+        { property: 'Elongation at Break', value: 'Approx. 700% (ASTM D412)' },
+        { property: 'Tear Strength', value: 'Approx. 16.5 N/mm (ASTM D624)' },
+        { property: 'Tensile Strength', value: 'Approx. 6 N/mm\u00B2 (ASTM D412)' },
+        { property: 'Pull-Off Adhesion', value: '< 2 N/mm\u00B2 (ASTM D4541)' },
+        { property: 'VOC', value: '< 250 g/L (ASTM D2369)' },
+        { property: 'Packaging', value: '20 kg Bucket' }
+      ],
+      standards: [
+        'Solid content: ~95% by weight (+23\u00B0C / 50% r.h.)',
+        'Flash point: 80\u00B0C (closed cup method)',
+        'Density: ~1.35 kg/L',
+        'Performance varies with substrate, film build, temperature and application method.'
+      ],
+      applicationGuidelines: [
+        {
+          title: 'Dispensing',
+          text: 'Use brush or roller for even application.'
+        },
+        {
+          title: 'Mixing',
+          text: 'Adheres to various substrates including concrete, cementitious substrates and bitumen sheets.'
+        },
+        {
+          title: 'Uses',
+          text: 'Waterproofing membrane on exposed flat and pitched roofs, both for new construction and '
+            + 'refurbishment of old roofs.'
+        },
+        {
+          title: 'Application',
+          text: 'Ensure the surface is clean, dry and free from dust, oil or loose particles. Apply in 2-3 coats '
+            + 'for best performance.'
+        },
+        {
+          title: 'Storage & Handling',
+          text: 'Store in a cool, dry and well-ventilated area, away from direct sunlight and heat sources. Keep the '
+            + 'product in its original, tightly closed container until ready for use.'
+        },
+        {
+          title: 'Safety',
+          text: 'Use gloves, goggles and protective clothing. Avoid skin and eye contact.'
+        }
+      ],
+      importantInfo: [
+        { label: 'Supplied In', value: '20 kg Bucket' },
+        { label: 'Storage', value: 'Store dry, frost-free, out of direct sunlight' },
+        { label: 'Shelf Life', value: '1 year in original packaging' },
+        { label: 'Hazard Class', value: 'Non-hazardous goods.' }
+      ]
     },
+
+    /* ============================================================
+       11. CHEM STYRO BOND
+       ============================================================ */
     {
-      id: 'mega-hybrid-dilutor-502', name: 'MEGA HYBRID DILUTOR 502 (FOR BITUMEN PRODUCTS)',
-      subTitle: 'Specialized Hybrid Dilution Solvent for Bituminous Coatings',
-      category: 'diluters', categoryLabel: 'Diluters & Solvents', subCategory: 'Bitumen Diluters',
-      priceDisplay: 'Rs 400.00 – Rs 3,612.50', minPrice: 400.0, maxPrice: 3612.5,
-      onSale: true, saleDiscount: 'Sale!',
-      rating: 4.8, reviewCount: 16, image: IMG.img10,
-      description: 'High-purity hydrocarbon diluter engineered specifically for thinning solvent-based bitumen primers, coatings, and heavy mastics while optimizing spray atomization and surface penetration.',
+      id: 'chem-styro-bond',
+      name: 'CHEM STYRO BOND',
+      subTitle: 'Styrene-Butadiene Rubber (SBR) Latex Bonding & Cement Modification',
+      category: 'bonding',
+      categoryLabel: 'Bonding & Polymer Modification',
+      image: ASSETS + 'Chem-Styro-Bond.webp',
+      imageW: 1600, imageH: 1000,   // measured intrinsic size (Phase 3.2)
+      datasheet: 'downloads/chem-styro-bond.pdf',
+      datasheetKb: 1635,        // measured after Phase 2 cleanup
+      datasheetPages: 2,
+      badges: ['SBR Latex', 'Non-Corrosive'],
+      highlights: [
+        'Improves adhesion of cementitious materials to suitable substrates',
+        'Enhances flexural strength and flexibility of modified mortar systems',
+        'Reduces water permeability in appropriately formulated cementitious systems',
+        'Non-corrosive to steel'
+      ],
+      description:
+        'CHEM STYRO BOND is a white Styrene-Butadiene Rubber (SBR) latex emulsion formulated for use with '
+        + 'cement-based construction materials. It is designed to modify cement renders, screeds and mortars and to '
+        + 'provide improved bonding and performance in repair, waterproofing and other cementitious applications.',
       keyFeatures: [
-        'Controlled evaporation rate prevents blistering',
-        'Restores viscosity of thickened bituminous products',
-        'Heavy-duty tool and spray machine cleaner'
+        'FAST BONDING',
+        'STRONG ADHESION',
+        'WATER RESISTANCE',
+        'EASY MIXING',
+        'ENHANCED DURABILITY',
+        'FASTER PLACEMENT',
+        'BETTER FINISH & PERFORMANCE'
       ],
-      applications: ['Bitumen primer thinning (5-15%)', 'Spray machine flushing', 'Cleaning rollers and bitumen tools'],
-      coverage: 'Use as directed: 5% to 15% by volume',
-      curingTime: 'Fast evaporating',
-      variants: [
-        { size: '500 ml Bottle', price: 400.0, unit: 'Bottle' },
-        { size: '1 Liter Bottle', price: 750.0, unit: 'Bottle' },
-        { size: '5 Liter Can', price: 3612.5, unit: 'Can' }
+      uses: [
+        'High-strength floor screeds',
+        'Patching and repair mortars',
+        'Thin-section screeds',
+        'Waterproofing of cementitious surfaces',
+        'Bonding slurry / bonding coat for renders and waterproofing systems'
       ],
-      technicalSpecs: { basePolymer: 'Aromatic Hydrocarbon Fraction', specificGravity: '0.86 g/cm³', shelfLife: '36 Months' }
+      packaging: 'Bucket',
+      coverage: '1 to 1.5 square meters per liter for a standard 1 mm to 2 mm slurry coat',
+      consumption: [
+        '1 to 1.5 square meters per liter for a standard 1 mm to 2 mm slurry coat or bonding slurry.'
+      ],
+      guidance:
+        'The most widely used general-purpose synthetic elastomer, composed typically of 75% butadiene and 25% '
+        + 'styrene. It should not be used as a standalone bonding grout without cement.',
+      techData: [
+        { property: 'Solid Content', value: '50% \u00B1 1%' },
+        { property: 'Hardness', value: 'Approx. 4 Shore A' },
+        { property: 'Density', value: 'Approx. 1.01 kg/L' },
+        { property: 'Coverage', value: '1 to 1.5 m\u00B2 per liter for a 1 mm to 2 mm slurry coat' },
+        { property: 'Packaging', value: 'Bucket' }
+      ],
+      standards: [
+        'Solid content: 50% \u00B1 1%',
+        'Hardness: Approx. 4 Shore A',
+        'Density: Approx. 1.01 kg/L'
+      ],
+      applicationGuidelines: [
+        {
+          title: 'Dispensing',
+          text: 'Styrene-butadiene rubber (SBR) dispensing is the application or metering of liquid SBR latex or '
+            + 'SBR-based adhesives, sealants and modified cement binders in manufacturing and building operations.'
+        },
+        {
+          title: 'Mixing',
+          text: 'CHEM STYRO BOND should be incorporated into cementitious mixes according to the approved '
+            + 'formulation for the intended application. It should not be used as a standalone bonding grout '
+            + 'without cement.'
+        },
+        {
+          title: 'Uses',
+          text: 'Apply the SBR/Cement bonding grout to the prepared substrate. Do not allow the bonding coat to '
+            + 'dry before subsequent layers.'
+        },
+        {
+          title: 'Application',
+          text: 'Styrene-Butadiene Rubber (SBR) is a versatile synthetic elastomer that is widely used in '
+            + 'automotive, construction and industrial manufacture because of its good abrasion resistance, high '
+            + 'tensile strength and low cost.'
+        },
+        {
+          title: 'Storage & Handling',
+          text: 'Store Chem Styro Bond in its original sealed container. Protect from extreme temperatures, '
+            + 'contamination and adverse weather exposure.'
+        },
+        {
+          title: 'Safety',
+          text: 'Avoid unnecessary skin/eye contact. Provide ventilation where required and refer to the current '
+            + 'SDS for detailed safety information.'
+        }
+      ],
+      importantInfo: [
+        { label: 'Supplied In', value: 'Bucket' },
+        { label: 'Storage', value: 'Cool, covered and dry place; protect from direct sunlight and heat' },
+        { label: 'Shelf Life', value: '6 Months' },
+        { label: 'Hazard Class', value: 'Non-hazardous goods.' }
+      ]
     },
+
+    /* ============================================================
+       12. CHEM STYRO BOND PRO
+       ============================================================ */
     {
-      id: 'mega-hybrid-dilutor-503', name: 'MEGA HYBRID DILUTOR 503 (FOR PU PRODUCTS)',
-      subTitle: 'Pure Solvent Diluter for Polyurethane Liquid Membranes & Sealants',
-      category: 'diluters', categoryLabel: 'Diluters & Solvents', subCategory: 'PU Diluters',
-      priceDisplay: 'Rs 731.25 – Rs 7,275.00', minPrice: 731.25, maxPrice: 7275.0,
-      onSale: true, saleDiscount: 'Sale!',
-      rating: 4.9, reviewCount: 23, image: IMG.img11,
-      description: 'Moisture-free virgin grade thinner formulated specifically for polyurethane (PU) waterproofing coatings, injection resins, and joint sealants without interfering with isocyanate crosslinking.',
+      id: 'chem-styro-bond-pro',
+      name: 'CHEM STYRO BOND PRO',
+      subTitle: 'Advanced Styrene-Butadiene Rubber (SBR) Latex \u2014 Cementitious Bonding & Modification',
+      category: 'bonding',
+      categoryLabel: 'Bonding & Polymer Modification',
+      image: ASSETS + 'Chem-Styro-Bond-Pro.webp',
+      imageW: 1600, imageH: 1000,   // measured intrinsic size (Phase 3.2)
+      datasheet: 'downloads/chem-styro-bond-pro.pdf',
+      datasheetKb: 1666,        // measured after Phase 2 cleanup
+      datasheetPages: 2,
+      badges: ['Pro Grade', 'SBR Latex'],
+      highlights: [
+        'Advanced SBR polymer modification for cementitious construction systems',
+        'Enhances flexural performance and flexibility of modified mortar systems',
+        'Improves tensile strength of suitable cement-based formulations',
+        'Non-corrosive to steel'
+      ],
+      description:
+        'CHEM STYRO BOND PRO is a premium Styrene-Butadiene Rubber (SBR) latex emulsion designed to modify cement-based '
+        + 'construction materials. This product improves bonding, flexural and tensile performance for cementitious '
+        + 'mortars, screeds, renders and waterproofing systems. It is ideal for repair and refurbishment projects '
+        + 'that require enhanced adhesion, reduced water permeability and resistance to service movement.',
       keyFeatures: [
-        'Moisture content < 0.05% to avoid foaming in PU resin',
-        'Enhances flowability and leveling on large deck pours',
-        'Leaves zero residue on application equipment'
+        'FAST BONDING',
+        'STRONG ADHESION',
+        'WATER RESISTANCE',
+        'EASY MIXING',
+        'STRONG WATERPROOFING',
+        'LONG LASTING PROTECTION',
+        'ENHANCED DURABILITY',
+        'BETTER FINISH & PERFORMANCE'
       ],
-      applications: ['PU liquid membrane dilution (max 10%)', 'Airless spray gun nozzle maintenance', 'Surface degreasing before PU coating'],
-      coverage: '5% to 10% by volume per coat',
-      curingTime: 'Rapid flash-off',
-      variants: [
-        { size: '500 ml Bottle', price: 731.25, unit: 'Bottle' },
-        { size: '1 Liter Bottle', price: 1450.0, unit: 'Bottle' },
-        { size: '5 Liter Can', price: 7275.0, unit: 'Can' }
+      uses: [
+        'High-strength floor screeds',
+        'Patching and repair mortars',
+        'Thin-section screeds',
+        'Waterproofing of cementitious surfaces',
+        'Patching and general repair mortars'
       ],
-      technicalSpecs: { basePolymer: 'Anhydrous Ester Solvent Complex', shelfLife: '24 Months in sealed containers' }
+      packaging: 'Bucket',
+      coverage: '1 to 1.5 square meters per liter for a standard 1 mm to 2 mm slurry coat',
+      consumption: [
+        '1 to 1.5 square meters per liter for a standard 1 mm to 2 mm slurry coat or bonding slurry.'
+      ],
+      guidance:
+        'The most widely used general-purpose synthetic elastomer, composed typically of 75% butadiene and 25% '
+        + 'styrene. It should not be used as a standalone bonding grout without cement.',
+      techData: [
+        { property: 'Solid Content', value: '50% \u00B1 1%' },
+        { property: 'Hardness', value: 'Approx. 4 Shore A' },
+        { property: 'Density', value: 'Approx. 1.01 kg/L' },
+        { property: 'Coverage', value: '1 to 1.5 m\u00B2 per liter for a 1 mm to 2 mm slurry coat' },
+        { property: 'Packaging', value: 'Bucket' }
+      ],
+      standards: [
+        'Solid content: 50% \u00B1 1%',
+        'Hardness: Approx. 4 Shore A',
+        'Density: Approx. 1.01 kg/L'
+      ],
+      applicationGuidelines: [
+        {
+          title: 'Dispensing',
+          text: 'CHEM STYRO BOND PRO (SBR) dispensing is the application or metering of liquid SBR latex or '
+            + 'SBR-based adhesives, sealants and modified cement binders in manufacturing and building operations.'
+        },
+        {
+          title: 'Mixing',
+          text: 'CHEM STYRO BOND PRO should be incorporated into cementitious mixes according to the approved '
+            + 'formulation for the intended application. It should not be used as a standalone bonding grout '
+            + 'without cement.'
+        },
+        {
+          title: 'Uses',
+          text: 'Apply the SBR/Cement bonding grout to the prepared substrate. Do not allow the bonding coat to '
+            + 'dry before subsequent layers.'
+        },
+        {
+          title: 'Application',
+          text: 'Styrene-Butadiene Rubber (SBR) is a versatile synthetic elastomer that is widely used in '
+            + 'automotive, construction and industrial manufacture because of its good abrasion resistance, high '
+            + 'tensile strength and low cost.'
+        },
+        {
+          title: 'Storage & Handling',
+          text: 'Store Chem Styro Bond Pro in its original sealed container. Protect from extreme temperatures, '
+            + 'contamination and adverse weather exposure.'
+        },
+        {
+          title: 'Safety',
+          text: 'Avoid unnecessary skin/eye contact. Provide ventilation where required and refer to the current '
+            + 'SDS for detailed safety information.'
+        }
+      ],
+      importantInfo: [
+        { label: 'Supplied In', value: 'Bucket' },
+        { label: 'Storage', value: 'Cool, covered and dry place; protect from direct sunlight and heat' },
+        { label: 'Shelf Life', value: '6 Months' },
+        { label: 'Hazard Class', value: 'Non-hazardous goods.' }
+      ]
     },
+
+    /* ============================================================
+       13. CHEM SWELL
+       ============================================================ */
     {
-      id: 'mega-hybrid-dilutor-504', name: 'MEGA HYBRID DILUTOR 504 (FOR ACRYLIC PRODUCTS)',
-      subTitle: 'High Grade Acrylic Polymer Thinner & Tool Cleaner',
-      category: 'diluters', categoryLabel: 'Diluters & Solvents', subCategory: 'Acrylic Diluters',
-      priceDisplay: 'Rs 600.00 – Rs 5,412.50', minPrice: 600.0, maxPrice: 5412.5,
-      onSale: true, saleDiscount: 'Sale!',
-      rating: 4.7, reviewCount: 14, image: IMG.img10,
-      description: 'Pure coalescing agent and diluter for high-solid acrylic waterproof membranes. Ensures smooth pinhole-free film formation even under high temperature and windy roof conditions.',
+      id: 'chem-swell',
+      name: 'CHEM SWELL',
+      subTitle: 'Hydrophilic polymer waterstop for sealing construction joints, concrete structures and critical waterproofing applications',
+      category: 'waterstops',
+      categoryLabel: 'Hydrophilic Waterstops',
+      image: ASSETS + 'Chem-Swell.webp',
+      imageW: 1224, imageH: 864,   // measured intrinsic size (Phase 3.2)
+      datasheet: 'downloads/chem-swell.pdf',
+      datasheetKb: 1701,        // measured after Phase 2 cleanup
+      datasheetPages: 2,
+      badges: ['Re-Swellable', '750-800% Expansion'],
+      highlights: [
+        'Expands approximately 750-800% by volume on contact with water',
+        'Polymer structure designed to resist micro-bacterial attack',
+        'Capable of repeated swelling and shrinking during wet/dry cycles',
+        'Suitable for water-retaining structures and underground construction'
+      ],
+      description:
+        'CHEM SWELL is an ultra-thin, profiled hydrophilic polymer waterstop designed for sealing construction and '
+        + 'structural joints against water ingress. Its three-dimensional polymer structure is based on chemically '
+        + 'resistant polyurethane polymer chains with hydrophilic functionality. On contact with water the profile '
+        + 'expands substantially and forms a swelling seal within the joint, accommodating repeated wet/dry cycles '
+        + 'through controlled swelling and shrinking.',
       keyFeatures: [
-        'Prevents skinning and dry-spray under hot sunlight',
-        'Optimizes wet edge time for roller application',
-        'Gentle on synthetic application fibers'
+        'FAST SWELLING',
+        'EXCELLENT WATER SEALING',
+        'CHEMICAL RESISTANCE',
+        'EASY APPLICATION',
+        'STRONG WATERPROOFING',
+        'FAST & EFFECTIVE INJECTION',
+        'LONG LASTING PROTECTION',
+        'ENHANCED DURABILITY',
+        'FASTER PLACEMENT',
+        'BETTER FINISH & PERFORMANCE'
       ],
-      applications: ['Acrylic coating thinning for first coat penetration', 'Washing airless spray hoses'],
-      coverage: '5% to 8% dilution',
-      curingTime: 'Controlled coalescence',
-      variants: [
-        { size: '500 ml Bottle', price: 600.0, unit: 'Bottle' },
-        { size: '1 Liter Bottle', price: 1150.0, unit: 'Bottle' },
-        { size: '5 Liter Can', price: 5412.5, unit: 'Can' }
+      uses: [
+        'Sewerage treatment',
+        'Water tanks and reservoirs',
+        'Waste water treatment structures',
+        'Structures / concrete pipes',
+        'Swimming pools'
       ],
-      technicalSpecs: { basePolymer: 'Glycol Ether Coalescing Solvent', shelfLife: '24 Months' }
+      packaging: '10 m roll / carton',
+      coverage: 'Rectangle and box profile \u2014 5 \u00D7 20 mm; 10 \u00D7 20 mm',
+      consumption: [
+        'A swell bar, also known as a hydrophilic waterstop, usually runs the whole length of a concrete joint and '
+        + 'comes in rolls that are 5 to 40 meters long.',
+        'A hydrophilic swell bar is a flexible waterstop strip used in construction joints to block water leaks by '
+        + 'expanding when wet.'
+      ],
+      guidance:
+        'To seal precast concrete elements, create a notch or recess where necessary. Choose a profile size so that '
+        + 'the assembled elements create adequate compression (pre-stress) at the joint. To fix the junction, use an '
+        + 'appropriate mounting cement or permanently elastic sealant.',
+      techData: [
+        { property: 'Product Type', value: 'Hydrophilic polymer waterstop / re-swellable joint sealing profile' },
+        { property: 'Density', value: 'Approx. 1.0 g/cm\u00B3' },
+        { property: 'Colour', value: 'Blue; other colours may be available on request' },
+        { property: 'Swelling Retardation', value: 'Yes' },
+        { property: 'Hardness', value: 'Approx. 3.8 Shore A' },
+        { property: 'Tensile Strength', value: 'Approx. 1.5 \u2013 2.1 MPa' },
+        { property: 'Elongation', value: 'Approx. 490 \u2013 770%' },
+        { property: 'Hydrostatic Pressure', value: 'Approx. > 50 m (5 bar)' },
+        { property: 'Packaging', value: '10 m roll / carton; other packing may be available' },
+        { property: 'Profile Types', value: 'Rectangle and box profile' },
+        { property: 'Available Sizes', value: '5 \u00D7 20 mm; 10 \u00D7 20 mm' }
+      ],
+      standards: [
+        'Hydrophilic, re-swellable polymer waterstop conforming to the stated swell range of approx. 750-800% by volume.',
+        'Hardness value reproduced from the supplied reference (approx. 3.8 Shore A) \u2014 confirm against the '
+        + 'approved QC specification before issuing as a certified laboratory value.'
+      ],
+      applicationGuidelines: [
+        {
+          title: 'Dispensing',
+          text: 'Chem Swell (also called a hydrophilic waterstop or swell bar) is a pre-formed rubber or polymer '
+            + 'strip used in construction to seal concrete joints and stop water leaks.'
+        },
+        {
+          title: 'Mixing',
+          text: 'To use waterproof cement or mortar correctly, clean and dampen the surface, mix the product with '
+            + 'the precise amount of water or additive, and apply at least two thin, alternating coats.'
+        },
+        {
+          title: 'Uses',
+          text: 'Waterproofing membrane on exposed flat and pitched roofs, both for new construction and '
+            + 'refurbishment of old roofs.'
+        },
+        {
+          title: 'Application',
+          text: 'To seal precast concrete elements, create a notch or recess where necessary. Choose a profile '
+            + 'size so that the assembled elements create adequate compression (pre-stress) at the joint. To fix the '
+            + 'junction, use an appropriate mounting cement or permanently elastic sealant.'
+        },
+        {
+          title: 'Storage & Handling',
+          text: 'Store Chem Swell in its original box somewhere cool, protected and dry. Keep the product away from '
+            + 'direct sunlight, extreme temperatures, heat sources and excess humidity. In tropical climates, '
+            + 'air-conditioning is recommended for storage. High temperatures and humidity can cause degradation and '
+            + 'shorten shelf life.'
+        },
+        {
+          title: 'Safety',
+          text: 'To ensure safety during installation, wear protective clothing, gloves and goggles, avoid skin and '
+            + 'eye contact, and seek medical advice if necessary. If accidentally swallowed, do not induce vomiting '
+            + 'and seek medical attention immediately. Refer to the current Safety Data Sheet (SDS) for complete '
+            + 'safety information.'
+        }
+      ],
+      importantInfo: [
+        { label: 'Supplied In', value: '10 m roll / carton; other packing may be available' },
+        { label: 'Storage', value: 'Cool, protected and dry; avoid direct sunlight and excessive humidity' },
+        { label: 'Shelf Life', value: 'Store as recommended \u2014 refer to datasheet' },
+        { label: 'Hazard Class', value: 'Non-hazardous goods.' }
+      ]
     },
+
+    /* ============================================================
+       14. CHEM SWELL PRO
+       ============================================================ */
     {
-      id: 'mega-solvent-diluter-805', name: 'MEGA SOLVENT DILUTER 805',
-      subTitle: 'Heavy Duty Universal Chemical Solvent & Equipment Purge',
-      category: 'diluters', categoryLabel: 'Diluters & Solvents', subCategory: 'Universal Solvents',
-      priceDisplay: 'Rs 1,431.25 – Rs 13,596.25', minPrice: 1431.25, maxPrice: 13596.25,
-      onSale: true, saleDiscount: 'Sale!',
-      rating: 4.9, reviewCount: 18, image: IMG.img11, badge: 'Industrial Grade',
-      description: 'Aggressive industrial purging solvent for dissolving cured epoxies, polyurethanes, acrylics, and dried bitumen residue from mixing buckets, high-pressure pumps, and equipment.',
+      id: 'chem-swell-pro',
+      name: 'CHEM SWELL PRO',
+      subTitle: 'Hydrophilic polymer waterstop to seal building joints, concrete structures and important waterproofing applications',
+      category: 'waterstops',
+      categoryLabel: 'Hydrophilic Waterstops',
+      image: ASSETS + 'Chem-Swell-Pro.webp',
+      imageW: 1224, imageH: 864,   // measured intrinsic size (Phase 3.2)
+      datasheet: 'downloads/chem-swell-pro.pdf',
+      datasheetKb: 1723,        // measured after Phase 2 cleanup
+      datasheetPages: 2,
+      badges: ['Up to 900% Expansion', 'New Generation'],
+      highlights: [
+        'New generation high-performance acrylic polymer expanding tape',
+        'Grows up to 900% when exposed to water',
+        'Shrinks to its original installation size when completely dry',
+        'Seals wall-to-base connections, pipe entries and old/new concrete interfaces'
+      ],
+      description:
+        'Chem Swell Pro is a new generation of high-performance acrylic polymer-based expanding tape. It grows up to '
+        + '900% when exposed to water. When completely dry, Chem Swell Pro shrinks to its original installation size '
+        + 'and expands again when wet. It is used in concrete construction to seal construction joints such as '
+        + 'wall-to-base connections, pipe entry systems and interface sections between old and new concrete. It can '
+        + 'be readily stored in its original moisture-proof packaging in cool, dry circumstances away from direct '
+        + 'sunlight.',
       keyFeatures: [
-        'Rapid breakdown of stubborn polymer binders',
-        'Non-corrosive to stainless steel and brass spray tips',
-        'Fast evaporating with zero sticky residue'
+        'FAST SWELLING',
+        'EXCELLENT WATER SEALING',
+        'CHEMICAL RESISTANCE',
+        'EASY APPLICATION',
+        'STRONG WATERPROOFING',
+        'FAST & EFFECTIVE INJECTION',
+        'LONG LASTING PROTECTION',
+        'ENHANCED DURABILITY',
+        'FASTER PLACEMENT',
+        'BETTER FINISH & PERFORMANCE'
       ],
-      applications: ['Heavy equipment stripping', 'Purging 2-component chemical injection pumps', 'Industrial floor grease decontamination'],
-      coverage: 'N/A (Cleaning & Purging)',
-      curingTime: 'Instant solvent action',
-      variants: [
-        { size: '1 Liter Bottle', price: 1431.25, unit: 'Bottle' },
-        { size: '4 Liter Can', price: 5200.0, unit: 'Can' },
-        { size: '10 Liter Drum', price: 13596.25, unit: 'Drum' }
+      uses: [
+        'Sewerage treatment',
+        'Water tanks and reservoirs',
+        'Waste water treatment structures',
+        'Structures / concrete pipes',
+        'Swimming pools'
       ],
-      technicalSpecs: { basePolymer: 'High-Strength Ketone-Aromatic Blend', shelfLife: '36 Months' }
-    },
-    {
-      id: 'mega-siloxane-101', name: 'MEGA WATER REPELLENT SILOXANE 101',
-      subTitle: 'Deep Penetrating Silane-Siloxane Hydrophobic Impregnation',
-      category: 'repellents', categoryLabel: 'Water Repellents', subCategory: 'Siloxane Based',
-      priceDisplay: 'Rs 1,850.00 – Rs 16,200.00', minPrice: 1850.0, maxPrice: 16200.0,
-      onSale: true, saleDiscount: 'Hydrophobic',
-      rating: 4.9, reviewCount: 35, image: IMG.img01, badge: 'Nano Shield',
-      description: 'Silane-Siloxane based invisible hydrophobic impregnating sealer. Chemically bonds with silica in porous masonry, creating an intense lotus-leaf beading effect while maintaining 100% vapor permeability.',
-      keyFeatures: [
-        'Instant water beading with zero sheen or color change',
-        'Prevents efflorescence, salt blooming, and moss growth',
-        '100% Breathable — allows entrapped moisture to escape',
-        'Resistant to alkali attack and UV degradation'
+      packaging: '5 \u00D7 20 mm, 10 \u00D7 20 mm',
+      coverage: 'Rectangle and box profile \u2014 5 \u00D7 20 mm; 10 \u00D7 20 mm',
+      consumption: [
+        'A swell bar, also known as a hydrophilic waterstop, usually runs the whole length of a concrete joint and '
+        + 'comes in rolls that are 5 to 40 meters long.',
+        'A hydrophilic swell bar is a flexible waterstop strip used in construction joints to block water leaks by '
+        + 'expanding when wet.'
       ],
-      applications: ['Exposed red brick facades', 'Natural stone, sandstone & travertine', 'Exterior plaster and fair-face concrete', 'Heritage masonry preservation'],
-      coverage: '40 – 60 sq.ft / Liter (depending on porosity)',
-      curingTime: 'Water beading in 2 hours | Full hydrophobicity: 24 hours',
-      variants: [
-        { size: '1 Liter Can', price: 1850.0, unit: 'Can' },
-        { size: '5 Liter Can', price: 8200.0, unit: 'Can' },
-        { size: '10 Liter Can', price: 16200.0, unit: 'Can' }
+      guidance:
+        'To seal precast concrete elements, create a notch or recess where necessary. Choose a profile size so that '
+        + 'the assembled elements create adequate compression (pre-stress) at the joint. To fix the junction, use an '
+        + 'appropriate mounting cement or permanently elastic sealant.',
+      techData: [
+        { property: 'Product Type', value: 'Hydrophilic polymer waterstop / re-swellable joint sealing profile' },
+        { property: 'Density', value: 'Approx. 1.40 g/cm\u00B3' },
+        { property: 'Colour', value: 'Red' },
+        { property: 'Swelling Retardation', value: 'Yes' },
+        { property: 'Shore', value: '50' },
+        { property: 'Application Temperature', value: '10\u00B0C / 50\u00B0C' },
+        { property: 'Elongation', value: 'Approx. 500 \u2013 780%' },
+        { property: 'Hydrostatic Pressure', value: 'Approx. > 50 m (5 bar)' },
+        { property: 'Packaging', value: '5 \u00D7 20 mm, 10 \u00D7 20 mm' },
+        { property: 'Profile Types', value: 'Rectangle and box profile' }
       ],
-      technicalSpecs: { basePolymer: 'Oligomeric Silane-Siloxane Hybrid', penetrationDepth: '3mm to 8mm into substrate', vaporPermeability: 'Class I (Breathable)', shelfLife: '24 Months' }
-    },
-    {
-      id: 'mega-gap-fix-150', name: 'MEGA GAP-FIX (150 ML TUBE)',
-      subTitle: 'Elastomeric Crack Filler & Fast Repair Cartridge',
-      category: 'sealants', categoryLabel: 'Sealants & Gap Fillers', subCategory: 'Gap Fillers',
-      priceDisplay: 'Rs 1,562.50', minPrice: 1562.5, maxPrice: 1562.5,
-      originalMinPrice: 1640.63, onSale: true, saleDiscount: '5% OFF',
-      rating: 4.8, reviewCount: 62, image: IMG.img07, badge: 'Quick Fix',
-      description: 'Ready-to-use high-elasticity acrylic-polymer gap and crack sealant in an easy-squeeze nozzle tube. Perfect for sealing plaster hairline cracks, window frame joints, and door trims before painting.',
-      keyFeatures: [
-        'Paintable with water & oil based paints in 60 mins',
-        'Non-shrinking, non-slumping formula',
-        'Flexible sealant accommodates ±15% joint movement',
-        'Excellent adhesion to plaster, gypsum, wood and concrete'
+      standards: [
+        'Solid content: ~100%',
+        'Hardness: Approx. 4 Shore A',
+        'Density: Approx. 2.0 g/cm\u00B3'
       ],
-      applications: ['Wall & ceiling crack repair', 'Door & window frame perimeter sealing', 'Baseboard gap filling', 'Sanitary gaps'],
-      coverage: '12 – 15 running meters per 150ml tube (5x5mm joint)',
-      curingTime: 'Skin over: 15 mins | Sandable/Paintable: 2 hours',
-      variants: [
-        { size: '150 ml Squeeze Tube', price: 1562.5, originalPrice: 1640.63, unit: 'Tube' },
-        { size: 'Box of 12 Tubes', price: 17500.0, originalPrice: 18600.0, unit: 'Box' }
+      applicationGuidelines: [
+        {
+          title: 'Dispensing',
+          text: 'Chem Swell Pro (also called a hydrophilic waterstop or swell bar) is a pre-formed rubber or '
+            + 'polymer strip used in construction to seal concrete joints and stop water leaks.'
+        },
+        {
+          title: 'Mixing',
+          text: 'To use waterproof cement or mortar correctly, clean and dampen the surface, mix the product with '
+            + 'the precise amount of water or additive, and apply at least two thin, alternating coats.'
+        },
+        {
+          title: 'Uses',
+          text: 'Waterproofing membrane on exposed flat and pitched roofs, both for new construction and '
+            + 'refurbishment of old roofs.'
+        },
+        {
+          title: 'Application',
+          text: 'To seal precast concrete elements, create a notch or recess where necessary. Choose a profile '
+            + 'size so that the assembled elements create adequate compression (pre-stress) at the joint. To fix the '
+            + 'junction, use an appropriate mounting cement or permanently elastic sealant.'
+        },
+        {
+          title: 'Storage & Handling',
+          text: 'Store Chem Swell Pro in its original box somewhere cool, protected and dry. Keep the product away '
+            + 'from direct sunlight, extreme temperatures, heat sources and excess humidity. In tropical climates, '
+            + 'air-conditioning is recommended for storage. High temperatures and humidity can cause degradation and '
+            + 'shorten shelf life.'
+        },
+        {
+          title: 'Safety',
+          text: 'As with any construction chemicals, caution should always be used. Gloves and goggles are examples '
+            + 'of protective apparel that should be worn. Any splashes to the skin or eyes should be treated right '
+            + 'away with fresh water, and you should consult a doctor. If any of the product is inadvertently eaten, '
+            + 'contact for medical help right away rather than inducing vomiting.'
+        }
       ],
-      technicalSpecs: { basePolymer: 'High Elasticity Acrylic Latex', jointMovement: '± 15%', temperatureResistance: '-10°C to +75°C' }
-    },
-    {
-      id: 'mega-mesh-binder', name: 'MEGA MESH BINDER (REINFORCEMENT FABRIC)',
-      subTitle: 'Alkali-Resistant Woven Glass Fiber Reinforcement Mesh (145 g/m²)',
-      category: 'sealants', categoryLabel: 'Sealants & Gap Fillers', subCategory: 'Reinforcement Fabric',
-      priceDisplay: 'Rs 10,850.00 – Rs 43,400.00', minPrice: 10850.0, maxPrice: 43400.0,
-      onSale: true, saleDiscount: 'Pro Pack',
-      rating: 5.0, reviewCount: 41, image: IMG.img02,
-      description: 'High tensile woven fiberglass fabric with alkali-resistant zirconium coating. Embedded between coating layers to bridge live structural cracks, corners, and expansion joints.',
-      keyFeatures: [
-        'Alkali resistant (does not rot inside cementitious coatings)',
-        'High tensile strength (> 1600 N/5cm)',
-        'Flexible open-weave conforms easily to 90° pipe penetrations'
-      ],
-      applications: ['Roof membrane reinforcement', 'Corner fillets & parapet transitions', 'Expansion joint bridging'],
-      coverage: '50m² or 100m² roll coverage',
-      curingTime: 'Embedded wet-on-wet',
-      variants: [
-        { size: '25 Meter Roll (1m width)', price: 10850.0, unit: 'Roll' },
-        { size: '50 Meter Roll (1m width)', price: 21500.0, unit: 'Roll' },
-        { size: '100 Meter Full Contractor Roll', price: 43400.0, unit: 'Roll' }
-      ],
-      technicalSpecs: { basePolymer: 'Zirconia Alkali Resistant Glass Fiber', weight: '145 g/m²', tensileStrength: '1650 N / 50 mm' }
-    },
-    {
-      id: 'panda-seal-760', name: 'PANDA SEAL 760 (20KG BUCKET)',
-      subTitle: 'High Performance Industrial Polyurethane Joint Sealant & Mastic',
-      category: 'sealants', categoryLabel: 'Sealants & Gap Fillers', subCategory: 'Polyurethane Sealants',
-      priceDisplay: 'Rs 12,062.50', minPrice: 12062.5, maxPrice: 12062.5,
-      originalMinPrice: 12665.63, onSale: true, saleDiscount: '5% OFF',
-      rating: 4.9, reviewCount: 33, image: IMG.img08, badge: 'Heavy Duty',
-      description: 'Heavy duty elastomeric polyurethane expansion joint sealant with ±25% joint movement capability. Unmatched weather, fuel, and chemical resistance for industrial concrete pavements.',
-      keyFeatures: [
-        'High elasticity with ±25% dynamic expansion movement',
-        'Resistant to jet fuels, diesel, and industrial detergents',
-        'Bubble-free curing even in high humidity',
-        'High mechanical abrasion resistance'
-      ],
-      applications: ['Warehouse concrete floor expansion joints', 'Airport runway & highway joint sealing', 'Pre-cast concrete facade joints', 'Water treatment plant joints'],
-      coverage: 'Approx 35 – 45 linear meters per bucket (10x10mm joint)',
-      curingTime: 'Tack free: 90 mins | Full cure: 3mm per 24 hours',
-      variants: [{ size: '20 Kg Bucket', price: 12062.5, originalPrice: 12665.63, unit: 'Bucket' }],
-      technicalSpecs: { basePolymer: '1-Component Polyurethane Elastomer', shoreHardness: 'Shore A 35', jointMovement: '± 25%', elongation: '> 600%' }
-    },
-    {
-      id: 'panda-seal-750', name: 'PANDA SEAL 750 (20KG BUCKET)',
-      subTitle: 'Rubberized Bitumen Expansion Joint Pouring Mastic',
-      category: 'sealants', categoryLabel: 'Sealants & Gap Fillers', subCategory: 'Bitumen Mastics',
-      priceDisplay: 'Rs 3,237.50', minPrice: 3237.5, maxPrice: 3237.5,
-      originalMinPrice: 3399.38, onSale: true, saleDiscount: '5% OFF',
-      rating: 4.8, reviewCount: 27, image: IMG.img02,
-      description: 'Cold-applied rubberized bitumen mastic for horizontal concrete joint sealing, canal lining joints, and bridge approach slabs. Adheres firmly and remains flexible throughout temperature fluctuations.',
-      keyFeatures: [
-        'Cold applied — eliminates dangerous heating kettles',
-        'Excellent slump resistance in vertical & horizontal joints',
-        'Immune to biological and root degradation'
-      ],
-      applications: ['Irrigation canal joints', 'Basement slab construction joints', 'Foundation perimeter sealing'],
-      coverage: 'Approx 40 meters per 20kg bucket',
-      curingTime: 'Initial set: 4 hours | Full cure: 48 hours',
-      variants: [{ size: '20 Kg Bucket', price: 3237.5, originalPrice: 3399.38, unit: 'Bucket' }],
-      technicalSpecs: { basePolymer: 'Polymer Modified Bitumen Mastic', softeningPoint: '> 95°C', shelfLife: '18 Months' }
-    },
-    {
-      id: 'mega-add-mix-116', name: 'MEGA ADD-MIX 116',
-      subTitle: 'Integral Waterproofing & High-Range Water Reducing Admixture (2000-3000 PSI)',
-      category: 'admixtures', categoryLabel: 'Admixtures & Hardeners', subCategory: 'Integral Admixtures',
-      priceDisplay: 'Rs 318.75 – Rs 52,500.00', minPrice: 318.75, maxPrice: 52500.0,
-      onSale: true, saleDiscount: 'Factory Price',
-      rating: 4.9, reviewCount: 58, image: IMG.img01, badge: 'Site Essential',
-      description: 'Liquid chemical admixture that reduces water demand by up to 15% while plastifying the mix and creating a hydrophobic capillary network within cured concrete (2000 to 3000 PSI strength classes).',
-      keyFeatures: [
-        'Reduces concrete permeability by up to 60%',
-        'Eliminates bleed water and honeycombing in structural concrete',
-        'Improves compressive strength by 15-20%',
-        'Chloride-free — 100% safe for post-tensioned and reinforced concrete'
-      ],
-      applications: ['RCC roof slabs, columns and beams', 'Basement raft foundations & retaining walls', 'Plaster mortars and screeds', 'Pre-cast concrete products'],
-      coverage: 'Dosage: 150ml to 250ml per 50kg bag of cement',
-      curingTime: 'Normal concrete setting time',
-      variants: [
-        { size: '1 Liter Can', price: 318.75, unit: 'Can' },
-        { size: '5 Liter Can', price: 1450.0, unit: 'Can' },
-        { size: '20 Liter Drum', price: 5400.0, unit: 'Drum' },
-        { size: '210 Liter Industrial Drum', price: 52500.0, unit: 'Drum' }
-      ],
-      technicalSpecs: { basePolymer: 'Modified Lignosulfonate & Hydrophobic Surfactants', chlorideContent: '< 0.1% (Chloride Free)', specificGravity: '1.16 ± 0.02' }
-    },
-    {
-      id: 'mega-add-mix-694', name: 'MEGA ADD-MIX 694',
-      subTitle: 'Superplasticizer & Permeability Reducing Concrete Admixture (4000-5000 PSI)',
-      category: 'admixtures', categoryLabel: 'Admixtures & Hardeners', subCategory: 'High Performance Admixtures',
-      priceDisplay: 'Rs 368.75 – Rs 49,875.00', minPrice: 368.75, maxPrice: 49875.0,
-      onSale: true, saleDiscount: 'Pro Mix',
-      rating: 5.0, reviewCount: 44, image: IMG.img08, badge: 'High PSI',
-      description: 'High-range polycarboxylate ether (PCE) superplasticizer and crystalline water-tightness enhancer for high-grade structural concrete (4000 to 5000+ PSI). Allows high slump retention with ultra-low water-cement ratio.',
-      keyFeatures: [
-        'Up to 30% water reduction with self-compacting concrete flow',
-        'Dense micro-structure stops water ingress under 10 Bar pressure',
-        'Significantly accelerates early 3-day and 28-day strengths'
-      ],
-      applications: ['High-rise tower foundations', 'Bridge piers and marine concrete', 'Ready-mix batching plants', 'Water retaining reservoirs'],
-      coverage: 'Dosage: 300ml to 800ml per 100kg binder',
-      curingTime: 'Controlled workability for 90+ mins',
-      variants: [
-        { size: '1 Liter Can', price: 368.75, unit: 'Can' },
-        { size: '5 Liter Can', price: 1650.0, unit: 'Can' },
-        { size: '20 Liter Drum', price: 6200.0, unit: 'Drum' },
-        { size: '210 Liter Drum', price: 49875.0, unit: 'Drum' }
-      ],
-      technicalSpecs: { basePolymer: 'Polycarboxylate Ether (PCE) Polymer', specificGravity: '1.08 ± 0.02', standards: 'ASTM C494 Type F & G / BS 5075' }
-    },
-    {
-      id: 'modified-bitumen-membrane-aluminum', name: 'MODIFIED BITUMEN MEMBRANE ALUMINUM (4MM)',
-      subTitle: 'APP Torch-Applied Waterproofing Membrane with Embossed Aluminum Foil Face',
-      category: 'membranes', categoryLabel: 'Geomembranes & Liners', subCategory: 'Bitumen Membranes',
-      priceDisplay: 'Rs 9,875.00 – Rs 11,125.00', minPrice: 9875.0, maxPrice: 11125.0,
-      onSale: true, saleDiscount: 'Torch On',
-      rating: 4.9, reviewCount: 39, image: IMG.img04, badge: 'Heavy Shield',
-      description: 'Premium 4.0mm APP modified bitumen sheet reinforced with high-density spunbond polyester mat and faced with a pure embossed reflective aluminum foil. Shields the membrane from intense solar UV and punctures.',
-      keyFeatures: [
-        'Reflective aluminum face rejects 85% of solar heat',
-        'High puncture and static load puncture resistance',
-        '100% Impermeable barrier against standing rainwater',
-        'Torched seam welding creates monolithic fused joints'
-      ],
-      applications: ['Industrial flat roofs without top screed', 'Sloped metal roofs and gutters', 'Parapet capping and flashings'],
-      coverage: '10 sq. meters per roll (1m x 10m)',
-      curingTime: 'Instant upon torch-bonding and cooling',
-      variants: [
-        { size: '3.0mm Aluminum Foil Roll (10m²)', price: 9875.0, unit: 'Roll' },
-        { size: '4.0mm Heavy Duty Aluminum Foil Roll (10m²)', price: 11125.0, unit: 'Roll' }
-      ],
-      technicalSpecs: { basePolymer: 'APP Modified Bitumen with Non-Woven Polyester Carrier', thickness: '4.0 mm ± 0.2mm', softeningPoint: '> 150°C', tensileStrength: '800 N/5cm Longitudinal / 650 N/5cm Transverse' }
-    },
-    {
-      id: 'pvc-geomembrane-sheet-050', name: 'PVC GEOMEMBRANE SHEET (0.50MM)',
-      subTitle: 'Flexible Virgin PVC Waterproofing Liner for Reservoirs & Basements',
-      category: 'membranes', categoryLabel: 'Geomembranes & Liners', subCategory: 'PVC Membranes',
-      priceDisplay: 'Rs 116.25 / sq ft', minPrice: 116.25, maxPrice: 116.25,
-      originalMinPrice: 120.0, onSale: true, saleDiscount: 'Per Sq.Ft',
-      rating: 4.8, reviewCount: 26, image: IMG.img02,
-      description: 'High-density unreinforced thermoplastic polyvinyl chloride (PVC) geomembrane sheet. Highly flexible, root resistant, and weldable by hot-air leister guns for seamless pond, reservoir, and basement tanking.',
-      keyFeatures: [
-        'High elongation (> 300%) adapts to differential ground settlement',
-        'Resistant to aging, root penetration, and soil chemicals',
-        'Hot air or chemical solvent welded seams for 100% leak seal'
-      ],
-      applications: ['Agricultural water storage ponds', 'Basement blind-side tanking', 'Artificial lakes and canal linings', 'Roof green gardens'],
-      coverage: 'Sold per Square Foot (Roll width: 2.1m / 4.0m)',
-      curingTime: 'Welded instantly',
-      variants: [
-        { size: '0.50mm Thickness (Per Sq.Ft)', price: 116.25, originalPrice: 120.0, unit: 'Sq Ft' },
-        { size: '1.00mm Thickness (Per Sq.Ft)', price: 195.0, originalPrice: 210.0, unit: 'Sq Ft' },
-        { size: '1.50mm Thickness (Per Sq.Ft)', price: 265.0, originalPrice: 285.0, unit: 'Sq Ft' }
-      ],
-      technicalSpecs: { basePolymer: 'Virgin Polyvinyl Chloride (PVC)', elongationAtBreak: '> 320%', tearResistance: '> 45 N/mm' }
-    },
-    {
-      id: 'hdpe-liner-a-grade', name: 'HDPE LINER (A+ GRADE 1.0MM)',
-      subTitle: 'High Density Polyethylene Geomembrane for Pond & Landfill Tanking',
-      category: 'membranes', categoryLabel: 'Geomembranes & Liners', subCategory: 'HDPE Liners',
-      priceDisplay: 'Rs 145.00 – Rs 280.00 / sq ft', minPrice: 145.0, maxPrice: 280.0,
-      onSale: true, saleDiscount: 'Industrial',
-      rating: 5.0, reviewCount: 31, image: IMG.img09, badge: 'A+ Grade',
-      description: 'Smooth and textured high-density polyethylene (HDPE) geomembrane produced from premium virgin resin with 2.5% carbon black for exceptional UV durability (> 30 years outdoor life).',
-      keyFeatures: [
-        'Extreme chemical resistance to industrial effluents and leachates',
-        'Dual-track hot wedge welding with pressure test channel',
-        'Guaranteed zero permeability to toxic liquids'
-      ],
-      applications: ['Industrial effluent ponds', 'Hazardous waste containment', 'Mining heap leach pads', 'Fish farming aquaculture ponds'],
-      coverage: 'Custom roll supply per Sq.Ft / Sq.Meter',
-      curingTime: 'Hot wedge seam welded',
-      variants: [
-        { size: '1.0mm HDPE Liner (Per Sq.Ft)', price: 145.0, unit: 'Sq Ft' },
-        { size: '1.5mm Heavy Duty HDPE Liner (Per Sq.Ft)', price: 210.0, unit: 'Sq Ft' },
-        { size: '2.0mm Extreme HDPE Liner (Per Sq.Ft)', price: 280.0, unit: 'Sq Ft' }
-      ],
-      technicalSpecs: { basePolymer: '100% Virgin High Density Polyethylene (HDPE)', carbonBlackContent: '2.0 - 3.0%', density: '0.940 g/cm³', escr: '> 1500 Hours' }
+      importantInfo: [
+        { label: 'Supplied In', value: '5 \u00D7 20 mm, 10 \u00D7 20 mm' },
+        { label: 'Storage', value: 'Cool, covered and dry place; protect from direct sunlight and heat' },
+        { label: 'Shelf Life', value: '24 months in unopened original packaging, stored as suggested.' },
+        { label: 'Hazard Class', value: 'Non-hazardous goods.' }
+      ]
     }
   ];
 
   return {
     categories: categories,
+    systems: systems,
+    disclaimer: DISCLAIMER,
     products: products
   };
 })();

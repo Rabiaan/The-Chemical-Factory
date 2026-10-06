@@ -1,24 +1,50 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Product Detail — THE CHEMICAL FACTORY</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-src https://www.google.com https://www.youtube-nocookie.com; object-src 'none'; base-uri 'self'; form-action 'self'" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <title>Product Detail - THE CHEMICAL FACTORY</title>
+      <!-- SEO (Phase 3.4) -->
+      <meta name="description" content="Technical specifications, packaging, coverage rates and application guidelines for The Chemical Factory construction chemical range." />
+      <meta name="robots" content="index, follow, max-image-preview:large" />
+      <meta property="og:type" content="product" />
+      <meta property="og:site_name" content="The Chemical Factory" />
+      <meta property="og:title" content="Product Detail - THE CHEMICAL FACTORY" />
+      <meta property="og:description" content="Technical specifications, packaging, coverage rates and application guidelines for The Chemical Factory construction chemical range." />
+      <meta property="og:image" content="https://the-chemical-factory.vercel.app/images/product-banner.jpg" />
+      <meta property="og:image:alt" content="Product Detail - THE CHEMICAL FACTORY" />
+      <link rel="canonical" href="https://the-chemical-factory.vercel.app/products" />
+      <meta property="og:url" content="https://the-chemical-factory.vercel.app/products" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="Product Detail - THE CHEMICAL FACTORY" />
+      <meta name="twitter:description" content="Technical specifications, packaging, coverage rates and application guidelines for The Chemical Factory construction chemical range." />
+      <meta name="twitter:image" content="https://the-chemical-factory.vercel.app/images/product-banner.jpg" />
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/icons-anim.css">
     <link rel="stylesheet" href="css/pages.css">
     <link rel="icon" type="image/png" href="images/fav-log.png" />
-    <meta property="og:image" content="images/logo.jpeg" />
-    <meta name="twitter:image" content="images/logo.jpeg" />
   </head>
   <body data-page="products">
     <div id="preloader-root"></div>
     <div id="nav-root"></div>
 
+    <nav class="page-crumbs" aria-label="Breadcrumb">
+      <ol class="page-crumbs__list">
+        <li class="page-crumbs__item"><a href="index.html">Home</a></li>
+        <li class="page-crumbs__sep" aria-hidden="true">/</li>
+        <li class="page-crumbs__item"><a href="products.html">Products</a></li>
+        <li class="page-crumbs__sep" aria-hidden="true">/</li>
+        <li class="page-crumbs__item" aria-current="page"><span id="crumb-product">Product</span></li>
+      </ol>
+    </nav>
+
     <section class="page-hero">
-      <div class="page-hero__crumb" id="detail-crumb">Products</div>
-      <h1 class="page-hero__title" id="detail-title">Product</h1>
-      <p class="page-hero__sub" id="detail-sub"></p>
+      <picture class="page-hero__banner-media">
+        <source media="(max-width: 768px)" srcset="images/mobile_banner.webp" />
+        <img class="page-hero__banner" src="images/banner.webp" alt="" width="1983" height="793" loading="eager" fetchpriority="high" decoding="async" />
+      </picture>
     </section>
 
     <div id="detail-missing" class="page-section hidden">
@@ -41,33 +67,18 @@
           <div class="detail-grid">
             <div class="detail-media">
               <div class="detail-imgbox">
-                <img id="detail-img" src="images/img-01.jpg" alt="Product image" />
+                <img id="detail-img" src="products/Chem-2k-Inject-Pro.webp" alt="Product image" width="1600" height="1000" loading="lazy" decoding="async" />
               </div>
-              <div class="detail-chips">
-                <div class="detail-chip">Lab Tested ASTM/BS</div>
-                <div class="detail-chip">Direct Factory Supply</div>
-                <div class="detail-chip">In Stock &bull; Ready to Dispatch</div>
-              </div>
+              <div class="detail-chips" id="detail-chips"></div>
             </div>
             <div>
               <div class="detail-panel">
                 <div class="detail-cat" id="detail-cat"></div>
-                <h2 class="detail-title" id="detail-name"></h2>
+                <h1 class="detail-title" id="detail-name"></h1>
                 <p class="detail-sub" id="detail-subtitle"></p>
-                <span class="detail-rating" id="detail-rating"></span>
                 <p class="detail-desc" id="detail-desc"></p>
               </div>
-              <div class="detail-panel">
-                <h3 class="detail-panel__title">Pack Sizes &amp; Prices</h3>
-                <div class="data-table-wrap">
-                  <table class="data-table">
-                    <thead>
-                      <tr><th>Pack Size</th><th>Unit</th><th>Price</th></tr>
-                    </thead>
-                    <tbody id="detail-variants"></tbody>
-                  </table>
-                </div>
-              </div>
+              <div id="detail-facts" class="detail-extra detail-extra--top"></div>
               <div class="detail-actions">
                 <a id="detail-wa" class="btn-wa" href="https://wa.me/923043600297" target="_blank" rel="noopener noreferrer">
                   <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16.004 3.2c-7.06 0-12.8 5.74-12.8 12.8 0 2.26.59 4.46 1.71 6.4L3.2 28.8l6.55-1.71a12.74 12.74 0 0 0 6.25 1.63c7.06 0 12.8-5.74 12.8-12.8 0-3.42-1.33-6.63-3.75-9.05a12.72 12.72 0 0 0-9.05-3.67zm7.48 18.28c-.31.88-1.83 1.71-2.52 1.77-.68.07-1.35.31-4.53-1.01-3.83-1.59-6.25-5.72-6.44-5.98-.19-.26-1.54-2.04-1.54-3.89s.98-2.76 1.32-3.14c.34-.38.75-.48 1-.48.25 0 .5.01.72.01.23.01.54-.09.85.65.31.76 1.06 2.62 1.15 2.81.1.19.16.42.03.68-.13.26-.19.42-.39.65-.19.23-.41.51-.58.68-.19.19-.39.4-.17.78.23.38 1.01 1.66 2.16 2.69 1.49 1.33 2.74 1.74 3.13 1.94.39.19.61.16.84-.1.23-.26.97-1.13 1.22-1.52.26-.39.52-.32.87-.19.36.13 2.26 1.07 2.65 1.26.39.19.64.29.74.45.09.16.09.94-.23 1.81z"/></svg>
@@ -88,28 +99,8 @@
               <ul class="detail-list" id="detail-features"></ul>
             </div>
             <div class="detail-panel">
-              <h3 class="detail-panel__title">Recommended Substrates &amp; Areas</h3>
+              <h3 class="detail-panel__title">Recommended Areas &amp; Substrates</h3>
               <ul class="detail-list" id="detail-apps"></ul>
-            </div>
-          </div>
-          <div class="detail-extra">
-            <div class="detail-extra__card">
-              <div class="detail-extra__icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
-              </div>
-              <div>
-                <div class="detail-extra__label">Theoretical Coverage</div>
-                <div class="detail-extra__value" id="detail-coverage"></div>
-              </div>
-            </div>
-            <div class="detail-extra__card">
-              <div class="detail-extra__icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              </div>
-              <div>
-                <div class="detail-extra__label">Curing Schedule</div>
-                <div class="detail-extra__value" id="detail-curing"></div>
-              </div>
             </div>
           </div>
         </div>
@@ -124,7 +115,7 @@
           <div class="data-table-wrap">
             <table class="data-table">
               <thead>
-                <tr><th>Property</th><th>Specification</th></tr>
+                <tr><th>Property</th><th>Typical Value</th></tr>
               </thead>
               <tbody id="detail-specs"></tbody>
             </table>
@@ -134,6 +125,38 @@
 
       <section class="page-section page-section--muted">
         <div class="container">
+          <div class="detail-lists">
+            <div class="detail-panel" id="detail-consumption"></div>
+            <div class="detail-panel">
+              <h3 class="detail-panel__title">Standards &amp; Testing</h3>
+              <ul class="detail-list" id="detail-standards"></ul>
+            </div>
+          </div>
+          <div class="detail-extra">
+            <h3 class="detail-panel__title" style="margin-top: 2rem;">Important Information</h3>
+            <div class="info-cards" id="detail-important"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="page-section">
+        <div class="container">
+          <div class="section-head">
+            <h2 class="section-head__title">Application Guidelines</h2>
+            <p class="section-head__sub">Step-by-step site procedure for correct mixing, placement and curing.</p>
+          </div>
+          <div class="guidelines" id="detail-guidelines"></div>
+        </div>
+      </section>
+
+      <section class="page-section page-section--muted">
+        <div class="container">
+          <div id="detail-datasheet-cta"></div>
+        </div>
+      </section>
+
+      <section class="page-section">
+        <div class="container">
           <div class="section-head">
             <h2 class="section-head__title">Related Products</h2>
             <p class="section-head__sub">More systems from the same category.</p>
@@ -141,18 +164,30 @@
           <div class="products__grid" id="related-grid"></div>
         </div>
       </section>
+
+      <section class="page-section page-section--muted">
+        <div class="container">
+          <div class="detail-disclaimer">
+            <h3 class="detail-disclaimer__title">Disclaimer</h3>
+            <p class="detail-disclaimer__text" id="detail-disclaimer"></p>
+          </div>
+        </div>
+      </section>
     </div>
 
     <section class="page-section">
       <div class="container">
         <div class="cta-band">
-          <div class="cta-band__bg"><img src="images/img-04.jpg" alt=""></div>
+          <div class="cta-band__bg"><img src="images/img-04.jpg" alt="" width="800" height="533" loading="lazy" decoding="async"></div>
           <div class="cta-band__box">
-            <h2 class="cta-band__title">Get Contractor &amp; Bulk Pricing</h2>
-            <p class="cta-band__sub">Talk to a chemical engineer for project-specific rates, technical guidance, and site batch tests.</p>
+<h2 class="cta-band__title">Book a Free <span id="detail-cta-product">Site Inspection</span></h2>
+            <p class="cta-band__sub">Tell us about the structure and the symptoms. We'll carry your answers straight into
+              our contact form so nothing gets retyped - an engineer responds within one business day.</p>
             <div class="cta-band__actions">
-              <a href="https://wa.me/923043600297" class="btn-white"><span>WhatsApp Us</span></a>
-              <!-- <a href="datasheets.html" class="btn-outline">Browse Datasheets</a> -->
+              <button type="button" class="btn-white js-open-quote js-open-inspection">
+                <span>Start Inspection</span><span data-icon="arrow-right"></span>
+              </button>
+              <a href="https://wa.me/923043600297" class="btn-outline" target="_blank" rel="noopener noreferrer">WhatsApp Us</a>
             </div>
           </div>
         </div>
@@ -162,12 +197,15 @@
     <div id="footer-root"></div>
     <div id="modal-root"></div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="js/vendor/gsap.min.js"></script>
+    <script src="js/vendor/ScrollTrigger.min.js"></script>
+    <script src="js/motion.js"></script>
     <script src="js/icons.js"></script>
     <script src="js/components.js"></script>
     <script src="js/products-data.js"></script>
     <script src="js/products.js"></script>
+    <script src="js/forms.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
   </body>
 </html>

@@ -1,31 +1,50 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact — THE CHEMICAL FACTORY</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-src https://www.google.com https://www.youtube-nocookie.com; object-src 'none'; base-uri 'self'; form-action 'self'" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <title>Contact - THE CHEMICAL FACTORY</title>
+      <!-- SEO (Phase 3.4) -->
+      <meta name="description" content="Contact The Chemical Factory in Karachi for product advice, technical datasheets, project quotations and site support. Call +92 304 3600297 or email dechemicalfactory@gmail.com." />
+      <meta name="robots" content="index, follow, max-image-preview:large" />
+      <meta property="og:type" content="website" />
+      <meta property="og:site_name" content="The Chemical Factory" />
+      <meta property="og:title" content="Contact - THE CHEMICAL FACTORY" />
+      <meta property="og:description" content="Contact The Chemical Factory in Karachi for product advice, technical datasheets, project quotations and site support. Call +92 304 3600297 or email dechemicalfactory@gmail.com." />
+      <meta property="og:image" content="https://the-chemical-factory.vercel.app/images/roof-structure.jpg" />
+      <meta property="og:image:alt" content="Contact - THE CHEMICAL FACTORY" />
+      <link rel="canonical" href="https://the-chemical-factory.vercel.app/contact" />
+      <meta property="og:url" content="https://the-chemical-factory.vercel.app/contact" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="Contact - THE CHEMICAL FACTORY" />
+      <meta name="twitter:description" content="Contact The Chemical Factory in Karachi for product advice, technical datasheets, project quotations and site support. Call +92 304 3600297 or email dechemicalfactory@gmail.com." />
+      <meta name="twitter:image" content="https://the-chemical-factory.vercel.app/images/roof-structure.jpg" />
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/icons-anim.css">
     <link rel="stylesheet" href="css/pages.css">
     <link rel="icon" type="image/png" href="images/fav-log.png" />
-    <meta property="og:image" content="images/logo.jpeg" />
-    <meta name="twitter:image" content="images/logo.jpeg" />
   </head>
   <body data-page="contact">
     <div id="preloader-root"></div>
     <div id="nav-root"></div>
 
+    <nav class="page-crumbs" aria-label="Breadcrumb">
+      <ol class="page-crumbs__list">
+        <li class="page-crumbs__item"><a href="index.html">Home</a></li>
+        <li class="page-crumbs__sep" aria-hidden="true">/</li>
+        <li class="page-crumbs__item" aria-current="page">Contact</li>
+      </ol>
+    </nav>
+
     <section class="page-hero">
-      <div class="page-hero__crumb">
-        <span>Home</span>
-        <i>/</i>
-        <span>Get In Touch</span>
-      </div>
-      <h1 class="page-hero__title">Let's Talk <em>Specifications</em></h1>
-      <p class="page-hero__sub">
-        Reach our technical team for product recommendations, bulk pricing, datasheets, or on-site
-        application support — we typically respond within one business day.
-      </p>
+      <picture class="page-hero__banner-media">
+        <source media="(max-width: 768px)" srcset="images/mobile_banner.webp" />
+        <img class="page-hero__banner" src="images/banner.webp" alt="" width="1983" height="793" loading="eager" fetchpriority="high" decoding="async" />
+      </picture>
+      <h1 class="page-hero__title"></h1>
+      <p class="page-hero__sub"></p>
     </section>
 
     <section class="page-section">
@@ -37,22 +56,38 @@
               <p class="section-head__sub" style="margin-top:0.4rem;">Tell us about your structure and the leak symptoms you're seeing.</p>
             </div>
 
-            <form id="contact-form" class="form-grid-2" novalidate>
+<form id="contact-form" class="form-grid-2" novalidate method="post" action="send-mail.php">
+              <!-- Honeypot: hidden from people, tempting to bots. Real submissions
+                   that fill this are dropped silently by js/forms.js. -->
+              <div class="hp-field" aria-hidden="true">
+                <label for="contact-website">Company website</label>
+                <input type="text" id="contact-website" name="company-website" tabindex="-1" autocomplete="off" value="" />
+              </div>
+
               <div class="form-field">
-                <label for="contact-name">Full Name *</label>
-                <input type="text" id="contact-name" placeholder="e.g. John Miller" required />
+                <label for="contact-name">Full Name <span aria-hidden="true">*</span></label>
+                <input type="text" id="contact-name" name="name" autocomplete="name" maxlength="100"
+                       placeholder="e.g. Ahmed Khan" required data-validate="name"
+                       aria-describedby="contact-name-error" aria-required="true" />
+                <p class="form-error" id="contact-name-error" aria-live="polite"></p>
               </div>
               <div class="form-field">
-                <label for="contact-phone">Phone Number *</label>
-                <input type="tel" id="contact-phone" placeholder="e.g. +1 (555) 019-2834" required />
+                <label for="contact-phone">Phone Number <span aria-hidden="true">*</span></label>
+                <input type="tel" id="contact-phone" name="phone" autocomplete="tel" maxlength="20"
+                       placeholder="e.g. +92 304 3600297" required data-validate="phone"
+                       aria-describedby="contact-phone-error" aria-required="true" />
+                <p class="form-error" id="contact-phone-error" aria-live="polite"></p>
               </div>
               <div class="form-field">
-                <label for="contact-email">Email Address</label>
-                <input type="email" id="contact-email" placeholder="john@example.com" />
+                <label for="contact-email">Email Address <span class="form-field__opt">(optional)</span></label>
+                <input type="email" id="contact-email" name="email" autocomplete="email" maxlength="254"
+                       placeholder="name@example.com" data-validate="email"
+                       aria-describedby="contact-email-error" />
+                <p class="form-error" id="contact-email-error" aria-live="polite"></p>
               </div>
               <div class="form-field">
                 <label for="contact-subject">Subject</label>
-                <select id="contact-subject">
+                <select id="contact-subject" name="subject">
                   <option>Free Site Inspection</option>
                   <option>Project Quote</option>
                   <option>Technical Datasheet Request</option>
@@ -63,9 +98,13 @@
               </div>
               <div class="form-field" style="grid-column:1/-1;">
                 <label for="contact-message">Project Details</label>
-                <textarea id="contact-message" rows="5" placeholder="Describe your structure type, surface area, and any active leaks..."></textarea>
+                <textarea id="contact-message" name="message" rows="5" maxlength="500"
+                          placeholder="Describe your structure type, surface area, and any active leaks..."
+                          data-validate="message" aria-describedby="contact-message-error contact-message-hint"></textarea>
+                <p class="form-hint" id="contact-message-hint">Up to 500 characters.</p>
+                <p class="form-error" id="contact-message-error" aria-live="polite"></p>
               </div>
-              <div class="form-field" style="grid-column:1/-1; margin-bottom:0;">
+              <div class="form-field form-field--submit" style="grid-column:1/-1; margin-bottom:0;">
                 <button type="submit" class="btn-burgundy">
                   <span>Send Message</span>
                   <span class="btn-burgundy__circle">
@@ -84,7 +123,7 @@
                 </div>
                 <div>
                   <div class="info-card__label">Head Office</div>
-                  <div class="info-card__value">12 Chemical Works Avenue, Industrial District</div>
+                  <div class="info-card__value">Office #1, Plot #99-C, Street #11, Jami Commercial, DHA Phase VII, Karachi, Pakistan</div>
                 </div>
               </div>
               <div class="info-card">
@@ -93,7 +132,9 @@
                 </div>
                 <div>
                   <div class="info-card__label">Phone / WhatsApp</div>
-                  <div class="info-card__value"><a href="tel:+15550192834">+1 (555) 019-2834</a></div>
+                  <div class="info-card__value"><a href="tel:+923043600297">+92 304 3600297</a></div>
+                  <div class="info-card__label">Landline</div>
+                  <div class="info-card__value"><a href="tel:+922135885870">+92 21 35885870</a></div>
                 </div>
               </div>
               <div class="info-card">
@@ -102,7 +143,7 @@
                 </div>
                 <div>
                   <div class="info-card__label">Email</div>
-                  <div class="info-card__value"><a href="mailto:info@thechemicalfactory.com">info@thechemicalfactory.com</a></div>
+                  <div class="info-card__value"><a href="mailto:dechemicalfactory@gmail.com">dechemicalfactory@gmail.com</a></div>
                 </div>
               </div>
               <div class="info-card">
@@ -111,7 +152,7 @@
                 </div>
                 <div>
                   <div class="info-card__label">Working Hours</div>
-                  <div class="info-card__value">Mon – Sat · 8:00 AM – 6:00 PM</div>
+                  <div class="info-card__value">Mon - Sat A.M 8:00 AM - 6:00 PM</div>
                 </div>
               </div>
             </div>
@@ -120,9 +161,13 @@
 
         <div class="map-wrap" data-reveal>
           <div class="map-wrap__frame">
+<!-- sandbox: no allow-forms, no allow-top-navigation, no allow-modals.
+                 Maps needs scripts + same-origin for its own tiles/storage, popups for
+                 "Open in Google Maps". Do not add allow-top-navigation. -->
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3621.000705163662!2d67.0707023!3d24.8296495!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33d0077c4d9a9%3A0x1d5560888be08541!2sThe%20Chemical%20Factory!5e0!3m2!1sen!2s!4v1786824204398!5m2!1sen!2s"
               title="The Chemical Factory location on Google Maps"
+              sandbox="allow-scripts allow-same-origin allow-popups"
               allowfullscreen=""
               loading="lazy"
               referrerpolicy="strict-origin-when-cross-origin"></iframe>
@@ -134,7 +179,7 @@
     <section class="page-section page-section--muted">
       <div class="container">
         <div class="cta-band" data-reveal>
-          <div class="cta-band__bg"><img src="images/roof-structure.jpg" alt=""></div>
+          <div class="cta-band__bg"><img src="images/roof-structure.jpg" alt="" width="1600" height="1067" loading="lazy" decoding="async"></div>
           <div class="cta-band__box">
             <h2 class="cta-band__title">Prefer a Fast Quote?</h2>
             <p class="cta-band__sub">
@@ -151,10 +196,13 @@
     <div id="footer-root"></div>
     <div id="modal-root"></div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="js/vendor/gsap.min.js"></script>
+    <script src="js/vendor/ScrollTrigger.min.js"></script>
+    <script src="js/motion.js"></script>
     <script src="js/icons.js"></script>
     <script src="js/components.js"></script>
+    <script src="js/forms.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
   </body>
 </html>

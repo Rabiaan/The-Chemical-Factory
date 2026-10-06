@@ -1,212 +1,307 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Projects — THE CHEMICAL FACTORY</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-src https://www.google.com https://www.youtube-nocookie.com; object-src 'none'; base-uri 'self'" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <title>Projects - THE CHEMICAL FACTORY</title>
+      <!-- SEO (Phase 3.4) -->
+      <meta name="description" content="Completed waterproofing and structural repair projects across Pakistan, including commercial, industrial and residential work." />
+      <meta name="robots" content="index, follow, max-image-preview:large" />
+      <meta property="og:type" content="website" />
+      <meta property="og:site_name" content="The Chemical Factory" />
+      <meta property="og:title" content="Projects - THE CHEMICAL FACTORY" />
+      <meta property="og:description" content="Completed waterproofing and structural repair projects across Pakistan, including commercial, industrial and residential work." />
+      <meta property="og:image" content="https://the-chemical-factory.vercel.app/images/construction.jpg" />
+      <meta property="og:image:alt" content="Projects - THE CHEMICAL FACTORY" />
+      <link rel="canonical" href="https://the-chemical-factory.vercel.app/projects" />
+      <meta property="og:url" content="https://the-chemical-factory.vercel.app/projects" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="Projects - THE CHEMICAL FACTORY" />
+      <meta name="twitter:description" content="Completed waterproofing and structural repair projects across Pakistan, including commercial, industrial and residential work." />
+      <meta name="twitter:image" content="https://the-chemical-factory.vercel.app/images/construction.jpg" />
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/icons-anim.css">
     <link rel="stylesheet" href="css/pages.css">
     <link rel="icon" type="image/png" href="images/fav-log.png" />
-    <meta property="og:image" content="images/logo.jpeg" />
-    <meta name="twitter:image" content="images/logo.jpeg" />
   </head>
   <body data-page="projects">
     <div id="preloader-root"></div>
     <div id="nav-root"></div>
 
+    <nav class="page-crumbs" aria-label="Breadcrumb">
+      <ol class="page-crumbs__list">
+        <li class="page-crumbs__item"><a href="index.html">Home</a></li>
+        <li class="page-crumbs__sep" aria-hidden="true">/</li>
+        <li class="page-crumbs__item" aria-current="page">Projects</li>
+      </ol>
+    </nav>
+
     <section class="page-hero">
-      <div class="page-hero__crumb">
-        <span>Home</span>
-        <i>/</i>
-        <span>Project Portfolio</span>
-      </div>
-      <h1 class="page-hero__title">Built On <em>Proven</em><br />Performance</h1>
-      <p class="page-hero__sub">
-        A look at the commercial, residential, and infrastructure projects where our waterproofing
-        systems have been specified, applied, and tested against real-world conditions.
-      </p>
+      <picture class="page-hero__banner-media">
+        <source media="(max-width: 768px)" srcset="images/mobile_banner.webp" />
+        <img class="page-hero__banner" src="images/banner.webp" alt="" width="1983" height="793" loading="eager" fetchpriority="high" decoding="async" />
+      </picture>
+      <h1 class="page-hero__title"></h1>
+      <p class="page-hero__sub"></p>
     </section>
 
     <section class="page-section">
       <div class="container">
         <div class="filter-bar" id="project-filter-bar">
           <button type="button" class="filter-btn is-active" data-category="All">All</button>
-          <button type="button" class="filter-btn" data-category="Terrace & Roof">Terrace &amp; Roof</button>
-          <button type="button" class="filter-btn" data-category="Basement & Tanking">Basement &amp; Tanking</button>
-          <button type="button" class="filter-btn" data-category="Wet Areas">Wet Areas</button>
-          <button type="button" class="filter-btn" data-category="Industrial">Industrial</button>
+          <button type="button" class="filter-btn" data-category="Photos">Photos</button>
+          <button type="button" class="filter-btn" data-category="Videos">Videos</button>
         </div>
 
         <div class="projects__grid" id="projects-grid">
-          <div class="project-card" data-category="Basement & Tanking" data-index="0">
-            <img src="images/construction.jpg" alt="Commercial Office Foundation Tanking" />
-            <div class="project-card__top">
-              <span class="project-card__year">2024</span>
+          <div class="project-card m6 b7" data-category="Photos" data-type="image" data-src="projects/WhatsApp%20Image%202026-10-05%20at%209.49.47%20PM.webp" data-alt="Waterproofing project site photo">
+            <img src="projects/WhatsApp%20Image%202026-10-05%20at%209.49.47%20PM.webp" alt="Waterproofing project site photo" width="1080" height="772" loading="lazy" decoding="async" />
+            <div class="project-card__top project-card__top--single">
               <span class="project-card__eye">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
               </span>
-            </div>
-            <div class="project-card__bottom">
-              <span class="project-card__cat">Basement &amp; Tanking</span>
-              <h3 class="project-card__title">Commercial Office Foundation Tanking</h3>
-              <p class="project-card__loc">Metropolitan Financial District</p>
             </div>
           </div>
 
-          <div class="project-card" data-category="Terrace & Roof" data-index="1">
-            <img src="images/roof-structure.jpg" alt="Modern Residential Terrace Waterproofing" />
-            <div class="project-card__top">
-              <span class="project-card__year">2024</span>
+          <div class="project-card m6 b5" data-category="Photos" data-type="image" data-src="projects/WhatsApp%20Image%202026-10-05%20at%209.49.48%20PM.webp" data-alt="Waterproofing project site photo">
+            <img src="projects/WhatsApp%20Image%202026-10-05%20at%209.49.48%20PM.webp" alt="Waterproofing project site photo" width="500" height="475" loading="lazy" decoding="async" />
+            <div class="project-card__top project-card__top--single">
               <span class="project-card__eye">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
               </span>
-            </div>
-            <div class="project-card__bottom">
-              <span class="project-card__cat">Terrace &amp; Roof</span>
-              <h3 class="project-card__title">Modern Residential Terrace Waterproofing</h3>
-              <p class="project-card__loc">Green Valley Estates</p>
             </div>
           </div>
 
-          <div class="project-card" data-category="Wet Areas" data-index="2">
-            <img src="images/wet-area.jpg" alt="Luxury Home Wet Area and Pool Sealing" />
-            <div class="project-card__top">
-              <span class="project-card__year">2025</span>
+          <div class="project-card project-card--video project-card--port m6 b4" data-category="Videos" data-type="video" data-src="projects/WhatsApp%20Video%202026-10-05%20at%209.50.07%20PM_converted.mp4">
+            <video src="projects/WhatsApp%20Video%202026-10-05%20at%209.50.07%20PM_converted.mp4" width="478" height="850" preload="none" poster="projects/posters/WhatsApp%20Video%202026-10-05%20at%209.50.07%20PM_converted.jpg" muted playsinline aria-label="Waterproofing project site video"></video>
+            <div class="project-card__top project-card__top--single">
               <span class="project-card__eye">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
               </span>
-            </div>
-            <div class="project-card__bottom">
-              <span class="project-card__cat">Wet Areas</span>
-              <h3 class="project-card__title">Luxury Home Wet Area &amp; Pool Sealing</h3>
-              <p class="project-card__loc">Coastal Crest Villas</p>
             </div>
           </div>
 
-          <div class="project-card" data-category="Basement & Tanking" data-index="3">
-            <img src="images/apartment.jpg" alt="Apartment Complex Sub-structure Upgrade" />
-            <div class="project-card__top">
-              <span class="project-card__year">2023</span>
+          <div class="project-card project-card--video project-card--port m6 b4" data-category="Videos" data-type="video" data-src="projects/WhatsApp%20Video%202026-10-05%20at%209.50.08%20PM_converted.mp4">
+            <video src="projects/WhatsApp%20Video%202026-10-05%20at%209.50.08%20PM_converted.mp4" width="478" height="850" preload="none" poster="projects/posters/WhatsApp%20Video%202026-10-05%20at%209.50.08%20PM_converted.jpg" muted playsinline aria-label="Waterproofing project site video"></video>
+            <div class="project-card__top project-card__top--single">
               <span class="project-card__eye">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
               </span>
-            </div>
-            <div class="project-card__bottom">
-              <span class="project-card__cat">Basement &amp; Tanking</span>
-              <h3 class="project-card__title">Apartment Complex Sub-structure Upgrade</h3>
-              <p class="project-card__loc">Riverside Towers</p>
             </div>
           </div>
 
-          <div class="project-card" data-category="Industrial" data-index="4">
-            <img src="images/warehouse.jpg" alt="Industrial Warehouse Polyurea Coating" />
-            <div class="project-card__top">
-              <span class="project-card__year">2022</span>
+          <div class="project-card project-card--video project-card--port m6 b4" data-category="Videos" data-type="video" data-src="projects/WhatsApp%20Video%202026-10-05%20at%209.50.22%20PM_converted.mp4">
+            <video src="projects/WhatsApp%20Video%202026-10-05%20at%209.50.22%20PM_converted.mp4" width="720" height="1280" preload="none" poster="projects/posters/WhatsApp%20Video%202026-10-05%20at%209.50.22%20PM_converted.jpg" muted playsinline aria-label="Waterproofing project site video"></video>
+            <div class="project-card__top project-card__top--single">
               <span class="project-card__eye">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
               </span>
-            </div>
-            <div class="project-card__bottom">
-              <span class="project-card__cat">Industrial</span>
-              <h3 class="project-card__title">Industrial Warehouse Polyurea Coating</h3>
-              <p class="project-card__loc">Logistics Hub North</p>
             </div>
           </div>
 
-          <div class="project-card" data-category="Terrace & Roof" data-index="5">
-            <img src="images/flat-roof.jpg" alt="Storm Damage Flat Roof Restoration" />
-            <div class="project-card__top">
-              <span class="project-card__year">2025</span>
+          <div class="project-card m6 b6" data-category="Photos" data-type="image" data-src="projects/WhatsApp%20Image%202026-10-05%20at%209.50.07%20PM.webp" data-alt="Waterproofing project site photo">
+            <img src="projects/WhatsApp%20Image%202026-10-05%20at%209.50.07%20PM.webp" alt="Waterproofing project site photo" width="2560" height="1440" loading="lazy" decoding="async" />
+            <div class="project-card__top project-card__top--single">
               <span class="project-card__eye">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
               </span>
-            </div>
-            <div class="project-card__bottom">
-              <span class="project-card__cat">Terrace &amp; Roof</span>
-              <h3 class="project-card__title">Storm Damage Flat Roof Restoration</h3>
-              <p class="project-card__loc">Harbor Commercial Center</p>
             </div>
           </div>
 
-          <div class="project-card" data-category="Terrace & Roof" data-index="6">
-            <img src="images/application.jpg" alt="Shopping Mall Terrace Membrane Overlay" />
-            <div class="project-card__top">
-              <span class="project-card__year">2024</span>
+          <div class="project-card m6 b6" data-category="Photos" data-type="image" data-src="projects/WhatsApp%20Image%202026-10-05%20at%209.50.08%20PM.webp" data-alt="Waterproofing project site photo">
+            <img src="projects/WhatsApp%20Image%202026-10-05%20at%209.50.08%20PM.webp" alt="Waterproofing project site photo" width="1280" height="960" loading="lazy" decoding="async" />
+            <div class="project-card__top project-card__top--single">
               <span class="project-card__eye">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
               </span>
-            </div>
-            <div class="project-card__bottom">
-              <span class="project-card__cat">Terrace &amp; Roof</span>
-              <h3 class="project-card__title">Shopping Mall Terrace Membrane Overlay</h3>
-              <p class="project-card__loc">Downtown Shopping District</p>
             </div>
           </div>
 
-          <div class="project-card" data-category="Industrial" data-index="7">
-            <img src="images/technician.jpg" alt="Petrochemical Plant Concrete Crack Injection" />
-            <div class="project-card__top">
-              <span class="project-card__year">2023</span>
+          <div class="project-card project-card--video project-card--port m6 b4" data-category="Videos" data-type="video" data-src="projects/WhatsApp%20Video%202026-10-05%20at%209.50.23%20PM_converted.mp4">
+            <video src="projects/WhatsApp%20Video%202026-10-05%20at%209.50.23%20PM_converted.mp4" width="480" height="864" preload="none" poster="projects/posters/WhatsApp%20Video%202026-10-05%20at%209.50.23%20PM_converted.jpg" muted playsinline aria-label="Waterproofing project site video"></video>
+            <div class="project-card__top project-card__top--single">
               <span class="project-card__eye">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
               </span>
-            </div>
-            <div class="project-card__bottom">
-              <span class="project-card__cat">Industrial</span>
-              <h3 class="project-card__title">Petrochemical Plant Concrete Injection</h3>
-              <p class="project-card__loc">Industrial Park</p>
             </div>
           </div>
 
-          <div class="project-card" data-category="Terrace & Roof" data-index="8">
-            <img src="images/roof-structure.jpg" alt="City Center Office Roof Recoating" />
-            <div class="project-card__top">
-              <span class="project-card__year">2021</span>
+          <div class="project-card project-card--video project-card--port m6 b4" data-category="Videos" data-type="video" data-src="projects/WhatsApp%20Video%202026-10-05%20at%209.50.24%20PM_converted.mp4">
+            <video src="projects/WhatsApp%20Video%202026-10-05%20at%209.50.24%20PM_converted.mp4" width="480" height="864" preload="none" poster="projects/posters/WhatsApp%20Video%202026-10-05%20at%209.50.24%20PM_converted.jpg" muted playsinline aria-label="Waterproofing project site video"></video>
+            <div class="project-card__top project-card__top--single">
+              <span class="project-card__eye">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+            </div>
+          </div>
+
+          <div class="project-card project-card--video project-card--port m6 b4" data-category="Videos" data-type="video" data-src="projects/WhatsApp%20Video%202026-10-05%20at%209.50.25%20PM%20(1)_converted.mp4">
+            <video src="projects/WhatsApp%20Video%202026-10-05%20at%209.50.25%20PM%20(1)_converted.mp4" width="478" height="850" preload="none" poster="projects/posters/WhatsApp%20Video%202026-10-05%20at%209.50.25%20PM%20(1)_converted.jpg" muted playsinline aria-label="Waterproofing project site video"></video>
+            <div class="project-card__top project-card__top--single">
+              <span class="project-card__eye">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+            </div>
+          </div>
+
+          <div class="project-card m6 b7" data-category="Photos" data-type="image" data-src="projects/WhatsApp%20Image%202026-10-05%20at%209.50.09%20PM.webp" data-alt="Waterproofing project site photo">
+            <img src="projects/WhatsApp%20Image%202026-10-05%20at%209.50.09%20PM.webp" alt="Waterproofing project site photo" width="1600" height="1200" loading="lazy" decoding="async" />
+            <div class="project-card__top project-card__top--single">
               <span class="project-card__eye">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
               </span>
             </div>
-            <div class="project-card__bottom">
-              <span class="project-card__cat">Terrace &amp; Roof</span>
-              <h3 class="project-card__title">City Center Office Roof Recoating</h3>
-              <p class="project-card__loc">Downtown Business Quarter</p>
+          </div>
+
+          <div class="project-card project-card--video m6 b5" data-category="Videos" data-type="video" data-src="projects/WhatsApp%20Video%202026-10-05%20at%209.50.22%20PM%20(1)_converted.mp4">
+            <video src="projects/WhatsApp%20Video%202026-10-05%20at%209.50.22%20PM%20(1)_converted.mp4" width="848" height="478" preload="none" poster="projects/posters/WhatsApp%20Video%202026-10-05%20at%209.50.22%20PM%20(1)_converted.jpg" muted playsinline aria-label="Waterproofing project site video"></video>
+            <div class="project-card__top project-card__top--single">
+              <span class="project-card__eye">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+            </div>
+          </div>
+
+          <div class="project-card project-card--video project-card--port m6 b4" data-category="Videos" data-type="video" data-src="projects/WhatsApp%20Video%202026-10-05%20at%209.50.25%20PM_converted.mp4">
+            <video src="projects/WhatsApp%20Video%202026-10-05%20at%209.50.25%20PM_converted.mp4" width="478" height="850" preload="none" poster="projects/posters/WhatsApp%20Video%202026-10-05%20at%209.50.25%20PM_converted.jpg" muted playsinline aria-label="Waterproofing project site video"></video>
+            <div class="project-card__top project-card__top--single">
+              <span class="project-card__eye">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+            </div>
+          </div>
+
+          <div class="project-card project-card--port m6 b4" data-category="Photos" data-type="image" data-src="projects/WhatsApp%20Image%202026-10-05%20at%209.50.27%20PM.webp" data-alt="Waterproofing project site photo">
+            <img src="projects/WhatsApp%20Image%202026-10-05%20at%209.50.27%20PM.webp" alt="Waterproofing project site photo" width="720" height="1280" loading="lazy" decoding="async" />
+            <div class="project-card__top project-card__top--single">
+              <span class="project-card__eye">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+              </span>
+            </div>
+          </div>
+
+          <div class="project-card project-card--video project-card--port m6 b4" data-category="Videos" data-type="video" data-src="projects/WhatsApp%20Video%202026-10-05%20at%209.50.27%20PM%20(1)_converted.mp4">
+            <video src="projects/WhatsApp%20Video%202026-10-05%20at%209.50.27%20PM%20(1)_converted.mp4" width="478" height="850" preload="none" poster="projects/posters/WhatsApp%20Video%202026-10-05%20at%209.50.27%20PM%20(1)_converted.jpg" muted playsinline aria-label="Waterproofing project site video"></video>
+            <div class="project-card__top project-card__top--single">
+              <span class="project-card__eye">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+            </div>
+          </div>
+
+          <div class="project-card m6 b6" data-category="Photos" data-type="image" data-src="projects/WhatsApp%20Image%202026-10-05%20at%209.50.23%20PM.webp" data-alt="Waterproofing project site photo">
+            <img src="projects/WhatsApp%20Image%202026-10-05%20at%209.50.23%20PM.webp" alt="Waterproofing project site photo" width="1600" height="1200" loading="lazy" decoding="async" />
+            <div class="project-card__top project-card__top--single">
+              <span class="project-card__eye">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+              </span>
+            </div>
+          </div>
+
+          <div class="project-card m6 b6" data-category="Photos" data-type="image" data-src="projects/WhatsApp%20Image%202026-10-05%20at%209.50.24%20PM.webp" data-alt="Waterproofing project site photo">
+            <img src="projects/WhatsApp%20Image%202026-10-05%20at%209.50.24%20PM.webp" alt="Waterproofing project site photo" width="1599" height="899" loading="lazy" decoding="async" />
+            <div class="project-card__top project-card__top--single">
+              <span class="project-card__eye">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+              </span>
+            </div>
+          </div>
+
+          <div class="project-card project-card--video project-card--port m6 b4" data-category="Videos" data-type="video" data-src="projects/WhatsApp%20Video%202026-10-05%20at%209.50.29%20PM%20(1)_converted.mp4">
+            <video src="projects/WhatsApp%20Video%202026-10-05%20at%209.50.29%20PM%20(1)_converted.mp4" width="480" height="848" preload="none" poster="projects/posters/WhatsApp%20Video%202026-10-05%20at%209.50.29%20PM%20(1)_converted.jpg" muted playsinline aria-label="Waterproofing project site video"></video>
+            <div class="project-card__top project-card__top--single">
+              <span class="project-card__eye">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+            </div>
+          </div>
+
+          <div class="project-card project-card--video project-card--port m6 b4" data-category="Videos" data-type="video" data-src="projects/WhatsApp%20Video%202026-10-05%20at%209.50.29%20PM_converted.mp4">
+            <video src="projects/WhatsApp%20Video%202026-10-05%20at%209.50.29%20PM_converted.mp4" width="478" height="850" preload="none" poster="projects/posters/WhatsApp%20Video%202026-10-05%20at%209.50.29%20PM_converted.jpg" muted playsinline aria-label="Waterproofing project site video"></video>
+            <div class="project-card__top project-card__top--single">
+              <span class="project-card__eye">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+            </div>
+          </div>
+
+          <div class="project-card project-card--port m6 b4" data-category="Photos" data-type="image" data-src="projects/WhatsApp%20Image%202026-10-05%20at%209.52.45%20PM.webp" data-alt="Waterproofing project site photo">
+            <img src="projects/WhatsApp%20Image%202026-10-05%20at%209.52.45%20PM.webp" alt="Waterproofing project site photo" width="1200" height="1600" loading="lazy" decoding="async" />
+            <div class="project-card__top project-card__top--single">
+              <span class="project-card__eye">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+              </span>
+            </div>
+          </div>
+
+          <div class="project-card project-card--video project-card--port m6 b4" data-category="Videos" data-type="video" data-src="projects/WhatsApp%20Video%202026-10-05%20at%209.52.45%20PM_converted.mp4">
+            <video src="projects/WhatsApp%20Video%202026-10-05%20at%209.52.45%20PM_converted.mp4" width="480" height="864" preload="none" poster="projects/posters/WhatsApp%20Video%202026-10-05%20at%209.52.45%20PM_converted.jpg" muted playsinline aria-label="Waterproofing project site video"></video>
+            <div class="project-card__top project-card__top--single">
+              <span class="project-card__eye">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+            </div>
+          </div>
+
+          <div class="project-card m6 b8" data-category="Photos" data-type="image" data-src="projects/WhatsApp%20Image%202026-10-05%20at%209.50.26%20PM.webp" data-alt="Waterproofing project site photo">
+            <img src="projects/WhatsApp%20Image%202026-10-05%20at%209.50.26%20PM.webp" alt="Waterproofing project site photo" width="1080" height="768" loading="lazy" decoding="async" />
+            <div class="project-card__top project-card__top--single">
+              <span class="project-card__eye">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+              </span>
+            </div>
+          </div>
+
+          <div class="project-card project-card--video m6 b6" data-category="Videos" data-type="video" data-src="projects/WhatsApp%20Video%202026-10-05%20at%209.50.27%20PM_converted.mp4">
+            <video src="projects/WhatsApp%20Video%202026-10-05%20at%209.50.27%20PM_converted.mp4" width="848" height="478" preload="none" poster="projects/posters/WhatsApp%20Video%202026-10-05%20at%209.50.27%20PM_converted.jpg" muted playsinline aria-label="Waterproofing project site video"></video>
+            <div class="project-card__top project-card__top--single">
+              <span class="project-card__eye">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+            </div>
+          </div>
+
+          <div class="project-card m6 b6" data-category="Photos" data-type="image" data-src="projects/WhatsApp%20Image%202026-10-05%20at%209.50.28%20PM%20(1).webp" data-alt="Waterproofing project site photo">
+            <img src="projects/WhatsApp%20Image%202026-10-05%20at%209.50.28%20PM%20(1).webp" alt="Waterproofing project site photo" width="1280" height="720" loading="lazy" decoding="async" />
+            <div class="project-card__top project-card__top--single">
+              <span class="project-card__eye">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+              </span>
+            </div>
+          </div>
+
+          <div class="project-card project-card--video project-card--port m6 b4" data-category="Videos" data-type="video" data-src="projects/WhatsApp%20Video%202026-10-05%20at%209.53.00%20PM_converted.mp4">
+            <video src="projects/WhatsApp%20Video%202026-10-05%20at%209.53.00%20PM_converted.mp4" width="476" height="848" preload="none" poster="projects/posters/WhatsApp%20Video%202026-10-05%20at%209.53.00%20PM_converted.jpg" muted playsinline aria-label="Waterproofing project site video"></video>
+            <div class="project-card__top project-card__top--single">
+              <span class="project-card__eye">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+            </div>
+          </div>
+
+          <div class="project-card m6 b8" data-category="Photos" data-type="image" data-src="projects/WhatsApp%20Image%202026-10-05%20at%209.50.28%20PM.webp" data-alt="Waterproofing project site photo">
+            <img src="projects/WhatsApp%20Image%202026-10-05%20at%209.50.28%20PM.webp" alt="Waterproofing project site photo" width="1280" height="720" loading="lazy" decoding="async" />
+            <div class="project-card__top project-card__top--single">
+              <span class="project-card__eye">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+              </span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Project Lightbox Modal -->
-    <div id="project-modal" class="lightbox" aria-hidden="true">
-      <div class="lightbox__panel">
-        <button type="button" class="lightbox__close js-close-project" aria-label="Close project details">
+    <!-- Media Lightbox (photo / video) -->
+    <div id="project-modal" class="lightbox lightbox--media" aria-hidden="true">
+      <div class="lightbox__panel lightbox__panel--media">
+        <button type="button" class="lightbox__close js-close-project" aria-label="Close media viewer">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
         </button>
-        <div class="lightbox__imgwrap">
-          <img id="project-modal-img" src="" alt="" />
-          <div class="lightbox__img-overlay"></div>
-          <div class="lightbox__img-caption">
-            <span id="project-modal-cat" class="lightbox__pill"></span>
-            <h3 id="project-modal-title" class="lightbox__title"></h3>
-          </div>
-        </div>
-        <div class="lightbox__body">
-          <div>
-            <span class="lightbox__eyebrow">Location</span>
-            <p id="project-modal-location" class="lightbox__value"></p>
-          </div>
-          <div>
-            <span class="lightbox__eyebrow">Project Overview</span>
-            <p id="project-modal-desc" class="lightbox__desc"></p>
-          </div>
-          <div class="lightbox__spec">
-            <span class="lightbox__eyebrow lightbox__eyebrow--burgundy">System Specification</span>
-            <p id="project-modal-system" class="lightbox__spec-value"></p>
-          </div>
-          <div class="lightbox__footer">
-            <button type="button" class="btn-close-details js-close-project">Close Details</button>
-          </div>
+        <div class="lightbox__media">
+          <img id="project-modal-img" alt="" hidden decoding="async" />
+          <video id="project-modal-video" controls playsinline preload="none" hidden></video>
         </div>
       </div>
     </div>
@@ -214,7 +309,7 @@
     <section class="page-section page-section--muted">
       <div class="container">
         <div class="cta-band" data-reveal>
-          <div class="cta-band__bg"><img src="images/construction.jpg" alt=""></div>
+          <div class="cta-band__bg"><img src="images/construction.jpg" alt="" width="1200" height="675" loading="lazy" decoding="async"></div>
           <div class="cta-band__box">
             <h2 class="cta-band__title">Have a Project in Mind?</h2>
             <p class="cta-band__sub">
@@ -232,10 +327,13 @@
     <div id="footer-root"></div>
     <div id="modal-root"></div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="js/vendor/gsap.min.js"></script>
+    <script src="js/vendor/ScrollTrigger.min.js"></script>
+    <script src="js/motion.js"></script>
     <script src="js/icons.js"></script>
     <script src="js/components.js"></script>
+    <script src="js/forms.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
   </body>
 </html>

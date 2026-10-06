@@ -1,32 +1,50 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About Us — THE CHEMICAL FACTORY</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-src https://www.google.com https://www.youtube-nocookie.com; object-src 'none'; base-uri 'self'; form-action 'self'" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <title>About Us - THE CHEMICAL FACTORY</title>
+      <!-- SEO (Phase 3.4) -->
+      <meta name="description" content="Founded in 2016, The Chemical Factory manufactures waterproofing and construction chemicals in Karachi, Pakistan, supplying contractors and consultants nationwide." />
+      <meta name="robots" content="index, follow, max-image-preview:large" />
+      <meta property="og:type" content="website" />
+      <meta property="og:site_name" content="The Chemical Factory" />
+      <meta property="og:title" content="About Us - THE CHEMICAL FACTORY" />
+      <meta property="og:description" content="Founded in 2016, The Chemical Factory manufactures waterproofing and construction chemicals in Karachi, Pakistan, supplying contractors and consultants nationwide." />
+      <meta property="og:image" content="https://the-chemical-factory.vercel.app/images/technician.jpg" />
+      <meta property="og:image:alt" content="About Us - THE CHEMICAL FACTORY" />
+      <link rel="canonical" href="https://the-chemical-factory.vercel.app/about" />
+      <meta property="og:url" content="https://the-chemical-factory.vercel.app/about" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="About Us - THE CHEMICAL FACTORY" />
+      <meta name="twitter:description" content="Founded in 2016, The Chemical Factory manufactures waterproofing and construction chemicals in Karachi, Pakistan, supplying contractors and consultants nationwide." />
+      <meta name="twitter:image" content="https://the-chemical-factory.vercel.app/images/technician.jpg" />
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/icons-anim.css">
     <link rel="stylesheet" href="css/pages.css">
     <link rel="icon" type="image/png" href="images/fav-log.png" />
-    <meta property="og:image" content="images/logo.jpeg" />
-    <meta name="twitter:image" content="images/logo.jpeg" />
   </head>
   <body data-page="about">
     <div id="preloader-root"></div>
     <div id="nav-root"></div>
 
+    <nav class="page-crumbs" aria-label="Breadcrumb">
+      <ol class="page-crumbs__list">
+        <li class="page-crumbs__item"><a href="index.html">Home</a></li>
+        <li class="page-crumbs__sep" aria-hidden="true">/</li>
+        <li class="page-crumbs__item" aria-current="page">About</li>
+      </ol>
+    </nav>
+
     <section class="page-hero">
-      <div class="page-hero__crumb">
-        <span>Home</span>
-        <i>/</i>
-        <span>About Us</span>
-      </div>
-      <h1 class="page-hero__title">Engineering <em>Waterproof</em><br />Certainty Since 2008</h1>
-      <p class="page-hero__sub">
-        The Chemical Factory formulates and manufactures ASTM-certified waterproofing coatings,
-        crystalline admixtures, injection resins, and elastomeric sealants trusted by contractors,
-        developers, and engineers across the region.
-      </p>
+      <picture class="page-hero__banner-media">
+        <source media="(max-width: 768px)" srcset="images/mobile_banner.webp" />
+        <img class="page-hero__banner" src="images/banner.webp" alt="" width="1983" height="793" loading="eager" fetchpriority="high" decoding="async" />
+      </picture>
+      <h1 class="page-hero__title"></h1>
+      <p class="page-hero__sub"></p>
     </section>
 
     <!-- Our story -->
@@ -34,41 +52,46 @@
       <div class="container">
         <div class="story">
           <div class="story__media" data-reveal>
-            <img src="images/technician.jpg" alt="Chemical Engineer supervising a membrane application" />
+            <img src="images/technician.jpg" alt="Chemical Engineer supervising a membrane application" width="1200" height="795" loading="lazy" decoding="async" />
             <span class="story__media-badge">Certified Chemical Crews</span>
           </div>
           <div data-reveal>
             <span class="story__eyebrow">Our Story</span>
-            <h2 class="story__title">Engineered Protection Backed by 15+ Years of Field Chemistry</h2>
+            <h2 class="story__title">Engineered Protection Backed by 9+ Years of Field Chemistry</h2>
             <p class="story__text">
-              What started as a small team of structural chemists and site engineers has grown into a
-              full-service waterproofing house. We design and install complete chemical protection systems
-              — from polyurethane roof membranes to crystalline basement tanking and high-pressure PU injection.
+              The Chemical Factory is a leading provider of construction chemicals, waterproofing solutions and
+              specialized engineering services in Pakistan. With over 9 years of industry experience, we deliver
+              innovative, durable and cost-effective systems for residential, commercial, industrial and infrastructure projects.
             </p>
             <p class="story__text">
-              Every project is treated as a long-term structural partnership. We inspect, specify, apply, and
-              warranty using the same high-purity chemicals and engineered methodology across residential,
-              commercial, and industrial sites.
+              Our expertise spans waterproofing systems, structural strengthening, epoxy flooring, PU injection, heat
+              insulation, concrete repair and rehabilitation, CFRP systems, expansion joints, shotcrete and soil nailing,
+              and protective coatings. We collaborate with renowned local and international manufacturers to ensure the
+              highest standards of quality and performance.
+            </p>
+            <p class="story__text">
+              Customer satisfaction, technical excellence and long-term reliability are at the core of everything we do.
+              <strong>Engineering stronger structures, delivering lasting solutions.</strong>
             </p>
           </div>
         </div>
 
         <div class="stats-bar" data-reveal>
           <div class="stat-tile">
-            <div class="stat-tile__value">500+</div>
-            <div class="stat-tile__label">Projects Delivered</div>
+            <div class="stat-tile__value">9+</div>
+            <div class="stat-tile__label">Years in Industry</div>
           </div>
           <div class="stat-tile">
-            <div class="stat-tile__value">98%</div>
-            <div class="stat-tile__label">On-Time Delivery</div>
+            <div class="stat-tile__value">8</div>
+            <div class="stat-tile__label">Core Specializations</div>
           </div>
           <div class="stat-tile">
-            <div class="stat-tile__value">15+</div>
-            <div class="stat-tile__label">Years Experience</div>
+            <div class="stat-tile__value">43</div>
+            <div class="stat-tile__label">Clients Served</div>
           </div>
           <div class="stat-tile">
-            <div class="stat-tile__value">99%</div>
-            <div class="stat-tile__label">Client Satisfaction</div>
+            <div class="stat-tile__value">11</div>
+            <div class="stat-tile__label">Product Categories</div>
           </div>
         </div>
       </div>
@@ -78,36 +101,36 @@
     <section class="page-section page-section--muted">
       <div class="container">
         <div class="section-head">
-          <h2 class="section-head__title">Why We Exist</h2>
-          <p class="section-head__sub">Chemical purity, engineering honesty, and total accountability on every structure.</p>
+          <h2 class="section-head__title">Vision &amp; Mission</h2>
+          <p class="section-head__sub">Where we are going, and the standard we hold ourselves to on every project.</p>
         </div>
 
         <div class="mission-cards">
+          <div class="mission-card" data-reveal>
+            <div class="mission-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+            <h3 class="mission-card__title">Our Vision</h3>
+            <p class="mission-card__text">
+              To become Pakistan's most trusted and innovative construction chemicals and waterproofing company by delivering world-class products, technical expertise and sustainable solutions.
+            </p>
+          </div>
           <div class="mission-card" data-reveal>
             <div class="mission-card__icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
             </div>
             <h3 class="mission-card__title">Our Mission</h3>
             <p class="mission-card__text">
-              Deliver absolute, verifiable leak prevention through chemical purity, engineering honesty, and total accountability on every structure.
+              To provide high-quality construction chemical products and engineering solutions that exceed customer expectations through innovation, professionalism, integrity and continuous improvement.
             </p>
           </div>
           <div class="mission-card" data-reveal>
             <div class="mission-card__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
             </div>
-            <h3 class="mission-card__title">Our Promise</h3>
+            <h3 class="mission-card__title">Based in Karachi</h3>
             <p class="mission-card__text">
-              Free site inspections, transparent itemized quotes, certified application crews, and 10-25 year performance warranties.
-            </p>
-          </div>
-          <div class="mission-card" data-reveal>
-            <div class="mission-card__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l4 6-10 13L2 9Z"/><path d="M11 3 8 9l4 13 4-13-3-6"/><path d="M2 9h20"/></svg>
-            </div>
-            <h3 class="mission-card__title">Our Standards</h3>
-            <p class="mission-card__text">
-              ISO 9001 quality systems, ASTM/EN tested materials, and site-specific engineering documentation on every delivery.
+              Engineering stronger structures and delivering lasting solutions from Office #1, Plot #99-C, Street #11, Jami Commercial, DHA Phase VII, Karachi - serving residential, commercial, industrial and infrastructure projects nationwide.
             </p>
           </div>
         </div>
@@ -119,7 +142,7 @@
       <div class="container">
         <div class="section-head">
           <h2 class="section-head__title">Our 4-Step Process</h2>
-          <p class="section-head__sub">A disciplined, engineer-led workflow from first inspection to final warranty.</p>
+          <p class="section-head__sub">A disciplined, engineer-led workflow from first inspection to final handover.</p>
         </div>
 
         <div class="process-steps">
@@ -140,49 +163,51 @@
           </div>
           <div class="process-step" data-reveal>
             <div class="process-step__num">04</div>
-            <h3 class="process-step__title">Testing &amp; Warranty</h3>
-            <p class="process-step__text">Flood testing verifies the seal, then we issue a 10-25 year performance warranty and maintenance guide.</p>
+            <h3 class="process-step__title">Testing &amp; Handover</h3>
+            <p class="process-step__text">Flood testing verifies the seal, then we hand over the as-built system documentation and a maintenance guide.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Certifications -->
+    <!-- Core values -->
     <section class="page-section page-section--muted">
       <div class="container">
         <div class="section-head">
-          <h2 class="section-head__title">Certifications &amp; Compliance</h2>
-          <p class="section-head__sub">Independently tested chemistry and audited quality systems you can rely on.</p>
+          <h2 class="section-head__title">Core Values</h2>
+          <p class="section-head__sub">The three principles behind every formulation, specification and site application we deliver.</p>
         </div>
 
         <div class="cert-grid">
           <div class="cert-card" data-reveal>
             <div class="cert-card__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
             </div>
-            <h3 class="cert-card__title">ISO 9001</h3>
-            <p class="cert-card__text">Certified quality management system</p>
+            <h3 class="cert-card__title">Innovation</h3>
+            <p class="cert-card__text">Continuous improvement through new chemistry, new systems and new engineering methods.</p>
           </div>
           <div class="cert-card" data-reveal>
             <div class="cert-card__icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
             </div>
-            <h3 class="cert-card__title">ASTM / EN</h3>
-            <p class="cert-card__text">Tensile, elongation &amp; permeability tested</p>
+            <h3 class="cert-card__title">Quality</h3>
+            <p class="cert-card__text">Verified raw materials, SDS-compliant handling and documented test data on every product.</p>
           </div>
           <div class="cert-card" data-reveal>
             <div class="cert-card__icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
             </div>
-            <h3 class="cert-card__title">Health &amp; Safety</h3>
-            <p class="cert-card__text">SDS-compliant handling and site safety</p>
+            <h3 class="cert-card__title">Performance</h3>
+            <p class="cert-card__text">Systems specified for real site conditions and verified before handover, not sold on paper alone.</p>
           </div>
           <div class="cert-card" data-reveal>
             <div class="cert-card__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
             </div>
-            <h3 class="cert-card__title">Certified Crews</h3>
-            <p class="cert-card__text">Trained waterproofing applicators</p>
+            <h3 class="cert-card__title">Leadership</h3>
+            <p class="cert-card__text">
+              <strong>Ubaid Ahmar</strong> - Chief Executive Officer. Sets the technical direction and client commitment for the company.
+            </p>
           </div>
         </div>
       </div>
@@ -220,8 +245,8 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
             </div>
             <div>
-              <h3 class="facility-card__title">10-25 Year Warranties</h3>
-              <p class="facility-card__text">System-specific performance warranties verified by flood testing before handover.</p>
+              <h3 class="facility-card__title">Authorized Distribution</h3>
+              <p class="facility-card__text">We collaborate with renowned local and international manufacturers to supply the highest standards of chemistry.</p>
             </div>
           </div>
           <div class="facility-card" data-reveal>
@@ -241,7 +266,7 @@
     <section class="page-section page-section--muted">
       <div class="container">
         <div class="cta-band" data-reveal>
-          <div class="cta-band__bg"><img src="images/flat-roof.jpg" alt=""></div>
+          <div class="cta-band__bg"><img src="images/flat-roof.jpg" alt="" width="1200" height="801" loading="lazy" decoding="async"></div>
           <div class="cta-band__box">
             <h2 class="cta-band__title">Let's Protect Your Structure Together</h2>
             <p class="cta-band__sub">
@@ -259,10 +284,13 @@
     <div id="footer-root"></div>
     <div id="modal-root"></div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="js/vendor/gsap.min.js"></script>
+    <script src="js/vendor/ScrollTrigger.min.js"></script>
+    <script src="js/motion.js"></script>
     <script src="js/icons.js"></script>
     <script src="js/components.js"></script>
+    <script src="js/forms.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
   </body>
 </html>

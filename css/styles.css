@@ -5,6 +5,22 @@
    Reconstructed static site (HTML + CSS + JS)
    ============================================================ */
 
+/* Visually hidden but available to screen readers. Used for labels on
+   icon-only / placeholder-driven inputs (search bars, filter selects). */
+.sr-only {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+
 @font-face {
   font-family: 'Hertical Sans';
   src: url('../fonts/Hertical Sans.ttf') format('truetype');
@@ -393,6 +409,11 @@ button {
   display: block;
   animation: fadeIn 0.2s ease;
 }
+/* GSAP fades and slides the panel itself, so the keyframe above has to
+   step aside or the two would animate opacity at the same time. */
+.mobile-menu.js-menu-fx.open {
+  animation: none;
+}
 .mobile-menu__links {
   display: flex;
   flex-direction: column;
@@ -658,6 +679,19 @@ button {
   justify-content: center;
   flex-shrink: 0;
 }
+
+/* Hide empty text elements on banners */
+.hero__watermark-text:empty,
+.hero__subtext p:empty,
+.hero__line2 .btn-hero-cta span:first-child:empty,
+.feature__label:empty,
+.feature__value:empty {
+  display: none;
+}
+.hero__subtext:has(p:empty),
+.hero__features:has(.feature__label:empty):has(.feature__value:empty) {
+  display: none;
+}
 .feature__icon--burgundy {
   background: rgba(125, 29, 40, 0.3);
   border: 1px solid rgba(125, 29, 40, 0.5);
@@ -665,6 +699,10 @@ button {
 .feature__icon--blue {
   background: rgba(30, 58, 138, 0.3);
   border: 1px solid rgba(37, 99, 235, 0.5);
+}
+.feature__icon--emerald {
+  background: rgba(5, 150, 105, 0.25);
+  border: 1px solid rgba(52, 211, 153, 0.5);
 }
 .feature__icon--white {
   background: rgba(255, 255, 255, 0.1);
@@ -680,8 +718,10 @@ button {
 .feature__cf {
   font-family: var(--font-heading);
   font-weight: 900;
-  color: var(--burgundy);
-  font-size: 0.75rem;
+  color: #fff;
+  font-size: 0.875rem;
+  letter-spacing: 0.02em;
+  line-height: 1;
 }
 .feature__label {
   font-size: 0.6875rem;
@@ -1157,6 +1197,10 @@ button {
   display: flex;
   animation: fadeIn 0.2s ease;
 }
+/* GSAP owns the backdrop fade and the panel scale (js/animations.js). */
+.lightbox.js-fx.open {
+  animation: none;
+}
 
 .lightbox__panel {
   position: relative;
@@ -1490,6 +1534,12 @@ button {
   gap: 1.5rem;
   transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform;
+}
+/* When GSAP drives the track (js/main.js initInfiniteCarousel) the
+   stylesheet transition must get out of the way, otherwise both would
+   animate the same transform and the slider would lag behind. */
+.products-slider__track.js-gsap-track {
+  transition: none;
 }
 .products-slider__track .product-card {
   flex: 0 0 100%;
@@ -1974,6 +2024,12 @@ button {
 .faq-item:hover {
   border-color: rgba(0, 0, 0, 0.2);
 }
+/* While GSAP tweens the card height, `transition: all` would animate the
+   same property a frame behind. border-color and box-shadow are kept so the
+   open/hover styling still eases. */
+.js-faq-anim .faq-item {
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
 .faq-item.is-open {
   border-color: var(--burgundy);
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
@@ -2154,6 +2210,55 @@ button {
 }
 .footer__nav-link:hover {
   color: #fff;
+}
+.footer__contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 46rem;
+  margin-bottom: 2.5rem;
+}
+.footer__contact-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.625rem;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--gray-400);
+  font-weight: 500;
+}
+.footer__contact-row a {
+  color: var(--gray-300);
+  transition: color 0.2s;
+}
+.footer__contact-row a:hover {
+  color: #fff;
+}
+.footer__contact-icon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-top: 0.15rem;
+  color: var(--burgundy);
+}
+.footer__contact-icon svg {
+  width: 100%;
+  height: 100%;
+}
+.footer__contact-sep {
+  color: var(--gray-500);
+}
+@media (max-width: 640px) {
+  .footer__contact-row {
+    flex-wrap: wrap;
+    font-size: 0.75rem;
+  }
 }
 .footer__legal {
   display: flex;
@@ -2377,6 +2482,58 @@ button {
 .form-textarea {
   resize: vertical;
 }
+
+/* ---------- Form validation states (js/forms.js) ----------
+   aria-invalid is set by JS; these rules are presentation only. The error text
+   lives in a sibling .form-error with aria-live="polite" so screen readers
+   announce it politely. */
+.form-error {
+  margin: 0.15rem 0 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #b3261e;
+  min-height: 0;
+}
+.form-error:empty {
+  display: none;
+}
+.form-hint {
+  margin: 0.2rem 0 0;
+  font-size: 0.7rem;
+  color: var(--gray-500, #6b7280);
+}
+.form-field__opt {
+  font-weight: 400;
+  opacity: 0.7;
+}
+.form-input.has-error,
+.form-textarea.has-error,
+.form-field input.has-error,
+.form-field textarea.has-error {
+  border-color: #b3261e;
+  box-shadow: 0 0 0 1px #b3261e;
+}
+.form-input.has-error:focus,
+.form-textarea.has-error:focus {
+  box-shadow: 0 0 0 2px #b3261e;
+}
+
+/* Honeypot: pushed off-screen rather than display:none, so naive bots that
+   skip hidden fields still trip it. aria-hidden keeps it out of the a11y tree
+   and tabindex="-1" keeps it out of the tab order. */
+.hp-field {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+  opacity: 0;
+  pointer-events: none;
+}
 .form-footer {
   padding-top: 0.5rem;
   display: flex;
@@ -2513,6 +2670,13 @@ button {
   pointer-events: none;
   user-select: none;
   -webkit-user-select: none;
+  gap: 0.3em;
+}
+/* Per-word spans written by js/components.js so the reveal can stagger
+   them. inline-block is what gives each span its own transform box. */
+.preloader__word {
+  display: inline-block;
+  will-change: transform, opacity;
 }
 .preloader__brush {
   position: absolute;
@@ -2534,6 +2698,49 @@ button {
 }
 .preloader-active {
   overflow: hidden;
+}
+
+/* ============================================================
+   Reduced motion - CSS safety net
+   ------------------------------------------------------------
+   The authoritative gate is js/motion.js (one gsap.matchMedia()
+   context shared by main.js and animations.js). This block is the
+   belt-and-braces half:
+
+     1. It kills every CSS keyframe animation and transition, so
+        decorative loops stop even when they are not GSAP-driven.
+     2. It force-shows anything that could be left at its "before"
+        state. Without this, an element that GSAP set to opacity:0
+        before the preference was read would stay invisible.
+
+   Do not add "hide until animated" rules above this point -- the
+   reduced-motion query below must always be able to win.
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Belt and braces for the JS-driven reveal states. `!important`
+     is deliberate: it has to beat the inline opacity that GSAP
+     writes when it sets a "before" state. */
+  [data-reveal],
+  [data-hero],
+  .hero__watermark,
+  .hero__front-img {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+  }
+
+  /* Nothing should be able to strand the page behind the preloader. */
+  .preloader { display: none !important; }
+  .preloader-active { overflow: visible !important; }
 }
 
 /* ---------- Responsive ---------- */
