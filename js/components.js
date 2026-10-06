@@ -49,7 +49,7 @@
     '<header id="navbar" class="navbar">'
     + '<div class="navbar__inner">'
     + '<a href="index.html" class="brand-link" aria-label="The Chemical Factory - Home">'
-    + '<span class="brand-pill"><img src="images/fav-log.png" alt="The Chemical Factory" class="logo__img"></span>'
+    + '<span class="brand-pill"><img src="images/fav-log.webp" alt="The Chemical Factory" class="logo__img"></span>'
     + '</a>'
     + '<nav class="nav-pill">' + navLinks(false) + '</nav>'
     + '<div class="navbar__actions">'
@@ -231,7 +231,7 @@
     + '<div class="preloader__brush">'
     /* NOTE: no inline onerror= here on purpose. CSP is script-src 'self', which
        blocks inline event handlers. The fallback is attached in JS below. */
-    + '<img src="images/brush.png" alt="" class="preloader__brush-img" />'
+    + '<img src="images/brush.webp" alt="" class="preloader__brush-img" />'
     + '</div>'
     + '</div>';
 
@@ -305,7 +305,7 @@
   }
 
   /* Replaces the old inline onerror="this.style.display='none'" on the brush image.
-     Keeps the preloader looking correct if images/brush.png is ever missing. */
+     Keeps the preloader looking correct if images/brush.webp is ever missing. */
   function guardBrushImage() {
     var img = document.querySelector('#preloader .preloader__brush-img');
     if (!img) return;
