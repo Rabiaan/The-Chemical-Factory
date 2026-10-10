@@ -704,30 +704,14 @@
       return '<article class="ds-card" data-search="' + esc(search) + '">'
         + '<a class="ds-card__preview" href="' + detailHref(p.id) + '" aria-label="View ' + esc(p.name) + ' details">'
         + '<img class="ds-card__img" src="' + esc(p.image) + '" alt="' + esc(p.name) + '"' + imageAttrs(p) + ' />'
-        + '<span class="ds-card__overlay" aria-hidden="true">'
-        + '<span class="ds-card__overlay-btn">View Product' + CHEV + '</span>'
-        + '</span>'
-        + '<span class="ds-card__cat">' + esc(p.categoryLabel) + '</span>'
         + '</a>'
         + '<div class="ds-card__body">'
-        + '<div class="ds-card__head">'
         + '<h3 class="ds-card__title">' + esc(p.name) + '</h3>'
-        + '<span class="ds-card__format">PDF</span>'
-        + '</div>'
-        + '<p class="ds-card__sub">' + esc(p.subTitle) + '</p>'
-        + '<ul class="ds-card__points">'
-        + (p.highlights || []).slice(0, 3).map(function (h) {
-          return '<li>' + esc(h) + '</li>';
-        }).join('')
-        + '</ul>'
         + '<dl class="ds-card__meta">'
         + '<div class="ds-card__meta-row"><dt>Packaging</dt><dd>' + esc(p.packaging) + '</dd></div>'
         + '<div class="ds-card__meta-row"><dt>Coverage</dt><dd>' + esc(p.coverage) + '</dd></div>'
         + '</dl>'
-        + '<div class="ds-card__foot">'
-        + '<a href="' + detailHref(p.id) + '" class="ds-card__details">Product Details' + ARROW + '</a>'
         + renderDownloadLink(p, 'ds-card__download', 'Download')
-        + '</div>'
         + '</div>'
         + '</article>';
     }).join('');

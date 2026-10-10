@@ -2677,6 +2677,9 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
+  align-content: center;
+  row-gap: 0;
   text-align: center;
   padding: 0 1.5rem;
   font-family: var(--font-heading);
@@ -2690,6 +2693,18 @@ button {
   user-select: none;
   -webkit-user-select: none;
   gap: 0.3em;
+}
+/* Force the line break before the accent word: everything up to <em>
+   sits on line 1, the accent and anything after it drop to line 2. */
+.preloader__text::before {
+  content: "";
+  flex-basis: 100%;
+  height: 0;
+  order: 1;
+}
+.preloader__text em,
+.preloader__text em ~ .preloader__word {
+  order: 2;
 }
 /* Per-word spans written by js/components.js so the reveal can stagger
    them. inline-block is what gives each span its own transform box. */
@@ -3211,19 +3226,6 @@ button {
   }
   .preloader__text {
     font-size: clamp(1.875rem, 6vw, 3rem);
-    flex-wrap: wrap;
-    align-content: center;
-    row-gap: 0;
-  }
-  .preloader__text::before {
-    content: "";
-    flex-basis: 100%;
-    height: 0;
-    order: 1;
-  }
-  .preloader__text em,
-  .preloader__text em ~ .preloader__word {
-    order: 2;
   }
   .preloader__brush {
     width: 12rem;

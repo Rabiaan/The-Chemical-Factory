@@ -486,7 +486,7 @@
      gets composited before its pixels are decoded shows as a black tile until
      something (hover, selection, focus) forces a repaint. decode() up front so
      the first painted frame already has real pixels. */
-  $$('.clients-strip__logo--img img, .clients-group__logo img').forEach(function (img) {
+  $$('.clients-strip__logo--img img, .client-tile__frame img').forEach(function (img) {
     if (typeof img.decode !== 'function') return;
     img.decode().catch(function () { /* already decoded, or failed: browser paints what it can */ });
   });

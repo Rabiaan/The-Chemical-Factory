@@ -226,7 +226,7 @@
   var PRELOADER =
     '<div class="preloader" id="preloader" aria-hidden="true">'
     + '<div class="preloader__text">'
-    + 'LET&rsquo;S BUILD A <em class="heading-accent">SEAL</em> THAT LASTS'
+    + 'CHEMICALLY ENGINEERED FOR <em class="heading-accent">EXCELLENCE</em>'
     + '</div>'
     + '<div class="preloader__brush">'
     /* NOTE: no inline onerror= here on purpose. CSP is script-src 'self', which
