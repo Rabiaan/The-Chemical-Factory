@@ -464,14 +464,19 @@
      the "Product Not Found" panel. Length + character checks keep a hostile
      query string from becoming a cheap DoS. */
   function readProductId() {
-    var raw = null;
-    try {
-      raw = new URLSearchParams(window.location.search).get('id');
-    } catch (err) {
-      var m = (window.location.search || '').match(/[?&]id=([^&]+)/);
-      raw = m ? m[1] : null;
-    }
-    if (raw == null) return null;
+      var raw = null;
+      try {
+        raw = new URLSearchParams(window.location.search).get('id');
+      } catch (err) {
+        var m = (window.location.search || '').match(/[?&]id=([^&]+)/);
+        raw = m ? m[1] : null;
+      }
+      if (raw == null) {
+        /* Clean permalink form: /product-detail/chem-2k-shield (see .htaccess) */
+        var pm = (window.location.pathname || '').match(/\/product-detail\/([a-z0-9][a-z0-9-]*)\/?$/i);
+        raw = pm ? pm[1] : null;
+      }
+      if (raw == null) return null;
     var id;
     try {
       id = decodeURIComponent(String(raw));
@@ -537,10 +542,6 @@
     setMeta('name', 'twitter:description', metaDesc);
     setMeta('name', 'twitter:image', p.image);
 
-    /* Hero */
-    setText('#detail-title', p.name);
-    setText('#detail-sub', p.subTitle);
-
     /* Media column */
     var mainImg = $('#detail-img');
     if (mainImg) {
@@ -561,6 +562,7 @@
     /* Overview panel */
     setText('#detail-cat', p.categoryLabel);
     setText('#detail-name', p.name);
+    setText('#crumb-product', p.name);
     setText('#detail-subtitle', p.subTitle);
     setText('#detail-desc', p.description);
 
@@ -702,30 +704,14 @@
       return '<article class="ds-card" data-search="' + esc(search) + '">'
         + '<a class="ds-card__preview" href="' + detailHref(p.id) + '" aria-label="View ' + esc(p.name) + ' details">'
         + '<img class="ds-card__img" src="' + esc(p.image) + '" alt="' + esc(p.name) + '"' + imageAttrs(p) + ' />'
-        + '<span class="ds-card__overlay" aria-hidden="true">'
-        + '<span class="ds-card__overlay-btn">View Product' + CHEV + '</span>'
-        + '</span>'
-        + '<span class="ds-card__cat">' + esc(p.categoryLabel) + '</span>'
         + '</a>'
         + '<div class="ds-card__body">'
-        + '<div class="ds-card__head">'
         + '<h3 class="ds-card__title">' + esc(p.name) + '</h3>'
-        + '<span class="ds-card__format">PDF</span>'
-        + '</div>'
-        + '<p class="ds-card__sub">' + esc(p.subTitle) + '</p>'
-        + '<ul class="ds-card__points">'
-        + (p.highlights || []).slice(0, 3).map(function (h) {
-          return '<li>' + esc(h) + '</li>';
-        }).join('')
-        + '</ul>'
         + '<dl class="ds-card__meta">'
         + '<div class="ds-card__meta-row"><dt>Packaging</dt><dd>' + esc(p.packaging) + '</dd></div>'
         + '<div class="ds-card__meta-row"><dt>Coverage</dt><dd>' + esc(p.coverage) + '</dd></div>'
         + '</dl>'
-        + '<div class="ds-card__foot">'
-        + '<a href="' + detailHref(p.id) + '" class="ds-card__details">Product Details' + ARROW + '</a>'
         + renderDownloadLink(p, 'ds-card__download', 'Download')
-        + '</div>'
         + '</div>'
         + '</article>';
     }).join('');

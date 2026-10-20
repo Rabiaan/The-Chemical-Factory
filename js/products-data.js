@@ -1,13 +1,13 @@
 /* ============================================================
    THE CHEMICAL FACTORY — product catalog data
    Product photography and downloadable datasheets live in
-   ./products (PNG or JPEG + PDF per product).
+   ./products (WebP + PDF per product).
    Content transcribed from the official product datasheets.
    ============================================================ */
 window.TCF_PRODUCTS = (function () {
   'use strict';
 
-  var ASSETS = 'products/Main images/';
+  var ASSETS = 'products/';
 
   /* ---------- Categories ---------- */
   var categories = [

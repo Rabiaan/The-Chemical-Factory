@@ -1,20 +1,15 @@
 # robots.txt — THE CHEMICAL FACTORY
 #
-# TODO(owner): replace SITE-URL-PLACEHOLDER with the live origin, e.g.
-#   https://your-domain.example
-# It appears twice below (Sitemap + Host). Both must be changed together.
+# Live origin: https://the-chemical-factory.vercel.app
+#
+# Clean permalinks are the canonical URL form (see .htaccess + vercel.json):
+#   /about  /products  /services  /product-detail/<product-id>
+# The .html and ?id= forms 301 to these, so they are not listed here.
 
 User-agent: *
 Allow: /
 
-# Nothing behind these paths is useful in an index.
-Disallow: /tools/
-Disallow: /*?id=
-Disallow: /*?
+# Product pages (/product-detail/<id>) are real, indexable pages.
+# Do not add a blanket "Disallow: /*?" rule — it would block them.
 
-# product-detail.html?id=<product> is a real page for each of the 14 products.
-# It is intentionally crawlable; the Disallow above targets tracking/filter
-# parameters only. If filtered variants ever appear in search results, switch
-# to a canonical-tag solution instead of blocking the parameter.
-
-Sitemap: SITE-URL-PLACEHOLDER/sitemap.xml
+Sitemap: https://the-chemical-factory.vercel.app/sitemap.xml

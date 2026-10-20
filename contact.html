@@ -5,34 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-src https://www.google.com https://www.youtube-nocookie.com; object-src 'none'; base-uri 'self'; form-action 'self'" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
-    <title>Contact â€” THE CHEMICAL FACTORY</title>
+    <title>Contact - THE CHEMICAL FACTORY</title>
       <!-- SEO (Phase 3.4) -->
       <meta name="description" content="Contact The Chemical Factory in Karachi for product advice, technical datasheets, project quotations and site support. Call +92 304 3600297 or email dechemicalfactory@gmail.com." />
       <meta name="robots" content="index, follow, max-image-preview:large" />
       <meta property="og:type" content="website" />
       <meta property="og:site_name" content="The Chemical Factory" />
-      <meta property="og:title" content="Contact â€” THE CHEMICAL FACTORY" />
+      <meta property="og:title" content="Contact - THE CHEMICAL FACTORY" />
       <meta property="og:description" content="Contact The Chemical Factory in Karachi for product advice, technical datasheets, project quotations and site support. Call +92 304 3600297 or email dechemicalfactory@gmail.com." />
-      <meta property="og:image" content="images/roof-structure.jpg" />
-      <meta property="og:image:alt" content="Contact â€” THE CHEMICAL FACTORY" />
-      <!-- TODO(owner): canonical + og:url need the live domain.
-           Run python tools/seo.py to see the exact lines once known.
-      <link rel="canonical" href="{SITE_URL}/contact.html" />
-      <meta property="og:url" content="{SITE_URL}/contact.html" /> -->
+      <meta property="og:image" content="https://the-chemical-factory.vercel.app/images/roof-structure.webp" />
+      <meta property="og:image:alt" content="Contact - THE CHEMICAL FACTORY" />
+      <link rel="canonical" href="https://the-chemical-factory.vercel.app/contact" />
+      <meta property="og:url" content="https://the-chemical-factory.vercel.app/contact" />
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content="Contact â€” THE CHEMICAL FACTORY" />
+      <meta name="twitter:title" content="Contact - THE CHEMICAL FACTORY" />
       <meta name="twitter:description" content="Contact The Chemical Factory in Karachi for product advice, technical datasheets, project quotations and site support. Call +92 304 3600297 or email dechemicalfactory@gmail.com." />
-      <meta name="twitter:image" content="images/roof-structure.jpg" />
+      <meta name="twitter:image" content="https://the-chemical-factory.vercel.app/images/roof-structure.webp" />
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/icons-anim.css">
     <link rel="stylesheet" href="css/pages.css">
-    <link rel="icon" type="image/png" href="images/fav-log.png" />
-    <meta property="og:image" content="images/logo.jpeg" />
-    <meta name="twitter:image" content="images/logo.jpeg" />
+    <link rel="icon" type="image/webp" href="images/fav-log.webp" />
   </head>
   <body data-page="contact">
     <div id="preloader-root"></div>
     <div id="nav-root"></div>
+
+    <nav class="page-crumbs" aria-label="Breadcrumb">
+      <ol class="page-crumbs__list">
+        <li class="page-crumbs__item"><a href="index.html">Home</a></li>
+        <li class="page-crumbs__sep" aria-hidden="true">/</li>
+        <li class="page-crumbs__item" aria-current="page">Contact</li>
+      </ol>
+    </nav>
 
     <section class="page-hero">
       <picture class="page-hero__banner-media">
@@ -52,7 +56,7 @@
               <p class="section-head__sub" style="margin-top:0.4rem;">Tell us about your structure and the leak symptoms you're seeing.</p>
             </div>
 
-<form id="contact-form" class="form-grid-2" novalidate method="post" action="#">
+<form id="contact-form" class="form-grid-2" novalidate method="post" action="send-mail.php">
               <!-- Honeypot: hidden from people, tempting to bots. Real submissions
                    that fill this are dropped silently by js/forms.js. -->
               <div class="hp-field" aria-hidden="true">
@@ -100,7 +104,7 @@
                 <p class="form-hint" id="contact-message-hint">Up to 500 characters.</p>
                 <p class="form-error" id="contact-message-error" aria-live="polite"></p>
               </div>
-              <div class="form-field" style="grid-column:1/-1; margin-bottom:0;">
+              <div class="form-field form-field--submit" style="grid-column:1/-1; margin-bottom:0;">
                 <button type="submit" class="btn-burgundy">
                   <span>Send Message</span>
                   <span class="btn-burgundy__circle">
@@ -148,7 +152,7 @@
                 </div>
                 <div>
                   <div class="info-card__label">Working Hours</div>
-                  <div class="info-card__value">Mon â€“ Sat Â· 8:00 AM â€“ 6:00 PM</div>
+                  <div class="info-card__value">Mon - Sat A.M 8:00 AM - 6:00 PM</div>
                 </div>
               </div>
             </div>
@@ -175,7 +179,7 @@
     <section class="page-section page-section--muted">
       <div class="container">
         <div class="cta-band" data-reveal>
-          <div class="cta-band__bg"><img src="images/roof-structure.jpg" alt="" width="1600" height="1067" loading="lazy" decoding="async"></div>
+          <div class="cta-band__bg"><img src="images/roof-structure.webp" alt="" width="1600" height="1067" loading="lazy" decoding="async"></div>
           <div class="cta-band__box">
             <h2 class="cta-band__title">Prefer a Fast Quote?</h2>
             <p class="cta-band__sub">
@@ -199,5 +203,6 @@
     <script src="js/components.js"></script>
     <script src="js/forms.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
   </body>
 </html>

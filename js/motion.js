@@ -53,7 +53,12 @@
     return mm;
   }
 
-  /* Run fn only when the visitor has asked for reduced motion. */
+  /* Run fn only when the visitor has asked for reduced motion.
+     fn may return a teardown function - gsap.matchMedia() uses whatever the
+     condition callback returns as its revert handler, so it has to be passed
+     straight back out or nothing registered under this gate can ever be
+     torn down again (which is what happens when the OS setting flips while
+     the tab is open). */
   function reduced(fn) {
     var ctx = context();
     if (!ctx) {
@@ -61,17 +66,17 @@
       if (prefersReduced()) fn();
       return;
     }
-    ctx.add(REDUCE, function () { fn(); });
+    ctx.add(REDUCE, function () { return fn(); });
   }
 
-  /* Run fn only when full motion is allowed. */
+  /* Run fn only when full motion is allowed. Same return-value rule as above. */
   function full(fn) {
     var ctx = context();
     if (!ctx) {
       if (!prefersReduced()) fn();
       return;
     }
-    ctx.add(NO_PREFERENCE, function () { fn(); });
+    ctx.add(NO_PREFERENCE, function () { return fn(); });
   }
 
   /* Called on every preference change (and once at startup) so state can be

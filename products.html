@@ -5,34 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-src https://www.google.com https://www.youtube-nocookie.com; object-src 'none'; base-uri 'self'; form-action 'self'" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
-    <title>Products â€” THE CHEMICAL FACTORY</title>
+    <title>Products - THE CHEMICAL FACTORY</title>
       <!-- SEO (Phase 3.4) -->
       <meta name="description" content="Browse 14 technical construction chemicals: polyurethane injection resins, cementitious waterstops, PU membranes, expansion joint sealants and tile adhesives. Download full datasheets." />
       <meta name="robots" content="index, follow, max-image-preview:large" />
       <meta property="og:type" content="website" />
       <meta property="og:site_name" content="The Chemical Factory" />
-      <meta property="og:title" content="Products â€” THE CHEMICAL FACTORY" />
+      <meta property="og:title" content="Products - THE CHEMICAL FACTORY" />
       <meta property="og:description" content="Browse 14 technical construction chemicals: polyurethane injection resins, cementitious waterstops, PU membranes, expansion joint sealants and tile adhesives. Download full datasheets." />
-      <meta property="og:image" content="images/product-banner.jpg" />
-      <meta property="og:image:alt" content="Products â€” THE CHEMICAL FACTORY" />
-      <!-- TODO(owner): canonical + og:url need the live domain.
-           Run python tools/seo.py to see the exact lines once known.
-      <link rel="canonical" href="{SITE_URL}/products.html" />
-      <meta property="og:url" content="{SITE_URL}/products.html" /> -->
+      <meta property="og:image" content="https://the-chemical-factory.vercel.app/images/banner.webp" />
+      <meta property="og:image:alt" content="Products - THE CHEMICAL FACTORY" />
+      <link rel="canonical" href="https://the-chemical-factory.vercel.app/products" />
+      <meta property="og:url" content="https://the-chemical-factory.vercel.app/products" />
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content="Products â€” THE CHEMICAL FACTORY" />
+      <meta name="twitter:title" content="Products - THE CHEMICAL FACTORY" />
       <meta name="twitter:description" content="Browse 14 technical construction chemicals: polyurethane injection resins, cementitious waterstops, PU membranes, expansion joint sealants and tile adhesives. Download full datasheets." />
-      <meta name="twitter:image" content="images/product-banner.jpg" />
+      <meta name="twitter:image" content="https://the-chemical-factory.vercel.app/images/banner.webp" />
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/icons-anim.css">
     <link rel="stylesheet" href="css/pages.css">
-    <link rel="icon" type="image/png" href="images/fav-log.png" />
-    <meta property="og:image" content="images/logo.jpeg" />
-    <meta name="twitter:image" content="images/logo.jpeg" />
+    <link rel="icon" type="image/webp" href="images/fav-log.webp" />
   </head>
   <body data-page="products">
     <div id="preloader-root"></div>
     <div id="nav-root"></div>
+
+    <nav class="page-crumbs" aria-label="Breadcrumb">
+      <ol class="page-crumbs__list">
+        <li class="page-crumbs__item"><a href="index.html">Home</a></li>
+        <li class="page-crumbs__sep" aria-hidden="true">/</li>
+        <li class="page-crumbs__item" aria-current="page">Products</li>
+      </ol>
+    </nav>
 
     <section class="page-hero">
       <picture class="page-hero__banner-media">
@@ -157,7 +161,7 @@
             <div class="stat-tile__label">System Categories</div>
           </div>
           <div class="stat-tile">
-            <div class="stat-tile__value">43</div>
+            <div class="stat-tile__value">49</div>
             <div class="stat-tile__label">Clients Served</div>
           </div>
           <div class="stat-tile">
@@ -171,7 +175,7 @@
     <section class="page-section">
       <div class="container">
         <div class="cta-band" data-reveal>
-          <div class="cta-band__bg"><img src="images/flat-roof.jpg" alt="" width="1200" height="801" loading="lazy" decoding="async"></div>
+          <div class="cta-band__bg"><img src="images/flat-roof.webp" alt="" width="1200" height="801" loading="lazy" decoding="async"></div>
           <div class="cta-band__box">
             <h2 class="cta-band__title">Need a Product Specification?</h2>
 <p class="cta-band__sub">
@@ -198,5 +202,6 @@
     <script src="js/products.js"></script>
     <script src="js/forms.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
   </body>
 </html>

@@ -5,25 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-src https://www.google.com https://www.youtube-nocookie.com; object-src 'none'; base-uri 'self'; form-action 'self'" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
-    <title>Privacy Policy — THE CHEMICAL FACTORY</title>
+    <title>Privacy Policy â€” THE CHEMICAL FACTORY</title>
     <meta name="description" content="How The Chemical Factory collects, uses and protects the information you submit through this website. Draft pending legal review." />
     <meta name="robots" content="noindex, follow" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="The Chemical Factory" />
-    <meta property="og:title" content="Privacy Policy — THE CHEMICAL FACTORY" />
+    <meta property="og:title" content="Privacy Policy â€” THE CHEMICAL FACTORY" />
     <meta property="og:description" content="How The Chemical Factory collects, uses and protects the information you submit through this website. Draft pending legal review." />
-    <meta property="og:image" content="images/logo.jpeg" />
-    <!-- TODO(owner): canonical + og:url need the live domain.
-    <link rel="canonical" href="{SITE_URL}/privacy.html" />
-    <meta property="og:url" content="{SITE_URL}/privacy.html" /> -->
+    <meta property="og:image" content="https://the-chemical-factory.vercel.app/images/logo.webp" />
+    <link rel="canonical" href="https://the-chemical-factory.vercel.app/privacy" />
+    <meta property="og:url" content="https://the-chemical-factory.vercel.app/privacy" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Privacy Policy — THE CHEMICAL FACTORY" />
+    <meta name="twitter:title" content="Privacy Policy â€” THE CHEMICAL FACTORY" />
     <meta name="twitter:description" content="How The Chemical Factory collects, uses and protects the information you submit through this website. Draft pending legal review." />
-    <meta name="twitter:image" content="images/logo.jpeg" />
+    <meta name="twitter:image" content="https://the-chemical-factory.vercel.app/images/logo.webp" />
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/icons-anim.css">
     <link rel="stylesheet" href="css/pages.css">
-    <link rel="icon" type="image/png" href="images/fav-log.png" />
+    <link rel="icon" type="image/webp" href="images/fav-log.webp" />
     <style>/* Policy pages (privacy / terms / cookie) - Phase 3.5 */
 .policy-draft {
   background: #fff8e6;
@@ -74,7 +73,15 @@
     <div id="navbar-root"></div>
 
     <main id="main">
-      <section class="page-hero">
+      <nav class="page-crumbs" aria-label="Breadcrumb">
+      <ol class="page-crumbs__list">
+        <li class="page-crumbs__item"><a href="index.html">Home</a></li>
+        <li class="page-crumbs__sep" aria-hidden="true">/</li>
+        <li class="page-crumbs__item" aria-current="page">Privacy Policy</li>
+      </ol>
+    </nav>
+
+    <section class="page-hero">
         <picture class="page-hero__banner-media">
           <img class="page-hero__banner" src="images/banner.webp" alt="" width="1983" height="793" loading="eager" fetchpriority="high" decoding="async" />
         </picture>
@@ -198,5 +205,6 @@
     <script src="js/components.js"></script>
     <script src="js/forms.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
   </body>
 </html>

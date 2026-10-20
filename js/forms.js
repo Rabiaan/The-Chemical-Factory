@@ -205,30 +205,44 @@
     return 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(body);
   }
 
-  /* TODO(owner): if you add a real form backend (Formspree, Netlify Forms, or
-     your own /api endpoint), set this to the URL and it will be used instead of
-     mailto:. It must accept application/x-www-form-urlencoded or JSON POST.
-     Leave as null to keep the mail-client hand-off. */
-  var FORM_ENDPOINT = null;
+  /* Same-origin PHP endpoint (send-mail.php) that emails the enquiry to
+     CONTACT_EMAIL via the host's mail(). Requires PHP on the host — standard
+     on cPanel / shared Apache hosting. If the endpoint is missing or mail()
+     is not configured, deliver() falls back to the mailto: hand-off below so
+     the visitor still has a way to reach us. */
+  var FORM_ENDPOINT = 'send-mail.php';
 
-  function deliver(subject, body, onDone) {
-    var payload = { subject: subject, message: body, email: CONTACT_EMAIL };
-
-    if (!FORM_ENDPOINT) {
-      window.location.href = buildMailto(subject, body);
+  function deliver(payload, mailtoUrl, onDone) {
+    if (!FORM_ENDPOINT || typeof window.fetch !== 'function') {
+      window.location.href = mailtoUrl;
       if (onDone) onDone(payload);
       return;
     }
 
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', FORM_ENDPOINT, true);
-    xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-    xhr.onload = function () {
-      if (xhr.status >= 200 && xhr.status < 300) { if (onDone) onDone(payload); }
-      else { showFormToast('Sorry, that did not send. Please email us directly.'); }
-    };
-    xhr.onerror = function () { showFormToast('Network error. Please email us directly.'); };
-    xhr.send(JSON.stringify(payload));
+    var controller = typeof AbortController === 'function' ? new AbortController() : null;
+    var timer = controller ? window.setTimeout(function () { controller.abort(); }, 15000) : null;
+
+    window.fetch(FORM_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json;charset=UTF-8', 'Accept': 'application/json' },
+      body: JSON.stringify(payload),
+      signal: controller ? controller.signal : undefined
+    }).then(function (res) {
+      if (timer) window.clearTimeout(timer);
+      return res.json().catch(function () { return { ok: res.ok }; }).then(function (data) {
+        if (res.ok && data && data.ok) {
+          if (onDone) onDone(payload);
+          return;
+        }
+        throw new Error((data && data.status) || 'send_failed');
+      });
+    }).catch(function () {
+      if (timer) window.clearTimeout(timer);
+      /* Endpoint unreachable or mail() failed — hand off to the mail client. */
+      showFormToast('Could not send automatically — opening your email app instead.');
+      window.location.href = mailtoUrl;
+      if (onDone) onDone(payload);
+    });
   }
 
   /* ---------- Shared toast ---------- */
@@ -275,7 +289,17 @@
         { label: 'Project details', value: data.message, multiline: true }
       ]);
 
-      deliver(subject, body, function () {
+      var payload = {
+        form: 'contact',
+        name: data.name,
+        phone: data.phone,
+        email: data.email,
+        subject: data.subject || 'General',
+        message: data.message
+      };
+      var mailtoUrl = buildMailto(subject, body);
+
+      deliver(payload, mailtoUrl, function () {
         showFormToast('Opening your email app — press send to finish.');
         form.reset();
         $$('[data-validate]', form).forEach(function (f) { setFieldError(f, ''); });
@@ -332,6 +356,22 @@
          per-system rates exist, replace the sqft*2.2 / sqft*3.8 maths in
          main.js#initEstimator and mention the rate basis in the email body. */
 
+      var payload = {
+        form: 'quote',
+        name: data.name,
+        phone: data.phone,
+        email: data.email,
+        subject: data.areaType || 'General',
+        message: data.notes,
+        city: data.city,
+        areaType: data.areaType,
+        system: data.system,
+        sqft: data.sqft,
+        price: data.price,
+        symptoms: symptoms
+      };
+      var mailtoUrl = buildMailto(subject, body);
+
       var fv = $('#quote-form-view');
       var sv = $('#quote-success-view');
       var successName = $('#success-name');
@@ -341,7 +381,7 @@
       if (successPhone) successPhone.textContent = data.phone;
       if (successCity) successCity.textContent = data.city || 'your area';
 
-      deliver(subject, body, function () {
+      deliver(payload, mailtoUrl, function () {
         if (fv) fv.style.display = 'none';
         if (sv) sv.style.display = 'flex';
       });

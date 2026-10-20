@@ -1,0 +1,92 @@
+# ============================================================
+# THE CHEMICAL FACTORY — Apache .htaccess
+# Clean permalinks, security headers, caching.
+# Requires: mod_rewrite, mod_headers, mod_deflate, mod_expires
+# If the site 500s after upload, comment out `Options -Indexes`
+# (some shared hosts forbid Options in .htaccess).
+# ============================================================
+
+Options -Indexes
+DirectoryIndex index.html
+AddDefaultCharset UTF-8
+
+# ---------- Permalinks (clean URLs) ----------
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Force HTTPS — enable once the certificate is live.
+  RewriteCond %{HTTPS} !=on
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # Canonical host: www → apex. Uncomment when the domain is known,
+  # and swap the host part for the real domain.
+  # RewriteCond %{HTTP_HOST} ^www\. [NC]
+  # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # Product permalinks: /product-detail/chem-2k-shield
+  #   -> product-detail.html?id=chem-2k-shield  (internal, no redirect)
+  RewriteRule ^product-detail/([a-z0-9][a-z0-9-]*)/?$ product-detail.html?id=$1 [L,QSA,NC]
+
+  # One canonical product URL form: 301 the legacy query string to the
+  # permalink so both never compete in search results.
+  RewriteCond %{THE_REQUEST} \s/+product-detail\.html\?id=([a-z0-9][a-z0-9-]*) [NC]
+  RewriteRule ^product-detail\.html$ /product-detail/%1? [R=301,L]
+
+  # 301 legacy .html URLs to clean permalinks (/about.html -> /about).
+  # THE_REQUEST is the original request line, so this never fights the
+  # internal rewrite below (internal rewrites do not change it).
+  RewriteCond %{THE_REQUEST} \s/+(index)\.html[\s?] [NC]
+  RewriteRule ^index\.html$ / [R=301,L]
+  RewriteCond %{THE_REQUEST} \s/+([a-z0-9][a-z0-9-]*)\.html[\s?] [NC]
+  RewriteRule ^([a-z0-9][a-z0-9-]*)\.html$ /$1 [R=301,L]
+
+  # Clean URLS: /about serves about.html internally (no redirect).
+  # Runs after the 301 rules; REQUEST_FILENAME checks skip real files
+  # and directories (css/, images/, products/, projects/...).
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^([a-z0-9][a-z0-9-]*)/?$ $1.html [L,NC]
+</IfModule>
+
+# ---------- Security headers ----------
+<IfModule mod_headers.c>
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-src https://www.google.com https://www.youtube-nocookie.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+  Header always set X-Frame-Options "DENY"
+</IfModule>
+
+# ---------- Compression ----------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml
+  AddOutputFilterByType DEFLATE application/javascript application/json application/xml
+  AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# ---------- Caching ----------
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 week"
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType text/css "access plus 1 week"
+  ExpiresByType application/javascript "access plus 1 week"
+  ExpiresByType image/webp "access plus 1 month"
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/svg+xml "access plus 1 month"
+  ExpiresByType application/pdf "access plus 1 week"
+</IfModule>
+
+# ---------- Datasheets: download, never render inline ----------
+<FilesMatch "\.pdf$">
+  Header set Content-Type "application/pdf"
+  Header set X-Content-Type-Options "nosniff"
+  Header set Content-Disposition "attachment"
+</FilesMatch>
+
+# ---------- Block dotfiles (.git, .htaccess itself, editor droppings) ----------
+<FilesMatch "^\.">
+  Require all denied
+</FilesMatch>

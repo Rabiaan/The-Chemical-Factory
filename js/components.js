@@ -49,7 +49,7 @@
     '<header id="navbar" class="navbar">'
     + '<div class="navbar__inner">'
     + '<a href="index.html" class="brand-link" aria-label="The Chemical Factory - Home">'
-    + '<span class="brand-pill"><img src="images/fav-log.png" alt="The Chemical Factory" class="logo__img"></span>'
+    + '<span class="brand-pill"><img src="images/fav-log.webp" alt="The Chemical Factory" class="logo__img"></span>'
     + '</a>'
     + '<nav class="nav-pill">' + navLinks(false) + '</nav>'
     + '<div class="navbar__actions">'
@@ -131,7 +131,7 @@
     + '</div>'
     + '<div class="modal-body">'
     + '<div id="quote-form-view">'
-    + '<form id="quote-form" class="quote-form" novalidate method="post" action="#">'
+    + '<form id="quote-form" class="quote-form" novalidate method="post" action="send-mail.php">'
     /* Honeypot: off-screen, never filled by a human. Dropped by js/forms.js. */
     + '<div class="hp-field" aria-hidden="true">'
     + '<label for="quote-website">Company website</label>'
@@ -231,12 +231,81 @@
     + '<div class="preloader__brush">'
     /* NOTE: no inline onerror= here on purpose. CSP is script-src 'self', which
        blocks inline event handlers. The fallback is attached in JS below. */
-    + '<img src="images/brush.png" alt="" class="preloader__brush-img" />'
+    + '<img src="images/brush.webp" alt="" class="preloader__brush-img" />'
     + '</div>'
     + '</div>';
 
+  /* ---------- Preloader text split (animation item 12) ----------
+     Turns the loading line into per-word spans so js/animations.js can
+     stagger them. Nothing about the reading order changes: the full
+     string stays on the wrapper as aria-label and every generated span
+     is aria-hidden, so a screen reader still announces one sentence
+     rather than a run of separate words.
+
+     This runs here rather than in animations.js on purpose: main.js
+     captures text.offsetWidth for the brush wipe, and it has to measure
+     the final markup, not the plain string. */
+  var SPLIT_CLASS = 'preloader__word';
+
+  /* Appends "a b c" to frag as span('a') span('b') span('c').
+     Spacing between words is handled by flex gap on the container. */
+  function pushWords(text, frag) {
+    var made = [];
+    var parts = String(text).split(/(\s+)/);
+    for (var i = 0; i < parts.length; i++) {
+      var part = parts[i];
+      if (!part) continue;
+      if (/^\s+$/.test(part)) continue;
+      var span = document.createElement('span');
+      span.className = SPLIT_CLASS;
+      span.setAttribute('aria-hidden', 'true');
+      span.textContent = part;
+      frag.appendChild(span);
+      made.push(span);
+    }
+    return made;
+  }
+
+  /* Walks one node's children, splitting text nodes and keeping element
+     wrappers (e.g. <em class="heading-accent">) so the accent survives. */
+  function splitNode(source, target) {
+    var words = [];
+    var kids = Array.prototype.slice.call(source.childNodes);
+    for (var i = 0; i < kids.length; i++) {
+      var kid = kids[i];
+      if (kid.nodeType === 3) {
+        words = words.concat(pushWords(kid.nodeValue, target));
+      } else if (kid.nodeType === 1) {
+        var shell = kid.cloneNode(false);
+        shell.setAttribute('aria-hidden', 'true');
+        words = words.concat(splitNode(kid, shell));
+        target.appendChild(shell);
+      }
+    }
+    return words;
+  }
+
+  function splitPreloaderText() {
+    var text = document.querySelector('#preloader .preloader__text');
+    if (!text || text.__tcfSplit) return;
+    text.__tcfSplit = true;
+
+    var source = text.textContent.replace(/\s+/g, ' ').trim();
+    if (!source) return;
+
+    var frag = document.createDocumentFragment();
+    var words = splitNode(text, frag);
+    if (!words.length) return;
+
+    text.textContent = '';
+    text.setAttribute('aria-label', source);
+    text.appendChild(frag);
+    /* Handed to js/animations.js, which only plays the tween. */
+    text.__tcfWords = words;
+  }
+
   /* Replaces the old inline onerror="this.style.display='none'" on the brush image.
-     Keeps the preloader looking correct if images/brush.png is ever missing. */
+     Keeps the preloader looking correct if images/brush.webp is ever missing. */
   function guardBrushImage() {
     var img = document.querySelector('#preloader .preloader__brush-img');
     if (!img) return;
@@ -321,10 +390,15 @@
     mount();
   }
 
-  /* Preloader must exist before main.js runs, so inject it immediately */
+    /* ---------- Preloader visibility ----------
+     Disabled: using the new fullscreen circular loader on home only. */
+  function shouldShowPreloader() {
+    return false;
+  }
+
+  /* Preloader injection disabled. */
   var preloaderRoot = document.getElementById('preloader-root');
   if (preloaderRoot) {
-    preloaderRoot.innerHTML = PRELOADER;
-    guardBrushImage();
+    preloaderRoot.innerHTML = '';
   }
 })();

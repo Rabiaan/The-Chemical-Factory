@@ -96,6 +96,15 @@ body {
   body { --gutter: 1.5rem; }
 }
 /* Full-bleed dark sections keep edge-to-edge coverage behind the page gutter */
+.svg-defs {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
 .hero, .footer {
   margin-left: calc(-1 * var(--gutter));
   margin-right: calc(-1 * var(--gutter));
@@ -409,6 +418,11 @@ button {
   display: block;
   animation: fadeIn 0.2s ease;
 }
+/* GSAP fades and slides the panel itself, so the keyframe above has to
+   step aside or the two would animate opacity at the same time. */
+.mobile-menu.js-menu-fx.open {
+  animation: none;
+}
 .mobile-menu__links {
   display: flex;
   flex-direction: column;
@@ -471,18 +485,65 @@ button {
   position: absolute;
   inset: 0;
   width: 100%;
-  height: 140%;
-  top: -20%;
+  /* Taller than the hero and pulled up so the 0.28x downward parallax
+     translate never exposes an edge (see js/main.js hero parallax). */
+  height: 170%;
+  top: -30%;
   z-index: 0;
   pointer-events: none;
   will-change: transform;
+}
+.hero__slider {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+.hero__slider-track {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.hero__slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+/* <picture> wrapper (mobile <source> swap): block-level so the img's
+   percentage sizes resolve against it and it adds no baseline gap. */
+.hero__slide picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+/* Every slide is stacked; GSAP drives opacity + a slow Ken Burns drift,
+   so the cross-fade is a real transition rather than a hard cut. Without
+   JS the first slide is on top and covers the rest. */
+.hero__slide:not(:first-child) {
+  opacity: 0;
+}
+html.js-hero-slider .hero__slide {
+  opacity: 0;
+  visibility: hidden;
+}
+html.js-hero-slider .hero__slide:first-child {
+  opacity: 1;
+  visibility: visible;
 }
 .hero__bg-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   opacity: 0.85;
-  transform: scale(1.05);
+  transform-origin: center center;
+  /* The Ken Burns push-in (scale 1 -> 1.05) is driven by GSAP; no CSS
+     transform here so GSAP owns the scale from a clean base. */
+  transform: scale(1);
+  will-change: transform;
 }
 .hero__bg-overlay {
   position: absolute;
@@ -513,7 +574,7 @@ button {
 .hero__watermark-text {
   font-family: var(--font-heading);
   font-weight: 900;
-  font-size: 13vw;
+  font-size: 9vw;
   line-height: 1;
   letter-spacing: -0.04em;
   color: #fff;
@@ -522,26 +583,6 @@ button {
   transform: translateY(-8vh);
   -webkit-mask-image: linear-gradient(to bottom, #000 45%, transparent 98%);
   mask-image: linear-gradient(to bottom, #000 45%, transparent 98%);
-}
-
-.hero__front {
-  position: absolute;
-  z-index: 2;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 75vh;
-  pointer-events: none;
-}
-.hero__front-img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 140%;
-  top: -20%;
-  object-fit: cover;
-  will-change: transform;
 }
 
 .hero__content {
@@ -564,14 +605,80 @@ button {
 }
 
 .hero__subtext {
-  max-width: 28rem;
+  width: 28rem;
+  max-width: 100%;
+  background: rgba(0, 0, 0, 0.35);
+  -webkit-backdrop-filter: blur(14px) saturate(140%) url("#glass-noise");
+  backdrop-filter: blur(14px) saturate(140%) url("#glass-noise");
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 1rem;
+  padding: 1.15rem 1.35rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
 }
 .hero__subtext p {
   color: var(--gray-200);
   font-size: 0.875rem;
   line-height: 1.625;
   font-weight: 400;
-  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+}
+
+/* Hero slider: per-slide copy stack + dots (inside the glass card).
+   Without JS only the first copy shows (`.hero__slide-copy +` rule)
+   and the dots are hidden, so a script failure leaves a static hero.
+   JS adds html.js-hero-slider: copies become a stacked, absolutely
+   positioned block (visibility driven by GSAP) and the dots appear. */
+.hero__slide-copy + .hero__slide-copy {
+  display: none;
+}
+html.js-hero-slider .hero__slide-copies {
+  position: relative;
+}
+html.js-hero-slider .hero__slide-copy {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+}
+.hero__slider-dots {
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.85rem;
+}
+html.js-hero-slider .hero__slider-dots {
+  display: flex;
+}
+.hero__slider-dot {
+  position: relative;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+}
+.hero__slider-dot::before {
+  content: '';
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.35);
+  transition: background 0.3s, width 0.3s;
+}
+.hero__slider-dot:hover::before {
+  background: rgba(255, 255, 255, 0.75);
+}
+.hero__slider-dot.is-active::before {
+  width: 1.375rem;
+  background: var(--burgundy);
+}
+.hero__slider-dot:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.9);
 }
 
 .hero__right {
@@ -667,6 +774,12 @@ button {
 }
 .feature__icon {
   width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 /* Hide empty text elements on banners */
@@ -674,19 +787,13 @@ button {
 .hero__subtext p:empty,
 .hero__line2 .btn-hero-cta span:first-child:empty,
 .feature__label:empty,
-.feature__value:empty {
+.feature__value:empty,
+.feature__short:empty {
   display: none;
 }
 .hero__subtext:has(p:empty),
 .hero__features:has(.feature__label:empty):has(.feature__value:empty) {
   display: none;
-}
-  height: 2.25rem;
-  border-radius: 9999px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
 }
 .feature__icon--burgundy {
   background: rgba(125, 29, 40, 0.3);
@@ -695,6 +802,10 @@ button {
 .feature__icon--blue {
   background: rgba(30, 58, 138, 0.3);
   border: 1px solid rgba(37, 99, 235, 0.5);
+}
+.feature__icon--emerald {
+  background: rgba(5, 150, 105, 0.25);
+  border: 1px solid rgba(52, 211, 153, 0.5);
 }
 .feature__icon--white {
   background: rgba(255, 255, 255, 0.1);
@@ -710,8 +821,10 @@ button {
 .feature__cf {
   font-family: var(--font-heading);
   font-weight: 900;
-  color: var(--burgundy);
-  font-size: 0.75rem;
+  color: #fff;
+  font-size: 0.875rem;
+  letter-spacing: 0.02em;
+  line-height: 1;
 }
 .feature__label {
   font-size: 0.6875rem;
@@ -724,6 +837,9 @@ button {
   font-size: 0.75rem;
   font-weight: 700;
   color: #fff;
+}
+.feature__short {
+  display: none;
 }
 
 /* ---------- ABOUT ---------- */
@@ -1187,6 +1303,10 @@ button {
   display: flex;
   animation: fadeIn 0.2s ease;
 }
+/* GSAP owns the backdrop fade and the panel scale (js/animations.js). */
+.lightbox.js-fx.open {
+  animation: none;
+}
 
 .lightbox__panel {
   position: relative;
@@ -1520,6 +1640,12 @@ button {
   gap: 1.5rem;
   transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform;
+}
+/* When GSAP drives the track (js/main.js initInfiniteCarousel) the
+   stylesheet transition must get out of the way, otherwise both would
+   animate the same transform and the slider would lag behind. */
+.products-slider__track.js-gsap-track {
+  transition: none;
 }
 .products-slider__track .product-card {
   flex: 0 0 100%;
@@ -2003,6 +2129,12 @@ button {
 }
 .faq-item:hover {
   border-color: rgba(0, 0, 0, 0.2);
+}
+/* While GSAP tweens the card height, `transition: all` would animate the
+   same property a frame behind. border-color and box-shadow are kept so the
+   open/hover styling still eases. */
+.js-faq-anim .faq-item {
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 .faq-item.is-open {
   border-color: var(--burgundy);
@@ -2632,6 +2764,9 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
+  align-content: center;
+  row-gap: 0;
   text-align: center;
   padding: 0 1.5rem;
   font-family: var(--font-heading);
@@ -2644,6 +2779,25 @@ button {
   pointer-events: none;
   user-select: none;
   -webkit-user-select: none;
+  gap: 0.3em;
+}
+/* Force the line break before the accent word: everything up to <em>
+   sits on line 1, the accent and anything after it drop to line 2. */
+.preloader__text::before {
+  content: "";
+  flex-basis: 100%;
+  height: 0;
+  order: 1;
+}
+.preloader__text em,
+.preloader__text em ~ .preloader__word {
+  order: 2;
+}
+/* Per-word spans written by js/components.js so the reveal can stagger
+   them. inline-block is what gives each span its own transform box. */
+.preloader__word {
+  display: inline-block;
+  will-change: transform, opacity;
 }
 .preloader__brush {
   position: absolute;
@@ -2699,10 +2853,34 @@ button {
   [data-reveal],
   [data-hero],
   .hero__watermark,
-  .hero__front-img {
+  .hero__front-img,
+  .hero__slide-copy {
     opacity: 1 !important;
     transform: none !important;
     visibility: visible !important;
+  }
+  /* Reduced motion: no autoplay, no cross-fade, no Ken Burns. Only the
+     first slide stays visible and only the first copy shows. */
+  .hero__slide {
+    opacity: 0 !important;
+    transform: none !important;
+    visibility: hidden !important;
+  }
+  .hero__slide:first-child {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  .hero__bg-img {
+    transform: none !important;
+  }
+  html.js-hero-slider .hero__slide-copy {
+    position: static !important;
+  }
+  .hero__slide-copy + .hero__slide-copy {
+    display: none !important;
+  }
+  .hero__slider-dots {
+    display: none !important;
   }
 
   /* Nothing should be able to strand the page behind the preloader. */
@@ -2834,7 +3012,7 @@ button {
     font-size: 4.5rem;
   }
   .hero__watermark-text {
-    font-size: 11vw;
+    font-size: 8.5vw;
   }
   .hero {
     padding-left: 2rem;
@@ -3059,5 +3237,130 @@ button {
     bottom: 1.75rem;
     width: 3.75rem;
     height: 3.75rem;
+  }
+}
+
+/* ---------- Mobile (<=767px) hero, preloader & FAB refinements ---------- */
+@media (max-width: 767px) {
+  .hero {
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding-top: 7rem;
+  }
+  .hero__content {
+    padding-top: 2.5rem;
+  }
+  .hero__row {
+    gap: 1.25rem;
+    padding-bottom: 1rem;
+  }
+  .hero__subtext {
+    width: 100%;
+    max-width: none;
+    background: rgba(0, 0, 0, 0.45);
+    -webkit-backdrop-filter: blur(6px) url("#glass-noise");
+    backdrop-filter: blur(6px) url("#glass-noise");
+    padding: 0.75rem 0.95rem;
+  }
+  .hero__subtext p {
+    color: #fff;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    line-height: 1.5;
+    filter: none;
+  }
+  .hero__watermark-text {
+    font-size: 14vw;
+    white-space: normal;
+    text-align: center;
+    transform: translateY(-22vh);
+    -webkit-mask-image: linear-gradient(to bottom, #000 68%, rgba(0, 0, 0, 0.25) 100%);
+    mask-image: linear-gradient(to bottom, #000 68%, rgba(0, 0, 0, 0.25) 100%);
+  }
+  .hero__slider-dots {
+    margin-top: 0.6rem;
+  }
+  .hero__slider-dot {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+  .btn-hero-cta {
+    background: var(--burgundy);
+    color: #fff;
+    font-size: 0.875rem;
+    min-height: 2.5rem;
+    padding: 0.55rem 0.85rem 0.55rem 1.25rem;
+    box-shadow: 0 14px 28px -8px rgba(125, 29, 40, 0.55), 0 6px 14px rgba(0, 0, 0, 0.28);
+  }
+  .btn-hero-cta:hover {
+    background: var(--burgundy-dark);
+  }
+  .btn-hero-cta__circle {
+    width: 1.875rem;
+    height: 1.875rem;
+    background: #fff;
+    color: var(--burgundy);
+  }
+  /* Mobile: feature pills hidden — the description card and the Get
+     Started button (the .hero__row) drop to the bottom of the hero
+     (.hero__content is bottom-anchored via margin-top: auto). */
+  .hero__features {
+    display: none;
+  }
+  .feature {
+    background: #fff;
+    border: 1px solid rgba(18, 20, 26, 0.07);
+    box-shadow: 0 6px 16px -6px rgba(18, 20, 26, 0.18);
+    border-radius: 0.75rem;
+    padding: 0.5rem 0.65rem;
+    gap: 0.5rem;
+    color: var(--ink);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+  .hero__features .feature__icon {
+    width: 1.625rem;
+    height: 1.625rem;
+    background: var(--red-50);
+    border: 1px solid rgba(125, 29, 40, 0.18);
+  }
+  .hero__features .feature__svg {
+    width: 0.9375rem;
+    height: 0.9375rem;
+    color: var(--burgundy);
+  }
+  .hero__features .feature__cf {
+    color: var(--burgundy);
+    font-size: 0.75rem;
+  }
+  .feature__label,
+  .feature__value {
+    display: none;
+  }
+  .feature__short {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--ink);
+  }
+  .preloader__text {
+    font-size: clamp(1.875rem, 6vw, 3rem);
+  }
+  .preloader__brush {
+    width: 12rem;
+    height: 12rem;
+  }
+  .whatsapp-fab {
+    right: 1rem;
+    bottom: calc(2.75rem + env(safe-area-inset-bottom, 0px));
+    width: 3rem;
+    height: 3rem;
+    border: 2px solid #fff;
+    box-shadow: 0 10px 24px -6px rgba(37, 211, 102, 0.5), 0 4px 12px rgba(0, 0, 0, 0.25);
+  }
+  .whatsapp-fab svg {
+    width: 1.5rem;
+    height: 1.5rem;
   }
 }

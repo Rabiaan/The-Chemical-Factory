@@ -13,57 +13,150 @@
       <meta property="og:site_name" content="The Chemical Factory" />
       <meta property="og:title" content="THE CHEMICAL FACTORY — Waterproofing Products &amp; Solutions" />
       <meta property="og:description" content="Pakistan manufacturer of waterproofing chemicals, construction sealants and polyurethane systems for concrete, masonry and steel. 9+ years, 43 projects delivered across Pakistan." />
-      <meta property="og:image" content="images/hero-bg-back.png" />
+      <meta property="og:image" content="https://the-chemical-factory.vercel.app/images/hero-banner.webp" />
       <meta property="og:image:alt" content="THE CHEMICAL FACTORY — Waterproofing Products &amp; Solutions" />
-      <!-- TODO(owner): canonical + og:url need the live domain.
-           Run python tools/seo.py to see the exact lines once known.
-      <link rel="canonical" href="{SITE_URL}/index.html" />
-      <meta property="og:url" content="{SITE_URL}/index.html" /> -->
+      <link rel="canonical" href="https://the-chemical-factory.vercel.app/" />
+      <meta property="og:url" content="https://the-chemical-factory.vercel.app/" />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content="THE CHEMICAL FACTORY — Waterproofing Products &amp; Solutions" />
       <meta name="twitter:description" content="Pakistan manufacturer of waterproofing chemicals, construction sealants and polyurethane systems for concrete, masonry and steel. 9+ years, 43 projects delivered across Pakistan." />
-      <meta name="twitter:image" content="images/hero-bg-back.png" />
+      <meta name="twitter:image" content="https://the-chemical-factory.vercel.app/images/hero-banner.webp" />
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/icons-anim.css">
     <link rel="stylesheet" href="css/pages.css">
-    <link rel="icon" type="image/png" href="images/fav-log.png" />
-    <meta property="og:image" content="images/logo.jpeg" />
-    <meta name="twitter:image" content="images/logo.jpeg" />
+    <link rel="stylesheet" href="css/loader.css">
+    <link rel="icon" type="image/webp" href="images/fav-log.webp" />
+    <!-- Fullscreen loader must not flash when JS is off: hide it and let the page show. -->
+    <noscript>
+      <style>.tcf-loader{display:none !important;}</style>
+    </noscript>
   </head>
   <body data-page="home">
-    <div id="preloader-root"></div>
+    <!-- ============ FULLSCREEN LOADER ============
+         Hidden by default; js/loader.js reveals it and drives the count.
+         role=status + aria-live so AT announces "Loading"; the node is
+         removed from the DOM (and the a11y tree) once the handoff ends. -->
+    <div class="tcf-loader" id="tcf-loader" role="status" aria-live="polite" aria-label="Loading" hidden>
+      <div class="tcf-loader__inner">
+        <!-- 1. Rotating circular text -->
+        <div class="tcf-loader__ring" aria-hidden="true">
+          <svg class="tcf-loader__ring-svg" viewBox="0 0 200 200">
+            <defs>
+              <path id="tcfLoaderCircle" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0" />
+            </defs>
+            <text class="tcf-loader__ring-text">
+              <textPath href="#tcfLoaderCircle" xlink:href="#tcfLoaderCircle" startOffset="0%">THE CHEMICAL FACTORY &#8226; THE CHEMICAL FACTORY &#8226; </textPath>
+            </text>
+          </svg>
+        </div>
+
+        <!-- 2. Hand-stacked portrait cards -->
+        <div class="tcf-loader__stack" aria-hidden="true"></div>
+      </div>
+
+      <!-- 3. Counter 0-100% (bottom left) -->
+      <div class="tcf-loader__counter" aria-hidden="true">
+        <span class="tcf-loader__num" id="tcf-loader-num">0</span><span class="tcf-loader__pct">%</span>
+      </div>
+
+      <!-- Tagline under the medallion -->
+      <p class="tcf-loader__tagline" aria-hidden="true">
+        Chemically Engineered for <em class="tcf-loader__tagline-accent">Excellence</em>
+      </p>
+    </div>
+
+    <!-- Old brush-wipe preloader root removed: the fullscreen circular
+         loader above is the only loading screen on the home page.
+         (Other pages still inject their own via js/components.js.) -->
     <div id="nav-root"></div>
+
+    <svg class="svg-defs" width="0" height="0" aria-hidden="true" focusable="false">
+      <defs>
+        <filter id="glass-noise" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB">
+          <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="7" result="grain" />
+          <feColorMatrix in="grain" type="matrix" result="grain-x"
+            values="1 0 0 0 0
+                    0 0 0 0 0.5
+                    0 0 0 0 0
+                    0 0 0 0 1" />
+          <feDisplacementMap in="SourceGraphic" in2="grain-x" scale="4" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+      </defs>
+    </svg>
 
     <!-- ============ 1. HERO ============ -->
     <section id="home" class="hero">
       <div id="hero-bg" class="hero__bg">
-        <img
-          src="images/hero-bg-back.png"
-          alt="Modern architectural roof structure"
-          class="hero__bg-img" width="1535" height="1024" loading="eager" fetchpriority="high" decoding="async" />
+        <div class="hero__slider">
+          <div class="hero__slider-track">
+            <div class="hero__slide">
+              <picture>
+                <source media="(max-width: 768px)" srcset="images/slider-hero-banner-mobile/waterproofing.webp" />
+                <img
+                  src="images/slider-hero-banner/waterproofing.webp"
+                  alt="Applying liquid waterproofing membrane to a roof deck"
+                  class="hero__bg-img" width="2752" height="1536" loading="eager" fetchpriority="high" decoding="async" />
+              </picture>
+            </div>
+            <div class="hero__slide">
+              <picture>
+                <source media="(max-width: 768px)" srcset="images/slider-hero-banner-mobile/heat-insulation.webp" />
+                <img
+                  src="images/slider-hero-banner/heat-insulation.webp"
+                  alt="Foil-faced rigid heat insulation boards"
+                  class="hero__bg-img" width="2752" height="1536" loading="lazy" decoding="async" />
+              </picture>
+            </div>
+            <div class="hero__slide">
+              <picture>
+                <source media="(max-width: 768px)" srcset="images/slider-hero-banner-mobile/epoxy-flooring.webp" />
+                <img
+                  src="images/slider-hero-banner/epoxy-flooring.webp"
+                  alt="Seamless epoxy terrazzo flooring installation"
+                  class="hero__bg-img" width="2752" height="1536" loading="lazy" decoding="async" />
+              </picture>
+            </div>
+            <div class="hero__slide">
+              <picture>
+                <source media="(max-width: 768px)" srcset="images/slider-hero-banner-mobile/cfrp-strength.webp" />
+                <img
+                  src="images/slider-hero-banner/cfrp-strength.webp"
+                  alt="Carbon fibre fabric being applied for structural strengthening"
+                  class="hero__bg-img" width="2752" height="1536" loading="lazy" decoding="async" />
+              </picture>
+            </div>
+          </div>
+        </div>
         <div class="hero__bg-overlay"></div>
         <div class="hero__bg-fade"></div>
       </div>
 
       <div class="hero__watermark" data-hero>
-        <span class="hero__watermark-text"></span>
-      </div>
-
-      <div class="hero__front" data-hero>
-        <img src="images/hero-bg-front.png" alt="Chemical Factory building" class="hero__front-img" width="612" height="408" loading="eager" fetchpriority="high" decoding="async" />
+        <span class="hero__watermark-text">The Chemical Factory</span>
       </div>
 
       <div class="hero__content">
         <div class="hero__row">
           <div class="hero__subtext" data-hero>
-            <p></p>
+            <div class="hero__slide-copies">
+              <p class="hero__slide-copy">100% water-impermeable membrane systems for roofs, basements and tanks — applied by trained crews and tested on site.</p>
+              <p class="hero__slide-copy">Reflective foil and rigid insulation boards that cut heat gain, control condensation and lower cooling costs year-round.</p>
+              <p class="hero__slide-copy">Seamless, heavy-duty epoxy and terrazzo floors engineered for chemical resistance, hygiene and long-term wear.</p>
+              <p class="hero__slide-copy">Carbon-fibre fabric strengthening and chemical anchoring that restore structural capacity — no demolition required.</p>
+            </div>
+            <div class="hero__slider-dots" role="group" aria-label="Choose hero slide">
+              <button type="button" class="hero__slider-dot is-active" aria-label="Slide 1: Waterproofing" aria-pressed="true"></button>
+              <button type="button" class="hero__slider-dot" aria-label="Slide 2: Heat Insulation" aria-pressed="false"></button>
+              <button type="button" class="hero__slider-dot" aria-label="Slide 3: Epoxy Flooring" aria-pressed="false"></button>
+              <button type="button" class="hero__slider-dot" aria-label="Slide 4: CFRP Strengthening" aria-pressed="false"></button>
+            </div>
           </div>
 
           <div class="hero__right">
             <!-- <h1 data-hero>LET'S BUILD A</h1> -->
             <div class="hero__line2" data-hero>
               <button type="button" class="btn-hero-cta js-open-quote">
-                <span></span>
+                <span>Get Started</span>
                 <span class="btn-hero-cta__circle">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
                 </span>
@@ -75,41 +168,45 @@
         <div class="hero__features" data-hero>
           <div class="feature">
             <div class="feature__icon feature__icon--burgundy">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature__svg feature__svg--red"><path d="M7 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.57-2.26-1.71-3.19S7.29 6.75 7 5.3c-.29 1.45-1.14 2.84-2.29 3.76S3 11.1 3 12.25c0 2.22 1.8 4.05 4 4.05z"/><path d="M12.56 6.6A10.97 10.97 0 0 0 14 3.02c.5 2.5 2 4.9 4 6.5s3 3.5 3 5.5a6.98 6.98 0 0 1-11.91 4.97"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature__svg feature__svg--red"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg>
             </div>
             <div>
-              <div class="feature__label"></div>
-              <div class="feature__value"></div>
+              <div class="feature__label">Waterproofing</div>
+              <div class="feature__value">100% Water Impermeable Systems</div>
+              <div class="feature__short">Waterproofing</div>
             </div>
           </div>
 
           <div class="feature">
             <div class="feature__icon feature__icon--blue">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature__svg feature__svg--blue"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature__svg feature__svg--blue"><path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"/></svg>
             </div>
             <div>
-              <div class="feature__label"></div>
-              <div class="feature__value"></div>
+              <div class="feature__label">Heat Insulation</div>
+              <div class="feature__value">Thermal &amp; Condensation Control</div>
+              <div class="feature__short">Heat Insulation</div>
             </div>
           </div>
 
           <div class="feature">
-            <div class="feature__icon feature__icon--burgundy">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature__svg feature__svg--emerald"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+            <div class="feature__icon feature__icon--emerald">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature__svg feature__svg--emerald"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
             </div>
             <div>
-              <div class="feature__label"></div>
-              <div class="feature__value"></div>
+              <div class="feature__label">Epoxy Flooring</div>
+              <div class="feature__value">Heavy-Duty Industrial Floors</div>
+              <div class="feature__short">Epoxy Flooring</div>
             </div>
           </div>
 
           <div class="feature">
             <div class="feature__icon feature__icon--white">
-              <span class="feature__cf"></span>
+              <span class="feature__cf">CF</span>
             </div>
             <div>
-              <div class="feature__label"></div>
-              <div class="feature__value"></div>
+              <div class="feature__label">Strengthening</div>
+              <div class="feature__value">CFRP &amp; Chemical Anchoring</div>
+              <div class="feature__short">CFRP &amp; Anchoring</div>
             </div>
           </div>
         </div>
@@ -145,7 +242,7 @@
                 <span class="stat__label">Core Specializations</span>
               </div>
               <div class="stat">
-                <span class="stat__value">43</span>
+                <span class="stat__value">49</span>
                 <span class="stat__label">Clients Served in Pakistan</span>
               </div>
               <div class="stat">
@@ -159,7 +256,7 @@
             <div class="about__stack">
               <div class="about__img-main">
                 <img
-                  src="images/application.jpg"
+                  src="images/application.webp"
                   alt="Industrial Waterproofing Application" width="1200" height="801" loading="lazy" decoding="async" />
                 <div class="about__img-main-overlay"></div>
                 <div class="about__img-main-caption">
@@ -170,7 +267,7 @@
 
               <div id="about-parallax-card" class="about__img-secondary">
                 <img
-                  src="images/technician.jpg"
+                  src="images/technician.webp"
                   alt="Roof Sealing Technician" width="1200" height="795" loading="lazy" decoding="async" />
               </div>
 
@@ -213,9 +310,8 @@
 
         <div class="projects__grid" id="projects-grid">
           <div class="project-card" data-category="Basement & Tanking" data-index="0">
-            <img src="images/construction.jpg" alt="Commercial Office Foundation Tanking" width="1200" height="675" loading="lazy" decoding="async" />
+            <img src="projects/WhatsApp%20Image%202026-10-05%20at%209.49.48%20PM.webp" alt="Commercial Office Foundation Tanking" width="500" height="475" loading="lazy" decoding="async" />
             <div class="project-card__top">
-              <span class="project-card__year">2024</span>
               <span class="project-card__eye">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
               </span>
@@ -227,55 +323,51 @@
             </div>
           </div>
 
-          <div class="project-card" data-category="Terrace & Roof" data-index="1">
-            <img src="images/roof-structure.jpg" alt="Modern Residential Terrace Waterproofing" width="1600" height="1067" loading="lazy" decoding="async" />
+          <div class="project-card" data-category="Below-Grade Structures" data-index="1">
+            <img src="projects/WhatsApp%20Image%202026-10-05%20at%209.50.26%20PM.webp" alt="Residential Foundation &amp; Lift Pit Waterproofing" width="1080" height="768" loading="lazy" decoding="async" />
             <div class="project-card__top">
-              <span class="project-card__year">2024</span>
               <span class="project-card__eye">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
               </span>
             </div>
             <div class="project-card__bottom">
-              <span class="project-card__cat">Terrace &amp; Roof</span>
-              <h3 class="project-card__title">Modern Residential Terrace Waterproofing</h3>
+              <span class="project-card__cat">Below-Grade Structures</span>
+              <h3 class="project-card__title">Residential Foundation &amp; Lift Pit Waterproofing</h3>
               <p class="project-card__loc">Green Valley Estates</p>
             </div>
           </div>
 
-          <div class="project-card" data-category="Wet Areas" data-index="2">
-            <img src="images/wet-area.jpg" alt="Luxury Home Wet Area & Pool Sealing" width="1200" height="800" loading="lazy" decoding="async" />
+          <div class="project-card" data-category="Retaining Walls" data-index="2">
+            <img src="projects/WhatsApp%20Image%202026-10-05%20at%209.50.28%20PM.webp" alt="Underground Retaining Wall Waterproofing" width="1280" height="720" loading="lazy" decoding="async" />
             <div class="project-card__top">
-              <span class="project-card__year">2025</span>
               <span class="project-card__eye">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
               </span>
             </div>
             <div class="project-card__bottom">
-              <span class="project-card__cat">Wet Areas</span>
-              <h3 class="project-card__title">Luxury Home Wet Area &amp; Pool Sealing</h3>
+              <span class="project-card__cat">Retaining Walls</span>
+              <h3 class="project-card__title">Underground Retaining Wall Waterproofing</h3>
               <p class="project-card__loc">Coastal Crest Villas</p>
             </div>
           </div>
 
-          <div class="project-card" data-category="Basement & Tanking" data-index="3">
-            <img src="images/apartment.jpg" alt="Apartment Complex Sub-structure Upgrade" width="1200" height="800" loading="lazy" decoding="async" />
+          <div class="project-card" data-category="Epoxy Flooring" data-index="3">
+            <img src="projects/WhatsApp%20Image%202026-10-05%20at%209.49.47%20PM.webp" alt="Apartment Complex Corridor Epoxy Flooring" width="1080" height="772" loading="lazy" decoding="async" />
             <div class="project-card__top">
-              <span class="project-card__year">2023</span>
               <span class="project-card__eye">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
               </span>
             </div>
             <div class="project-card__bottom">
-              <span class="project-card__cat">Basement &amp; Tanking</span>
-              <h3 class="project-card__title">Apartment Complex Sub-structure Upgrade</h3>
+              <span class="project-card__cat">Epoxy Flooring</span>
+              <h3 class="project-card__title">Apartment Complex Corridor Epoxy Flooring</h3>
               <p class="project-card__loc">Riverside Towers</p>
             </div>
           </div>
 
           <div class="project-card" data-category="Industrial" data-index="4">
-            <img src="images/warehouse.jpg" alt="Industrial Warehouse Polyurea Coating" width="1200" height="800" loading="lazy" decoding="async" />
+            <img src="projects/WhatsApp%20Image%202026-10-05%20at%209.50.27%20PM.webp" alt="Industrial Warehouse Polyurea Coating" width="720" height="1280" loading="lazy" decoding="async" />
             <div class="project-card__top">
-              <span class="project-card__year">2022</span>
               <span class="project-card__eye">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
               </span>
@@ -288,9 +380,8 @@
           </div>
 
           <div class="project-card" data-category="Terrace & Roof" data-index="5">
-            <img src="images/flat-roof.jpg" alt="Storm Damage Flat Roof Restoration" width="1200" height="801" loading="lazy" decoding="async" />
+            <img src="projects/WhatsApp%20Image%202026-10-05%20at%209.50.07%20PM.webp" alt="Storm Damage Flat Roof Restoration" width="2560" height="1440" loading="lazy" decoding="async" />
             <div class="project-card__top">
-              <span class="project-card__year">2025</span>
               <span class="project-card__eye">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
               </span>
@@ -361,7 +452,7 @@
             </div>
             <div>
               <div class="service-card__img">
-                <img src="images/flat-roof.jpg" alt="Waterproofing systems" width="1200" height="801" loading="lazy" decoding="async" />
+                <img src="projects/WhatsApp%20Image%202026-10-05%20at%209.49.48%20PM.webp" alt="Waterproofing systems" width="500" height="475" loading="lazy" decoding="async" />
               </div>
               <div class="service-card__tags">
                 <span class="service-tag">Bitumen Membrane</span>
@@ -381,7 +472,7 @@
             </div>
             <div>
               <div class="service-card__img">
-                <img src="images/construction.jpg" alt="Construction chemicals" width="1200" height="675" loading="lazy" decoding="async" />
+                <img src="projects/WhatsApp%20Image%202026-10-05%20at%209.50.26%20PM.webp" alt="Construction chemicals" width="1080" height="768" loading="lazy" decoding="async" />
               </div>
               <div class="service-card__tags">
                 <span class="service-tag">Concrete Admixtures</span>
@@ -401,7 +492,7 @@
             </div>
             <div>
               <div class="service-card__img">
-                <img src="images/technician.jpg" alt="PU injection system" width="1200" height="795" loading="lazy" decoding="async" />
+                <img src="projects/WhatsApp%20Image%202026-10-05%20at%209.50.28%20PM.webp" alt="PU injection system" width="1280" height="720" loading="lazy" decoding="async" />
               </div>
               <div class="service-card__tags">
                 <span class="service-tag">Hydrophobic Grouting</span>
@@ -421,7 +512,7 @@
             </div>
             <div>
               <div class="service-card__img">
-                <img src="images/warehouse.jpg" alt="Epoxy flooring system" width="1200" height="800" loading="lazy" decoding="async" />
+                <img src="projects/WhatsApp%20Image%202026-10-05%20at%209.50.27%20PM.webp" alt="Epoxy flooring system" width="720" height="1280" loading="lazy" decoding="async" />
               </div>
               <div class="service-card__tags">
                 <span class="service-tag">Abrasion Resistant</span>
@@ -450,7 +541,7 @@
           <div class="products-slider__track">
             <div class="product-card" data-index="0">
               <a class="product-card__img" href="product-detail.html?id=chem-pu-elasto-pro" aria-label="View CHEM PU ELASTO PRO">
-                <img src="products/Main images/Chem-PU-Elasto-pro.webp" alt="CHEM PU ELASTO PRO" loading="lazy" width="1600" height="1000" decoding="async" />
+                <img src="products/Chem-PU-Elasto-pro.webp" alt="CHEM PU ELASTO PRO" loading="lazy" width="1600" height="1000" decoding="async" />
                 <span class="product-card__cat">Polyurethane Waterproof Membranes</span>
               </a>
               <div class="product-card__body">
@@ -466,7 +557,7 @@
 
             <div class="product-card" data-index="1">
               <a class="product-card__img" href="product-detail.html?id=chem-2k-inject-pro" aria-label="View CHEM 2K INJECT PRO">
-                <img src="products/Main images/Chem-2k-Inject-Pro.webp" alt="CHEM 2K INJECT PRO" loading="lazy" width="1600" height="1000" decoding="async" />
+                <img src="products/Chem-2k-Inject-Pro.webp" alt="CHEM 2K INJECT PRO" loading="lazy" width="1600" height="1000" decoding="async" />
                 <span class="product-card__cat">Injection &amp; Crack Sealing Resins</span>
               </a>
               <div class="product-card__body">
@@ -482,7 +573,7 @@
 
             <div class="product-card" data-index="2">
               <a class="product-card__img" href="product-detail.html?id=chem-swell-pro" aria-label="View CHEM SWELL PRO">
-                <img src="products/Main images/Chem-Swell-Pro.webp" alt="CHEM SWELL PRO" loading="lazy" width="1224" height="864" decoding="async" />
+                <img src="products/Chem-Swell-Pro.webp" alt="CHEM SWELL PRO" loading="lazy" width="1224" height="864" decoding="async" />
                 <span class="product-card__cat">Hydrophilic Waterstops</span>
               </a>
               <div class="product-card__body">
@@ -498,7 +589,7 @@
 
             <div class="product-card" data-index="3">
               <a class="product-card__img" href="product-detail.html?id=chemadd-sp-pro" aria-label="View CHEMADD SP PRO">
-                <img src="products/Main images/ChemAdd-SP-Pro.webp" alt="CHEMADD SP PRO" loading="lazy" width="1600" height="1000" decoding="async" />
+                <img src="products/ChemAdd-SP-Pro.webp" alt="CHEMADD SP PRO" loading="lazy" width="1600" height="1000" decoding="async" />
                 <span class="product-card__cat">Concrete Admixtures</span>
               </a>
               <div class="product-card__body">
@@ -535,7 +626,7 @@
     <section class="page-section">
       <div class="container">
         <div class="cta-band" data-reveal>
-          <div class="cta-band__bg"><img src="images/flat-roof.jpg" alt="" width="1200" height="801" loading="lazy" decoding="async"></div>
+          <div class="cta-band__bg"><img src="images/flat-roof.webp" alt="" width="1200" height="801" loading="lazy" decoding="async"></div>
           <div class="cta-band__box">
             <h2 class="cta-band__title">Ready to Seal It Right?</h2>
             <p class="cta-band__sub">
@@ -563,7 +654,7 @@
 
               <div class="why__worker">
                 <img
-                  src="images/technician.jpg"
+                  src="images/technician.webp"
                   alt="Chemical Engineer" width="1200" height="795" loading="lazy" decoding="async" />
                 <p>
                   We aim to be your top choice by prioritizing chemical purity, engineering honesty, and total leak prevention.
@@ -639,46 +730,64 @@
 
       <!--
         LOGO STRIP
-        Drop logo files into images/clients/ and swap any <span> below for:
-        <span class="clients-strip__logo"><img src="images/clients/kings-group.png" alt="Kings Group" loading="lazy" decoding="async" /></span>
+        Logo files live in clients/ (1000x1000 webp). To use a text chip instead of a
+        logo: <li class="clients-strip__logo">Company Name</li>
       -->
       <div class="clients-strip">
         <div class="clients-strip__track">
           <ul class="clients-strip__row">
-            <li class="clients-strip__logo">Kings Group</li>
-            <li class="clients-strip__logo">PNS Shifa</li>
-            <li class="clients-strip__logo">Marriott Karachi</li>
-            <li class="clients-strip__logo">Pakistan Air Force</li>
-            <li class="clients-strip__logo">Pakistan Navy</li>
-            <li class="clients-strip__logo">NICVD (Jinnah)</li>
-            <li class="clients-strip__logo">Mondez Pakistan</li>
-            <li class="clients-strip__logo">Pak Suzuki Motors</li>
-            <li class="clients-strip__logo">Centric Tower</li>
-            <li class="clients-strip__logo">Askari Colonies Lahore</li>
-            <li class="clients-strip__logo">Steelmen International</li>
-            <li class="clients-strip__logo">Pak Insulation Limited</li>
-            <li class="clients-strip__logo">Izhar Group of Companies</li>
-            <li class="clients-strip__logo">Ghulam Rasool &amp; Co (GRC)</li>
-            <li class="clients-strip__logo">The Falcon Malir</li>
-            <li class="clients-strip__logo">DES PAK</li>
+            <li class="clients-strip__logo clients-strip__logo--img"><img src="clients/Air-Force-logo.jpg.webp" alt="Pakistan Air Force" width="1000" height="1000" loading="eager" fetchpriority="low" decoding="sync" /></li>
+            <li class="clients-strip__logo clients-strip__logo--img"><img src="clients/Pak-Army-logo.jpg.webp" alt="Pakistan Army" width="1000" height="1000" loading="eager" fetchpriority="low" decoding="sync" /></li>
+            <li class="clients-strip__logo clients-strip__logo--img"><img src="clients/PakNavy-Shifa-logo.jpg.webp" alt="Pakistan Navy" width="1000" height="1000" loading="eager" fetchpriority="low" decoding="sync" /></li>
+            <li class="clients-strip__logo clients-strip__logo--img"><img src="clients/NICD-Logo.jpg.webp" alt="NICVD (Jinnah)" width="1000" height="1000" loading="eager" fetchpriority="low" decoding="sync" /></li>
+            <li class="clients-strip__logo clients-strip__logo--img"><img src="clients/National-Aerospace-logo.jpg.webp" alt="National Aerospace Science &amp; Technology Park" width="1000" height="1000" loading="eager" fetchpriority="low" decoding="sync" /></li>
+            <li class="clients-strip__logo clients-strip__logo--img"><img src="clients/Askari-Colony-logo.jpg.webp" alt="Askari Colonies Lahore" width="1000" height="1000" loading="eager" fetchpriority="low" decoding="sync" /></li>
+            <li class="clients-strip__logo clients-strip__logo--img"><img src="clients/The-Falcon.jpg.webp" alt="The Falcon Malir" width="1000" height="1000" loading="eager" fetchpriority="low" decoding="sync" /></li>
+            <li class="clients-strip__logo clients-strip__logo--img"><img src="clients/Marrioyy-Karachi-Logo.jpg.webp" alt="Marriott Karachi" width="1000" height="1000" loading="eager" fetchpriority="low" decoding="sync" /></li>
+            <li class="clients-strip__logo clients-strip__logo--img"><img src="clients/Kings-Group-logo.jpg.webp" alt="Kings Group" width="1000" height="1000" loading="eager" fetchpriority="low" decoding="sync" /></li>
+            <li class="clients-strip__logo clients-strip__logo--img"><img src="clients/Zameen-Builders-Logo.jpg.webp" alt="Zameen Builders" width="1000" height="1000" loading="eager" fetchpriority="low" decoding="sync" /></li>
+            <li class="clients-strip__logo clients-strip__logo--img"><img src="clients/Luna-Cafe-Logo.jpg.webp" alt="Luna's Cafe Lahore" width="1000" height="1000" loading="eager" fetchpriority="low" decoding="sync" /></li>
+            <li class="clients-strip__logo clients-strip__logo--img"><img src="clients/Suzuki-Logo.jpg.webp" alt="Pak Suzuki Motors" width="1000" height="1000" loading="eager" fetchpriority="low" decoding="sync" /></li>
+            <li class="clients-strip__logo clients-strip__logo--img"><img src="clients/Mondelez-Logo.jpg.webp" alt="Mondelez Pakistan" width="1000" height="1000" loading="eager" fetchpriority="low" decoding="sync" /></li>
+            <li class="clients-strip__logo clients-strip__logo--img"><img src="clients/Cadbury-Logo.jpg.webp" alt="Cadbury" width="1000" height="1000" loading="eager" fetchpriority="low" decoding="sync" /></li>
+            <li class="clients-strip__logo clients-strip__logo--img"><img src="clients/PakNavy-Shifa-logo.jpg.webp" alt="PNS Shifa" width="1000" height="1000" loading="eager" fetchpriority="low" decoding="sync" /></li>
+            <li class="clients-strip__logo clients-strip__logo--img"><img src="clients/Times-Group-Logo.jpg.webp" alt="Times Group" width="1000" height="1000" loading="eager" fetchpriority="low" decoding="sync" /></li>
+            <li class="clients-strip__logo clients-strip__logo--img"><img src="clients/Raspberry-Logo.jpg.webp" alt="Raspberry Pakistan" width="1000" height="1000" loading="eager" fetchpriority="low" decoding="sync" /></li>
+            <li class="clients-strip__logo clients-strip__logo--img"><img src="clients/ZKB-Logo.jpg.webp" alt="ZKB Engineers &amp; Constructors" width="1000" height="1000" loading="eager" fetchpriority="low" decoding="sync" /></li>
+            <li class="clients-strip__logo clients-strip__logo--img"><img src="clients/IZHAR-GROUP-LOGO.jpg.webp" alt="Izhar Group of Companies" width="1000" height="1000" loading="eager" fetchpriority="low" decoding="sync" /></li>
+            <li class="clients-strip__logo clients-strip__logo--img"><img src="clients/GRC-logo.jpg.webp" alt="Ghulam Rasool &amp; Company (GRC)" width="1000" height="1000" loading="eager" fetchpriority="low" decoding="sync" /></li>
+            <li class="clients-strip__logo clients-strip__logo--img"><img src="clients/Das-Numberi-Logo.jpg.webp" alt="DAS Numberi" width="1000" height="1000" loading="eager" fetchpriority="low" decoding="sync" /></li>
+            <li class="clients-strip__logo clients-strip__logo--img"><img src="clients/NESPAK-logo.jpg.webp" alt="NESPAK" width="1000" height="1000" loading="eager" fetchpriority="low" decoding="sync" /></li>
+            <li class="clients-strip__logo clients-strip__logo--img"><img src="clients/Total-Parco-Logo.jpg.webp" alt="Total PARCO" width="1000" height="1000" loading="eager" fetchpriority="low" decoding="sync" /></li>
+            <li class="clients-strip__logo clients-strip__logo--img"><img src="clients/centric_tower.webp" alt="Centric Tower" width="1000" height="1000" loading="eager" fetchpriority="low" decoding="sync" /></li>
+            <li class="clients-strip__logo clients-strip__logo--img"><img src="clients/brisk_engineering.webp" alt="Brisk Engineering" width="1000" height="1000" loading="eager" fetchpriority="low" decoding="sync" /></li>
           </ul>
           <ul class="clients-strip__row" aria-hidden="true">
-            <li class="clients-strip__logo">Kings Group</li>
-            <li class="clients-strip__logo">PNS Shifa</li>
-            <li class="clients-strip__logo">Marriott Karachi</li>
-            <li class="clients-strip__logo">Pakistan Air Force</li>
-            <li class="clients-strip__logo">Pakistan Navy</li>
-            <li class="clients-strip__logo">NICVD (Jinnah)</li>
-            <li class="clients-strip__logo">Mondez Pakistan</li>
-            <li class="clients-strip__logo">Pak Suzuki Motors</li>
-            <li class="clients-strip__logo">Centric Tower</li>
-            <li class="clients-strip__logo">Askari Colonies Lahore</li>
-            <li class="clients-strip__logo">Steelmen International</li>
-            <li class="clients-strip__logo">Pak Insulation Limited</li>
-            <li class="clients-strip__logo">Izhar Group of Companies</li>
-            <li class="clients-strip__logo">Ghulam Rasool &amp; Co (GRC)</li>
-            <li class="clients-strip__logo">The Falcon Malir</li>
-            <li class="clients-strip__logo">DES PAK</li>
+            <li class="clients-strip__logo clients-strip__logo--img"><img src="clients/Air-Force-logo.jpg.webp" alt="" width="1000" height="1000" loading="eager" fetchpriority="low" decoding="sync" /></li>
+            <li class="clients-strip__logo clients-strip__logo--img"><img src="clients/Pak-Army-logo.jpg.webp" alt="" width="1000" height="1000" loading="eager" fetchpriority="low" decoding="sync" /></li>
+            <li class="clients-strip__logo clients-strip__logo--img"><img src="clients/PakNavy-Shifa-logo.jpg.webp" alt="" width="1000" height="1000" loading="eager" fetchpriority="low" decoding="sync" /></li>
+            <li class="clients-strip__logo clients-strip__logo--img"><img src="clients/NICD-Logo.jpg.webp" alt="" width="1000" height="1000" loading="eager" fetchpriority="low" decoding="sync" /></li>
+            <li class="clients-strip__logo clients-strip__logo--img"><img src="clients/National-Aerospace-logo.jpg.webp" alt="" width="1000" height="1000" loading="eager" fetchpriority="low" decoding="sync" /></li>
+            <li class="clients-strip__logo clients-strip__logo--img"><img src="clients/Askari-Colony-logo.jpg.webp" alt="" width="1000" height="1000" loading="eager" fetchpriority="low" decoding="sync" /></li>
+            <li class="clients-strip__logo clients-strip__logo--img"><img src="clients/The-Falcon.jpg.webp" alt="" width="1000" height="1000" loading="eager" fetchpriority="low" decoding="sync" /></li>
+            <li class="clients-strip__logo clients-strip__logo--img"><img src="clients/Marrioyy-Karachi-Logo.jpg.webp" alt="" width="1000" height="1000" loading="eager" fetchpriority="low" decoding="sync" /></li>
+            <li class="clients-strip__logo clients-strip__logo--img"><img src="clients/Kings-Group-logo.jpg.webp" alt="" width="1000" height="1000" loading="eager" fetchpriority="low" decoding="sync" /></li>
+            <li class="clients-strip__logo clients-strip__logo--img"><img src="clients/Zameen-Builders-Logo.jpg.webp" alt="" width="1000" height="1000" loading="eager" fetchpriority="low" decoding="sync" /></li>
+            <li class="clients-strip__logo clients-strip__logo--img"><img src="clients/Luna-Cafe-Logo.jpg.webp" alt="" width="1000" height="1000" loading="eager" fetchpriority="low" decoding="sync" /></li>
+            <li class="clients-strip__logo clients-strip__logo--img"><img src="clients/Suzuki-Logo.jpg.webp" alt="" width="1000" height="1000" loading="eager" fetchpriority="low" decoding="sync" /></li>
+            <li class="clients-strip__logo clients-strip__logo--img"><img src="clients/Mondelez-Logo.jpg.webp" alt="" width="1000" height="1000" loading="eager" fetchpriority="low" decoding="sync" /></li>
+            <li class="clients-strip__logo clients-strip__logo--img"><img src="clients/Cadbury-Logo.jpg.webp" alt="" width="1000" height="1000" loading="eager" fetchpriority="low" decoding="sync" /></li>
+            <li class="clients-strip__logo clients-strip__logo--img"><img src="clients/PakNavy-Shifa-logo.jpg.webp" alt="" width="1000" height="1000" loading="eager" fetchpriority="low" decoding="sync" /></li>
+            <li class="clients-strip__logo clients-strip__logo--img"><img src="clients/Times-Group-Logo.jpg.webp" alt="" width="1000" height="1000" loading="eager" fetchpriority="low" decoding="sync" /></li>
+            <li class="clients-strip__logo clients-strip__logo--img"><img src="clients/Raspberry-Logo.jpg.webp" alt="" width="1000" height="1000" loading="eager" fetchpriority="low" decoding="sync" /></li>
+            <li class="clients-strip__logo clients-strip__logo--img"><img src="clients/ZKB-Logo.jpg.webp" alt="" width="1000" height="1000" loading="eager" fetchpriority="low" decoding="sync" /></li>
+            <li class="clients-strip__logo clients-strip__logo--img"><img src="clients/IZHAR-GROUP-LOGO.jpg.webp" alt="" width="1000" height="1000" loading="eager" fetchpriority="low" decoding="sync" /></li>
+            <li class="clients-strip__logo clients-strip__logo--img"><img src="clients/GRC-logo.jpg.webp" alt="" width="1000" height="1000" loading="eager" fetchpriority="low" decoding="sync" /></li>
+            <li class="clients-strip__logo clients-strip__logo--img"><img src="clients/Das-Numberi-Logo.jpg.webp" alt="" width="1000" height="1000" loading="eager" fetchpriority="low" decoding="sync" /></li>
+            <li class="clients-strip__logo clients-strip__logo--img"><img src="clients/NESPAK-logo.jpg.webp" alt="" width="1000" height="1000" loading="eager" fetchpriority="low" decoding="sync" /></li>
+            <li class="clients-strip__logo clients-strip__logo--img"><img src="clients/Total-Parco-Logo.jpg.webp" alt="" width="1000" height="1000" loading="eager" fetchpriority="low" decoding="sync" /></li>
+            <li class="clients-strip__logo clients-strip__logo--img"><img src="clients/centric_tower.webp" alt="" width="1000" height="1000" loading="eager" fetchpriority="low" decoding="sync" /></li>
+            <li class="clients-strip__logo clients-strip__logo--img"><img src="clients/brisk_engineering.webp" alt="" width="1000" height="1000" loading="eager" fetchpriority="low" decoding="sync" /></li>
           </ul>
         </div>
       </div>
@@ -782,9 +891,11 @@
     <script src="js/vendor/gsap.min.js"></script>
     <script src="js/vendor/ScrollTrigger.min.js"></script>
     <script src="js/motion.js"></script>
+    <script src="js/loader.js"></script>
     <script src="js/icons.js"></script>
     <script src="js/components.js"></script>
     <script src="js/forms.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
   </body>
 </html>

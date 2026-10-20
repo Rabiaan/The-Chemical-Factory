@@ -1,0 +1,209 @@
+/* ============================================================
+   THE CHEMICAL FACTORY — fullscreen loader
+   ------------------------------------------------------------
+   Fixed overlay, Sand background, centered ring of circular text,
+   a hand-stacked pile of portrait cards and a 0-100% counter.
+   Only the existing design tokens are used; no new colours.
+   ============================================================ */
+
+.tcf-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.75rem;
+  background: var(--sand);
+  /* Promote to its own layer: the counter + ring animate every frame. */
+  transform: translateZ(0);
+  will-change: opacity;
+}
+/* `hidden` wins until loader.js removes it, so no flash before JS runs. */
+.tcf-loader[hidden] { display: none; }
+
+.tcf-loader__inner {
+  position: relative;
+  width: clamp(220px, 32vw, 360px);
+  height: clamp(220px, 32vw, 360px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: clamp(2rem, 6vw, 3rem);
+}
+
+/* ---------- 1. Circular text ring ---------- */
+.tcf-loader__ring {
+  position: absolute;
+  inset: 0;
+  animation: tcf-ring-spin 20s linear infinite;
+  transform-origin: 50% 50%;
+}
+.tcf-loader__ring-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+.tcf-loader__ring-text {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  fill: var(--ink);
+}
+@keyframes tcf-ring-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ---------- 2. Image stack ---------- */
+.tcf-loader__stack {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Sized relative to the ring so it scales with the clamp() width. */
+  width: 55%;
+  height: 55%;
+  margin: auto;
+  pointer-events: none;
+}
+.tcf-loader__card {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  /* --ink with alpha — not a new colour. */
+  box-shadow: 0 18px 45px rgba(18, 20, 26, 0.28);
+  /* Hidden until its slice of the 0-100 range is reached. */
+  clip-path: inset(100% 0 0 0);
+  will-change: clip-path, transform, opacity;
+}
+.tcf-loader__card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Full-bleed handoff banner: the last image, clipped to the card's rect,
+   expands to cover the viewport at the end of the count. */
+.tcf-loader__banner {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+}
+.tcf-loader__banner img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---------- 3. Counter ---------- */
+.tcf-loader__counter {
+  position: absolute;
+  left: clamp(1rem, 3vw, 2rem);
+  bottom: clamp(1rem, 3vw, 2rem);
+  z-index: 3;
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-start;
+  gap: 0.06em;
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: clamp(2.25rem, 7vw, 4.5rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: #fff; /* required by the difference blend (inverts the backdrop); not a new design colour */
+  /* Difference blend keeps it legible over any card beneath it. */
+  mix-blend-mode: difference;
+  /* Fixed box so the number never shifts layout (~4 chars max). */
+  font-variant-numeric: tabular-nums;
+}
+.tcf-loader__num {
+  display: inline-block;
+  min-width: 2.2ch;
+  text-align: right;
+}
+.tcf-loader__pct {
+  font-size: 0.5em;
+}
+.tcf-loader.is-finished .tcf-loader__counter {
+  mix-blend-mode: normal;
+  color: var(--ink);
+}
+
+/* ---------- 4. Tagline ---------- */
+.tcf-loader__tagline {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(1rem, 3vw, 2rem);
+  transform: translateX(-50%);
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: clamp(0.7rem, 2.2vw, 0.85rem);
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-align: center;
+}
+.tcf-loader__tagline-accent {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-style: italic;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: var(--burgundy);
+}
+
+/* ---------- Responsive: mobile ---------- */
+@media (max-width: 767px) {
+  .tcf-loader__inner {
+    /* 70vw ring on mobile. */
+    width: clamp(260px, 70vw, 420px);
+    height: clamp(260px, 70vw, 420px);
+  }
+  .tcf-loader__stack {
+    /* Card 50% of the ring on mobile. */
+    width: 50%;
+    height: 50%;
+  }
+  .tcf-loader__ring-text {
+    letter-spacing: 0.26em;
+  }
+}
+
+/* ---------- Reduced motion: plain counter, no ring spin ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .tcf-loader__ring {
+    animation: none;
+  }
+  .tcf-loader__card {
+    clip-path: none;
+    opacity: 0;
+  }
+}
+
+/* ---------- Hero headline word masks (created by loader.js) ----------
+   Per-word overflow-hidden masks so the headline words can slide up
+   independently during the post-loader hero reveal. */
+.tcf-word-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  /* Room for descenders (y, g) so overflow:hidden does not clip them. */
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+}
+.tcf-word {
+  display: inline-block;
+  will-change: transform;
+}

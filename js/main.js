@@ -48,20 +48,44 @@
     return s.length > max ? s.slice(0, max) : s;
   }
 
-  /* ---------- Modal helpers ---------- */
+  /* ---------- Modal helpers ----------
+     js/animations.js may register window.ModalFx to animate a panel in and
+     out. It is optional: when nothing is registered the behaviour is exactly
+     as before (class + aria + scroll lock, synchronously). */
   function openModal(modal) {
     if (!modal) return;
     modal.classList.add('open');
     modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+    if (window.ModalFx && typeof window.ModalFx.open === 'function') {
+      window.ModalFx.open(modal);
+    }
   }
 
   function closeModal(modal) {
+    if (!modal) return;
+    /* The animation module owns the hide step when it is present, so the
+       panel gets to animate out before display:none lands. It always calls
+       back into finishModalClose() to do the hiding. */
+    if (window.ModalFx && typeof window.ModalFx.close === 'function') {
+      window.ModalFx.close(modal);
+      return;
+    }
+    finishModalClose(modal);
+  }
+
+  function finishModalClose(modal) {
     if (!modal) return;
     modal.classList.remove('open');
     modal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
   }
+
+  /* Publish the hide step so an animation module can run it at the end of
+     its exit tween. Registering only `finish` does not opt main.js into the
+     animated path - closeModal above still checks specifically for `close`. */
+  window.ModalFx = window.ModalFx || {};
+  window.ModalFx.finish = finishModalClose;
 
   /* ---------- Quote Modal ---------- */
   /* NOTE: js/components.js injects the modal on DOMContentLoaded, which runs
@@ -271,6 +295,16 @@
         ? ''
         : 'none';
     });
+    /* Hiding cards reflows the grid and moves every card below the fold, so
+       the scroll-reveal triggers are now pointing at stale positions. Without
+       a refresh the remaining cards either reveal at the wrong scroll depth
+       or, if they were hidden when their trigger was created, never get a
+       valid start at all and stay at opacity 0. Deferred a frame so the
+       layout has settled. */
+    window.requestAnimationFrame(function () {
+      if (window.Motion) window.Motion.refresh();
+      else if (window.ScrollTrigger) window.ScrollTrigger.refresh();
+    });
   }
 
   $$('.filter-bar').forEach(function (bar) {
@@ -288,6 +322,7 @@
   /* ---------- Projects: lightbox ---------- */
   var projectModal = $('#project-modal');
   var projectModalImg = $('#project-modal-img');
+  var projectModalVideo = $('#project-modal-video');
   var projectModalCat = $('#project-modal-cat');
   var projectModalTitle = $('#project-modal-title');
   var projectModalLocation = $('#project-modal-location');
@@ -300,43 +335,43 @@
       category: 'Basement & Tanking',
       title: 'Commercial Office Foundation Tanking',
       location: 'Metropolitan Financial District',
-      image: 'images/construction.jpg',
+      image: 'projects/WhatsApp%20Image%202026-10-05%20at%209.49.48%20PM.webp',
       description: 'Comprehensive sub-grade tanking using elastomeric bituminous sheet membrane with protective drainage board for a 14-story subterranean parking deck.',
       systemUsed: 'TCF Elastomeric Bituminous Membrane 4mm'
     },
     {
       year: '2024',
-      category: 'Terrace & Roof',
-      title: 'Modern Residential Terrace Waterproofing',
+      category: 'Below-Grade Structures',
+      title: 'Residential Foundation & Lift Pit Waterproofing',
       location: 'Green Valley Estates',
-      image: 'images/roof-structure.jpg',
-      description: 'UV-stable liquid polyurethane coating system applied over inverted flat roof insulation with integrated solar pad root resistance.',
-      systemUsed: 'TCF Polyurethane Liquid Membrane'
+      image: 'projects/WhatsApp%20Image%202026-10-05%20at%209.50.26%20PM.webp',
+      description: 'Cementitious waterproof coating applied across the cast-in-situ foundation walls and lift pit of a residential block, with detailing at the kicker joint and waterstop before backfilling.',
+      systemUsed: 'TCF CHEM 2K SHIELD Cementitious Waterproof Coating'
     },
     {
       year: '2025',
-      category: 'Wet Areas',
-      title: 'Luxury Home Wet Area & Pool Sealing',
+      category: 'Retaining Walls',
+      title: 'Underground Retaining Wall Waterproofing',
       location: 'Coastal Crest Villas',
-      image: 'images/wet-area.jpg',
-      description: 'Flexible cementitious 2-component polymer coating applied underneath natural marble tiles in 18 high-end wet rooms and infinity pool basin.',
-      systemUsed: 'TCF Polymer Cementitious Flex Coat'
+      image: 'projects/WhatsApp%20Image%202026-10-05%20at%209.50.28%20PM.webp',
+      description: 'Externally applied bituminous waterproofing membrane to a below-grade concrete retaining wall, protected and drained before soil backfill to stop groundwater ingress into the adjacent basement.',
+      systemUsed: 'TCF CHEM BITU GUARD Bituminous Waterproofing Membrane'
     },
     {
       year: '2023',
-      category: 'Basement & Tanking',
-      title: 'Apartment Complex Sub-structure Upgrade',
+      category: 'Epoxy Flooring',
+      title: 'Apartment Complex Corridor Epoxy Flooring',
       location: 'Riverside Towers',
-      image: 'images/apartment.jpg',
-      description: 'Active groundwater leak mitigation using high-pressure polyurethane resin crack injection behind elevator shafts and basement retaining walls.',
-      systemUsed: 'TCF Hydrophobic PU Resin Injection'
+      image: 'projects/WhatsApp%20Image%202026-10-05%20at%209.49.47%20PM.webp',
+      description: 'Seamless self-levelling epoxy floor system laid over the prepared concrete slab of an apartment tower corridor, giving a light grey, chemical-resistant and easy-to-clean finish.',
+      systemUsed: 'TCF CHEMADD SP PRO Epoxy Flooring System'
     },
     {
       year: '2022',
       category: 'Industrial',
       title: 'Industrial Warehouse Polyurea Coating',
       location: 'Logistics Hub North',
-      image: 'images/warehouse.jpg',
+      image: 'projects/WhatsApp%20Image%202026-10-05%20at%209.50.27%20PM.webp',
       description: 'Fast-curing pure polyurea spray-applied waterproofing lining across 12,000 sq.m metal deck roof, tested against chemical corrosion.',
       systemUsed: 'TCF Spray Polyurea Hybrid 2.5mm'
     },
@@ -345,7 +380,7 @@
       category: 'Terrace & Roof',
       title: 'Storm Damage Flat Roof Restoration',
       location: 'Harbor Commercial Center',
-      image: 'images/flat-roof.jpg',
+      image: 'projects/WhatsApp%20Image%202026-10-05%20at%209.50.07%20PM.webp',
       description: 'Emergency seam repair, ponding water remediation, and full acrylic elastomeric topcoat application for commercial strip mall.',
       systemUsed: 'TCF Solar Reflective Acrylic Shield'
     },
@@ -354,7 +389,7 @@
       category: 'Terrace & Roof',
       title: 'Shopping Mall Terrace Membrane Overlay',
       location: 'Downtown Shopping District',
-      image: 'images/application.jpg',
+      image: 'projects/WhatsApp%20Image%202026-10-05%20at%209.50.26%20PM.webp',
       description: 'Seamless polyurethane overlay across retail terrace decks with thermal-break details and high-traffic abrasion topcoat.',
       systemUsed: 'TCF Polyurethane Liquid Membrane + Elastomeric Topcoat'
     },
@@ -363,7 +398,7 @@
       category: 'Industrial',
       title: 'Petrochemical Plant Concrete Injection',
       location: 'Industrial Park',
-      image: 'images/technician.jpg',
+      image: 'projects/WhatsApp%20Image%202026-10-05%20at%209.50.23%20PM.webp',
       description: 'Structural crack strengthening and waterproofing of process-area slabs using hydrophobic PU resin and crystalline grout.',
       systemUsed: 'TCF Hydrophobic PU Resin + Crystalline Grout'
     },
@@ -372,35 +407,88 @@
       category: 'Terrace & Roof',
       title: 'City Center Office Roof Recoating',
       location: 'Downtown Business Quarter',
-      image: 'images/roof-structure.jpg',
+      image: 'projects/WhatsApp%20Image%202026-10-05%20at%209.50.23%20PM%20(1).webp',
       description: 'Full recoat of aging elastomeric roof membrane including flashings, drains, and a solar-reflective topcoat for energy savings.',
       systemUsed: 'TCF Solar Reflective Acrylic Shield'
     }
   ];
 
+  /* Two lightbox shapes share #project-modal:
+     - home: a detail panel driven by projectsData (cards carry data-index)
+     - projects page: a bare photo/video viewer (cards carry data-type/data-src)
+     Either side can be absent, so every field is written defensively. */
+  function stopProjectVideo() {
+    if (!projectModalVideo) return;
+    try { projectModalVideo.pause(); } catch (err) { /* not playing */ }
+    projectModalVideo.removeAttribute('src');
+  }
+
   function openProject(index) {
     var p = projectsData[index];
-    if (!p) return;
+    if (!p || !projectModalImg) return;
+    stopProjectVideo();
+    if (projectModalVideo) projectModalVideo.hidden = true;
+    projectModalImg.hidden = false;
     projectModalImg.src = p.image;
     projectModalImg.alt = p.title;
-    projectModalCat.textContent = p.category + ' • ' + p.year;
-    projectModalTitle.textContent = p.title;
-    projectModalLocation.textContent = p.location;
-    projectModalDesc.textContent = p.description;
-    projectModalSystem.textContent = p.systemUsed;
+    if (projectModalCat) projectModalCat.textContent = p.category;
+    if (projectModalTitle) projectModalTitle.textContent = p.title;
+    if (projectModalLocation) projectModalLocation.textContent = p.location;
+    if (projectModalDesc) projectModalDesc.textContent = p.description;
+    if (projectModalSystem) projectModalSystem.textContent = p.systemUsed;
     openModal(projectModal);
+  }
+
+  function openProjectMedia(card) {
+    var type = card.getAttribute('data-type');
+    var src = card.getAttribute('data-src');
+    if (!src || !projectModalImg) return;
+    if (type === 'video') {
+      if (projectModalVideo) {
+        projectModalImg.hidden = true;
+        projectModalImg.removeAttribute('src');
+        projectModalVideo.hidden = false;
+        projectModalVideo.setAttribute('src', src);
+        openModal(projectModal);
+        var playing = projectModalVideo.play();
+        if (playing && playing.catch) playing.catch(function () { /* autoplay blocked */ });
+        return;
+      }
+    }
+    stopProjectVideo();
+    if (projectModalVideo) projectModalVideo.hidden = true;
+    projectModalImg.hidden = false;
+    projectModalImg.src = src;
+    projectModalImg.alt = card.getAttribute('data-alt') || 'Project site photo';
+    openModal(projectModal);
+  }
+
+  function closeProjectModal() {
+    stopProjectVideo();
+    closeModal(projectModal);
   }
 
   $$('.project-card').forEach(function (card) {
     card.addEventListener('click', function () {
-      openProject(parseInt(card.getAttribute('data-index'), 10));
+      if (card.hasAttribute('data-type')) openProjectMedia(card);
+      else openProject(parseInt(card.getAttribute('data-index'), 10));
     });
   });
 
   $$('.js-close-project').forEach(function (btn) {
     btn.addEventListener('click', function () {
-      closeModal(projectModal);
+      closeProjectModal();
     });
+  });
+
+  /* ---------- Client logo tiles: decode before first paint ---------- */
+  /* Both logo areas live inside animated/composited containers. An image that
+     gets composited before its pixels are decoded shows as a black tile until
+     something (hover, selection, focus) forces a repaint. decode() up front so
+     the first painted frame already has real pixels. */
+  $$('.clients-strip__logo--img img, .client-tile__frame img').forEach(function (img) {
+    if (typeof img.decode !== 'function') return;
+    img.decode().catch(function () { /* already decoded, or failed: browser paints what it can */ });
   });
 
   /* ---------- Infinite carousel (3 cards visible) ---------- */
@@ -423,6 +511,18 @@
     baseCards.forEach(function (c) { track.appendChild(c.cloneNode(true)); });
     baseCards.forEach(function (c) { track.appendChild(c.cloneNode(true)); });
 
+    /* Track movement: GSAP when it is available and motion is allowed,
+       otherwise the CSS transition on .products-slider__track exactly as
+       before. The class tells the stylesheet to drop its transition so the
+       two never fight over the same transform. */
+    function prefersGsap() {
+      if (typeof window.gsap === 'undefined') return false;
+      if (window.Motion && typeof window.Motion.prefersReduced === 'function') {
+        return !window.Motion.prefersReduced();
+      }
+      return !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    }
+
     function measure() {
       var first = $(cfg.card, track);
       var style = window.getComputedStyle(track);
@@ -434,8 +534,19 @@
       track.style.transition = on ? '' : 'none';
     }
 
-    function moveTo(i) {
-      track.style.transform = 'translateX(-' + i * step + 'px)';
+    /* `instant` jumps without a tween - used for the initial position,
+       for the wrap-around correction and after a resize. */
+    function moveTo(i, instant) {
+      var x = -(i * step);
+      if (prefersGsap()) {
+        if (instant) {
+          gsap.set(track, { x: x });
+        } else {
+          gsap.to(track, { x: x, duration: 0.65, ease: 'power3.out', overwrite: true });
+        }
+      } else {
+        track.style.transform = 'translateX(' + x + 'px)';
+      }
       var logical = ((i - count) % count + count) % count;
       dots.forEach(function (dot, d) {
         dot.classList.toggle('is-active', d === logical);
@@ -443,6 +554,7 @@
     }
 
     function snap() {
+      if (prefersGsap()) { moveTo(index, true); return; }
       setTransition(false);
       moveTo(index);
       void track.offsetWidth;
@@ -488,7 +600,30 @@
     }
 
     measure();
-    moveTo(index);
+
+    /* The class only tells the stylesheet to drop its transition, so it has
+       to follow the OS setting: leaving it behind would either leave the
+       track with no transition at all, or leave the stylesheet and GSAP
+       animating the same transform. Motion.onChange also fires once on
+       registration, which covers the initial state. */
+    function syncTrackMode() {
+      var on = prefersGsap();
+      if (on && !track.classList.contains('js-gsap-track')) {
+        gsap.set(track, { x: -index * step });
+      } else if (!on) {
+        /* Drop any inline transform GSAP left behind before handing the
+           track back to the CSS transition. */
+        track.style.transform = '';
+      }
+      track.classList.toggle('js-gsap-track', on);
+    }
+    if (window.Motion) {
+      window.Motion.onChange(syncTrackMode);
+    } else {
+      syncTrackMode();
+    }
+
+    moveTo(index, true);
 
     if (grid) {
       grid.addEventListener('mouseenter', stop);
@@ -515,10 +650,7 @@
 
     window.addEventListener('resize', function () {
       measure();
-      setTransition(false);
-      moveTo(index);
-      void track.offsetWidth;
-      setTransition(true);
+      snap();
     });
 
     start();
@@ -659,7 +791,7 @@
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') {
       closeModal(quoteModal());
-      closeModal(projectModal);
+      closeProjectModal();
       closeVideo();
     }
   });
@@ -704,66 +836,71 @@
     }
 
     /* Preloader: brush sweeps left-to-right, wiping the text as it passes, then fades down.
-       Shown only on the very first page load of a visit; skipped on in-site page
-       switches, back/forward navigation, and reloads.
+       components.js injects #preloader only on a hard reload or the first visit
+       in this tab (Navigation Timing tells a refresh apart from an in-site
+       link click). If the element is present we play the timeline; on
+       in-site navigations it was never injected, so entrances run
+       immediately with no flash.
        Under reduced motion the wipe is skipped entirely -- the preloader is
        dismissed immediately instead of holding the page for ~4.3s. */
+    /* The fullscreen loader (js/loader.js) owns the first-visit hero handoff:
+       it preloads, plays its own stack/finish sequence and reveals the hero.
+       When it is active we skip both the brush preloader and the hero
+       entrance here so the two never fight over the same elements. The rest
+       of initGSAP (ScrollTrigger reveals, parallax) still runs below. */
     var preloader = $('#preloader');
-    if (preloader) {
-      var seenBefore = false;
-      try {
-        seenBefore = sessionStorage.getItem('cf-seen') === '1';
-        sessionStorage.setItem('cf-seen', '1');
-      } catch (err) { /* ignore */ }
-
-      if (seenBefore || reducedNow) {
+    if (window.__tcfLoaderOwnsHero) {
+      if (preloader) {
         document.documentElement.classList.remove('preloader-active');
         preloader.classList.add('is-done');
-        prepareHomeEntrance();
-        playHomeEntrance();
-      } else {
-        var brush = $('.preloader__brush', preloader);
-        var text = $('.preloader__text', preloader);
-        document.documentElement.classList.add('preloader-active');
-        if (typeof window.gsap !== 'undefined' && brush) {
-          var travel = function () { return window.innerWidth + 240; };
-          var textW = text ? text.offsetWidth : 0;
-          gsap.timeline({
-            onComplete: function () {
-              document.documentElement.classList.remove('preloader-active');
-              preloader.classList.add('is-done');
-              ensureVisible();
-            }
-          })
-            .fromTo(brush,
-              { xPercent: -50, yPercent: -50, x: -240 },
-              {
-                xPercent: -50, yPercent: -50,
-                x: travel,
-                duration: 3.2,
-                ease: 'power2.inOut',
-                onUpdate: function () {
-                  if (text && textW) {
-                    var x = gsap.getProperty(brush, 'x');
-                    var f = Math.min(Math.max(x / textW, 0), 1);
-                    text.style.clipPath = 'inset(0 ' + ((1 - f) * 100).toFixed(2) + '% 0 0)';
-                  }
+      }
+    } else if (preloader && !reducedNow) {
+      var brush = $('.preloader__brush', preloader);
+      var text = $('.preloader__text', preloader);
+      document.documentElement.classList.add('preloader-active');
+      if (typeof window.gsap !== 'undefined' && brush) {
+        var travel = function () { return window.innerWidth + 240; };
+        var textW = text ? text.offsetWidth : 0;
+        gsap.timeline({
+          onComplete: function () {
+            document.documentElement.classList.remove('preloader-active');
+            preloader.classList.add('is-done');
+            ensureVisible();
+          }
+        })
+          .fromTo(brush,
+            { xPercent: -50, yPercent: -50, x: -240 },
+            {
+              xPercent: -50, yPercent: -50,
+              x: travel,
+              duration: 3.2,
+              ease: 'power2.inOut',
+              onUpdate: function () {
+                if (text && textW) {
+                  var x = gsap.getProperty(brush, 'x');
+                  var f = Math.min(Math.max(x / textW, 0), 1);
+                  text.style.clipPath = 'inset(0 ' + ((1 - f) * 100).toFixed(2) + '% 0 0)';
                 }
-              }, 0)
-            .to(preloader, {
-              autoAlpha: 0, y: 80, duration: 0.7, ease: 'power2.inOut', delay: 0.4,
-              onStart: function () {
-                prepareHomeEntrance();
-                playHomeEntrance();
               }
-            });
-        } else {
-          document.documentElement.classList.remove('preloader-active');
-          preloader.classList.add('is-done');
-          playHomeEntrance();
-        }
+            }, 0)
+          .to(preloader, {
+            autoAlpha: 0, y: 80, duration: 0.7, ease: 'power2.inOut', delay: 0.4,
+            onStart: function () {
+              prepareHomeEntrance();
+              playHomeEntrance();
+            }
+          });
+      } else {
+        document.documentElement.classList.remove('preloader-active');
+        preloader.classList.add('is-done');
+        playHomeEntrance();
       }
     } else {
+      if (preloader) {
+        document.documentElement.classList.remove('preloader-active');
+        preloader.classList.add('is-done');
+      }
+      prepareHomeEntrance();
       playHomeEntrance();
     }
 
@@ -794,10 +931,34 @@
           var heroWatermark = $('.hero__watermark');
           var heroFrontImg = $('.hero__front-img');
           if (heroBg && page === 'home') {
-            gsap.to(heroBg, {
-              yPercent: 14, ease: 'none',
-              scrollTrigger: { trigger: heroBg, start: 'top top', end: 'bottom top', scrub: true }
-            });
+            /* The image layer glides at 0.28x the scroll speed, giving the
+               text and cards a sense of depth over the background
+               (reference: translate3d(0, scrollY * 0.28, 0)). Desktop only,
+               matching the reference - on touch/small screens a scrubbed
+               full-bleed transform costs more than it adds. */
+            var heroParallax = function () {
+              gsap.fromTo(heroBg,
+                { y: 0 },
+                {
+                  y: function () { return window.innerHeight * 0.28; },
+                  ease: 'none',
+                  force3D: true,
+                  scrollTrigger: {
+                    trigger: heroBg,
+                    start: 'top top',
+                    end: 'bottom top',
+                    scrub: true,
+                    invalidateOnRefresh: true
+                  }
+                });
+              return function () { gsap.set(heroBg, { clearProps: 'transform' }); };
+            };
+            if (typeof window.gsap.matchMedia === 'function') {
+              var heroCtx = window.gsap.matchMedia();
+              heroCtx.add('(min-width: 768px)', heroParallax);
+            } else {
+              heroParallax();
+            }
             if (heroFrontImg) {
               gsap.to(heroFrontImg, {
                 yPercent: 12, ease: 'none',

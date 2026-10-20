@@ -5,34 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-src https://www.google.com https://www.youtube-nocookie.com; object-src 'none'; base-uri 'self'; form-action 'self'" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
-    <title>Technical Datasheets â€” THE CHEMICAL FACTORY</title>
+    <title>Technical Datasheets - THE CHEMICAL FACTORY</title>
       <!-- SEO (Phase 3.4) -->
       <meta name="description" content="Download PDF technical datasheets for the full The Chemical Factory range, including property matrices, consumption figures and application guidelines." />
       <meta name="robots" content="index, follow, max-image-preview:large" />
       <meta property="og:type" content="website" />
       <meta property="og:site_name" content="The Chemical Factory" />
-      <meta property="og:title" content="Technical Datasheets â€” THE CHEMICAL FACTORY" />
+      <meta property="og:title" content="Technical Datasheets - THE CHEMICAL FACTORY" />
       <meta property="og:description" content="Download PDF technical datasheets for the full The Chemical Factory range, including property matrices, consumption figures and application guidelines." />
-      <meta property="og:image" content="images/product-banner.jpg" />
-      <meta property="og:image:alt" content="Technical Datasheets â€” THE CHEMICAL FACTORY" />
-      <!-- TODO(owner): canonical + og:url need the live domain.
-           Run python tools/seo.py to see the exact lines once known.
-      <link rel="canonical" href="{SITE_URL}/datasheets.html" />
-      <meta property="og:url" content="{SITE_URL}/datasheets.html" /> -->
+      <meta property="og:image" content="https://the-chemical-factory.vercel.app/images/banner.webp" />
+      <meta property="og:image:alt" content="Technical Datasheets - THE CHEMICAL FACTORY" />
+      <link rel="canonical" href="https://the-chemical-factory.vercel.app/datasheets" />
+      <meta property="og:url" content="https://the-chemical-factory.vercel.app/datasheets" />
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content="Technical Datasheets â€” THE CHEMICAL FACTORY" />
+      <meta name="twitter:title" content="Technical Datasheets - THE CHEMICAL FACTORY" />
       <meta name="twitter:description" content="Download PDF technical datasheets for the full The Chemical Factory range, including property matrices, consumption figures and application guidelines." />
-      <meta name="twitter:image" content="images/product-banner.jpg" />
+      <meta name="twitter:image" content="https://the-chemical-factory.vercel.app/images/banner.webp" />
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/icons-anim.css">
     <link rel="stylesheet" href="css/pages.css">
-    <link rel="icon" type="image/png" href="images/fav-log.png" />
-    <meta property="og:image" content="images/logo.jpeg" />
-    <meta name="twitter:image" content="images/logo.jpeg" />
+    <link rel="icon" type="image/webp" href="images/fav-log.webp" />
   </head>
   <body data-page="datasheets">
     <div id="preloader-root"></div>
     <div id="nav-root"></div>
+
+    <nav class="page-crumbs" aria-label="Breadcrumb">
+      <ol class="page-crumbs__list">
+        <li class="page-crumbs__item"><a href="index.html">Home</a></li>
+        <li class="page-crumbs__sep" aria-hidden="true">/</li>
+        <li class="page-crumbs__item" aria-current="page">Datasheets</li>
+      </ol>
+    </nav>
 
     <section class="page-hero">
       <picture class="page-hero__banner-media">
@@ -88,7 +92,7 @@
     <section class="page-section page-section--muted">
       <div class="container">
         <div class="cta-band" data-reveal>
-          <div class="cta-band__bg"><img src="images/technician.jpg" alt="" width="1200" height="795" loading="lazy" decoding="async"></div>
+          <div class="cta-band__bg"><img src="images/technician.webp" alt="" width="1200" height="795" loading="lazy" decoding="async"></div>
           <div class="cta-band__box">
             <h2 class="cta-band__title">Can't Find a Document?</h2>
             <p class="cta-band__sub">
@@ -115,5 +119,6 @@
     <script src="js/products.js"></script>
     <script src="js/forms.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
   </body>
 </html>
