@@ -285,26 +285,218 @@
   }
   initWhenModalReady();
 
-  /* ---------- Filter bar (products + projects) ---------- */
-  function applyFilter(filterBar, cards, category) {
-    $$('.filter-btn', filterBar).forEach(function (btn) {
-      btn.classList.toggle('is-active', btn.getAttribute('data-category') === category);
+  /* ---------- Bento grid repack (projects page) ----------
+     Repacks visible tiles into bento blocks on filter change.
+     Block templates A/B alternate; orientation detection places
+     landscape media in wide slots, portrait in tall slots. */
+  function getBreakpoint() {
+    var w = window.innerWidth;
+    if (w >= 1024) return 'desktop';
+    if (w >= 640) return 'tablet';
+    return 'mobile';
+  }
+
+  function getMediaDims(tile) {
+    var img = tile.querySelector('img');
+    var vid = tile.querySelector('video');
+    if (img && img.naturalWidth) return { w: img.naturalWidth, h: img.naturalHeight };
+    if (vid && vid.videoWidth) return { w: vid.videoWidth, h: vid.videoHeight };
+    // fallback from attributes
+    if (img) return { w: parseInt(img.getAttribute('width') || 4, 10), h: parseInt(img.getAttribute('height') || 3, 10) };
+    if (vid) return { w: parseInt(vid.getAttribute('width') || 4, 10), h: parseInt(vid.getAttribute('height') || 3, 10) };
+    return { w: 4, h: 3 };
+  }
+
+  function isLandscape(tile) {
+    var d = getMediaDims(tile);
+    return d.w > d.h;
+  }
+  function isPortrait(tile) {
+    var d = getMediaDims(tile);
+    return d.h > d.w;
+  }
+
+  function repackBento(grid) {
+    if (!grid || !grid.classList.contains('bento')) return;
+    var bp = getBreakpoint();
+    var visible = Array.prototype.slice.call(grid.querySelectorAll('.project-card')).filter(function (c) {
+      return c.style.display !== 'none';
     });
-    cards.forEach(function (card) {
-      card.style.display = (category === 'All' || card.getAttribute('data-category') === category)
-        ? ''
-        : 'none';
+    // Clear previous inline placement
+    visible.forEach(function (c) {
+      c.style.gridColumn = '';
+      c.style.gridRow = '';
     });
-    /* Hiding cards reflows the grid and moves every card below the fold, so
-       the scroll-reveal triggers are now pointing at stale positions. Without
-       a refresh the remaining cards either reveal at the wrong scroll depth
-       or, if they were hidden when their trigger was created, never get a
-       valid start at all and stay at opacity 0. Deferred a frame so the
-       layout has settled. */
-    window.requestAnimationFrame(function () {
-      if (window.Motion) window.Motion.refresh();
-      else if (window.ScrollTrigger) window.ScrollTrigger.refresh();
+
+    var BLOCK_SIZE = 4;
+    var numBlocks = Math.ceil(visible.length / BLOCK_SIZE);
+
+    // Calculate row height per block based on breakpoint
+    var blockHeight = 8; // desktop & tablet
+    if (bp === 'mobile') blockHeight = 11; // 3 + 5 + 3
+
+    for (var b = 0; b < numBlocks; b++) {
+      var blockTiles = visible.slice(b * BLOCK_SIZE, (b + 1) * BLOCK_SIZE);
+      var offset = b * blockHeight; // row offset per block
+      var template = (b % 2 === 0) ? 'A' : 'B';
+
+      if (bp === 'desktop') {
+        // Desktop: 12 cols, 72px rows
+        // Try to place landscape in wide, portrait in tall
+        var tallTile = null, wideTile = null, smalls = [];
+        blockTiles.forEach(function (t) {
+          if (!tallTile && isPortrait(t)) tallTile = t;
+          else if (!wideTile && isLandscape(t)) wideTile = t;
+          else smalls.push(t);
+        });
+        // Fill remaining
+        blockTiles.forEach(function (t) {
+          if (t !== tallTile && t !== wideTile && smalls.indexOf(t) === -1) smalls.push(t);
+        });
+        if (!tallTile) tallTile = smalls.shift() || blockTiles[0];
+        if (!wideTile) wideTile = smalls.shift() || blockTiles[1];
+
+        if (template === 'A') {
+          // tall: 1/7, 1/9 | wide: 7/13, 1/5 | sl: 7/10, 5/9 | sr: 10/13, 5/9
+          if (tallTile) { tallTile.style.gridColumn = '1 / 7'; tallTile.style.gridRow = (1 + offset) + ' / ' + (9 + offset); }
+          if (wideTile) { wideTile.style.gridColumn = '7 / 13'; wideTile.style.gridRow = (1 + offset) + ' / ' + (5 + offset); }
+          if (smalls[0]) { smalls[0].style.gridColumn = '7 / 10'; smalls[0].style.gridRow = (5 + offset) + ' / ' + (9 + offset); }
+          if (smalls[1]) { smalls[1].style.gridColumn = '10 / 13'; smalls[1].style.gridRow = (5 + offset) + ' / ' + (9 + offset); }
+        } else {
+          // B: sl: 1/4,1/5 | sr: 4/7,1/5 | wide: 1/7,5/9 | tall: 7/13,1/9
+          if (smalls[0]) { smalls[0].style.gridColumn = '1 / 4'; smalls[0].style.gridRow = (1 + offset) + ' / ' + (5 + offset); }
+          if (smalls[1]) { smalls[1].style.gridColumn = '4 / 7'; smalls[1].style.gridRow = (1 + offset) + ' / ' + (5 + offset); }
+          if (wideTile) { wideTile.style.gridColumn = '1 / 7'; wideTile.style.gridRow = (5 + offset) + ' / ' + (9 + offset); }
+          if (tallTile) { tallTile.style.gridColumn = '7 / 13'; tallTile.style.gridRow = (1 + offset) + ' / ' + (9 + offset); }
+        }
+      } else if (bp === 'tablet') {
+        // Tablet: 6 cols, 72px rows
+        // Per block of 4 over 6 cols x 8 rows:
+        // tall: col 1/4, row 1/6 | wide: col 4/7, row 1/4 | sl: col 4/7, row 4/6 | sr: col 1/7, row 6/9 (full-width strip)
+        var t0 = blockTiles[0], t1 = blockTiles[1], t2 = blockTiles[2], t3 = blockTiles[3];
+        if (t0) { t0.style.gridColumn = '1 / 4'; t0.style.gridRow = (1 + offset) + ' / ' + (6 + offset); } // tall
+        if (t1) { t1.style.gridColumn = '4 / 7'; t1.style.gridRow = (1 + offset) + ' / ' + (4 + offset); } // wide
+        if (t2) { t2.style.gridColumn = '4 / 7'; t2.style.gridRow = (4 + offset) + ' / ' + (6 + offset); } // sl
+        if (t3) { t3.style.gridColumn = '1 / 7'; t3.style.gridRow = (6 + offset) + ' / ' + (9 + offset); } // sr (full-width strip)
+      } else {
+        // Mobile: 2 cols, 64px rows
+        // Per block: wide = 2 cols x 3 rows | tall = 2 cols x 5 rows | sl & sr = 1 col x 3 rows each
+        var m0 = blockTiles[0], m1 = blockTiles[1], m2 = blockTiles[2], m3 = blockTiles[3];
+        if (m0) { m0.style.gridColumn = '1 / 3'; m0.style.gridRow = (1 + offset) + ' / ' + (4 + offset); } // wide
+        if (m1) { m1.style.gridColumn = '1 / 3'; m1.style.gridRow = (4 + offset) + ' / ' + (9 + offset); } // tall
+        if (m2) { m2.style.gridColumn = '1 / 2'; m2.style.gridRow = (9 + offset) + ' / ' + (12 + offset); } // sl
+        if (m3) { m3.style.gridColumn = '2 / 3'; m3.style.gridRow = (9 + offset) + ' / ' + (12 + offset); } // sr
+      }
+    }
+
+    // Handle leftover tiles
+    var leftover = visible.length % BLOCK_SIZE;
+    if (leftover > 0) {
+      var lastBlock = numBlocks - 1;
+      var lastOffset = lastBlock * 8;
+      var leftoverStart = lastBlock * BLOCK_SIZE + (BLOCK_SIZE - leftover);
+      // Actually, leftovers are the tiles after the last full block
+      var fullBlocks = Math.floor(visible.length / BLOCK_SIZE);
+      var leftoverTiles = visible.slice(fullBlocks * BLOCK_SIZE);
+      var leftoverOffset = fullBlocks * blockHeight;
+
+      if (leftover === 1) {
+        leftoverTiles[0].style.gridColumn = '1 / 13';
+        leftoverTiles[0].style.gridRow = (1 + leftoverOffset) + ' / ' + (6 + leftoverOffset);
+      } else if (leftover === 2) {
+        leftoverTiles[0].style.gridColumn = '1 / 7';
+        leftoverTiles[0].style.gridRow = (1 + leftoverOffset) + ' / ' + (6 + leftoverOffset);
+        leftoverTiles[1].style.gridColumn = '7 / 13';
+        leftoverTiles[1].style.gridRow = (1 + leftoverOffset) + ' / ' + (6 + leftoverOffset);
+      } else if (leftover === 3) {
+        leftoverTiles[0].style.gridColumn = '1 / 5';
+        leftoverTiles[0].style.gridRow = (1 + leftoverOffset) + ' / ' + (6 + leftoverOffset);
+        leftoverTiles[1].style.gridColumn = '5 / 9';
+        leftoverTiles[1].style.gridRow = (1 + leftoverOffset) + ' / ' + (6 + leftoverOffset);
+        leftoverTiles[2].style.gridColumn = '9 / 13';
+        leftoverTiles[2].style.gridRow = (1 + leftoverOffset) + ' / ' + (6 + leftoverOffset);
+      }
+    }
+  }
+
+  /* Reorder tiles for "All" view to match block assignment (A, B, A, B, A) */
+  function reorderTilesForAll(grid) {
+    var tiles = Array.prototype.slice.call(grid.querySelectorAll('.project-card'));
+    // Desired order: [title, location] pairs for each block's 4 slots
+    var desired = [
+      // Block 1 (A): tall, wide, sl, sr
+      ['Sports flooring Varitas schooling system', ''],
+      ['Epoxy Flooring system', 'Haleon Pak Hyderabad'],
+      ['Bitumen coating', 'DHA phase 8'],
+      ['High temperature water resistant coating system', 'Gul ahmed textile'],
+      // Block 2 (B): sl, sr, wide, tall
+      ['Roof waterproofing', 'DHA phase 6'],
+      ['Anti static (ESD) flooring', 'Haleon pak Hyderabad'],
+      ['Bitumen Membrane application', 'Malir cant karachi'],
+      ['Epoxy Flooring system', 'Haleon Pak Hyderabad'],
+      // Block 3 (A): tall, wide, sl, sr
+      ['Pit waterproofing / PU injection system', 'Roshan business centre Nursery furniture market Shahrah e faisal'],
+      ['OT epoxy flooring', 'Idara al khair Surjani town karachi'],
+      ['PU injection system', 'RBC Shahrah e faisal karachi'],
+      ['Epoxy flooring', 'NASTP Kamra'],
+      // Block 4 (B): sl, sr, wide, tall
+      ['Swiming pool waterproofing', 'Gizri Karachi'],
+      ['Basement waterproofing', 'Phase 8 karachi'],
+      ['Basement waterproofing', '10 numberi hotel Tariq road'],
+      ['Roof waterproofing', 'Creek drive DHA Phase 8 karachi'],
+      // Block 5 (A): tall, wide, sl, sr
+      ['Tank waterproofing', 'Idara Alkhair Surjani town karachi'],
+      ['Washroom waterproofing', 'Askari 6 karachi'],
+      ['Roof waterproofing', 'Phase 4 DHA karachi'],
+      ['Epoxy flooring and coating', 'PNS shifa hospital karachi']
+    ];
+
+    var ordered = [];
+    desired.forEach(function (pair) {
+      var match = tiles.find(function (t) {
+        var title = t.getAttribute('data-title') || '';
+        var loc = t.getAttribute('data-location') || '';
+        return title === pair[0] && loc === pair[1];
+      });
+      if (match) {
+        ordered.push(match);
+        // Remove from tiles to avoid duplicates
+        var idx = tiles.indexOf(match);
+        if (idx !== -1) tiles.splice(idx, 1);
+      }
     });
+    // Append any remaining tiles not in desired order
+    tiles.forEach(function (t) { ordered.push(t); });
+
+    // Reorder DOM
+    ordered.forEach(function (t) {
+      grid.appendChild(t);
+    });
+  }
+
+  function initBentoGrid() {
+    var grid = document.querySelector('.bento');
+    if (!grid) return;
+    // Reorder tiles for "All" view to match block assignment
+    reorderTilesForAll(grid);
+    // Initial repack
+    repackBento(grid);
+    // Repack on resize (debounced)
+    var resizeTimer;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function () { repackBento(grid); }, 150);
+    });
+    // Repack after media loads
+    grid.querySelectorAll('img, video').forEach(function (m) {
+      m.addEventListener('load', function () { repackBento(grid); });
+      m.addEventListener('loadedmetadata', function () { repackBento(grid); });
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initBentoGrid, { once: true });
+  } else {
+    initBentoGrid();
   }
 
   $$('.filter-bar').forEach(function (bar) {
@@ -315,6 +507,12 @@
     $$('.filter-btn', bar).forEach(function (btn) {
       btn.addEventListener('click', function () {
         applyFilter(bar, barCards, btn.getAttribute('data-category'));
+        // Repack bento grid after filter
+        var grid = bar.closest('.container').querySelector('.bento');
+        if (grid) {
+          // Small delay to let display changes settle
+          setTimeout(function () { repackBento(grid); }, 50);
+        }
       });
     });
   });
@@ -447,8 +645,13 @@
       if (projectModalVideo) {
         projectModalImg.hidden = true;
         projectModalImg.removeAttribute('src');
+        stopProjectVideo();
         projectModalVideo.hidden = false;
         projectModalVideo.setAttribute('src', src);
+        projectModalVideo.load();
+        projectModalVideo.muted = true;
+        projectModalVideo.playsInline = true;
+        projectModalVideo.controls = true;
         openModal(projectModal);
         var playing = projectModalVideo.play();
         if (playing && playing.catch) playing.catch(function () { /* autoplay blocked */ });
@@ -459,7 +662,7 @@
     if (projectModalVideo) projectModalVideo.hidden = true;
     projectModalImg.hidden = false;
     projectModalImg.src = src;
-    projectModalImg.alt = card.getAttribute('data-alt') || 'Project site photo';
+    projectModalImg.alt = card.getAttribute('data-alt') || card.querySelector('.project-card__title')?.textContent || 'Project site photo';
     openModal(projectModal);
   }
 

@@ -513,40 +513,87 @@ body:not([data-page="home"]) .page-section { padding: 3rem 0; }
 .quote-feature__text { font-size: 0.8125rem; color: var(--gray-600); margin-top: 0.3rem; line-height: 1.6; }
 
 /* ---------- Bento projects grid (projects page) ----------
-   Cards are pure media tiles (no captions): the ratio lives on the card, the
-   photo/video fills it with object-fit: cover. Span classes keep every row
-   summing to 12 columns at lg, so the rows line up like a bento. */
-body[data-page="projects"] .projects__grid { gap: 1rem; align-items: start; }
-body[data-page="projects"] .project-card { aspect-ratio: 4 / 3; }
-body[data-page="projects"] .project-card--port { aspect-ratio: 3 / 4; }
-body[data-page="projects"] .project-card > img,
-body[data-page="projects"] .project-card > video {
+   True bento grid: 12 cols x 72px rows on desktop, explicit placements.
+   Blocks of 4 tiles alternate templates A and B with no empty cells.
+   Tablet (640-1023px): 6 cols. Mobile (<640px): 2 cols, 64px rows. */
+.bento {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: 72px;
+  gap: 0.75rem;
+}
+.bento .project-card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  /* transition for filter re-pack */
+  transition: opacity 250ms ease, transform 250ms ease;
+}
+.bento .project-card > img,
+.bento .project-card > video {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  aspect-ratio: auto;
   object-fit: cover;
-  transition: transform 0.7s;
+  object-position: center 40%;
+  transition: transform 900ms ease;
+  z-index: 0;
 }
-body[data-page="projects"] .project-card > video { display: block; background: var(--ink); }
-body[data-page="projects"] .project-card:hover > img,
-body[data-page="projects"] .project-card:hover > video { transform: scale(1.05); }
-body[data-page="projects"] .project-card__top { justify-content: flex-end; }
-body[data-page="projects"] .project-card__eye { opacity: 1; }
-body[data-page="projects"] .project-card__eye svg { width: 1.125rem; height: 1.125rem; }
-body[data-page="projects"] .project-card--video .project-card__eye { color: #fff; }
-@media (min-width: 768px) {
-  body[data-page="projects"] .projects__grid { grid-template-columns: repeat(12, minmax(0, 1fr)); }
-  body[data-page="projects"] .project-card.m6 { grid-column: span 6; }
+.bento .project-card:hover > img,
+.bento .project-card:hover > video { transform: scale(1.05); }
+.bento .project-card__bottom {
+  position: absolute;
+  left: 0.75rem;
+  right: auto;
+  bottom: 0.75rem;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  padding: 0.5rem 0.875rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  max-width: calc(100% - 1.5rem);
 }
-@media (min-width: 1024px) {
-  body[data-page="projects"] .projects__grid { gap: 1.25rem; }
-  body[data-page="projects"] .project-card.b4 { grid-column: span 4; aspect-ratio: 3 / 4; }
-  body[data-page="projects"] .project-card.b5 { grid-column: span 5; aspect-ratio: 5 / 4; }
-  body[data-page="projects"] .project-card.b6 { grid-column: span 6; aspect-ratio: 3 / 2; }
-  body[data-page="projects"] .project-card.b7 { grid-column: span 7; aspect-ratio: 7 / 4; }
-  body[data-page="projects"] .project-card.b8 { grid-column: span 8; aspect-ratio: 3 / 2; }
+.bento .project-card__title {
+  color: var(--burgundy);
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.bento .project-card__loc {
+  color: #111;
+  font-size: 0.8rem;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.bento .project-card > video { display: block; background: var(--ink); }
+.bento .project-card__top { justify-content: flex-end; }
+.bento .project-card__eye { opacity: 1; }
+.bento .project-card__eye svg { width: 1.125rem; height: 1.125rem; }
+.bento .project-card--video .project-card__eye { color: #fff; }
+
+/* Tablet: 6 columns, 72px rows */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .bento { grid-template-columns: repeat(6, 1fr); }
+}
+/* Mobile: 2 columns, 64px rows */
+@media (max-width: 639px) {
+  .bento {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 64px;
+  }
 }
 
 /* ---------- Projects page media lightbox ---------- */
