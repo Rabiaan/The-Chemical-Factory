@@ -528,17 +528,17 @@
       return cut.replace(/[\s,;:.–—-]+$/, '') + '…';
     }
 
-    /* Lead with the product name, then its one-line purpose, then enough of the
-       long description to fill the remaining budget. */
-    var lead = p.name + ' - ' + p.subTitle + '. ';
+    /* Lead with the product range, then its name and one-line purpose. */
+    var lead = 'Construction chemicals and building products: ' + p.name + ' - ' + p.subTitle + '. ';
     var metaDesc = clamp(lead + (p.description || ''), 155);
 
-    document.title = p.name + ' — THE CHEMICAL FACTORY';
+    var metaTitle = p.name + ' | Construction Chemicals & Building Products | THE CHEMICAL FACTORY';
+    document.title = metaTitle;
     setMeta('name', 'description', metaDesc);
-    setMeta('property', 'og:title', p.name + ' — THE CHEMICAL FACTORY');
+    setMeta('property', 'og:title', metaTitle);
     setMeta('property', 'og:description', metaDesc);
     setMeta('property', 'og:image', p.image);
-    setMeta('name', 'twitter:title', p.name + ' — THE CHEMICAL FACTORY');
+    setMeta('name', 'twitter:title', metaTitle);
     setMeta('name', 'twitter:description', metaDesc);
     setMeta('name', 'twitter:image', p.image);
 

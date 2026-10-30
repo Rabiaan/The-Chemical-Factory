@@ -253,7 +253,7 @@
     if (estRange) {
       var low = Math.round(sqft * 2.2);
       var high = Math.round(sqft * 3.8);
-      estRange.textContent = '$' + low.toLocaleString() + ' – $' + high.toLocaleString();
+      estRange.textContent = '$' + low.toLocaleString() + ' to $' + high.toLocaleString();
     }
   }
   if (sqftSlider) {

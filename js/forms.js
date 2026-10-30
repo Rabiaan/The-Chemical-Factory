@@ -239,7 +239,7 @@
     }).catch(function () {
       if (timer) window.clearTimeout(timer);
       /* Endpoint unreachable or mail() failed — hand off to the mail client. */
-      showFormToast('Could not send automatically — opening your email app instead.');
+      showFormToast('Could not send automatically. Opening your email app instead.');
       window.location.href = mailtoUrl;
       if (onDone) onDone(payload);
     });
@@ -300,7 +300,7 @@
       var mailtoUrl = buildMailto(subject, body);
 
       deliver(payload, mailtoUrl, function () {
-        showFormToast('Opening your email app — press send to finish.');
+        showFormToast('Opening your email app. Press send to finish.');
         form.reset();
         $$('[data-validate]', form).forEach(function (f) { setFieldError(f, ''); });
       });

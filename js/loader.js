@@ -28,24 +28,18 @@
   'use strict';
 
   /* ---------- Config ----------
-     Stack images, bottom → top. Content photos only — no banner images
-     from other pages. The LAST entry is the handoff image: it must be
-     the same file (and therefore the same crop) as the hero background
-     so the expand-to-fullscreen handoff is seamless. Today that is the
-     home hero slider's first slide — keep both copies in sync.
-     All entries are existing site WebPs; keep each under ~200 KB. */
+     Stack images, bottom → top. The LAST entry is the neutral product-range
+     banner used for the expand-to-fullscreen handoff.
+     All entries are existing site WebPs. */
   var IMAGES = [
     'images/application.webp',                      /* project shot 1 */
     'images/flat-roof.webp',                        /* project shot 2 */
     'images/wet-area.webp',                         /* project shot 3 */
     'images/construction.webp',                     /* project shot 4 */
     'images/technician.webp',                       /* crew at work */
-    'images/slider-hero-banner/waterproofing.webp'  /* LAST = handoff = hero slide 1 */
+    'images/hero-banner.webp'                      /* LAST = neutral hero handoff */
   ];
-  /* The handoff must match the hero slide 1 <picture> in index.html: at
-     the same breakpoint the <source media> uses, the hero shows the
-     mobile crop — so the loader's last card and expand banner must too. */
-  var MOBILE_HANDOFF = 'images/slider-hero-banner-mobile/waterproofing.webp';
+  var MOBILE_HANDOFF = 'images/mobile_banner.webp';
   var isMobileHero = !!(window.matchMedia && window.matchMedia('(max-width: 768px)').matches);
   function srcFor(i) {
     return (isMobileHero && i === IMAGES.length - 1) ? MOBILE_HANDOFF : IMAGES[i];
