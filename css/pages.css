@@ -387,10 +387,10 @@
 }
 
 /* ---------- Shared sections ---------- */
-.page-section { padding: 5rem 0; }
-@media (min-width: 768px) { .page-section { padding: 6.5rem 0; } }
-body:not([data-page="home"]) .page-section { padding: 3rem 0; }
-@media (min-width: 768px) { body:not([data-page="home"]) .page-section { padding: 4rem 0; } }
+.page-section { padding: 5rem var(--gutter); }
+@media (min-width: 768px) { .page-section { padding: 6.5rem var(--gutter); } }
+body:not([data-page="home"]) .page-section { padding: 3rem var(--gutter); }
+@media (min-width: 768px) { body:not([data-page="home"]) .page-section { padding: 4rem var(--gutter); } }
 .page-section--muted { background: var(--sand); }
 .section-head { max-width: 44rem; margin: 0 auto 3rem; text-align: center; }
 .section-head__title { font-family: var(--font-heading); font-size: clamp(1.75rem, 4vw, 2.5rem); line-height: 1.15; color: var(--ink); }
@@ -885,7 +885,7 @@ body[data-page="home"] .projects__grid .project-card > img { aspect-ratio: 4 / 3
 /* ---------- Page hero responsive ---------- */
 @media (max-width: 768px) {
   .page-crumbs { margin: 6.75rem 1rem 0; padding: 0; }
-  .page-hero { margin: 6.5rem 1rem 0; padding: 2.5rem 1.5rem 2rem; min-height: 540px; height: 540px !important; border-radius: 1.25rem; }
+  .page-hero { margin: 6.5rem 1rem 0; padding: 3rem 1.5rem 2rem; min-height: 620px; height: 620px !important; border-radius: 1.25rem; }
   .page-crumbs + .page-hero { margin-top: 0.85rem; }
   .page-hero__watermark { display: none; }
   .catalog-search__bar { flex-wrap: wrap; border-radius: 1.25rem; }
@@ -1240,6 +1240,8 @@ body[data-page="home"] .projects__grid .project-card > img { aspect-ratio: 4 / 3
   font-size: 0.625rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
   padding: 0.25rem 0.6rem; border-radius: 9999px; background: var(--sand); color: var(--gray-700);
 }
+.service-block .service-card__img { margin-top: 1rem; }
+.service-block .service-block__uses { margin-top: 1rem; }
 .process-steps { display: grid; gap: 1.5rem; margin-top: 3rem; }
 @media (min-width: 768px) { .process-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (min-width: 1024px) { .process-steps { grid-template-columns: repeat(4, minmax(0, 1fr)); } }

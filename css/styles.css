@@ -89,11 +89,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   --gutter: 1rem;
-  padding-left: var(--gutter);
-  padding-right: var(--gutter);
 }
 @media (min-width: 768px) {
   body { --gutter: 1.5rem; }
+}
+section:not(.hero),
+section.hero {
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
 }
 /* Full-bleed dark sections keep edge-to-edge coverage behind the page gutter */
 .svg-defs {
@@ -104,10 +107,6 @@ body {
   height: 0;
   overflow: hidden;
   pointer-events: none;
-}
-.hero, .footer {
-  margin-left: calc(-1 * var(--gutter));
-  margin-right: calc(-1 * var(--gutter));
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -1488,6 +1487,11 @@ html.js-hero-slider .hero__slider-dots {
 }
 @media (min-width: 1024px) {
   .services__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+.services__cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 2.5rem;
 }
 .service-card {
   background: #fff;
