@@ -86,7 +86,18 @@
   color: var(--gray-600, #4b5563);
 }
 
-.presence__card--text .presence__label,
+.presence__card--text .presence__label {
+  font-family: var(--font-body);
+  font-size: var(--presence-num-size);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  text-transform: none;
+  overflow-wrap: break-word;
+  color: var(--presence-ink);
+  margin-top: 0;
+}
+
 .presence__card--text .presence__sub {
   font-family: var(--font-heading);
   font-size: var(--presence-num-size);
@@ -96,13 +107,6 @@
   text-transform: none;
   overflow-wrap: break-word;
   color: var(--presence-ink);
-}
-
-.presence__card--text .presence__label {
-  margin-top: 0;
-}
-
-.presence__card--text .presence__sub {
   margin-top: 0.35rem;
 }
 
