@@ -88,13 +88,11 @@
 
 .presence__card--text .presence__label {
   font-family: var(--font-body);
-  font-size: var(--presence-num-size);
-  font-weight: 900;
-  line-height: 1.05;
-  letter-spacing: -0.035em;
-  text-transform: none;
-  overflow-wrap: break-word;
-  color: var(--presence-ink);
+  font-size: 0.6875rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gray-600);
   margin-top: 0;
 }
 
