@@ -30,6 +30,7 @@
 }
 
 :root {
+  --gutter: clamp(16px, 4.4vw, 85px);
   --sand: #F5F2EC;
   --ink: #12141A;
   --burgundy: #7D1D28;
@@ -88,10 +89,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-  --gutter: 1rem;
-}
-@media (min-width: 768px) {
-  body { --gutter: 1.5rem; }
 }
 section:not(.hero),
 section.hero {
@@ -468,6 +465,7 @@ button {
 /* ---------- HERO ---------- */
 .hero {
   position: relative;
+  isolation: isolate;
   min-height: 92vh;
   display: flex;
   flex-direction: column;
@@ -560,33 +558,41 @@ html.js-hero-slider .hero__slide:first-child {
 
 .hero__watermark {
   position: absolute;
-  inset: 0;
-  z-index: 1;
+  top: clamp(8rem, 18vh, 13rem);
+  right: 0;
+  left: 0;
+  z-index: 3;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+  height: auto;
   pointer-events: none;
   user-select: none;
   -webkit-user-select: none;
-  overflow: hidden;
+  overflow: visible;
 }
 .hero__watermark-text {
+  position: relative;
+  z-index: 3;
   font-family: var(--font-heading);
   font-weight: 900;
-  font-size: 9vw;
+  font-size: clamp(2.5rem, 6.5vw, 10rem);
   line-height: 1;
   letter-spacing: -0.04em;
   color: #fff;
+  text-align: center;
+  text-transform: uppercase;
+  padding-inline: clamp(16px, 4.4vw, 85px);
   white-space: nowrap;
   opacity: 0.72;
-  transform: translateY(-8vh);
+  pointer-events: none;
   -webkit-mask-image: linear-gradient(to bottom, #000 45%, transparent 98%);
   mask-image: linear-gradient(to bottom, #000 45%, transparent 98%);
 }
 
 .hero__content {
   position: relative;
-  z-index: 10;
+  z-index: 2;
   max-width: 80rem;
   margin: 0 auto;
   width: 100%;
@@ -600,18 +606,24 @@ html.js-hero-slider .hero__slide:first-child {
   justify-content: space-between;
   gap: 2rem;
   padding-bottom: 1.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  /* border-bottom: 1px solid rgba(255, 255, 255, 0.15); */
 }
 
 .hero__subtext {
-  width: 28rem;
+  position: relative;
+  z-index: 2;
+  width: 100%;
   max-width: 100%;
+  min-height: 0;
+  height: auto;
   background: rgba(0, 0, 0, 0.35);
   -webkit-backdrop-filter: blur(14px) saturate(140%) url("#glass-noise");
   backdrop-filter: blur(14px) saturate(140%) url("#glass-noise");
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 1rem;
-  padding: 1.15rem 1.35rem;
+  padding: 24px 32px;
+  margin-top: clamp(24px, 6vh, 80px);
+  max-width: 560px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
 }
 .hero__subtext p {
@@ -3016,7 +3028,7 @@ html.js-hero-slider .hero__slider-dots {
     font-size: 4.5rem;
   }
   .hero__watermark-text {
-    font-size: 8.5vw;
+    font-size: clamp(2.5rem, 6.5vw, 9rem);
   }
   .hero {
     padding-left: 2rem;
@@ -3274,12 +3286,8 @@ html.js-hero-slider .hero__slider-dots {
     filter: none;
   }
   .hero__watermark-text {
-    font-size: 14vw;
     white-space: normal;
     text-align: center;
-    transform: translateY(-22vh);
-    -webkit-mask-image: linear-gradient(to bottom, #000 68%, rgba(0, 0, 0, 0.25) 100%);
-    mask-image: linear-gradient(to bottom, #000 68%, rgba(0, 0, 0, 0.25) 100%);
   }
   .hero__slider-dots {
     margin-top: 0.6rem;

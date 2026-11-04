@@ -32,7 +32,8 @@
 .page-hero {
   position: relative;
   margin: 7.5rem auto 0;
-  max-width: 80rem;
+  width: calc(100% - var(--gutter) - var(--gutter));
+  max-width: 1750px;
   padding: 3.5rem 3rem 3rem;
   height: 500px;
   display: flex;
@@ -50,6 +51,8 @@
   z-index: 0;
   width: 100%;
   height: 100%;
+  display: block;
+  border-radius: 24px;
   object-fit: cover;
   object-position: center;
 }
@@ -82,9 +85,10 @@
 }
 /* Breadcrumb bar above the page-hero banner on inner pages */
 .page-crumbs {
-  max-width: 80rem;
+  width: calc(100% - var(--gutter) - var(--gutter));
+  max-width: 1750px;
   margin: 7.75rem auto 0;
-  padding: 0 0.25rem;
+  padding: 0;
 }
 .page-crumbs__list {
   list-style: none;
@@ -362,17 +366,6 @@
   letter-spacing: -0.01em;
   color: var(--ink);
   margin-bottom: 1.1rem;
-}
-.clients-group__count {
-  font-family: var(--font-body);
-  font-size: 0.6875rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--burgundy);
-  background: rgba(125, 29, 40, 0.08);
-  border-radius: 9999px;
-  padding: 0.2rem 0.6rem;
 }
 @media (min-width: 768px) { .clients-group { padding: 2.25rem; } }
 .clients-note {
@@ -888,8 +881,8 @@ body[data-page="home"] .projects__grid .project-card > img { aspect-ratio: 4 / 3
 
 /* ---------- Page hero responsive ---------- */
 @media (max-width: 768px) {
-  .page-crumbs { margin: 6.75rem 1rem 0; padding: 0; }
-  .page-hero { margin: 6.5rem 1rem 0; padding: 3rem 1.5rem 2rem; min-height: 620px; height: 620px !important; border-radius: 1.25rem; }
+  .page-crumbs { margin: 6.75rem auto 0; }
+  .page-hero { margin: 6.5rem auto 0; padding: 3rem 1.5rem 2rem; min-height: 620px; height: 620px !important; border-radius: 1.25rem; }
   .page-crumbs + .page-hero { margin-top: 0.85rem; }
   .page-hero__watermark { display: none; }
   .catalog-search__bar { flex-wrap: wrap; border-radius: 1.25rem; }
@@ -905,11 +898,16 @@ body[data-page="home"] .projects__grid .project-card > img { aspect-ratio: 4 / 3
     column-gap: 0.85rem;
     row-gap: 0.35rem;
   }
+
   .ds-card__preview { grid-area: thumb; align-self: start; }
   .ds-card__title { grid-area: title; }
   .ds-card__meta .ds-card__meta-row:first-child { grid-area: packaging; }
   .ds-card__meta .ds-card__meta-row:last-child { grid-area: coverage; }
   .ds-card__download { grid-area: download; align-self: start; }
+}
+
+@media (min-width: 769px) {
+  .page-hero { height: 490px; }
 }
 
 /* ---------- Product detail page ---------- */
