@@ -301,34 +301,67 @@
       </div>
     </section>
 
-    <!-- ============ 2c. INTRODUCTION VIDEO ============ -->
-    <section id="intro" class="section intro" data-reveal>
-      <div class="container">
-        <div class="intro__grid">
-          <div class="intro__content">
-            <span class="section-label"><span class="section-label__rule"></span>Introduction</span>
-            <h2 class="intro__heading">Meet The Chemical Factory</h2>
-            <p class="intro__text">
-              Construction chemicals and building products engineered for concrete, joints, roofs and foundations. From admixtures and grouts to waterproofing systems and structural strengthening — specified, supplied and applied by our own engineering teams across Pakistan.
-            </p>
-            <button type="button" class="btn-dark js-open-quote">
-              <span>Get a Free Quote</span>
-              <span class="btn-dark__circle">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-              </span>
-            </button>
-          </div>
-          <div class="intro__video">
-            <div class="intro__video-frame">
-              <img class="intro__poster" src="images/intro-poster.webp" alt="Introduction video poster" width="720" height="1280" loading="lazy" decoding="async" />
-              <button type="button" class="intro__play" aria-label="Play introduction video">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-              </button>
-            </div>
-          </div>
+    <!-- ============ INTRO VIDEO (portrait) ============ -->
+<section id="intro" class="section ivid" data-reveal>
+  <div class="container">
+    <div class="ivid__panel">
+
+      <!-- Text side -->
+      <div class="ivid__copy">
+        <span class="section-label"><span class="section-label__rule"></span>Introduction</span>
+        <h2 class="ivid__title">Meet The Chemical Factory</h2>
+        <p class="ivid__text">
+          Construction chemicals and building products engineered for concrete, joints, roofs and foundations. From admixtures and grouts to waterproofing systems and structural strengthening, specified, supplied and applied by our own engineering teams across Pakistan.
+        </p>
+
+        <ul class="ivid__facts">
+          <li><strong>800+</strong><span>Projects delivered</span></li>
+          <li><strong>30</strong><span>Team members</span></li>
+          <li><strong>3</strong><span>Cities</span></li>
+        </ul>
+
+        <div class="ivid__actions">
+          <button type="button" class="btn-white js-open-quote"><span>Get a Free Quote</span><span class="ani ani--arrow-right" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="p1" d="M5 12h14"></path><path class="p2 b-shift-x" d="m12 5 7 7-7 7"></path></svg></span></button>
+          <a href="products.html" class="btn-outline">Explore Products</a>
         </div>
       </div>
-    </section>
+
+      <!-- Video side -->
+      <div class="ivid__stage" id="ivid-stage">
+        <div class="ivid__frame">
+          <video id="ivid-video" playsinline preload="none" poster="images/intro-poster.webp" width="720" height="1280" aria-label="Introduction to The Chemical Factory">
+            <source src="videos/intro.webm" type="video/webm">
+            <source src="videos/intro.mp4" type="video/mp4">
+          </video>
+
+          <button type="button" class="ivid__play" id="ivid-play" aria-label="Play introduction video">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+          </button>
+
+          <div class="ivid__bar">
+            <button type="button" class="ivid__btn" id="ivid-toggle" aria-label="Pause video">
+              <svg class="i-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+              <svg class="i-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"></path></svg>
+            </button>
+            <div class="ivid__progress" id="ivid-progress" role="slider" tabindex="0" aria-label="Video progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <span class="ivid__fill" id="ivid-fill"></span>
+            </div>
+            <button type="button" class="ivid__btn" id="ivid-mute" aria-label="Mute video">
+              <svg class="i-vol" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z" fill="currentColor"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path><path d="M18.5 5.5a9 9 0 0 1 0 13"></path></svg>
+              <svg class="i-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z" fill="currentColor"></path><path d="m22 9-6 6"></path><path d="m16 9 6 6"></path></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="ivid__badge">
+          <span class="ivid__badge-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></span>
+          <span><strong>Serving Pakistan</strong><small>Karachi · Rahim Yar Khan · Lahore</small></span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
 
     <!-- ============ 2b. PRESENCE ============ -->
     <section id="presence" class="section presence" data-reveal>
