@@ -28,18 +28,15 @@
   'use strict';
 
   /* ---------- Config ----------
-     Stack images, bottom → top. The LAST entry is the neutral product-range
-     banner used for the expand-to-fullscreen handoff.
-     All entries are existing site WebPs. */
+     Stack images, bottom → top. Only images that actually appear on the
+     site are used. The LAST entry is the first hero slide, so the
+     expand-to-fullscreen handoff matches the hero underneath. */
   var IMAGES = [
-    'images/application.webp',                      /* project shot 1 */
-    'images/flat-roof.webp',                        /* project shot 2 */
-    'images/wet-area.webp',                         /* project shot 3 */
-    'images/construction.webp',                     /* project shot 4 */
-    'images/technician.webp',                       /* crew at work */
-    'images/hero-banner.webp'                      /* LAST = neutral hero handoff */
+    'images/application.webp',                      /* about section */
+    'images/technician.webp',                       /* about section */
+    'images/slider-hero-banner/heat-insulation.webp' /* LAST = hero handoff */
   ];
-  var MOBILE_HANDOFF = 'images/mobile_banner.webp';
+  var MOBILE_HANDOFF = 'images/slider-hero-banner-mobile/heat-insulation.webp';
   var isMobileHero = !!(window.matchMedia && window.matchMedia('(max-width: 768px)').matches);
   function srcFor(i) {
     return (isMobileHero && i === IMAGES.length - 1) ? MOBILE_HANDOFF : IMAGES[i];
