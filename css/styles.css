@@ -579,7 +579,7 @@ html.js-hero-slider .hero__slide:first-child {
   font-size: clamp(2.5rem, 6.5vw, 10rem);
   line-height: 1;
   letter-spacing: -0.04em;
-  color: #fff;
+  color: var(--burgundy);
   text-align: center;
   text-transform: uppercase;
   padding-inline: clamp(16px, 4.4vw, 85px);
