@@ -20,8 +20,9 @@
   border-radius: 9999px;
   border: 1px solid rgba(0, 0, 0, 0.05);
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  transform: translateY(5px);
 }
-.brand-pill .logo__img { height: 2.25rem; }
+.brand-pill .logo__img { height: 2.5rem; }
 .nav-pill { gap: 0.375rem; }
 @media (min-width: 768px) { .nav-pill { display: flex; } }
 @media (max-width: 1023px) { .navbar__actions { display: none; } }
