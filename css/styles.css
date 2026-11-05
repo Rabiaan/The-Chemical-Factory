@@ -709,7 +709,7 @@ html.js-hero-slider .hero__slider-dots {
 .hero__right h1 {
   font-family: var(--font-heading);
   font-weight: 900;
-  font-size: 2.25rem;
+  font-size: calc(2.25rem - 5px);
   text-transform: uppercase;
   letter-spacing: -0.025em;
   color: #fff;
@@ -725,7 +725,7 @@ html.js-hero-slider .hero__slider-dots {
 .hero__headline2 {
   font-family: var(--font-heading);
   font-weight: 900;
-  font-size: 2.25rem;
+  font-size: calc(2.25rem - 5px);
   text-transform: uppercase;
   letter-spacing: -0.025em;
   color: #fff;
@@ -881,7 +881,7 @@ html.js-hero-slider .hero__slider-dots {
 .about__heading {
   font-family: var(--font-heading);
   font-weight: 800;
-  font-size: 1.5rem;
+  font-size: calc(1.5rem - 5px);
   line-height: 1.25;
   color: var(--ink);
   margin-bottom: 1.5rem;
@@ -1084,7 +1084,7 @@ html.js-hero-slider .hero__slider-dots {
 .projects__title {
   font-family: var(--font-heading);
   font-weight: 900;
-  font-size: 1.875rem;
+  font-size: calc(1.875rem - 5px);
   color: var(--ink);
   letter-spacing: -0.025em;
 }
@@ -1484,7 +1484,7 @@ html.js-hero-slider .hero__slider-dots {
 .services__title {
   font-family: var(--font-heading);
   font-weight: 900;
-  font-size: 1.875rem;
+  font-size: calc(1.875rem - 5px);
   color: var(--ink);
   letter-spacing: -0.025em;
   margin-top: 0.25rem;
@@ -1787,7 +1787,7 @@ html.js-hero-slider .hero__slider-dots {
 .why__heading {
   font-family: var(--font-heading);
   font-weight: 900;
-  font-size: 1.875rem;
+  font-size: calc(1.875rem - 5px);
   color: #fff;
   line-height: 1.25;
   margin-bottom: 2rem;
@@ -1909,7 +1909,7 @@ html.js-hero-slider .hero__slider-dots {
 .testimonials__title {
   font-family: var(--font-heading);
   font-weight: 900;
-  font-size: 1.875rem;
+  font-size: calc(1.875rem - 5px);
   color: var(--ink);
   letter-spacing: -0.025em;
 }
@@ -2133,7 +2133,7 @@ html.js-hero-slider .hero__slider-dots {
 .faq__title {
   font-family: var(--font-heading);
   font-weight: 900;
-  font-size: 1.875rem;
+  font-size: calc(1.875rem - 5px);
   color: var(--ink);
   letter-spacing: -0.025em;
   margin-top: 0.25rem;
@@ -2931,17 +2931,17 @@ html.js-hero-slider .hero__slider-dots {
   .why__heading,
   .testimonials__title,
   .faq__title {
-    font-size: 2.25rem;
+    font-size: calc(2.25rem - 5px);
   }
   .stat__value {
     font-size: 2.25rem;
   }
   .about__heading {
-    font-size: 1.875rem;
+    font-size: calc(1.875rem - 5px);
   }
   .hero__right h1,
   .hero__headline2 {
-    font-size: 3.75rem;
+    font-size: calc(3.75rem - 5px);
   }
   .btn-hero-cta {
     font-size: 1rem;
@@ -3033,7 +3033,7 @@ html.js-hero-slider .hero__slider-dots {
   }
   .hero__right h1,
   .hero__headline2 {
-    font-size: 4.5rem;
+    font-size: calc(4.5rem - 5px);
   }
   .hero__watermark-text {
     font-size: clamp(2.5rem, 6.5vw, 9rem);
@@ -3100,7 +3100,7 @@ html.js-hero-slider .hero__slider-dots {
   }
   .hero__right h1,
   .hero__headline2 {
-    font-size: 6rem;
+    font-size: calc(6rem - 5px);
   }
   .hero__row {
     flex-direction: row;
@@ -3126,7 +3126,7 @@ html.js-hero-slider .hero__slider-dots {
     max-width: none;
   }
   .about__heading {
-    font-size: 3rem;
+    font-size: calc(3rem - 5px);
   }
   .about__text {
     font-size: 1.125rem;
@@ -3141,10 +3141,10 @@ html.js-hero-slider .hero__slider-dots {
     gap: 2rem;
   }
   .projects__title {
-    font-size: 3rem;
+    font-size: calc(3rem - 5px);
   }
   .services__title {
-    font-size: 3rem;
+    font-size: calc(3rem - 5px);
   }
   .services__sub {
     font-size: 1rem;
@@ -3172,7 +3172,7 @@ html.js-hero-slider .hero__slider-dots {
     border-left: 1px solid rgba(255, 255, 255, 0.1);
   }
   .why__heading {
-    font-size: 3rem;
+    font-size: calc(3rem - 5px);
   }
   .why__worker p,
   .why__feature-text {
@@ -3192,13 +3192,13 @@ html.js-hero-slider .hero__slider-dots {
     grid-column: span 4;
   }
   .testimonials__title {
-    font-size: 3rem;
+    font-size: calc(3rem - 5px);
   }
   .video-card {
     height: 24rem;
   }
   .faq__title {
-    font-size: 3rem;
+    font-size: calc(3rem - 5px);
   }
   .faq-item__q {
     font-size: 1.125rem;
@@ -3579,14 +3579,14 @@ html.js-hero-slider .hero__slider-dots {
 
 /* ---------- copy ---------- */
 .ivid .section-label,
-.ivid .section-label__rule { color: var(--v-ink); }
-.ivid .section-label__rule { background: var(--v-ink); }
+.ivid .section-label__rule { color: var(--burgundy); }
+.ivid .section-label__rule { background: var(--burgundy); }
 
 .ivid__title {
   margin: 16px 0 20px;
   color: var(--v-ink);
   font-family: "Hertical Sans", "DM Sans", sans-serif;
-  font-size: clamp(2rem, 4.4vw, 3.4rem);
+  font-size: clamp(calc(2rem - 5px), calc(4.4vw - 5px), calc(3.4rem - 5px));
   line-height: 1.05;
   text-transform: uppercase;
 }
