@@ -109,7 +109,7 @@
   /* Datasheet paths are generated from product ids, but the value still gets
      written into an href, so it is re-validated here. Anything that is not a
      lowercase product-id PDF under downloads/ is dropped rather than rendered. */
-  var DATASHEET_RE = /^downloads\/[a-z0-9][a-z0-9-]*\.pdf$/;
+  var DATASHEET_RE = /^downloads\/[a-z0-9][a-z0-9 -]*\.pdf$/i;
 
   function safeDatasheet(product) {
     var path = product && product.datasheet;
@@ -129,11 +129,12 @@
     var path = safeDatasheet(product);
     if (!path) return '';
     var title = product.name + ' technical datasheet (' + datasheetMeta(product) + ')';
-    return '<a class="' + className + '" href="' + esc(path) + '" download type="application/pdf"'
+    var metaOnly = label === false;
+    return '<a class="' + className + (metaOnly ? ' product-card__download--meta-only' : '') + '" href="' + esc(path) + '" download type="application/pdf"'
       + ' aria-label="' + esc(title) + '" data-pdf="' + esc(path) + '"'
       + (extraAttrs || '') + '>'
       + '<span class="product-card__download-icon">' + PDF_SVG + '</span>'
-      + '<span>' + esc(label || 'Download Datasheet') + '</span>'
+      + (metaOnly ? '' : '<span>' + esc(label || 'Download Datasheet') + '</span>')
       + '<span class="product-card__download-meta">' + esc(datasheetMeta(product)) + '</span>'
       + '</a>';
   }
@@ -164,7 +165,7 @@
       + pack
       + '<div class="product-card__foot">'
       + '<a href="' + detailHref(p.id) + '" class="product-card__view">View Details<span class="product-card__arrow">' + ARROW + '</span></a>'
-      + renderDownloadLink(p, 'product-card__download', 'Datasheet')
+      + renderDownloadLink(p, 'product-card__download', false)
       + '</div>'
       + '</div>'
       + '</article>';

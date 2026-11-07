@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title">
+  <title id="title">Product photo coming soon</title>
+  <rect width="1200" height="750" fill="#f3f1ef"/>
+  <circle cx="600" cy="330" r="205" fill="#e7e2de"/>
+  <path d="M470 220h260v45H470zm18 54h224l-20 240H508z" fill="#7c2638"/>
+  <path d="M530 332h140v95H530z" fill="#fff"/>
+  <path d="M555 356h90m-90 22h90m-90 22h62" stroke="#7c2638" stroke-width="10" stroke-linecap="round"/>
+  <text x="600" y="610" fill="#5f5a57" font-family="Arial, sans-serif" font-size="24" font-weight="700" letter-spacing="3" text-anchor="middle">PRODUCT PHOTO COMING SOON</text>
+</svg>

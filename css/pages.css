@@ -694,18 +694,18 @@ body[data-page="home"] .projects__grid .project-card > img { aspect-ratio: 4 / 3
 .product-card__download:hover { background: var(--burgundy-dark); }
 .product-card__download-icon { display: inline-flex; align-items: center; }
 .product-card__download-icon svg { width: 0.875rem; height: 0.875rem; }
-/* Measured type + size, e.g. "PDF · 1.6 MB" (Phase 2). Kept de-emphasised so it
-   does not compete with the link label on narrow product cards. */
+.product-card__download--meta-only .product-card__download-meta {
+  border-left: 0; padding-left: 0; margin-left: 0; opacity: 1;
+}
+/* Measured type + size, e.g. "PDF · 1.6 MB" (Phase 2). */
 .product-card__download-meta {
   font-size: 0.6875rem; font-weight: 600; opacity: 0.75;
   padding-left: 0.4rem; margin-left: 0.1rem;
   border-left: 1px solid rgba(255, 255, 255, 0.35);
 }
-/* Below ~380px the card is too narrow for label + size together. */
 @media (max-width: 380px) {
-  .product-card__download-meta { display: none; }
+  .product-card__download:not(.product-card__download--meta-only) .product-card__download-meta { display: none; }
 }
-
 /* ---------- Catalog search bar ---------- */
 .catalog-search { margin-top: 1.5rem; }
 .catalog-search__bar {

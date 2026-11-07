@@ -1,7 +1,7 @@
 /* ============================================================
    THE CHEMICAL FACTORY — product catalog data
-   Product photography and downloadable datasheets live in
-   ./products (WebP + PDF per product).
+   Product photography lives in ./products; downloadable datasheets live
+   in ./downloads.
    Content transcribed from the official product datasheets.
    ============================================================ */
 window.TCF_PRODUCTS = (function () {
@@ -17,6 +17,9 @@ window.TCF_PRODUCTS = (function () {
     { id: 'dampproofing', name: 'Damp Proofing & Bituminous Coatings', system: 'coatings' },
     { id: 'sealants', name: 'Sealants & Joint Sealers', system: 'sealing' },
     { id: 'waterstops', name: 'Hydrophilic Waterstops', system: 'sealing' },
+    { id: 'pvc-waterstops', name: 'PVC Waterstops', system: 'sealing' },
+    { id: 'primers', name: 'Primers & Protective Coatings', system: 'coatings' },
+    { id: 'epoxy-flooring', name: 'Epoxy Flooring Systems', system: 'coatings' },
     { id: 'admixtures', name: 'Concrete Admixtures', system: 'concrete' },
     { id: 'grouts', name: 'Grouts & Cementitious Fillers', system: 'repair' },
     { id: 'bonding', name: 'Bonding & Polymer Modification', system: 'repair' }
@@ -1611,6 +1614,311 @@ window.TCF_PRODUCTS = (function () {
         { label: 'Storage', value: 'Cool, covered and dry place; protect from direct sunlight and heat' },
         { label: 'Shelf Life', value: '24 months in unopened original packaging, stored as suggested.' },
         { label: 'Hazard Class', value: 'Non-hazardous goods.' }
+      ]
+    },
+    {
+      id: 'chem-1k-inject',
+      name: 'CHEM 1K INJECT',
+      subTitle: 'Single-component hydrophobic polyurethane injection grout for active leak sealing',
+      category: 'injection',
+      categoryLabel: 'Injection & Crack Sealing Resins',
+      image: 'images/product-placeholder.svg',
+      imageW: 1200, imageH: 750,
+      datasheet: 'downloads/Chem-1k-Inject.pdf',
+      datasheetKb: 2200,
+      badges: ['Active Leak Sealing', 'Single Component'],
+      highlights: [
+        'Expands on contact with air or water to seal pores and fissures',
+        'Penetrates cracks under 0.4 mm',
+        'Resists hydrostatic pressure',
+        'Flexible, durable and fast-reacting'
+      ],
+      description:
+        'High-activity polyether polyurethane grout that reacts with air or water to form expansion foam. '
+        + 'Its low viscosity supports penetration into fine pores and fissures, while the cured foam resists '
+        + 'hydrostatic pressure and helps seal recurring leaks.',
+      keyFeatures: ['ACTIVE LEAK SEALING', 'HIGH PENETRATION', 'FLEXIBLE & DURABLE', 'FAST REACTION TIME'],
+      uses: ['Water leakage and concrete cracks', 'Tunnels and subways', 'Dams and basements', 'Bathroom expansion joints'],
+      packaging: '10 kg bucket (7.5 L gross weight)',
+      coverage: 'Suitable for filling cracks under 0.4 mm',
+      consumption: ['Inject until foam emerges from the next hole or crack surface.'],
+      guidance: 'Patch large joints with polymer cement mortar before injection.',
+      techData: [
+        { property: 'Product Type', value: 'Single-component hydrophobic polyurethane injection grout' },
+        { property: 'Appearance', value: 'Homogeneous brown liquid' },
+        { property: 'Solid content', value: '>90%' },
+        { property: 'Viscosity at 23°C', value: '258–320 mPa·s' },
+        { property: 'Density', value: '1.075 g/ml' },
+        { property: 'Curing time', value: '244 seconds' },
+        { property: 'Non-volatile content', value: '86%' },
+        { property: 'Foaming capacity', value: '2276%' },
+        { property: 'Compressive strength', value: '12 MPa' },
+        { property: 'Packaging', value: '10 kg bucket (7.5 L gross weight)' }
+      ],
+      standards: [
+        'DIN 1048 Water Permeability Test.',
+        'Complies with Water Research Council requirements for potable water contact.'
+      ],
+      applicationGuidelines: [
+        { title: 'Application', text: 'Inject until foam comes out of the next hole or crack surface. Patch large joints with polymer cement mortar first.' },
+        { title: 'Storage', text: 'Store dry and frost-free, away from direct sunlight. Shelf life is 6 months in original packaging.' }
+      ],
+      importantInfo: [
+        { label: 'Storage', value: 'Dry, frost-free and out of direct sunlight' },
+        { label: 'Shelf Life', value: '6 months in original packaging' }
+      ]
+    },
+    {
+      id: 'chem-structo-rep',
+      name: 'CHEM STRUCTO REP',
+      subTitle: 'One-component, fiber-reinforced thixotropic mortar for structural concrete repair',
+      category: 'grouts',
+      categoryLabel: 'Grouts & Cementitious Fillers',
+      image: 'images/product-placeholder.svg',
+      imageW: 1200, imageH: 750,
+      datasheet: 'downloads/Chem-Structo-Rep.pdf',
+      datasheetKb: 2150,
+      badges: ['Structural Repair', 'Fiber Reinforced'],
+      highlights: [
+        'Shrinkage-compensated, high-strength formulation',
+        'For vertical and overhead repairs',
+        'Apply by low-pressure wet spray or hand trowel',
+        'Virtually non-sag; no bonding agent required'
+      ],
+      description:
+        'One-component, fiber-reinforced thixotropic repair mortar with dual shrinkage compensation for '
+        + 'structural concrete repairs. It can be applied vertically or overhead by low-pressure wet spraying '
+        + 'or hand trowelling without an additional bonding agent.',
+      keyFeatures: ['HIGH FLOW', 'HIGH STRENGTH', 'EXCELLENT BOND', 'SPRAYABLE & NON-SAG'],
+      uses: ['Structural concrete repair', 'Bonding masonry', 'Filling gaps and distributing weight', 'Repairing joints and absorbing movement'],
+      packaging: '20 kg bag',
+      coverage: 'Not specified in the provided product information.',
+      consumption: ['Coverage is not specified in the provided product information.'],
+      guidance: 'Mechanically mix with a slow-speed drill for 3–4 minutes. Apply to a prepared, rough surface with at least a 5 mm profile, then cure properly.',
+      techData: [
+        { property: 'Product Type', value: 'One-component, fiber-reinforced thixotropic repair mortar' },
+        { property: 'Color', value: 'Grey powder' },
+        { property: 'Water/powder ratio', value: '0.14 by weight' },
+        { property: 'Density (freshly mixed)', value: '2.3 kg/dm³' },
+        { property: 'Compressive strength (ASTM C109)', value: '1 day: 2,900 PSI; 3 days: 7,250 PSI; 7 days: 8,700 PSI; 28 days: 10,150 PSI' },
+        { property: 'Flexural strength (ASTM C348)', value: '>1,305 PSI at 28 days' },
+        { property: 'Tensile strength (ASTM C496)', value: '580 PSI at 28 days' },
+        { property: 'Water penetration (DIN 1048)', value: '<5 mm' },
+        { property: 'Packaging', value: '20 kg bag' }
+      ],
+      standards: [
+        'DIN 1048 Water Permeability Test.',
+        'Complies with Water Research Council requirements for potable water contact.'
+      ],
+      applicationGuidelines: [
+        { title: 'Mixing & Application', text: 'Mechanically mix with a slow-speed drill for 3–4 minutes. Apply to a prepared, rough surface with at least a 5 mm profile and cure properly.' },
+        { title: 'Storage', text: 'Store dry and frost-free, out of direct sunlight. Shelf life is 1 year in original packaging.' }
+      ],
+      importantInfo: [
+        { label: 'Storage', value: 'Dry, frost-free and out of direct sunlight' },
+        { label: 'Shelf Life', value: '1 year in original packaging' }
+      ]
+    },
+    {
+      id: 'chem-pvc-water-block',
+      name: 'CHEM PVC WATER BLOCK',
+      subTitle: 'Adaptable PVC waterstop for construction joints in water-retaining and water-excluding structures',
+      category: 'pvc-waterstops',
+      categoryLabel: 'PVC Waterstops',
+      image: 'images/product-placeholder.svg',
+      imageW: 1200, imageH: 750,
+      datasheet: 'downloads/Chem-PVC-Water-Block.pdf',
+      datasheetKb: 2442,
+      badges: ['Construction Joints', 'PVC Waterstop'],
+      highlights: [
+        'For water-retaining and water-excluding structures',
+        'High-strength PVC with strengthened edge flange',
+        'Resistant to water, seawater, sewage and diluted chemicals',
+        'Factory-fabricated junction pieces available'
+      ],
+      description:
+        'High-grade PVC extrusion for construction joints, supplied in straight lengths with factory-fabricated '
+        + 'junction pieces. The strengthened edge flange includes brass grommets for fixing to reinforcement.',
+      keyFeatures: ['PREVENTS WATER LEAKAGE', 'HIGH STRENGTH', 'DURABLE', 'CHEMICAL RESISTANCE'],
+      uses: [
+        'Tanks, reservoirs, sewerage plants, pools and water towers',
+        'Culverts, canals and dams',
+        'Basements, buried tanks and retaining walls',
+        'Underground car parks, tunnels and subways'
+      ],
+      packaging: '100 Rft roll',
+      coverage: 'Install at the heart of concrete structures; use 5 specialized clips per meter.',
+      consumption: ['Use 5 specialized clips per meter to fix the waterstop to reinforcement.'],
+      guidance: 'Install at the heart of the concrete structure. Fix to reinforcement using specialized clips (5 per meter). Weld in a well-ventilated space.',
+      techData: [
+        { property: 'Type', value: 'PVC Water Block' },
+        { property: 'Chemical base', value: 'Polyvinyl chloride' },
+        { property: 'Density', value: '1.45 ± 0.15 kg/l' },
+        { property: 'Service temperatures', value: '−35°C to +55°C' },
+        { property: 'Tensile strength', value: '10 N/mm² (DIN 53455); 12 N/mm² (ASTM D412); 11 N/mm² (BS2782)' },
+        { property: 'Tear strength (DIN 53507A)', value: '12 N/mm²' },
+        { property: 'Shore A hardness (DIN 53505)', value: '90 ± 5' },
+        { property: 'Elongation at break', value: '300%' },
+        { property: 'Chemical resistance', value: 'Water, seawater, sewage, road salt, diluted inorganic alkalis, acids and oils' },
+        { property: 'Packaging', value: '100 Rft roll' }
+      ],
+      standards: [
+        'DIN 1048 Water Permeability Test.',
+        'Complies with Water Research Council requirements for potable water contact.'
+      ],
+      applicationGuidelines: [
+        { title: 'Installation', text: 'Install at the heart of concrete structures and fix to reinforcement using specialized clips (5 per meter). Weld in a well-ventilated space.' },
+        { title: 'Storage', text: 'Store dry and cool below 35°C. Shelf life is 1 year.' }
+      ],
+      importantInfo: [
+        { label: 'Storage', value: 'Dry and cool below 35°C' },
+        { label: 'Shelf Life', value: '1 year' }
+      ]
+    },
+    {
+      id: 'chem-prime-coat',
+      name: 'CHEM PRIME COAT',
+      subTitle: 'Fast-drying two-component epoxy primer for concrete and metal',
+      category: 'primers',
+      categoryLabel: 'Primers & Protective Coatings',
+      image: 'images/product-placeholder.svg',
+      imageW: 1200, imageH: 750,
+      datasheet: 'downloads/Chem-Primer Coat.pdf',
+      datasheetKb: 2137,
+      badges: ['Fast Drying', 'Two Component'],
+      highlights: [
+        'Excellent adhesion and penetration',
+        'Protects against moisture and corrosion',
+        'For concrete and metal surfaces',
+        '100% volume solids'
+      ],
+      description:
+        'Fast-drying, two-component epoxy primer that provides strong adhesion and penetration on concrete and '
+        + 'metal. It prepares surfaces for subsequent coatings and helps protect against moisture and corrosion.',
+      keyFeatures: ['FAST DRYING', 'EXCELLENT ADHESION', 'CORROSION RESISTANT', 'EASY APPLICATION'],
+      uses: ['Epoxy and PU floor systems', 'Metal structures and industrial flooring', 'Parking decks and bridges', 'Concrete surfaces before coating'],
+      packaging: '5 liter (75% A and 25% B)',
+      coverage: '4–5 m²/liter',
+      consumption: ['4–5 m²/liter.'],
+      guidance: 'Mix Parts A and B (2:1 by volume) for 2–3 minutes. Apply by roller, brush or spray. Do not apply above 85% humidity at 21°C or above 75% at 10°C.',
+      techData: [
+        { property: 'Product Type', value: 'Fast-drying two-component epoxy primer' },
+        { property: 'Density', value: '1.084 kg/L' },
+        { property: 'Flash point', value: '>100°C' },
+        { property: 'Work life (epoxy)', value: 'Approximately 60 minutes at 25°C' },
+        { property: 'Pot life', value: 'Approximately 40 minutes (5 L mixed at 25°C)' },
+        { property: 'Curing time at 25°C', value: 'Touch dry: 8 hours; light foot traffic: 24 hours; full cure: 7 days' },
+        { property: 'Over-coating time at 25°C', value: 'Minimum 12 hours; maximum 36 hours' },
+        { property: 'Volume solids', value: '100%' },
+        { property: 'Application temperature', value: '>15°C and <35°C' },
+        { property: 'Maximum service temperature', value: '60°C' },
+        { property: 'Coverage', value: '4–5 m²/liter' },
+        { property: 'Packaging', value: '5 liter (75% A and 25% B)' }
+      ],
+      standards: [
+        'DIN 1048 Water Permeability Test.',
+        'Complies with Water Research Council requirements for potable water contact.'
+      ],
+      applicationGuidelines: [
+        { title: 'Mixing & Application', text: 'Mix Parts A and B (2:1 by volume) for 2–3 minutes. Apply by roller, brush or spray. Do not apply above 85% humidity at 21°C or above 75% at 10°C.' },
+        { title: 'Storage', text: 'Store dry and frost-free. Shelf life is 6 months.' }
+      ],
+      importantInfo: [
+        { label: 'Storage', value: 'Dry and frost-free' },
+        { label: 'Shelf Life', value: '6 months' }
+      ]
+    },
+    {
+      id: 'chem-epo-gloss-100',
+      name: 'CHEM EPO GLOSS 100',
+      subTitle: 'Solvent-based two-component epoxy coating for hard-wearing protective finishes',
+      category: 'epoxy-flooring',
+      categoryLabel: 'Epoxy Flooring Systems',
+      image: 'images/product-placeholder.svg',
+      imageW: 1200, imageH: 750,
+      datasheet: 'downloads/Chem-Epo-Gloss-100.pdf',
+      datasheetKb: 2746,
+      badges: ['High Gloss', 'Chemical Resistant'],
+      highlights: [
+        'Smooth, high-gloss protective finish',
+        'Good abrasion resistance and adhesion',
+        'For heavy-traffic and corrosive service',
+        'Available in grey and white'
+      ],
+      description:
+        'Solvent-based, two-component epoxy coating that provides a smooth, glossy, hard-wearing finish on concrete, '
+        + 'wood and metal. Designed for heavy traffic and chemical or corrosive service.',
+      keyFeatures: ['HIGH-GLOSS FINISH', 'ABRASION RESISTANT', 'STRONG ADHESION', 'EASY TO MAINTAIN'],
+      uses: ['Industrial and commercial concrete floors', 'Warehouses, workshops and garages', 'Paper mills and canneries', 'Wastewater treatment and farm buildings'],
+      packaging: '16 kg box',
+      coverage: 'Not specified in the provided product information.',
+      consumption: ['Coverage is not specified in the provided product information.'],
+      guidance: 'Mix Parts A and B thoroughly by volume and let stand for 5 minutes. Apply by brush, roller or spray to a clean, dry substrate above 60°F (15.6°C).',
+      techData: [
+        { property: 'Product Type', value: 'Solvent-based two-component epoxy coating system' },
+        { property: 'Appearance', value: 'High-gloss epoxy coating; grey and white' },
+        { property: 'VOC content', value: '≤400 g/L (mixed)' },
+        { property: 'Flash point', value: '60°F (TCC)' },
+        { property: 'Pot life', value: '4–6 hours at 60°F' },
+        { property: 'Density', value: 'Approximately 1800 kg/m³' },
+        { property: 'Chemical resistance', value: 'Alkalis, solvents, acids, salt solutions, water, fats, oils, halogens, oxidizing agents and fuels' },
+        { property: 'Toxicity', value: 'Non-toxic after drying; will not support fungal or bacterial growth' },
+        { property: 'Packaging', value: '16 kg box' }
+      ],
+      applicationGuidelines: [
+        { title: 'Mixing & Application', text: 'Mix Parts A and B thoroughly by volume and let stand for 5 minutes. Apply by brush, roller or spray to a clean, dry substrate above 60°F (15.6°C).' },
+        { title: 'Storage', text: 'Store in a cool, covered, dry place. Shelf life is 1 year.' }
+      ],
+      importantInfo: [
+        { label: 'Storage', value: 'Cool, covered and dry place' },
+        { label: 'Shelf Life', value: '1 year' }
+      ]
+    },
+    {
+      id: 'chem-epo-flow-sl',
+      name: 'CHEM EPO FLOW SL',
+      subTitle: 'Solvent-free, self-leveling two-component epoxy flooring system',
+      category: 'epoxy-flooring',
+      categoryLabel: 'Epoxy Flooring Systems',
+      image: 'images/product-placeholder.svg',
+      imageW: 1200, imageH: 750,
+      datasheet: 'downloads/Chem-Epo-Flow-SL.pdf',
+      datasheetKb: 2414,
+      badges: ['Self-Leveling', 'Solvent-Free'],
+      highlights: [
+        'Smooth, seamless and hygienic floor finish',
+        'Durable under industrial and wheeled traffic',
+        'Resists positive water pressure',
+        'Available in grey; other colors by order'
+      ],
+      description:
+        'Solvent-free, self-leveling, two-component epoxy flooring system that forms a smooth, hard-wearing, '
+        + 'hygienic finish over prepared concrete.',
+      keyFeatures: ['SOLVENT-FREE', 'SELF-LEVELING', 'SMOOTH & SEAMLESS', 'DURABLE INDUSTRIAL FINISH'],
+      uses: ['Factories and warehouses', 'Workshops and production areas', 'Packing and processing areas', 'Areas with wheeled traffic'],
+      packaging: '12 kg kit (base, hardener, filler)',
+      coverage: 'Applied at thicknesses from 0.5 mm to over 3 mm; area coverage is not specified.',
+      consumption: ['Application thickness ranges from 0.5 mm to over 3 mm. Area coverage is not specified.'],
+      guidance: 'Pour and spread with a notched squeegee or gauge rake, then back-roll with a spiked roller to release air. Substrate must be mechanically prepared and dry.',
+      techData: [
+        { property: 'Product Type', value: 'Self-leveling two-component epoxy flooring system' },
+        { property: 'Appearance', value: 'Grey; other colors to order' },
+        { property: 'Finish', value: 'Smooth, seamless self-leveling finish' },
+        { property: 'Pot life', value: '65 minutes' },
+        { property: 'Recoat time', value: '18 hours' },
+        { property: 'Traffic time', value: '24 hours' },
+        { property: 'Light vehicle traffic', value: '48 hours' },
+        { property: 'Full cure', value: '7 days' },
+        { property: 'Application thickness', value: '0.5 mm to over 3 mm' },
+        { property: 'Packaging', value: '12 kg kit (base, hardener, filler)' }
+      ],
+      applicationGuidelines: [
+        { title: 'Application', text: 'Pour and spread with a notched squeegee or gauge rake, then back-roll with a spiked roller to release air. Substrate must be mechanically prepared and dry.' },
+        { title: 'Storage', text: 'Store in a cool, covered, dry place. Shelf life is 1 year.' }
+      ],
+      importantInfo: [
+        { label: 'Storage', value: 'Cool, covered and dry place' },
+        { label: 'Shelf Life', value: '1 year' }
       ]
     }
   ];
