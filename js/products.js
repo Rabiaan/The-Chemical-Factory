@@ -452,7 +452,7 @@
      ============================================================ */
   function setText(sel, value) {
     var el = $(sel);
-    if (el && value != null) el.innerHTML = value;
+    if (el && value != null) el.textContent = value;
   }
 
   function setHtml(sel, html) {

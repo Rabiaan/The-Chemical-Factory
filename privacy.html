@@ -119,11 +119,20 @@
               </li>
             </ul>
             <p>
-              While the site sends form details to your own email application so
-              you can review and send the message, nothing is transmitted to a
-              server we control until you send it.
-              <em class="policy-todo">TODO</em> if a server-side form handler is added later, this
-              section and the cookies page must be updated to match.
+              When you submit the enquiry or quote form, the details you enter
+              are sent to this website's server, a serverless function hosted
+              on Vercel. That function validates the fields and emails the
+              enquiry to The Chemical Factory's business inbox through an email
+              delivery service (Resend). The function does not save the form
+              fields to a database; the enquiry is delivered as an email.
+            </p>
+            <p>
+              To prevent abuse, the server keeps a short-lived, in-memory count
+              of requests per IP address. This count is not linked to the
+              content of your message.
+              <em class="policy-todo">TODO</em> confirm the email provider's
+              data-processing terms and any retention period that applies to
+              delivered email.
             </p>
 
             <h3>Information collected automatically</h3>

@@ -1,0 +1,15 @@
+# Files that must never be part of the deployed static output.
+.htaccess
+send-mail.php
+
+# Local-only secrets, dependencies, and Vercel metadata.
+.env
+.env.*
+node_modules
+.vercel
+
+# Local-only archive and scratch files.
+the-chemical-factory.zip
+.kilo
+fix_pre.py
+fix_preloader.js

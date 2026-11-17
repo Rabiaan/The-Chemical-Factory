@@ -1,1 +1,12 @@
 the-chemical-factory.zip
+
+# Local secrets and Vercel metadata.
+.env
+.env.*
+.vercel
+node_modules
+
+# Local agent/tool scratch folders.
+.kilo/
+.kilocode/
+.opencode/

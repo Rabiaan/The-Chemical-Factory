@@ -6,12 +6,13 @@
    ----------------
    The contact form and the quote modal used to show a green success
    panel while sending absolutely nothing anywhere. That is misleading,
-   so this module does one of two honest things:
+   so this module posts the validated payload to our own serverless
+   endpoint (/api/contact) and only shows success when that endpoint
+   answers { ok: true }.
 
-     1. Builds a prefilled mailto: link from the validated fields and
-        hands it to the visitor's own mail client. No backend needed.
-     2. OR, once a real endpoint exists, posts the same payload there
-        (see TODO below).
+   If the endpoint is unreachable or answers { ok: false }, the form stays
+   on screen and the visitor is offered a prefilled mailto: link and a
+   WhatsApp link as honest alternatives.
 
    It never uses action="mailto:" on the <form> element, because that
    attribute is unreliable across browsers and leaks the whole body into
@@ -28,10 +29,9 @@
     return Array.prototype.slice.call((ctx || document).querySelectorAll(sel));
   };
 
-  /* Where the enquiry is actually delivered. The mail client is opened
-     with this address. TODO(owner): confirm this is the monitored sales
-     inbox, and switch to a real form endpoint (Formspree/Netlify Forms/
-     own API) if you would rather not rely on the visitor's mail client. */
+  /* Fallback address for the mailto: hand-off shown when the serverless
+     endpoint is unavailable. TODO(owner): confirm this is the monitored
+     business inbox. */
   var CONTACT_EMAIL = 'dechemicalfactory@gmail.com';
 
   /* Optional WhatsApp hand-off. Same number as the footer CTA. */
@@ -205,17 +205,15 @@
     return 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(body);
   }
 
-  /* Same-origin PHP endpoint (send-mail.php) that emails the enquiry to
-     CONTACT_EMAIL via the host's mail(). Requires PHP on the host — standard
-     on cPanel / shared Apache hosting. If the endpoint is missing or mail()
-     is not configured, deliver() falls back to the mailto: hand-off below so
-     the visitor still has a way to reach us. */
-  var FORM_ENDPOINT = 'send-mail.php';
+  /* Same-origin Vercel serverless endpoint. It re-validates every field,
+     sends the enquiry through the email API, and answers only with
+     { ok: true } or { ok: false }. Success is shown only for a real ok:true;
+     a failure keeps the form on screen and offers mailto / WhatsApp. */
+  var FORM_ENDPOINT = '/api/contact';
 
-  function deliver(payload, mailtoUrl, onDone) {
+  function deliver(payload, mailtoUrl, whatsappUrl, onSuccess, onError) {
     if (!FORM_ENDPOINT || typeof window.fetch !== 'function') {
-      window.location.href = mailtoUrl;
-      if (onDone) onDone(payload);
+      if (onError) onError(mailtoUrl, whatsappUrl);
       return;
     }
 
@@ -229,20 +227,61 @@
       signal: controller ? controller.signal : undefined
     }).then(function (res) {
       if (timer) window.clearTimeout(timer);
-      return res.json().catch(function () { return { ok: res.ok }; }).then(function (data) {
-        if (res.ok && data && data.ok) {
-          if (onDone) onDone(payload);
+      return res.json().catch(function () { return {}; }).then(function (data) {
+        if (res.ok && data && data.ok === true) {
+          if (onSuccess) onSuccess();
           return;
         }
-        throw new Error((data && data.status) || 'send_failed');
+        if (onError) onError(mailtoUrl, whatsappUrl);
       });
     }).catch(function () {
       if (timer) window.clearTimeout(timer);
-      /* Endpoint unreachable or mail() failed — hand off to the mail client. */
-      showFormToast('Could not send automatically. Opening your email app instead.');
-      window.location.href = mailtoUrl;
-      if (onDone) onDone(payload);
+      if (onError) onError(mailtoUrl, whatsappUrl);
     });
+  }
+
+  /* Failure state: keep the form usable and give the visitor two ways to
+     reach us without ever showing the success panel. */
+  function showSendError(form, mailtoUrl, whatsappUrl, id) {
+    var box = document.getElementById(id);
+    if (!box) {
+      box = document.createElement('div');
+      box.id = id;
+      box.className = 'form-send-error';
+      box.setAttribute('role', 'alert');
+
+      var text = document.createElement('p');
+      text.textContent = 'We could not send your message automatically. Please email us or message us on WhatsApp instead.';
+      box.appendChild(text);
+
+      var actions = document.createElement('div');
+      actions.className = 'form-send-error__actions';
+
+      var emailLink = document.createElement('a');
+      emailLink.href = mailtoUrl;
+      emailLink.textContent = 'Email us';
+
+      var waLink = document.createElement('a');
+      waLink.href = whatsappUrl;
+      waLink.target = '_blank';
+      waLink.rel = 'noopener noreferrer';
+      waLink.textContent = 'WhatsApp';
+
+      actions.appendChild(emailLink);
+      actions.appendChild(waLink);
+      box.appendChild(actions);
+      form.insertAdjacentElement('afterend', box);
+    } else {
+      var links = box.querySelectorAll('a');
+      if (links[0]) links[0].href = mailtoUrl;
+      if (links[1]) links[1].href = whatsappUrl;
+      box.hidden = false;
+    }
+  }
+
+  function hideSendError(id) {
+    var box = document.getElementById(id);
+    if (box) box.hidden = true;
   }
 
   /* ---------- Shared toast ---------- */
@@ -269,6 +308,7 @@
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+      hideSendError('contact-send-error');
       if (honeypotTripped(form)) return;                 /* silently drop bots */
       if (!validateForm(form)) return;
 
@@ -298,11 +338,14 @@
         message: data.message
       };
       var mailtoUrl = buildMailto(subject, body);
+      var whatsappUrl = buildWhatsApp(body);
 
-      deliver(payload, mailtoUrl, function () {
-        showFormToast('Opening your email app. Press send to finish.');
+      deliver(payload, mailtoUrl, whatsappUrl, function () {
+        showFormToast('Message sent. We will get back to you soon.');
         form.reset();
         $$('[data-validate]', form).forEach(function (f) { setFieldError(f, ''); });
+      }, function (fallbackMailto, fallbackWhatsApp) {
+        showSendError(form, fallbackMailto, fallbackWhatsApp, 'contact-send-error');
       });
     });
   }
@@ -315,6 +358,7 @@
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+      hideSendError('quote-send-error');
       if (honeypotTripped(form)) return;
       if (!validateForm(form)) return;
 
@@ -371,6 +415,7 @@
         symptoms: symptoms
       };
       var mailtoUrl = buildMailto(subject, body);
+      var whatsappUrl = buildWhatsApp(body);
 
       var fv = $('#quote-form-view');
       var sv = $('#quote-success-view');
@@ -381,9 +426,11 @@
       if (successPhone) successPhone.textContent = data.phone;
       if (successCity) successCity.textContent = data.city || 'your area';
 
-      deliver(payload, mailtoUrl, function () {
+      deliver(payload, mailtoUrl, whatsappUrl, function () {
         if (fv) fv.style.display = 'none';
         if (sv) sv.style.display = 'flex';
+      }, function (fallbackMailto, fallbackWhatsApp) {
+        showSendError(form, fallbackMailto, fallbackWhatsApp, 'quote-send-error');
       });
     });
   }

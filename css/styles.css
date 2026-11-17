@@ -2627,6 +2627,40 @@ html.js-hero-slider .hero__slider-dots {
 .form-error:empty {
   display: none;
 }
+
+/* ---------- Send failure fallback (js/forms.js) ----------
+   Shown only when the server answers { ok: false } or is unreachable. It
+   keeps the form on screen and offers mailto / WhatsApp alternatives. */
+.form-send-error {
+  margin: 1rem 0 0;
+  padding: 0.9rem 1.1rem;
+  border: 1px solid var(--red-200);
+  border-left: 4px solid var(--burgundy);
+  border-radius: 0.5rem;
+  background: var(--red-50);
+  color: var(--burgundy-dark);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+.form-send-error p {
+  margin: 0 0 0.5rem;
+}
+.form-send-error__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+}
+.form-send-error a {
+  color: var(--burgundy);
+  font-weight: 700;
+  text-decoration: underline;
+}
+.form-send-error a:hover {
+  color: var(--burgundy-dark);
+}
+.form-send-error[hidden] {
+  display: none;
+}
 .form-hint {
   margin: 0.2rem 0 0;
   font-size: 0.7rem;

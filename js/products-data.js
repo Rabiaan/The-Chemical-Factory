@@ -1674,8 +1674,8 @@ window.TCF_PRODUCTS = (function () {
       subTitle: 'One-component, fiber-reinforced thixotropic mortar for structural concrete repair',
       category: 'grouts',
       categoryLabel: 'Grouts & Cementitious Fillers',
-      image: 'images/product-placeholder.svg',
-      imageW: 1200, imageH: 750,
+      image: ASSETS + 'chem_structro_rep.webp',
+      imageW: 1600, imageH: 1131,
       datasheet: 'downloads/Chem-Structo-Rep.pdf',
       datasheetKb: 2150,
       badges: ['Structural Repair', 'Fiber Reinforced'],
@@ -1725,8 +1725,8 @@ window.TCF_PRODUCTS = (function () {
       subTitle: 'Adaptable PVC waterstop for construction joints in water-retaining and water-excluding structures',
       category: 'pvc-waterstops',
       categoryLabel: 'PVC Waterstops',
-      image: 'images/product-placeholder.svg',
-      imageW: 1200, imageH: 750,
+      image: ASSETS + 'chem_pvc_water_block.webp',
+      imageW: 1024, imageH: 1024,
       datasheet: 'downloads/Chem-PVC-Water-Block.pdf',
       datasheetKb: 2442,
       badges: ['Construction Joints', 'PVC Waterstop'],
@@ -1919,6 +1919,159 @@ window.TCF_PRODUCTS = (function () {
       importantInfo: [
         { label: 'Storage', value: 'Cool, covered and dry place' },
         { label: 'Shelf Life', value: '1 year' }
+      ]
+    },
+    /* ============================================================
+        21. CHEM CRYSTAL LOCK
+        ============================================================ */
+    {
+      id: 'chem-crystal-lock',
+      name: 'CHEM CRYSTAL LOCK',
+      subTitle: 'Waterproofing coating with integral crystals for concrete and mortar',
+      category: 'cementitious',
+      categoryLabel: 'Cementitious Waterproof Coatings',
+      image: ASSETS + 'chem_crystal_lock.webp',
+      imageW: 1254, imageH: 1254,
+      datasheet: 'downloads/Chem-Crystal-Lock.pdf',
+      datasheetKb: 2463,
+      datasheetPages: 2,
+      badges: ['Crystalline Technology', 'Negative Pressure'],
+      highlights: [
+        'Crystalline capillary system seals pores deep inside concrete',
+        'Effective against positive and negative hydrostatic pressure',
+        'Crystalline activity reactivates on contact with water',
+        'Non-toxic and non-tarnishing'
+      ],
+      description:
+        'Chem Crystal Lock is a moisture-activated crystalline waterproofing coating for mortar and concrete. '
+        + 'Its catalysts develop water-insoluble crystalline microstructures deep within the interstices and '
+        + 'capillaries, sealing pores without relying on a surface film. The crystalline activity reactivates '
+        + 'on contact with water, providing long-lasting protection against waterborne contaminants.',
+      keyFeatures: [
+        'STRONG WATERPROOFING',
+        'INTEGRAL CRYSTALS',
+        'POSITIVE & NEGATIVE PRESSURE',
+        'SELF-HEALING ACTION',
+        'FAST DRYING',
+        'EXCELLENT ADHESION',
+        'CORROSION RESISTANT',
+        'EASY APPLICATION'
+      ],
+      uses: [
+        'Water tanks and reservoirs',
+        'Water treatment works',
+        'Concrete pipes',
+        'Basements',
+        'Construction joints'
+      ],
+      packaging: '25 kg bag',
+      coverage: '300 to 400 square feet per bag',
+      consumption: [
+        '1 kg/m² per coat, minimum two coats',
+        'First coat approximately 0.8 kg/m²; two coats total 1.2–1.6 kg/m²'
+      ],
+      guidance: 'Mix 5 parts powder to 2 parts water for vertical surfaces, or 3 parts powder to 1 part water for horizontal surfaces. Mix mechanically with a low-speed drill to a lump-free slurry and apply immediately (pot life 30–40 minutes at 25°C). Keep the coating moist for three days and protect it from wind and direct sun.',
+      techData: [
+        { property: 'Product Type', value: 'Moisture-activated crystalline waterproofing coating' },
+        { property: 'Color', value: 'Powder grey' },
+        { property: 'Consumption', value: '1 kg/m² per coat, minimum two coats' },
+        { property: 'Coverage', value: '300 to 400 square feet per bag' },
+        { property: 'Full Cure', value: '7 days' },
+        { property: 'Mix Ratio (Vertical)', value: '5 parts powder to 2 parts water' },
+        { property: 'Mix Ratio (Horizontal)', value: '3 parts powder to 1 part water' },
+        { property: 'Pot Life at 25°C', value: '30 to 40 minutes' },
+        { property: 'Packaging', value: '25 kg bag' },
+        { property: 'Hazard Class', value: 'Non-hazardous goods' }
+      ],
+      standards: [
+        'Colour: powder grey',
+        'Full cure: 7 days',
+        'Non-toxic and non-tarnishing'
+      ],
+      applicationGuidelines: [
+        { title: 'Surface Preparation & Mixing', text: 'Chem Crystal Lock can be applied as soon as formwork is removed. Mix 5 parts powder to 2 parts water for vertical surfaces or 3 parts powder to 1 part water for horizontal surfaces, using a low-speed drill until homogenous and lump-free.' },
+        { title: 'Application & Curing', text: 'Apply with a stiff brush or spray at about 0.8 kg/m² for the first coat. Apply the second coat perpendicular to the first within 6 hours (up to 48 hours maximum). Keep the surface moist for three days and shield it from wind and direct sun. Where exposed, finish with a sand/cement render after curing.' },
+        { title: 'Storage', text: 'Store in a cool, covered and dry place, protected from direct sunlight and heat. Shelf life is 1 year.' }
+      ],
+      importantInfo: [
+        { label: 'Supplied In', value: '25 kg bag' },
+        { label: 'Storage', value: 'Cool, covered and dry place; protect from direct sunlight and heat' },
+        { label: 'Shelf Life', value: '1 year' },
+        { label: 'Hazard Class', value: 'Non-hazardous goods' }
+      ]
+    },
+    /* ============================================================
+        22. CHEM ANCHOR LOCK
+        ============================================================ */
+    {
+      id: 'chem-anchor-lock',
+      name: 'CHEM ANCHOR LOCK',
+      subTitle: 'High-strength epoxy anchoring grout and general-purpose adhesive',
+      category: 'grouts',
+      categoryLabel: 'Grouts & Cementitious Fillers',
+      image: ASSETS + 'chem_anchor-lock.webp',
+      imageW: 1600, imageH: 1131,
+      datasheet: 'downloads/Chem-Anchor-Lock.pdf',
+      datasheetKb: 2104,
+      datasheetPages: 2,
+      badges: ['Epoxy Anchoring', 'High Strength'],
+      highlights: [
+        'High-strength epoxy paste for anchoring fasteners into concrete',
+        'Impact resistance greater than concrete',
+        'Excellent adhesion and chemical resistance',
+        'Gel time of 90 minutes at 30°C'
+      ],
+      description:
+        'Chem Anchor Lock is a high-strength, two-component epoxy paste used as a general-purpose adhesive and '
+        + 'for anchoring fasteners into concrete. It delivers high compressive and bond strength, impact '
+        + 'resistance greater than concrete, and excellent resistance to most chemicals.',
+      keyFeatures: [
+        'HIGH STRENGTH',
+        'DURABILITY',
+        'EASY APPLICATION',
+        'EXCELLENT ADHESION',
+        'CHEMICAL RESISTANCE',
+        'FAST CURING'
+      ],
+      uses: [
+        'Electrical and conduit suspensions',
+        'Piping and HVAC',
+        'Racking and light shelving',
+        'Temporary or removable fixtures'
+      ],
+      packaging: 'Kit (base + hardener)',
+      coverage: 'Refer to the bar size and embedment depth table in the datasheet',
+      consumption: [
+        'Mix one kit at a time and use the entire kit within 15 minutes of mixing.',
+        'Hole diameter and minimum embedment depth vary by bar size (see datasheet).'
+      ],
+      guidance: 'Surfaces must be free of oil, grease and other contaminants, with loose concrete removed. Add the hardener to the base and mix for 3–5 minutes to an even, streak-free grey. Apply by trowel, spatula or gun and hold parts securely while the adhesive sets. Do not rework partially set material.',
+      techData: [
+        { property: 'Product Type', value: 'Two-component epoxy anchoring grout and adhesive' },
+        { property: 'Compressive Strength', value: 'ASTM C-579, 2 in (50 mm) cubes at 70°F (21°C)' },
+        { property: 'Age Strength', value: '1 day: 6,090 psi (42 N/mm²)' },
+        { property: 'Impact Resistance', value: 'Greater than concrete' },
+        { property: 'Creep Data', value: '3 days: 2.8×10⁻⁴ in./in.; 7 days: 2.9×10⁻⁴; 28 days: 4.0×10⁻⁴' },
+        { property: 'Coefficient of Thermal Expansion', value: 'ASTM C-531: 2.6×10⁻⁵ in./in. (4.5×10⁻⁵ mm)' },
+        { property: 'Chemical Resistance', value: 'ASTM D-543: excellent resistance to most chemicals' },
+        { property: 'Gel Time', value: 'ASTM D2471 at 86°F (30°C): 90 minutes' },
+        { property: 'Anchor Range', value: 'Bar sizes 12–40 mm; hole diameters 20–45 mm; yield 5.2–57.8 tons' },
+        { property: 'Packaging', value: 'Kit (base + hardener)' }
+      ],
+      standards: [
+        'ASTM C-579 — compressive strength (2 in / 50 mm cubes)',
+        'ASTM C-531 — coefficient of thermal expansion',
+        'ASTM D-543 — chemical resistance',
+        'ASTM D2471 — gel time'
+      ],
+      applicationGuidelines: [
+        { title: 'Surface Preparation & Mixing', text: 'All contacted surfaces must be free of oil, grease or contamination. Remove loose concrete to provide a solid foundation. Add the hardener to the base and mix for 3–5 minutes until the colour is an even, streak-free grey.' },
+        { title: 'Application', text: 'Apply with a trowel, spatula or gun. Hold attached parts securely while the epoxy sets, and use the entire kit within 15 minutes of mixing. Clean equipment immediately with solvent; do not rework partially set material.' },
+        { title: 'Storage & Precautions', text: 'Store in original unopened containers. For temperatures below 5°C or above 35°C, contact our technical staff. Although alkaline, the product is non-toxic; wash skin contact with soap and water and wear protective eyewear, gloves and clothing.' }
+      ],
+      importantInfo: [
+        { label: 'Storage', value: 'Original unopened containers' },
+        { label: 'Hazard Class', value: 'Alkaline but non-toxic; use appropriate PPE' }
       ]
     }
   ];

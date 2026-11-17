@@ -14,12 +14,12 @@
 
   var NAV_ITEMS = [
     { page: 'home', href: 'index.html', label: 'Home' },
-    { page: 'products', href: 'products.html', label: 'Products' },
-    { page: 'projects', href: 'projects.html', label: 'Projects' },
-    { page: 'clients', href: 'clients.html', label: 'Clients' },
-    { page: 'datasheets', href: 'datasheets.html', label: 'Datasheets' },
-    { page: 'services', href: 'services.html', label: 'Services' },
     { page: 'about', href: 'about.html', label: 'About' },
+    { page: 'services', href: 'services.html', label: 'Services' },
+    { page: 'products', href: 'products.html', label: 'Products' },
+    { page: 'datasheets', href: 'datasheets.html', label: 'Datasheets' },
+    { page: 'clients', href: 'clients.html', label: 'Clients' },
+    { page: 'projects', href: 'projects.html', label: 'Projects' },
     { page: 'contact', href: 'contact.html', label: 'Contact' }
   ];
 
@@ -171,7 +171,7 @@
     + '</div>'
     + '<div class="modal-body">'
     + '<div id="quote-form-view">'
-    + '<form id="quote-form" class="quote-form" novalidate method="post" action="send-mail.php">'
+    + '<form id="quote-form" class="quote-form" novalidate method="post" action="/api/contact">'
     /* Honeypot: off-screen, never filled by a human. Dropped by js/forms.js. */
     + '<div class="hp-field" aria-hidden="true">'
     + '<label for="quote-website">Company website</label>'
