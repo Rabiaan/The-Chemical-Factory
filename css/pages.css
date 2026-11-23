@@ -1327,6 +1327,8 @@ body[data-page="services"] .process-step__text {
 .story__title { font-family: var(--font-heading); font-size: clamp(calc(1.5rem - 5px), calc(3vw - 5px), calc(2.25rem - 5px)); color: var(--ink); line-height: 1.2; margin-top: 0.75rem; }
 .story__text { color: var(--gray-600); line-height: 1.75; margin-top: 1rem; font-size: 0.9375rem; }
 .story__text + .story__text { margin-top: 0.9rem; }
+.story__journey { margin-top: 2.5rem; }
+@media (min-width: 1024px) { .story__media { position: sticky; top: 7rem; align-self: start; } }
 .mission-cards { display: grid; gap: 1.5rem; margin-top: 3rem; }
 @media (min-width: 768px) { .mission-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 .mission-card { background: #fff; border-radius: 1.25rem; padding: 1.75rem; border: 1px solid rgba(0, 0, 0, 0.06); }
